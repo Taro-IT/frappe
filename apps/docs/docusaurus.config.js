@@ -16,7 +16,7 @@ module.exports = {
       logo: {
         alt: 'Frappé Logo',
         src: 'img/logo.svg',
-        srcDark: 'img/logo.svg',
+        srcDark: 'img/logo.svg'
       },
       items: [
         {
@@ -29,11 +29,11 @@ module.exports = {
     footer: {
       style: 'dark',
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} Taro, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Taro, Inc. Built with Docusaurus.`
     },
     prims: {
       theme: lightTheme,
-      darkTheme: darkTheme,
+      darkTheme: darkTheme
     }
   },
   presets: [
@@ -52,4 +52,4 @@ module.exports = {
       }
     ]
   ]
-}
+};
