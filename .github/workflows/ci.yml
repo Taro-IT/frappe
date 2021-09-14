@@ -55,4 +55,4 @@ jobs:
           git config --global user.email "alonsovla@gmail.com"
           git config --global user.name "Vladimir Salvador"
 
-          run: npm run affected -- --target=deploy --base=$NX_BASE
+          yarn affected -- --target=deploy --base=$NX_BASE
