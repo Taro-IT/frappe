@@ -14,6 +14,12 @@
       "options": {
         "port": 3000
       }
+    },
+    "deploy": {
+      "executor": "./tools/executors/gh-pages:gh-pages",
+      "options": {
+
+      }
     }
   },
   "tags": ["app:docs"]
