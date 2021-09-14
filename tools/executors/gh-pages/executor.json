@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "gh-pages": {
+      "implementation": "./impl",
+      "schema": "./schema.json",
+      "description": "Publish to gh-pages"
+    }
+  }
+}
