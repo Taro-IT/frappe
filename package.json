@@ -25,6 +25,8 @@
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@nrwl/cli": "12.9.0",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/tao": "12.9.0",
