@@ -6,7 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "affected": "nx affected"
+    "affected": "nx affected",
+    "gh-pages": "gh-pages"
   },
   "private": true,
   "dependencies": {

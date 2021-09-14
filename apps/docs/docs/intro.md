@@ -10,6 +10,7 @@ Cínica pierde mucho tiempo en tareas repetitivas que podrían delegarse o autom
 lo que realmente se pidió. Este proyecto es de gran interés para Taro debido a que permitirá a Cínica aumentar su productividad en comparación al último cuarto del año. Además de
 que permitirá el desarrollo de cada uno de los miembros del departamento como parte de un equipo de desarrollo de software.
 
+
 ## Visión
 
 ## Necesidades

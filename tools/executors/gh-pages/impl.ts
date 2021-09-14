@@ -1,18 +1,14 @@
-import { Executor, ExecutorContext, runExecutor } from '@nrwl/devkit';
+import { Executor } from '@nrwl/devkit';
 import { Options } from './options';
 import { asyncExec } from '../../utils/exec';
 
-async function buildProject(project: string, ctx: ExecutorContext) {
-  for await (const buildResult of await runExecutor({ project, target: 'build' }, {}, ctx)) {
-    if (!buildResult.success) {
-      throw new Error(`Can't build projec: ${project}`);
-    }
-  }
+async function buildProject(project: string) {
+  await asyncExec(`npm run build ${ project }`);
 }
 
 async function publishToGHPages(outputPath: string) {
   try {
-    const { stderr, stdout } = await asyncExec(`yarn gh-pages -d ${outputPath}`);
+    const { stderr, stdout } = await asyncExec(`npm run gh-pages -- -d ${outputPath}`);
 
     console.log(stderr, stdout);
 
@@ -24,7 +20,7 @@ async function publishToGHPages(outputPath: string) {
 const ghPagesExecutor: Executor<Options> = async (options, ctx) => {
   const { projectName: project } = ctx;
 
-  await buildProject(project, ctx);
+  await buildProject(project);
 
   const { outputPath } = options;
   await publishToGHPages(outputPath);
