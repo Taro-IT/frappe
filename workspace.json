@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "projects": {},
+  "projects": {
+    "docs": "apps/docs"
+  },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
   }
