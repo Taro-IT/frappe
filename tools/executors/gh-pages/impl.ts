@@ -8,7 +8,7 @@ async function buildProject(project: string) {
 
 async function publishToGHPages(outputPath: string) {
   try {
-    const { stderr, stdout } = await asyncExec(`npm run gh-pages -- -d ${outputPath} -u "github-actions-bot <support+actions@github.com>"`);
+    const { stderr, stdout } = await asyncExec(`npm run gh-pages -- -d ${outputPath}`);
 
     console.log(stderr, stdout);
 

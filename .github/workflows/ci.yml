@@ -47,6 +47,8 @@ jobs:
           NX_BASE: ${{ steps.nx-base.outputs.base }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          git config --global user.email "alonsovla@gmail.com"
+          git config --global user.name "Vladimir Salvador"
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 
           npm run affected -- --target=deploy --base=$NX_BASE
