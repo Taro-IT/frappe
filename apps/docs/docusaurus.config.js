@@ -44,7 +44,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
           remarkPlugins: [require('mdx-mermaid')],
-          editUrl: 'https://github.com/Taro-IT/frappe/edit/main'
+          editUrl: 'https://github.com/Taro-IT/frappe/edit/main/apps/docs'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css')
