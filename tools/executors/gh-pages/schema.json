@@ -2,6 +2,11 @@
   "$schema": "http://json-schema.org/schema",
   "type": "object",
   "cli": "nx",
-  "properties": {},
-  "required": []
+  "properties": {
+    "outputPath": {
+      "type": "string",
+      "description": "Artifacts folder"
+    }
+  },
+  "required": ["outputPath"]
 }
