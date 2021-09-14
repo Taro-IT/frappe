@@ -3,7 +3,7 @@ import { Options } from './options';
 import { asyncExec } from '../../utils/exec';
 
 async function buildProject(project: string) {
-  await asyncExec(`npm run build ${ project }`);
+  await asyncExec(`npm run build ${project}`);
 }
 
 async function publishToGHPages(outputPath: string) {
@@ -11,7 +11,6 @@ async function publishToGHPages(outputPath: string) {
     const { stderr, stdout } = await asyncExec(`npm run gh-pages -- -d ${outputPath}`);
 
     console.log(stderr, stdout);
-
   } catch (error) {
     throw error;
   }
@@ -26,6 +25,6 @@ const ghPagesExecutor: Executor<Options> = async (options, ctx) => {
   await publishToGHPages(outputPath);
 
   return { success: true };
-}
+};
 
 export default ghPagesExecutor;
