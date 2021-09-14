@@ -48,6 +48,8 @@ jobs:
 
       - name: Deploy
         env:
+          USE_SSH: true
+          GIT_USER: git
           NX_BASE: ${{ steps.nx-base.outputs.base }}
         run: |
           git config --global user.email "alonsovla@gmail.com"
