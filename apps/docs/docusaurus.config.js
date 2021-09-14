@@ -1,84 +1,40 @@
+const lightTheme = require('prism-react-renderer/themes/github');
+const darkTheme = require('prism-react-renderer/themes/dracula');
+
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  title: 'Taro - Frappé',
+  tagline: 'Frappé project',
+  url: 'https://taro-it.github.io',
+  baseUrl: '/frappe/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'Taro-IT',
+  projectName: 'frappe',
   themeConfig: {
     navbar: {
-      title: 'My Site',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Frappé Logo',
         src: 'img/logo.svg',
+        srcDark: 'img/logo.svg',
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
-          label: 'Docs',
-          position: 'left',
-        },
-        { to: 'blog', label: 'Blog', position: 'left' },
-        {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/Taro-IT/frappe',
           label: 'GitHub',
-          position: 'right',
-        },
-      ],
+          position: 'right'
+        }
+      ]
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      links: [],
+      copyright: `Copyright © ${new Date().getFullYear()} Taro, Inc. Built with Docusaurus.`,
     },
+    prims: {
+      theme: lightTheme,
+      darkTheme: darkTheme,
+    }
   },
   presets: [
     [
@@ -86,20 +42,14 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          routeBasePath: '/',
+          remarkPlugins: [require('mdx-mermaid')],
+          editUrl: 'https://github.com/Taro-IT/frappe/edit/main'
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
-        },
-      },
-    ],
-  ],
-};
+          customCss: require.resolve('./src/css/custom.css')
+        }
+      }
+    ]
+  ]
+}
