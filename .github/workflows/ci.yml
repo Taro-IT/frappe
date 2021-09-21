@@ -6,6 +6,46 @@ on:
       - dev
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Fetch changes
+        run: git fetch
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Cache node_modules
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install --ignore-scripts
+
+      - name: Setup NX Base
+        id: nx-base
+        run: echo "::set-output name=base::$(git log --format=%H -n 1 origin/${{ github.base_ref }})"
+
+      - name: Testing
+        env:
+          NX_BASE: ${{ steps.nx-base.outputs.base }}
+        run: |
+          npm run lint-staged
+          npm run affected:lint -- --base=$NX_BASE
+
+
   test:
     runs-on: ubuntu-latest
 
@@ -42,7 +82,7 @@ jobs:
         env:
           NX_BASE: ${{ steps.nx-base.outputs.base }}
         run: |
-          run: npm run affected:test -- --base=$NX_BASE
+          npm run affected:test -- --base=$NX_BASE
 
   build:
     runs-on: ubuntu-latest
@@ -80,4 +120,4 @@ jobs:
         env:
           NX_BASE: ${{ steps.nx-base.outputs.base }}
         run: |
-          run: npm run affected:build -- --base=$NX_BASE
+          npm run affected:build -- --base=$NX_BASE

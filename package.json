@@ -9,6 +9,7 @@
     "affected": "nx affected",
     "affected:build": "nx affected:build",
     "affected:test": "nx affected:test",
+    "affected:lint": "nx affected:lint",
     "format": "nx format:write",
     "gh-pages": "gh-pages",
     "prepare": "husky install",
