@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@frappe/api-gateway/*": ["apps/api-gateway/src/*"],
       "@frappe/common/persistence/mongodb": ["libs/common/persistence/mongodb/src/index.ts"]
     }
   },

@@ -1,13 +1,13 @@
-import express from 'express';
+import {configureContainer} from "@frappe/api-gateway/container";
 
-const app = express();
+const bootstrap = async () => {
+  const container = configureContainer();
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to api-gateway!' });
-});
+  const { server } = container.cradle;
 
-const port = process.env.port || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on('error', console.error);
+  const port = process.env.PORT || 3000;
+  server.listen(port);
+  console.log(`Running at: http://0.0.0.0:${ port }`);
+}
+
+bootstrap();
