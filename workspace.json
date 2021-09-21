@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "common-persistence-mongodb": "libs/common/persistence/mongodb",
     "docs": "apps/docs"
   },
   "cli": {
