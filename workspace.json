@@ -1,10 +1,12 @@
 {
   "version": 2,
   "projects": {
+    "api-gateway": "apps/api-gateway",
     "common-persistence-mongodb": "libs/common/persistence/mongodb",
     "docs": "apps/docs"
   },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/express"
+  },
+  "defaultProject": "api-gateway"
 }
