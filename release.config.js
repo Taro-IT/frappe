@@ -9,18 +9,29 @@ module.exports = {
       {
         preset: 'conventionalcommits',
         releaseRules: [
-          { type: 'docs', scope: 'README', release: 'patch' }
+          { type: 'build', release: 'patch' },
+          { type: 'perf', release: 'patch' },
+          { type: 'revert', release: 'patch' }
         ],
         parseOpts: {
+          mergePattern: /^Merge pull request #(\d+) from (.*)$/,
+          mergeCorrespondence: ['id', 'source'],
           noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING']
         }
       }
     ],
-    '@semantic-release/github',
     [
       '@semantic-release/release-notes-generator',
       {
         preset: 'conventionalcommits',
+        parserOpts: {
+          mergePattern: /^Merge pull request #(\d+) from (.*)$/,
+          mergeCorrespondence: ['id', 'source'],
+          noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING']
+        },
+        writerOpts: {
+          commitsSort: ['subject', 'scope']
+        },
         presetConfig: {
           types: [
             { type: 'feat', section: ':sparkles: New Features', hidden: false },
@@ -36,6 +47,12 @@ module.exports = {
             { type: 'chore', hidden: true }
           ]
         }
+      }
+    ],
+    [
+      '@semantic-release/github',
+      {
+        assets: ['dist/**/**/*.{js,json}', 'dist/**/**/**/*.{js,json}']
       }
     ],
     [
