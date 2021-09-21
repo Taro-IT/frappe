@@ -1,4 +1,4 @@
-import {configureContainer} from "@frappe/api-gateway/container";
+import {configureContainer} from "./container";
 
 const bootstrap = async () => {
   const container = configureContainer();

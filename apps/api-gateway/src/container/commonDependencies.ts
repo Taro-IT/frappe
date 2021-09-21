@@ -3,7 +3,7 @@ import {MongoClientFactory, MongoCriteriaMapper} from "@frappe/common/persistenc
 import {QueryBus} from "@tshio/query-bus";
 import {CommandBus} from "@tshio/command-bus";
 import {EventDispatcher} from "@tshio/event-dispatcher";
-import {configureRouter} from "@frappe/api-gateway/routes";
+import {configureRouter} from "../routes";
 
 export const commonDependencies = (container: AwilixContainer) => {
   container.register({

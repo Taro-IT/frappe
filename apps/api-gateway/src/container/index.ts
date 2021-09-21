@@ -1,10 +1,10 @@
 import {asFunction, asValue, AwilixContainer, createContainer, InjectionMode} from "awilix";
 import {commonDependencies} from "./commonDependencies";
-import {configureApp} from "@frappe/api-gateway/app";
+import {configureApp} from "../app";
 import http from "http";
 import {queryHandlers} from "./queryHandlers";
-import {commandHandlers} from "@frappe/api-gateway/container/commandHandlers";
-import {eventHandlers} from "@frappe/api-gateway/container/eventHandlers";
+import {commandHandlers} from "./commandHandlers";
+import {eventHandlers} from "./eventHandlers";
 
 interface ContainerType {
   readonly server: http.Server

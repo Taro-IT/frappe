@@ -1,10 +1,6 @@
 import express from "express";
 
-interface RouteType {
-
-}
-
-export const configureRouter = (routes: RouteType): express.Router => {
+export const configureRouter = (): express.Router => {
   const router = express.Router();
 
   router.get('/', (req, res) => {
