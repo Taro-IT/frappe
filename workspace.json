@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "api-gateway": "apps/api-gateway",
+    "backoffice-frontend": "apps/backoffice/frontend",
+    "backoffice/frontend-e2e": "apps/backoffice/frontend-e2e",
     "category-application": "libs/category/application",
     "category-domain": "libs/category/domain",
     "category-persistence-mongodb": "libs/category/persistence/mongodb",
@@ -12,5 +14,18 @@
   "cli": {
     "defaultCollection": "@nrwl/express"
   },
-  "defaultProject": "api-gateway"
+  "defaultProject": "api-gateway",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  }
 }
