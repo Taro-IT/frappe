@@ -1,90 +1,57 @@
-# Frappe
+# Developer Onboarding - Frappé
 
-This project was generated using [Nx](https://nx.dev).
+## Instalación del repositorio
+1. Clonar el [repositorio](https://github.com/Taro-IT/frappe/tree/main).
+2. Crear la rama dev y hacerle pull
+3. Instalar [docker](https://www.docker.com/products/docker-desktop)
+4. Crear un archivo .env y copiar el contenido del .env.example
+5. Entrar a la consola de comandos en la carpeta root del repositorio y correr los siguientes comandos:
+```bash
+	npm install
+	docker compose up -d
+```
+6. Instalar Insomnia o Postman para checar las peticiones del back
+7. 
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+--------
+## Correr un ambiente local del repo
+* **Correr ambiente:**
+```bash
+	nx run-many --target serve --projects backoffice-frontend,api-gateway --parallel 2 
+```
 
-🔎 **Smart, Extensible Build Framework**
+--------------
+## Estructura de archivos
+### Front-end
 
-## Adding capabilities to your workspace
+### Back-end
+----
+## Desarrollo de pruebas unitarias
+---
+## Hacks, cheatsheets y documentación de tecnologías usadas
+###### Se recomienda el uso de un IDE como** VS Code o IntelliJ**, recomendando las siguientes extensiones
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+#### VS Code
+|Nombre extensión | ¿Qué hace?  |
+|:-------------:|:-----:|
+|GitLens | Permite ver en el código quién modificó cada linea en la que pones el mouse y hace cuánto tiempo, es como tener github en el editor. |
+|Tabnine | Es un autocompletador de código que usa inteligencia artificial para hacer predicciones muy específicas. Se recomienda registrarse con la cuenta institucional para tener la versión pro de manera gratuita. |
+|WakaTime| Es un tracker de tiempo en código donde no tienes que iniciar ningún reloj, además de que en su plataforma web te permite ver cuánto tiempo haces código en cada proyecto, IDE e incluso en cada archivo. Por si en alguna ocasión olvidas prender el logger departamental. |
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+#### IntelliJ
+|Nombre extensión | ¿Qué hace?  |
+|:-------------:|:-----:|
+|||
+|||
+|||
 
-Below are our core plugins:
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+###### TypeScript Cheatsheet
+Para tener siempre a la mano los hacks para usar typescript, recomendamos tener a la mano este [link](https://devhints.io/typescript)
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+###### Frappé Cheatsheet
+> Son comandos nuestros que nos sirve tenerlos a la mano
 
-## Generate an application
-
-Run `nx g @nrwl/react:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@frappe/mylib`.
-
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+###### Documentación de tecnologías
+**[Hero Icons](https://heroicons.dev):** Iconografía de la plataforma
+**[Tailwind](https://tailwindcss.com)**: Librería de estilos para la plataforma
