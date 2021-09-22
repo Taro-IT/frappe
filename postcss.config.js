@@ -8,7 +8,7 @@ const config = `${projectRoot}/tailwind.config.js`
 
 module.exports = {
   plugins: {
-    tailwindcss: {config},
+    tailwindcss: { config: project.name === 'docs' ? undefined : config },
     autoprefixer: {},
   },
 }
