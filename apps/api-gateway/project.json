@@ -15,7 +15,8 @@
         "production": {
           "optimization": true,
           "extractLicenses": true,
-          "inspect": false
+          "inspect": false,
+          "generatePackageJson": true
         }
       }
     },
