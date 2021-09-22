@@ -30,6 +30,7 @@
     "clsx": "^1.1.1",
     "cors": "^2.8.5",
     "express": "4.17.1",
+    "express-class-validator": "^1.0.3",
     "helmet": "^4.6.0",
     "mdx-mermaid": "^1.1.0",
     "mermaid": "^8.12.1",

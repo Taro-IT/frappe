@@ -1,6 +1,7 @@
 import {Command} from "@tshio/command-bus";
 
 interface CreateCategoryCommandPayload {
+  readonly id: string;
   readonly name: string;
 }
 
