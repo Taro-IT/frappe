@@ -2,7 +2,11 @@
   "version": 2,
   "projects": {
     "api-gateway": "apps/api-gateway",
+    "category-application": "libs/category/application",
+    "category-domain": "libs/category/domain",
+    "category-persistence-mongodb": "libs/category/persistence/mongodb",
     "common-persistence-mongodb": "libs/common/persistence/mongodb",
+    "common-value-object": "libs/common/value-object",
     "docs": "apps/docs"
   },
   "cli": {

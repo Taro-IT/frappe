@@ -26,6 +26,7 @@
     "@tshio/event-dispatcher": "^1.0.2",
     "@tshio/query-bus": "^1.0.3",
     "awilix": "^5.0.1",
+    "class-validator": "^0.13.1",
     "clsx": "^1.1.1",
     "cors": "^2.8.5",
     "express": "4.17.1",
@@ -36,7 +37,8 @@
     "prism-react-renderer": "^1.2.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
@@ -56,6 +58,7 @@
     "@types/jest": "26.0.24",
     "@types/mongodb": "^4.0.7",
     "@types/node": "14.14.33",
+    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "~4.28.3",
     "@typescript-eslint/parser": "~4.28.3",
     "cz-conventional-changelog": "^3.3.0",

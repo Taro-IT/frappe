@@ -1,11 +1,13 @@
 import express from "express";
 
-export const configureRouter = (): express.Router => {
+interface RoutesDeps {
+  readonly categoryRouting: express.Router;
+}
+
+export const configureRouter = (routes: RoutesDeps): express.Router => {
   const router = express.Router();
 
-  router.get('/', (req, res) => {
-    res.send({ message: 'Welcome to api-gateway!' });
-  });
+  router.use('/categories', routes.categoryRouting);
 
   return router;
 }
