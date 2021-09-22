@@ -1,9 +1,31 @@
 {
   "version": 2,
   "projects": {
+    "api-gateway": "apps/api-gateway",
+    "backoffice-frontend": "apps/backoffice/frontend",
+    "backoffice/frontend-e2e": "apps/backoffice/frontend-e2e",
+    "category-application": "libs/category/application",
+    "category-domain": "libs/category/domain",
+    "category-persistence-mongodb": "libs/category/persistence/mongodb",
+    "common-persistence-mongodb": "libs/common/persistence/mongodb",
+    "common-value-object": "libs/common/value-object",
     "docs": "apps/docs"
   },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/express"
+  },
+  "defaultProject": "api-gateway",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
   }
 }

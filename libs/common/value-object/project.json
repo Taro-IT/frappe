@@ -1,0 +1,23 @@
+{
+  "root": "libs/common/value-object",
+  "sourceRoot": "libs/common/value-object/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/common/value-object/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/common/value-object"],
+      "options": {
+        "jestConfig": "libs/common/value-object/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
