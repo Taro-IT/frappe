@@ -1,20 +1,25 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import './styles.scss';
+import AddCategory from '../components/Demo/category/AddCategory'
+import { useState } from 'react';
+import CategoryList from '../components/Demo/category/CategoryList';
 
 function CustomApp({ Component, pageProps }: AppProps) {
+  const [categoriesList, setCategoriesList] = useState([])
+  const addCategoryHandler = (uName) => {
+    setCategoriesList(prevCategoriesList => {
+      return [...prevCategoriesList, {name: uName, id:Math.random().toString()}];
+    })
+  }
+
   return (
     <>
       <Head>
-        <title>Welcome to backoffice/frontend!</title>
       </Head>
-      <div className="app">
-        <header className="bg-red-400">
-          <h1>Welcome to backoffice/frontend!</h1>
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
+      <div className="bg-gray-200 w-full h-full absolute">
+        <AddCategory onAddCategory={addCategoryHandler}/>
+        <CategoryList categories={categoriesList}/>
       </div>
     </>
   );
