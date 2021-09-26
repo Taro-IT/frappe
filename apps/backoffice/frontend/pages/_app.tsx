@@ -1,23 +1,14 @@
+import React from 'react';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
 import './styles.scss';
+import { initFirebaseAuth } from '../utils/initFirebaseAuth';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+initFirebaseAuth()
+
+const FrappeApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
-      <Head>
-        <title>Welcome to backoffice/frontend!</title>
-      </Head>
-      <div className="app">
-        <header className="bg-red-400">
-          <h1>Welcome to backoffice/frontend!</h1>
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </>
-  );
-}
+    <Component { ...pageProps } />
+  )
+};
 
-export default CustomApp;
+export default FrappeApp;
