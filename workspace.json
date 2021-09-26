@@ -8,6 +8,7 @@
     "category-domain": "libs/category/domain",
     "category-persistence-mongodb": "libs/category/persistence/mongodb",
     "common-persistence-mongodb": "libs/common/persistence/mongodb",
+    "common-utils": "libs/common/utils",
     "common-value-object": "libs/common/value-object",
     "docs": "apps/docs"
   },
