@@ -1,13 +1,11 @@
-const { concat, mergeDeepWith, reduce } = require('ramda')
-
-const base = require('../../../tailwind.config')
-
-const deepMerge = reduce(mergeDeepWith(concat), {})
-
-module.exports = deepMerge([
-  base, 
-  { 
-
-  }
-
-])
+module.exports = {
+  purge: [],
+  darkMode: false, // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
