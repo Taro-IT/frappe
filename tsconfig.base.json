@@ -2,10 +2,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
@@ -14,7 +15,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@frappe/category/application": ["libs/category/application/src/index.ts"],
+      "@frappe/category/domain": ["libs/category/domain/src/index.ts"],
+      "@frappe/category/persistence/mongodb": ["libs/category/persistence/mongodb/src/index.ts"],
+      "@frappe/common/persistence/mongodb": ["libs/common/persistence/mongodb/src/index.ts"],
+      "@frappe/common/value-object": ["libs/common/value-object/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

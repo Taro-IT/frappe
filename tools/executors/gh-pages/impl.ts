@@ -1,6 +1,7 @@
 import { Executor } from '@nrwl/devkit';
 import { Options } from './options';
 import { asyncExec } from '../../utils/exec';
+import { touch } from '../../utils/touch';
 
 async function buildProject(project: string) {
   await asyncExec(`npm run build ${project}`);
@@ -22,6 +23,7 @@ const ghPagesExecutor: Executor<Options> = async (options, ctx) => {
   await buildProject(project);
 
   const { outputPath } = options;
+  await touch(`${ outputPath }/.nojekyll`)
   await publishToGHPages(outputPath);
 
   return { success: true };

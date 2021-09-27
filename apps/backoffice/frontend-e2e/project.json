@@ -1,0 +1,29 @@
+{
+  "root": "apps/backoffice/frontend-e2e",
+  "sourceRoot": "apps/backoffice/frontend-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/backoffice/frontend-e2e/cypress.json",
+        "devServerTarget": "backoffice-frontend:serve",
+        "tsConfig": "apps/backoffice/frontend-e2e/tsconfig.json"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "backoffice-frontend:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/backoffice/frontend-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["backoffice-frontend"]
+}
