@@ -1,6 +1,6 @@
 # Technology Stack
 
-Se opto por la utilización del stack de desarrollo MENN.
+Se optó por la utilización del stack de desarrollo MENN.
 
 ## Tecnologías
 
