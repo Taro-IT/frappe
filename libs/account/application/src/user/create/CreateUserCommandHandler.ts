@@ -20,5 +20,4 @@ export class CreateUserCommandHandler implements CommandHandler<CreateUserComman
 
     return this.userCreator.execute(id,email,name);
   }
-
 }

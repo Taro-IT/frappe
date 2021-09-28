@@ -21,6 +21,8 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
 
   // Register Modules
   registerCollectionModule(container);
+  registerAccountModule(container);
+
 
   container.register({
     app: asFunction(configureApp).singleton()

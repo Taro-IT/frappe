@@ -1,17 +1,17 @@
 import {EventSubscriberInterface, EventSubscribersMeta} from "@tshio/event-dispatcher";
 import {CommandBus} from "@tshio/command-bus";
 import {UserRegistered} from "@frappe/account/domain";
-import {CreateUserCommand} from "../create";
+import {UserCreator} from "../create";
 
 interface CreateUserOnAccountRegisteredDeps {
-  readonly commandBus: CommandBus;
+  readonly userCreator: UserCreator;
 }
 
 export class CreateUserOnAccountRegistered implements EventSubscriberInterface {
-  private readonly commandBus: CommandBus;
+  private readonly userCreator: UserCreator;
 
-  constructor({ commandBus }: CreateUserOnAccountRegisteredDeps) {
-    this.commandBus = commandBus;
+  constructor({ userCreator }: CreateUserOnAccountRegisteredDeps) {
+    this.userCreator = userCreator;
   }
 
   getSubscribedEvents(): EventSubscribersMeta[] {
@@ -21,6 +21,8 @@ export class CreateUserOnAccountRegistered implements EventSubscriberInterface {
   }
 
   async execute(event: UserRegistered) {
-    return this.commandBus.execute(new CreateUserCommand(event.payload));
+    const { id, name, email } = event.payload;
+
+    return this.userCreator.execute(id, email, name);
   }
 }

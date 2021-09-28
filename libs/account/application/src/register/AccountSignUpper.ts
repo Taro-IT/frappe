@@ -3,15 +3,22 @@ import {wrapError} from "@frappe/common/utils";
 import {EventDispatcher} from "@tshio/event-dispatcher";
 import {EmailAlreadyExist, InvalidPasword, UserRegistered} from "@frappe/account/domain";
 
-export class AccountSignUpper {
+interface AccountSignUpperDeps {
+  readonly firebaseAuth: admin.auth.Auth;
+  readonly eventBus: EventDispatcher;
+}
 
-  constructor(
-    private readonly auth: admin.auth.Auth,
-    private readonly eventBus: EventDispatcher
-  ) { }
+export class AccountSignUpper {
+  private readonly firebaseAuth: admin.auth.Auth;
+  private readonly eventBus: EventDispatcher;
+
+  constructor({ firebaseAuth, eventBus }: AccountSignUpperDeps) {
+    this.firebaseAuth = firebaseAuth;
+    this.eventBus = eventBus;
+  }
 
   async execute(email: string, password: string, name = ''): Promise<void> {
-    const [authError, user] = await wrapError<FirebaseError, admin.auth.UserRecord>(this.auth.createUser({ email, password, displayName: name }));
+    const [authError, user] = await wrapError(this.firebaseAuth.createUser({ email, password, displayName: name }));
 
     if (authError !== null) {
       this.throwAuthError(authError);
@@ -22,12 +29,12 @@ export class AccountSignUpper {
     await this.eventBus.dispatch(new UserRegistered({ id: uid, name: displayName, email }));
   }
 
-  private throwAuthError({ code, message }: FirebaseError) {
-    switch (code) {
+  private throwAuthError(data) {
+    switch (data.code) {
       case 'auth/email-already-exists':
-        throw new EmailAlreadyExist(message);
+        throw new EmailAlreadyExist(data.message);
       case 'auth/invalid-password':
-        throw new InvalidPasword(message);
+        throw new InvalidPasword(data.message);
     }
   }
 }
