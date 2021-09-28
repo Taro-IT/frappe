@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "account-application": "libs/account/application",
     "account-domain": "libs/account/domain",
     "api-gateway": "apps/api-gateway",
     "backoffice-frontend": "apps/backoffice/frontend",

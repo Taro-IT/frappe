@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@frappe/account/application": ["libs/account/application/src/index.ts"],
       "@frappe/account/domain": ["libs/account/domain/src/index.ts"],
       "@frappe/category/application": ["libs/category/application/src/index.ts"],
       "@frappe/category/domain": ["libs/category/domain/src/index.ts"],
