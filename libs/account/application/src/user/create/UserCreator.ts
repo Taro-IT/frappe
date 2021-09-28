@@ -15,5 +15,4 @@ export class UserCreator {
     const user = new User(new UserId(id), new UserEmail(email), new UserDisplayName(name))
     return this.userRepository.save(user);
   }
-
 }

@@ -8,7 +8,6 @@ export class CreateUserCommand implements Command<CreateUserCommandPayload> {
 
   constructor(
     readonly payload: CreateUserCommandPayload
-  ) {
-  }
+  ) { }
 
 }
