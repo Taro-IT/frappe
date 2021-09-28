@@ -3,8 +3,7 @@ import {Command} from "@tshio/command-bus";
 
 type CreateUserCommandPayload = UserPrimitives
 
-export class CreateUserCommand implements Command<CreateUserCommandPayload>{
-
+export class CreateUserCommand implements Command<CreateUserCommandPayload> {
   readonly type = CreateUserCommand.name;
 
   constructor(

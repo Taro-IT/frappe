@@ -3,6 +3,7 @@
   "projects": {
     "account-application": "libs/account/application",
     "account-domain": "libs/account/domain",
+    "account-persistence-mongodb": "libs/account/persistence/mongodb",
     "api-gateway": "apps/api-gateway",
     "backoffice-frontend": "apps/backoffice/frontend",
     "backoffice/frontend-e2e": "apps/backoffice/frontend-e2e",
