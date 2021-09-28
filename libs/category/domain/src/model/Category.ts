@@ -8,7 +8,7 @@ export class Category {
     readonly name: CategoryName
   ) { }
 
-  static fromPrimive(primitives: CategoryPrimitives): Category {
+  static fromPrimives(primitives: CategoryPrimitives): Category {
     return new Category(new CategoryId(primitives.id), new CategoryName(primitives.name));
   }
 
