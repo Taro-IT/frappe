@@ -25,7 +25,7 @@ const CreateCategory = props => {
       <Card className={classes.input}>
           <form>
               <label htmlFor='categoryName'>Nombre de la categoría</label>
-              <input 
+              <input
                   id='categoryName'
                   type='text'
                   value={categoryName}
