@@ -1,6 +1,6 @@
 import {asClass, AwilixContainer} from "awilix";
 import {asArray} from "@tshio/awilix-resolver";
-import { FindCategoryNameQueryHandler } from "libs/category/application/src/find/find-by-name";
+import { FindCategoryNameQueryHandler } from "@frappe/category/application";
 
 export const queryHandlers = (container: AwilixContainer) => {
   container.register({

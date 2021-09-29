@@ -1,7 +1,7 @@
 import {RequestHandler} from "express";
 import {Uuid} from "@frappe/common/value-object";
 import { QueryBus } from "@tshio/query-bus";
-import { FindCategoryNameQuery } from "libs/category/application/src/find/find-by-name";
+import { FindCategoryNameQuery } from "@frappe/category/application";
 
 export const findCategoryNameHandler = (queryBus: QueryBus): RequestHandler =>
   async (req, res) => {

@@ -2,7 +2,6 @@ import {CommandBus} from "@tshio/command-bus";
 import {NextFunction, RequestHandler} from "express";
 import {CreateCategoryCommand} from "@frappe/category/application";
 import {Uuid} from "@frappe/common/value-object";
-import { QueryBus } from "@tshio/query-bus";
 
 export const createCategoryHandler = (commandBus: CommandBus): RequestHandler =>
   async (req, res, next: NextFunction) => {

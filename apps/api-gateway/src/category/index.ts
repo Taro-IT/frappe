@@ -1,8 +1,7 @@
 import {AwilixContainer, asClass, asFunction} from "awilix";
 import {categoryRouting} from "./category.routing";
 import {MongoCategoryRepository} from "@frappe/category/persistence/mongodb";
-import {CategoryCreator} from "@frappe/category/application";
-import { CategoryNameFinder } from "libs/category/application/src/find/find-by-name";
+import {CategoryCreator, CategoryNameFinder} from "@frappe/category/application";
 
 export const registerCollectionModule = (container: AwilixContainer) => {
   container.register({
