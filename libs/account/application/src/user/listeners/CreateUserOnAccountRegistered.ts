@@ -1,5 +1,4 @@
 import {EventSubscriberInterface, EventSubscribersMeta} from "@tshio/event-dispatcher";
-import {CommandBus} from "@tshio/command-bus";
 import {UserRegistered} from "@frappe/account/domain";
 import {UserCreator} from "../create";
 
@@ -20,7 +19,7 @@ export class CreateUserOnAccountRegistered implements EventSubscriberInterface {
     ];
   }
 
-  async execute(event: UserRegistered) {
+  execute(event: UserRegistered) {
     const { id, name, email } = event.payload;
 
     return this.userCreator.execute(id, email, name);

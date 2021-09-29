@@ -16,13 +16,12 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
 
   commonDependencies(container);
   commandHandlers(container);
-  eventHandlers(container);
   queryHandlers(container);
+  eventHandlers(container);
 
   // Register Modules
   registerCollectionModule(container);
   registerAccountModule(container);
-
 
   container.register({
     app: asFunction(configureApp).singleton()

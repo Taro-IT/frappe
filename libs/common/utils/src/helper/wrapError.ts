@@ -8,6 +8,6 @@ export const wrapError = async <E extends Error, Res>(promise: Promise<Res>): Pr
 
     return [null, response];
   } catch (error) {
-    return [error as E, null];
+    return [error as unknown as E, null];
   }
 }
