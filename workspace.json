@@ -7,6 +7,7 @@
     "category-application": "libs/category/application",
     "category-domain": "libs/category/domain",
     "category-persistence-mongodb": "libs/category/persistence/mongodb",
+    "common-design-system": "libs/common/design-system",
     "common-persistence-mongodb": "libs/common/persistence/mongodb",
     "common-value-object": "libs/common/value-object",
     "docs": "apps/docs"

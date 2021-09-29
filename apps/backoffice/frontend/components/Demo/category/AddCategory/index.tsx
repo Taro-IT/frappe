@@ -1,9 +1,9 @@
-import Card from '../../common/Card';
-import Button from '../../common/Button';
+import { Card } from '@frappe/common/design-system';
+import { Button } from '@frappe/common/design-system';
 import classes from './AddCategory.module.scss'
 
 import { useState } from 'react';
-
+import axios from "axios";
 const CreateCategory = props => {
     const [categoryName, setCategoryName] = useState('')
 
@@ -11,8 +11,12 @@ const CreateCategory = props => {
     const addCategoryHandler = (event) => {
       event.preventDefault();
       if(categoryName=="") return;
-      props.onAddCategory(categoryName);
       
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
+        name: categoryName
+      })
+
+
       setCategoryName('')
     }
 
@@ -31,7 +35,7 @@ const CreateCategory = props => {
                   value={categoryName}
                   onChange={nameChangeHandler}
               ></input>
-             <Button type="submit" onClick={addCategoryHandler} title="Add User"></Button>
+             <Button type="submit" onClick={addCategoryHandler} title="Add Category"></Button>
           </form>
       </Card>
     );

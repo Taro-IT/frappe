@@ -1,5 +1,5 @@
 import classes from './CategoryList.module.scss';
-import Card from '../../common/Card';
+import { Card } from '@frappe/common/design-system';
 
 
 const CategoryList = props => {
