@@ -1,6 +1,10 @@
 import {Category, CategoryAlreadyExists, CategoryId, CategoryName, CategoryRepository} from "@frappe/category/domain";
 import { CategoryNameFinder } from "../find";
 
+
+// SOLID
+// Una Clase por lo general solo debe tener un método público
+
 interface Props {
   readonly categoryRepository: CategoryRepository;
   readonly categoryNameFinder: CategoryNameFinder;
@@ -16,9 +20,8 @@ export class CategoryCreator {
   }
 
   async execute(id: string, name: string) {
-    // Validate name dos not exist
     const exists = await this.categoryExists(name)
-    
+
     if(exists === null) {
       throw new CategoryAlreadyExists(name);
     }
@@ -27,7 +30,7 @@ export class CategoryCreator {
     return this.categoryRepository.save(category);
   }
 
-  async categoryExists(name: string) {
+  private async categoryExists(name: string) {
     try {
       await this.categoryNameFinder.execute(name)
       return null

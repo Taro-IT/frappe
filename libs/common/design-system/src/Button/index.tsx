@@ -1,5 +1,4 @@
 import { MouseEventHandler } from "react";
-import { FC } from "react";
 
 type ButtonProps = {
   type?: "button" | "submit" | "reset" ,
@@ -7,16 +6,15 @@ type ButtonProps = {
   title: string
 }
 
-const Button: FC<ButtonProps> = ({type, onClick, title, ...props}: ButtonProps) => {
+export const Button = ({ type, onClick, title, ...props}: ButtonProps) => {
   return(
     <button
       className="bg-purple-500 text-white hover:bg-blue-400 font-sans p-2"
       type={`${type ? type: "button"}`}
       onClick={onClick}
+      role="button"
     >
         {title}
     </button>
   );
 }
-
-export default Button

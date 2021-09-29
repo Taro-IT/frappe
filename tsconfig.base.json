@@ -19,8 +19,10 @@
       "@frappe/category/application": ["libs/category/application/src/index.ts"],
       "@frappe/category/domain": ["libs/category/domain/src/index.ts"],
       "@frappe/category/persistence/mongodb": ["libs/category/persistence/mongodb/src/index.ts"],
+      "@frappe/category/test": ["libs/category/test/src/index.ts"],
       "@frappe/common/design-system": ["libs/common/design-system/src/index.ts"],
       "@frappe/common/persistence/mongodb": ["libs/common/persistence/mongodb/src/index.ts"],
+      "@frappe/common/test": ["libs/common/test/src/index.ts"],
       "@frappe/common/value-object": ["libs/common/value-object/src/index.ts"]
     }
   },
