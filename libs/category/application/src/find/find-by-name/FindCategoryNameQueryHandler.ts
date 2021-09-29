@@ -1,4 +1,4 @@
-import {QueryHandler} from "@tshio/Query-bus";
+import {QueryHandler} from "@tshio/query-bus";
 import {FindCategoryNameQuery} from "./FindCategoryNameQuery";
 import {CategoryNameFinder} from "./CategoryNameFinder";
 import { CategoryPrimitives } from "@frappe/category/domain";

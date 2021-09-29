@@ -1,4 +1,4 @@
-import {Query} from "@tshio/Query-bus";
+import {Query} from "@tshio/query-bus";
 
 interface FindCategoryNameQueryPayload {
   readonly name: string;
