@@ -1,6 +1,5 @@
 import {Category, CategoryAlreadyExists, CategoryId, CategoryName, CategoryRepository} from "@frappe/category/domain";
-import { QueryBus } from "@tshio/query-bus";
-import { FindCategoryNameQuery, CategoryNameFinder } from "../find";
+import { CategoryNameFinder } from "../find";
 
 interface Props {
   readonly categoryRepository: CategoryRepository;
