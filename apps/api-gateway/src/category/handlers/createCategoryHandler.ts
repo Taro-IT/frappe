@@ -1,13 +1,18 @@
 import {CommandBus} from "@tshio/command-bus";
-import {RequestHandler} from "express";
+import {NextFunction, RequestHandler} from "express";
 import {CreateCategoryCommand} from "@frappe/category/application";
 import {Uuid} from "@frappe/common/value-object";
+import { QueryBus } from "@tshio/query-bus";
 
 export const createCategoryHandler = (commandBus: CommandBus): RequestHandler =>
-  async (req, res) => {
+  async (req, res, next: NextFunction) => {
     const id = Uuid.create().value;
-
-    await commandBus.execute(new CreateCategoryCommand({ id, name: req.body.name}));
-
-    res.status(201).json({ id });
+    try {
+      await commandBus.execute(new CreateCategoryCommand({ id, name: req.body.name}));
+      res.status(201).json({ id });
+      
+    } catch (error) {
+      next(error)
+    }
+    
   }

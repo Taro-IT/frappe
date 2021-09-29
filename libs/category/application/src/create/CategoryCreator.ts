@@ -1,25 +1,39 @@
-import {Category, CategoryId, CategoryName, CategoryRepository} from "@frappe/category/domain";
+import {Category, CategoryAlreadyExists, CategoryId, CategoryName, CategoryRepository} from "@frappe/category/domain";
+import { QueryBus } from "@tshio/query-bus";
+import { FindCategoryNameQuery, CategoryNameFinder } from "../find";
 
 interface Props {
-  readonly categoryRepository: CategoryRepository
+  readonly categoryRepository: CategoryRepository;
+  readonly categoryNameFinder: CategoryNameFinder;
 }
 
 export class CategoryCreator {
+  private readonly categoryNameFinder: CategoryNameFinder;
   private readonly categoryRepository: CategoryRepository;
 
-  constructor({ categoryRepository }: Props) {
+  constructor({ categoryRepository, categoryNameFinder }: Props) {
     this.categoryRepository = categoryRepository;
+    this.categoryNameFinder = categoryNameFinder;
   }
 
-
   async execute(id: string, name: string) {
-    // TODO Validate name dos not exist
-    const exists = await this.categoryRepository.search(new CategoryName(name));
-    //console.log("exists: ", exists);
+    // Validate name dos not exist
+    const exists = await this.categoryExists(name)
     
+    if(exists === null) {
+      throw new CategoryAlreadyExists(name);    
+    }
 
     const category = new Category(new CategoryId(id), new CategoryName(name));
-
     return this.categoryRepository.save(category);
+  }
+
+  async categoryExists(name: string) {
+    try {
+      await this.categoryNameFinder.execute(name)
+      return null
+    } catch (error) {
+      return error
+    }
   }
 }

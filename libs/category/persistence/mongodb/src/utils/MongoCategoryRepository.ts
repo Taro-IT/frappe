@@ -22,14 +22,15 @@ export class MongoCategoryRepository extends MongoRepository implements Category
     return Category.fromPrimitives({ ...document, id: document._id } as CategoryPrimitives);
   }
 
-  async search(name: CategoryName): Promise<Category | null> {
+  async findByName(name: CategoryName): Promise<Category | null> {
     const collection = await this.collection();
     const document = await collection.findOne({name: name.value})
-    if (!document) {
+    
+    if (document === null) {
       return null
     }
-    console.log("document: ", Category.fromPrimitives({...document, name: document.name} as CategoryPrimitives));
     
-    return Category.fromPrimitives({...document, name: document.name} as CategoryPrimitives);
+    return Category.fromPrimitives({ ...document, id: document._id } as CategoryPrimitives);
   }
+  
 }
