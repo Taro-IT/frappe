@@ -21,7 +21,7 @@ export class CategoryCreator {
     const exists = await this.categoryExists(name)
     
     if(exists === null) {
-      throw new CategoryAlreadyExists(name);    
+      throw new CategoryAlreadyExists(name);
     }
 
     const category = new Category(new CategoryId(id), new CategoryName(name));
