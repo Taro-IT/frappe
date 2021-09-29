@@ -8,9 +8,9 @@ type ButtonProps = {
 
 const Button = ({type, onClick, title, ...props}: ButtonProps) => {
   return(
-    <button 
-      className="bg-purple-500 text-white hover:bg-blue-400 font-sans p-2" 
-      type={`${type ? type: "button"}`} 
+    <button
+      className="bg-purple-500 text-white hover:bg-blue-400 font-sans p-2"
+      type={`${type ? type: "button"}`}
       onClick={onClick}
     >
         {title}
