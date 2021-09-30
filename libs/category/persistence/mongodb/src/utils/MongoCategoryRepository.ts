@@ -1,5 +1,5 @@
 import {MongoRepository} from "@frappe/common/persistence/mongodb";
-import {Category, CategoryId, CategoryPrimitives, CategoryRepository} from "@frappe/category/domain";
+import {Category, CategoryId, CategoryName, CategoryPrimitives, CategoryRepository} from "@frappe/category/domain";
 
 export class MongoCategoryRepository extends MongoRepository implements CategoryRepository {
 
@@ -19,7 +19,18 @@ export class MongoCategoryRepository extends MongoRepository implements Category
       return null;
     }
 
-    return Category.fromPrimive({ ...document, id: document._id } as CategoryPrimitives);
+    return Category.fromPrimitives({ ...document, id: document._id } as CategoryPrimitives);
   }
 
+  async findByName(name: CategoryName): Promise<Category | null> {
+    const collection = await this.collection();
+    const document = await collection.findOne({name: name.value})
+    
+    if (document === null) {
+      return null
+    }
+    
+    return Category.fromPrimitives({ ...document, id: document._id } as CategoryPrimitives);
+  }
+  
 }

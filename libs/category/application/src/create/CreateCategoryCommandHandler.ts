@@ -17,7 +17,7 @@ export class CreateCategoryCommandHandler implements CommandHandler<CreateCatego
 
   async execute(command: CreateCategoryCommand) {
     const { id, name } = command.payload;
-
+    
     return this.categoryCreator.execute(id, name);
   }
 
