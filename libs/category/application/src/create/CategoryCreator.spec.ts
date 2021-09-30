@@ -17,7 +17,7 @@ describe('CategoryCreator', () => {
     creator = new CategoryCreator({ categoryRepository, categoryNameFinder });
   })
 
-  it('should creates a Category', async () => {
+  it('should create a new Category', async () => {
     const category = CategoryMother.random();
 
      categoryRepository.findByName.mockRejectedValueOnce(CategoryAlreadyExists);
@@ -26,7 +26,7 @@ describe('CategoryCreator', () => {
     expect(categoryRepository.save).toHaveBeenCalledWith(category);
   });
 
-  it('should throws a CategoryAlreadyExist error', async () => {
+  it('should throw a CategoryAlreadyExist error', async () => {
     const category = CategoryMother.random();
 
     categoryRepository.findByName.mockResolvedValue(category);
