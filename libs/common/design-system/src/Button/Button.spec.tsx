@@ -13,6 +13,7 @@ describe('Button', () => {
     expect(button).toBeTruthy();
 
     fireEvent.click(button);
+    
     expect(onClick).toHaveBeenCalled();
   });
 
