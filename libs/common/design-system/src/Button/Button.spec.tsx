@@ -5,7 +5,7 @@ import {StringMother} from "@frappe/common/test";
 describe('Button', () => {
   it('should render a Button', () => {
     const onClick = jest.fn();
-    const title = StringMother.random();
+    const title = StringMother.randomWord();
 
     const { getByText } = render(<Button onClick={onClick} title={ title } />);
     const button = getByText(title);
@@ -13,7 +13,7 @@ describe('Button', () => {
     expect(button).toBeTruthy();
 
     fireEvent.click(button);
-    
+
     expect(onClick).toHaveBeenCalled();
   });
 
