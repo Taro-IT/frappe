@@ -1,4 +1,4 @@
-import {UserPrimitives} from "@frappe/account/domain";
+import {UserPrimitives} from '@frappe/account/domain';
 import {Command} from "@tshio/command-bus";
 
 type AccountSignUpCommandPayload = Omit<UserPrimitives, 'id'> & {

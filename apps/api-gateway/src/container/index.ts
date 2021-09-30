@@ -6,6 +6,7 @@ import {queryHandlers} from "./queryHandlers";
 import {commandHandlers} from "./commandHandlers";
 import {eventHandlers} from "./eventHandlers";
 import {registerCollectionModule} from "../category";
+import { registerAccountModule } from "../account";
 
 interface ContainerType {
   readonly server: http.Server
