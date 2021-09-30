@@ -6,4 +6,4 @@ type SpanErrorProps = {
   readonly message: string;
 }
 
-export const SpanError = ({ message }: SpanErrorProps) => (<span className={ styles.span__error } > { message } </span>);
+export const SpanError = ({ message }: SpanErrorProps) => <span className={ styles.span__error } > { message } </span>

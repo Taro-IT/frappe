@@ -3,7 +3,7 @@ import React from "react";
 import {useRegisterForm} from "../../hooks";
 
 export const RegisterForm = () => {
-  const { onSubmit } = useRegisterForm()
+  const { onSubmit } = useRegisterForm();
 
   return (
     <Form className="flex flex-col w-1/4 " onSubmit={onSubmit}>
