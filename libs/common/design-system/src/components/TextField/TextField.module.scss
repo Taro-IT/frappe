@@ -1,0 +1,9 @@
+.text__field {
+  &__label {
+    @apply text-base;
+  }
+
+  &__input {
+    @apply border-2 border-blue-100 rounded;
+  }
+}

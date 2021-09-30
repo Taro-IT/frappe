@@ -1,0 +1,23 @@
+{
+  "root": "libs/common/design-system",
+  "sourceRoot": "libs/common/design-system/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/common/design-system/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/common/design-system"],
+      "options": {
+        "jestConfig": "libs/common/design-system/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
