@@ -1,4 +1,4 @@
-import {CategoryAlreadyExists, CategoryName, CategoryRepository} from "@frappe/category/domain";
+import {CategoryNotFound, CategoryName, CategoryRepository} from "@frappe/category/domain";
 
 interface Props {
   readonly categoryRepository: CategoryRepository
@@ -15,7 +15,7 @@ export class CategoryNameFinder {
     const category = await this.categoryRepository.findByName(new CategoryName(name));
 
     if(category === null) {
-      throw new CategoryAlreadyExists(name)
+      throw new CategoryNotFound(name)
     }
 
     return category.toPrimitives()
