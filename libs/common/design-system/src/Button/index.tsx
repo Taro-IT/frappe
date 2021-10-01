@@ -1,19 +1,21 @@
-import { FC, MouseEventHandler } from "react";
+import React, { FC, MouseEventHandler } from "react";
+import clsx from 'clsx';
+import styles from './Button.module.scss';
 
 type ButtonProps = {
-  type?: "button" | "submit" | "reset" ,
-  onClick: MouseEventHandler,
-  title: string
+  type?: "button" | "submit" | "reset";
+  onClick?: MouseEventHandler;
+  title: string;
+  variant?: "purple" | "cta";
+  className?: string;
 }
 
-export const Button: FC<ButtonProps> = ({ type, onClick, title, ...props}: ButtonProps) => {
-  return(
-    <button
-      className="bg-purple-500 text-white hover:bg-blue-400 font-sans p-2"
-      type={`${type ? type: "button"}`}
-      onClick={onClick}
-    >
-        {title}
-    </button>
-  );
-}
+export const Button: FC<ButtonProps> = ({ type, onClick, title, variant = "purple", className}: ButtonProps) => (
+  <button
+    className={ clsx(styles.btn, styles[variant],className)}
+    type={`${type ? type: "button"}`}
+    onClick={onClick}
+  >
+    {title}
+  </button>
+);

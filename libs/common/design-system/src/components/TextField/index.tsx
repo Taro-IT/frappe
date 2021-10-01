@@ -10,15 +10,16 @@ type TextFieldProps<TFieldValues = unknown> =
     readonly name: string;
     readonly label?: string;
     readonly validations?: RegisterOptions<TFieldValues>
+    readonly  order?: 'col' | 'row'
   };
 
 
-export const TextField = ({ name, type = 'text', label, validations }: TextFieldProps) => {
+export function TextField<TFieldValues = unknown>({ name, type = 'text', label, order = 'col', validations }: TextFieldProps<TFieldValues>) {
   const { register, formState: { errors } } = useFormContext();
 
   return (
     <>
-      <div className="flex justify-between m-2">
+      <div className={clsx("flex", order === 'col' ? styles.text__field__col : styles.text__field__row, "mb-1")}>
         { label && <label className={ clsx(styles.text__field__label, 'w-1/3') } htmlFor={ name }> { label } </label> }
         <input className={ clsx(styles.text__field__input, 'w-2/3') } type={ type } { ...register(name, validations) } />
       </div>

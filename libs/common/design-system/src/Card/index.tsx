@@ -1,16 +1,18 @@
 import classes from './Card.module.scss'
-import { FC, PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
+import clsx from "clsx";
+import {CardHeader} from "./Header";
+
 type CardProps = {
-  readonly className: string
+  readonly className?: string
 }
 
+const Card = ({className, children }: PropsWithChildren<CardProps>) => (
+  <div className={clsx(classes.card, className)}>
+    {children}
+  </div>
+)
 
-const Card: FC<CardProps> = ({className, ...props}: PropsWithChildren<CardProps>)  => {
-  return  (
-    <div className={`${classes.card} ${className}`}>
-      {props.children}
-    </div>
-  )
-}
+Card.Header = CardHeader
 
 export default Card

@@ -1,0 +1,8 @@
+.card__header {
+  @apply flex items-center flex-col my-4;
+
+  &__title{
+    @apply text-2xl;
+  }
+}
+

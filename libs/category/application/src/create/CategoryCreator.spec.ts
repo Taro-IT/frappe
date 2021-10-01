@@ -1,6 +1,6 @@
 import {CategoryAlreadyExists, CategoryRepository} from "@frappe/category/domain";
 import {CategoryCreator} from "./CategoryCreator";
-import {CategoryNameFinder} from '../find/find-by-name/CategoryNameFinder'
+import { CategoryNameFinder} from "../find"
 import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended'
 import {CategoryMother} from "@frappe/category/test";
 
