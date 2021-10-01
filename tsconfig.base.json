@@ -25,6 +25,7 @@
       "@frappe/category/persistence/mongodb": ["libs/category/persistence/mongodb/src/index.ts"],
       "@frappe/common/design-system": ["libs/common/design-system/src/index.ts"],
       "@frappe/common/persistence/mongodb": ["libs/common/persistence/mongodb/src/index.ts"],
+      "@frappe/common/test": ["libs/common/test/src/index.ts"],
       "@frappe/common/utils": ["libs/common/utils/src/index.ts"],
       "@frappe/common/value-object": ["libs/common/value-object/src/index.ts"]
     }

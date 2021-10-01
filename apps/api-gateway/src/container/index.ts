@@ -16,7 +16,7 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   const container = createContainer({ injectionMode: InjectionMode.PROXY });
 
   commonDependencies(container);
-  commandHandlers(container);
+  eventHandlers(container);
   queryHandlers(container);
   eventHandlers(container);
 
