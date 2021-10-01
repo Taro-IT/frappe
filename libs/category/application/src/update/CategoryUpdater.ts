@@ -20,7 +20,6 @@ export class CategoryUpdater {
 
   async execute(id: string, name: string) {
     const category = await this.categoryExists(id);
-    console.log(category);
     
 
     if(category === null) {
@@ -52,7 +51,8 @@ export class CategoryUpdater {
       const category = await this.categoryFinder.execute(id);
       return category as CategoryPrimitives;
     } catch (error) {
-      return error;
+      console.log(error);
+      return null;
     }
   }
 }

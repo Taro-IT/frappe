@@ -16,7 +16,7 @@ export class MongoCategoryRepository extends MongoRepository implements Category
     const document = await collection.findOne({ _id: id.value });
     
     if (!document) {
-      return null;
+      return null
     }
 
     return Category.fromPrimitives({ ...document, id: document._id } as CategoryPrimitives);
