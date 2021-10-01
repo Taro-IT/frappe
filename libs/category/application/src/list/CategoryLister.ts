@@ -1,4 +1,4 @@
-import { CategoryNotFound, CategoryName, CategoryRepository } from "@frappe/category/domain";
+import { CategoryRepository } from "@frappe/category/domain";
 
 interface Props {
     readonly categoryRepository: CategoryRepository

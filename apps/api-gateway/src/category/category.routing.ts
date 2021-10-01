@@ -12,7 +12,7 @@ interface CollectionRoutingDeps {
 
 export const categoryRouting = ({ commandBus, queryBus }: CollectionRoutingDeps) => {
   const router = express.Router();
-
+  
   router.post('/', makeValidateBody(dtos.CreateCategoryDto), handlers.createCategoryHandler(commandBus));
   router.get('/', handlers.listCategoryHandler(queryBus));
 

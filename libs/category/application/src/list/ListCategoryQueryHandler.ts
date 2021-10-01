@@ -14,15 +14,13 @@ interface ListCategoryQueryHandlerResult {
 export class ListCategoryQueryHandler implements QueryHandler<ListCategoryQuery, ListCategoryQueryHandlerResult> {
     private readonly CategoryLister: CategoryLister;
 
-    readonly QueryType = ListCategoryQuery.name;
+    readonly queryType = ListCategoryQuery.name;
 
     constructor({ categoryLister }: Props) {
         this.CategoryLister = categoryLister;
     }
-    readonly queryType: string;
 
-    async execute(Query: ListCategoryQuery) {
-
+    async execute() {
         const result = await this.CategoryLister.execute();
         return { result }
     }

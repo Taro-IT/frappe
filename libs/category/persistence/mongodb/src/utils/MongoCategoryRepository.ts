@@ -41,7 +41,7 @@ export class MongoCategoryRepository extends MongoRepository implements Category
       return null
     }
 
-  return documents?.map((doc) => Category.fromPrimitives(doc as CategoryPrimitives)) || []
+  return documents?.map((doc) => Category.fromPrimitives({...doc, id: doc._id} as CategoryPrimitives)) || []
   }
   
 }

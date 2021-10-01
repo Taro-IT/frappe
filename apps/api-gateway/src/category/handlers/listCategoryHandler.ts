@@ -1,5 +1,4 @@
 import {RequestHandler} from "express";
-import {Uuid} from "@frappe/common/value-object";
 import { QueryBus } from "@tshio/query-bus";
 import { ListCategoryQuery } from "@frappe/category/application";
 
