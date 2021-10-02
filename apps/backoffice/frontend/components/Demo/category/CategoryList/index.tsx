@@ -27,7 +27,8 @@ const CategoryList = props => {
             <Card className={clsx(classes.categories, "text-center", "p-4")} key={index}>
                 <h1 className={clsx("text-2xl")}>{category.name}</h1>
                 <p className={clsx("text-lg", "mb-12")}>Productos en esta categoría: 4</p>
-                <Button title="Eliminar" onClick={()=>{}}/>
+                <Button title="Eliminar" onClick={()=>{ console.log("Method not implemented yet.");
+                }}/>
             </Card>
         )
     }), [categories])
