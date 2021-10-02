@@ -3,11 +3,11 @@ import clsx from 'clsx';
 import styles from './Button.module.scss';
 
 type ButtonProps = {
-  type?: "button" | "submit" | "reset";
-  onClick?: MouseEventHandler;
-  title: string;
-  variant?: "purple" | "cta";
-  className?: string;
+  readonly type?: "button" | "submit" | "reset";
+  readonly onClick?: MouseEventHandler;
+  readonly title: string;
+  readonly variant?: "purple" | "cta";
+  readonly className?: string;
 }
 
 export const Button: FC<ButtonProps> = ({ type, onClick, title, variant = "purple", className}: ButtonProps) => (

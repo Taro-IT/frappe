@@ -4,7 +4,8 @@ import clsx from "clsx";
 import {CardHeader} from "./Header";
 
 type CardProps = {
-  readonly className?: string
+  readonly className?: string;
+  readonly rounded?: boolean;
 }
 
 const Card = ({className, children }: PropsWithChildren<CardProps>) => (
