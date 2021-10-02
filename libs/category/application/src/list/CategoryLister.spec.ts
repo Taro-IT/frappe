@@ -21,7 +21,7 @@ describe('CategoryLister', () => {
     const category = CategoryMother.random();
 
     categoryRepository.find.mockRejectedValueOnce(CategoryNotFound);
-    await lister.execute();
+    lister.execute();
 
     expect(categoryRepository.save).toHaveBeenCalledWith(category);
   });
