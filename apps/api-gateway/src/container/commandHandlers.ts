@@ -8,7 +8,7 @@ export const commandHandlers = (container: AwilixContainer) => {
   container.register({
     commandHandlers: asArray<unknown>([
       asClass(CreateCategoryCommandHandler),
-      asClass(UpdateCategoryCommandHandler)
+      asClass(UpdateCategoryCommandHandler),
       asClass(AccountSignUpCommandHandler)
     ])
   })
