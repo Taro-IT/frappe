@@ -21,7 +21,7 @@ describe('CategoryCreator', () => {
   it('should create a new Category', async () => {
     const category = CategoryMother.random();
 
-     categoryRepository.findByName.mockRejectedValueOnce(CategoryAlreadyExists);
+    categoryRepository.findByName.mockRejectedValueOnce(CategoryAlreadyExists);
     await creator.execute(category.id.value, category.name.value);
 
     expect(categoryRepository.save).toHaveBeenCalledWith(category);
