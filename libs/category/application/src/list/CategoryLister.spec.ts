@@ -29,7 +29,7 @@ describe('CategoryLister', () => {
   it('should return an empty object', async () => {
     const categories: Category[] = []
     categoryRepository.all.mockResolvedValueOnce(categories);
-    await lister.execute();  
+    await lister.execute();
     expect(categoryRepository.all).toReturn()
   });
 });
