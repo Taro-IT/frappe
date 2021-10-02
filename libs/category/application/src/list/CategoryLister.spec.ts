@@ -1,5 +1,5 @@
 
-import {CategoryAlreadyExists, CategoryNotFound, CategoryRepository} from "@frappe/category/domain";
+import {Category, CategoryAlreadyExists, CategoryNotFound, CategoryPrimitives, CategoryRepository} from "@frappe/category/domain";
 import {CategoryLister} from "./CategoryLister";
 import {CategoryNameFinder} from '../find/find-by-name/CategoryNameFinder'
 import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended'
@@ -18,11 +18,18 @@ describe('CategoryLister', () => {
   })
 
   it('should list all categories', async () => {
-    const category = CategoryMother.random();
+    
+    const categories = new Array<Category>(5).fill(CategoryMother.random())
+    
+    categoryRepository.all.mockResolvedValueOnce(categories);
+    await lister.execute();
+    expect(categoryRepository.all).toReturn()
+  });
 
-    categoryRepository.find.mockRejectedValueOnce(CategoryNotFound);
-    lister.execute();
-
-    expect(categoryRepository.save).toHaveBeenCalledWith(category);
+  it('should return an empty object', async () => {
+    const categories: Category[] = []
+    categoryRepository.all.mockResolvedValueOnce(categories);
+    await lister.execute();  
+    expect(categoryRepository.all).toReturn()
   });
 });
