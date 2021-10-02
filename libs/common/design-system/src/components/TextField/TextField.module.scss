@@ -1,0 +1,17 @@
+.text__field {
+  &__col {
+    @apply flex-col;
+  }
+
+  &__row {
+    @apply flex-row;
+  }
+
+  &__label {
+    @apply text-base w-full my-1;
+  }
+
+  &__input {
+    @apply border-2 border-blue-100 rounded w-full;
+  }
+}
