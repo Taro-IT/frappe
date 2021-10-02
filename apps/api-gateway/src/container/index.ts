@@ -6,6 +6,7 @@ import {queryHandlers} from "./queryHandlers";
 import {commandHandlers} from "./commandHandlers";
 import {eventHandlers} from "./eventHandlers";
 import {registerCollectionModule} from "../category";
+import { registerAccountModule } from "../account";
 
 interface ContainerType {
   readonly server: http.Server
@@ -15,12 +16,14 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   const container = createContainer({ injectionMode: InjectionMode.PROXY });
 
   commonDependencies(container);
-  queryHandlers(container);
   commandHandlers(container);
+  eventHandlers(container);
+  queryHandlers(container);
   eventHandlers(container);
 
   // Register Modules
   registerCollectionModule(container);
+  registerAccountModule(container);
 
   container.register({
     app: asFunction(configureApp).singleton()
