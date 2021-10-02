@@ -40,7 +40,7 @@ describe('CategoryUpdater', () => {
 
     const response = () => updater.execute(category.id.value, category.name.value);
 
-    await expect(async () => await response()).rejects.toThrow(CategoryAlreadyExists);
+    await expect(async () => response()).rejects.toThrow(CategoryAlreadyExists);
   });
 
   it('should throw a CategoryIdNotFound error' , async () => {
