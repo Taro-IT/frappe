@@ -1,5 +1,8 @@
 .card {
   @apply bg-white;
   @apply shadow-lg;
-  @apply rounded-xl;
+
+  &.rounded {
+    @apply rounded-xl
+  }
 }
