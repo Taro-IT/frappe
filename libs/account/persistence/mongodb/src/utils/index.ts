@@ -1,0 +1,1 @@
+export {MongoUserRepository} from "./MongoUserRepository";
