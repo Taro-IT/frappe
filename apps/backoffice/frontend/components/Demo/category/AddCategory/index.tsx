@@ -7,18 +7,22 @@ import axios from "axios";
 const CreateCategory = props => {
     const [categoryName, setCategoryName] = useState('')
 
-
-    const addCategoryHandler = (event) => {
+    const addCategoryHandler = async (event) => {
       event.preventDefault();
       if(categoryName=="") return;
+      try {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
+          name: categoryName
+        })
+      } catch (error) {
+        console.error("La categoría ya existe.");
+        
+      }
       
-      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
-        name: categoryName
-      })
-
-
       setCategoryName('')
     }
+
+    
 
     const nameChangeHandler = (event) => {
       setCategoryName(event.target.value)
@@ -35,7 +39,7 @@ const CreateCategory = props => {
                   value={categoryName}
                   onChange={nameChangeHandler}
               ></input>
-             <Button type="submit" onClick={addCategoryHandler} title="Add Category"></Button>
+             <Button type="submit" onClick={addCategoryHandler} title="Agregar"></Button>
           </form>
       </Card>
     );

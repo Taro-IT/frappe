@@ -7,7 +7,7 @@ type Props = {
     readonly categoryLister: CategoryLister
 }
 
-interface ListCategoryQueryHandlerResult {
+export interface ListCategoryQueryHandlerResult {
     readonly result: CategoryPrimitives[];
 }
 

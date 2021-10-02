@@ -1,3 +1,3 @@
 export {ListCategoryQuery} from "./ListCategoryQuery"
-export { ListCategoryQueryHandler } from "./ListCategoryQueryHandler"
+export { ListCategoryQueryHandler, ListCategoryQueryHandlerResult } from "./ListCategoryQueryHandler"
 export { CategoryLister } from "./CategoryLister"
