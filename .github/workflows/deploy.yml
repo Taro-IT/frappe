@@ -95,4 +95,4 @@ jobs:
           git config --global user.name "Vladimir Salvador"
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 
-          npm run affected -- --target=deploy --base=$NX_BASE
+          npm run affected -- --target=deploy --base=$NX_BASE --prod

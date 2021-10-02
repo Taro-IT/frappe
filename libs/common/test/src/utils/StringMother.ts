@@ -9,4 +9,9 @@ export class StringMother {
   static randomWord(): string {
     return faker.lorem.word();
   }
+
+  static email(): string {
+    return faker.internet.email();
+  }
+
 }

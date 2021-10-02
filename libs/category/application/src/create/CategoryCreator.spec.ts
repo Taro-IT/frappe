@@ -1,6 +1,6 @@
 import {CategoryAlreadyExists, CategoryRepository} from "@frappe/category/domain";
 import {CategoryCreator} from "./CategoryCreator";
-import {CategoryNameFinder} from '../find/find-by-name/CategoryNameFinder'
+import { CategoryNameFinder} from "../find"
 import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended'
 import {CategoryMother} from "@frappe/category/test";
 
@@ -21,7 +21,7 @@ describe('CategoryCreator', () => {
   it('should create a new Category', async () => {
     const category = CategoryMother.random();
 
-     categoryRepository.findByName.mockRejectedValueOnce(CategoryAlreadyExists);
+    categoryRepository.findByName.mockRejectedValueOnce(CategoryAlreadyExists);
     await creator.execute(category.id.value, category.name.value);
 
     expect(categoryRepository.save).toHaveBeenCalledWith(category);
@@ -33,6 +33,6 @@ describe('CategoryCreator', () => {
     categoryRepository.findByName.mockResolvedValue(category);
     const response = () => creator.execute(category.id.value, category.name.value);
 
-    await expect(async () => await response()).rejects.toThrow(CategoryAlreadyExists);
+    await expect(async () => response()).rejects.toThrow(CategoryAlreadyExists);
   });
 });

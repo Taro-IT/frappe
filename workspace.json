@@ -1,6 +1,11 @@
 {
   "version": 2,
   "projects": {
+    "account-application": "libs/account/application",
+    "account-domain": "libs/account/domain",
+    "account-persistence-mongodb": "libs/account/persistence/mongodb",
+    "account-test": "libs/account/test",
+    "account-ui": "libs/account/ui",
     "api-gateway": "apps/api-gateway",
     "backoffice-frontend": "apps/backoffice/frontend",
     "backoffice/frontend-e2e": "apps/backoffice/frontend-e2e",
@@ -11,6 +16,7 @@
     "common-design-system": "libs/common/design-system",
     "common-persistence-mongodb": "libs/common/persistence/mongodb",
     "common-test": "libs/common/test",
+    "common-utils": "libs/common/utils",
     "common-value-object": "libs/common/value-object",
     "docs": "apps/docs"
   },
