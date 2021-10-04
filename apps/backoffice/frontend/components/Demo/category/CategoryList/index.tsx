@@ -3,7 +3,6 @@ import { Button, Card } from '@frappe/common/design-system';
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import clsx from 'clsx'
-import {ListCategoryQueryHandlerResult} from '@frappe/category/application'
 
 const CategoryList = props => {
     const [categories, setCategories] = useState([])
@@ -11,7 +10,7 @@ const CategoryList = props => {
     // TODO: centralize to state management -> refactor to custom hook
     useEffect(() => {
         const getCategories = async (): Promise<void> => {
-            const response = await axios.get<ListCategoryQueryHandlerResult>(`${process.env.NEXT_PUBLIC_API_URL}/categories`)
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories`)
             const data = response.data.result
             if (data.length !== 0) {
                 setCategories(data);
