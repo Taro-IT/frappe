@@ -32,5 +32,7 @@ export class MongoCategoryRepository extends MongoRepository implements Category
     
     return Category.fromPrimitives({ ...document, id: document._id } as CategoryPrimitives);
   }
- 
+  
+
+
 }

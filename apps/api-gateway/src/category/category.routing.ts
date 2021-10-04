@@ -13,5 +13,6 @@ export const categoryRouting = ({ commandBus }: CollectionRoutingDeps) => {
 
   router.post('/', makeValidateBody(dtos.CreateCategoryDto), handlers.createCategoryHandler(commandBus));
   router.patch('/:id', makeValidateBody(dtos.UpdateCategoryDto), handlers.updateCategoryHandler(commandBus));
+
   return router;
 }
