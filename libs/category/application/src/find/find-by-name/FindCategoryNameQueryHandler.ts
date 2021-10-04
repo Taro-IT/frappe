@@ -14,12 +14,11 @@ interface FindCategoryQueryHandlerResult {
 export class FindCategoryNameQueryHandler implements QueryHandler<FindCategoryNameQuery, FindCategoryQueryHandlerResult> {
   private readonly CategoryNameFinder: CategoryNameFinder;
 
-  readonly QueryType = FindCategoryNameQuery.name;
+  readonly queryType = FindCategoryNameQuery.name;
 
   constructor({ categoryNameFinder }: Props) {
     this.CategoryNameFinder = categoryNameFinder;
   }
-  readonly queryType: string;
 
   async execute(Query: FindCategoryNameQuery) {
     const { name } = Query.payload;

@@ -32,6 +32,17 @@ export class MongoCategoryRepository extends MongoRepository implements Category
     
     return Category.fromPrimitives({ ...document, id: document._id } as CategoryPrimitives);
   }
+
+  async all(): Promise<Category[] | null>{
+    const collection = await this.collection();
+    const documents = await collection.find().toArray()
+
+    if (!documents){
+      return null
+    }
+
+  return documents?.map((doc) => Category.fromPrimitives({...doc, id: doc._id} as CategoryPrimitives)) || []
+  }
   
 
 
