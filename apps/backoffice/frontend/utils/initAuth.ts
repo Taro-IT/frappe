@@ -7,7 +7,6 @@ const TWELVE_DAYS_IN_MS = 12 * 60 * 60 * 24 * 1000
 export const initAuth = () => {
   init({
     debug: process.env.NODE_ENV === "development",
-
     authPageURL: ({ ctx }) => {
       const isServerSide = typeof window === 'undefined'
       const origin = isServerSide
@@ -16,6 +15,7 @@ export const initAuth = () => {
       const destPath =
         typeof window === 'undefined' ? ctx.resolvedUrl : window.location.href
       const destURL = new URL(destPath, origin)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       return `auth-ssr?destination=${encodeURIComponent(destURL)}`
     },
@@ -34,7 +34,6 @@ export const initAuth = () => {
 
       let destURL = '/'
       if (destinationParamVal) {
-        //TO DO replace domain
         const allowedHosts = ['localhost:4200', 'cinica.mx']
         const allowed =
           allowedHosts.indexOf(new URL(destinationParamVal).host) > -1

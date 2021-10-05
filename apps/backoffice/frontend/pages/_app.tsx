@@ -1,12 +1,13 @@
 import React from "react";
 import { AppProps } from 'next/app';
+import { initAuth } from "../utils/initAuth";
+
 import './styles.scss';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+initAuth();
 
-  return (
-    <Component {...pageProps} />
-  );
-}
+const CinicaApp = ({ Component, pageProps }: AppProps) => (
+  <Component {...pageProps} />
+);
 
-export default CustomApp;
+export default CinicaApp;
