@@ -1,12 +1,20 @@
 import classes from './CategoryList.module.scss';
-import { Button, Card, Modal} from '@frappe/common/design-system';
+import { Button, Card, Modal, SpanError} from '@frappe/common/design-system';
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import clsx from 'clsx'
 
+type category = {
+    id: string, 
+    name: string
+}
+
 const CategoryList = props => {
     const [categories, setCategories] = useState([])
-    const [displayEditModal, toggleEditModal] = useState<boolean>(false)
+    const [displayEditModal, setEditModal] = useState<boolean>(false)
+    const [currentCategory, setCurrentCategory] = useState<category>()
+    const [newName, setNewName] = useState<string>("")
+    const [nameErrors, setNameErrors] = useState<boolean>(false)
 
     // TODO: centralize to state management -> refactor to custom hook
     useEffect(() => {
@@ -21,7 +29,27 @@ const CategoryList = props => {
 
     }, [])
 
-    
+    const updateCategory = async (id:string, name: string) => {
+        if(name === "" || name === currentCategory.name) { 
+            setNameErrors(true)
+            return
+        }
+        try {
+            await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`, {
+            name: name
+            })
+        } catch (error) {
+            console.error("La categoría ya existe.", error); 
+        }
+        setEditModal(false)
+        setNameErrors(false)
+        return
+    }
+
+    const handleNameChange = (event) => {
+        setNewName(event.target.value)
+    }
+
     const useCategories = useMemo(() => categories.map((category, index) => {
         return (
             <>
@@ -30,13 +58,9 @@ const CategoryList = props => {
                     <p className={clsx("text-lg", "mb-12")}>Productos en esta categoría: 4</p>
                     <Button title="Eliminar" className="mr-2 w-24" variant="cta" onClick={()=>{ console.log("Method not implemented yet.");
                     }}/>
-                    <Button title="Editar" className="ml-2 w-24" variant="cta" onClick={()=>{toggleEditModal(true)}}/>
+                    <Button title="Editar" className="ml-2 w-24" variant="cta" onClick={()=>{setEditModal(true);setCurrentCategory({id: category.id, name: category.name});setNameErrors(false)}}/>
                 </Card>
-                {displayEditModal && 
-                    <Modal showModal={displayEditModal} toggleModal={toggleEditModal} >
-                        Holaaa
-                    </Modal>
-                }
+
             </>
         )
     }), [categories])
@@ -44,6 +68,16 @@ const CategoryList = props => {
     return (
         <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 m-12">
             {useCategories.length ? useCategories : "No tienes categorías registradas."}
+            {displayEditModal && 
+                    <Modal title={`Editar categoría - ${currentCategory.name}`} showModal={displayEditModal} toggleModal={setEditModal} >
+                        <form className="flex flex-col w-full px-20 mb-4 py-2">
+                            <label className="text-base w-full my-1">Nuevo nombre</label>
+                            <input className="border-2 border-blue-100 rounded w-full" onChange={handleNameChange} type="name" name="categoryName" />
+                            {nameErrors && <SpanError message="El nombre no puede ser vacío ni igual al anterior"/>}
+                            <Button title="Guardar cambios" onClick={()=>{updateCategory(currentCategory.id, newName)}} variant="cta" className={"mt-4"} />
+                        </form>
+                    </Modal>
+            }
         </div>
     )
 };

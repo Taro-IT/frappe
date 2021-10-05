@@ -1,12 +1,20 @@
 import { XIcon } from '@heroicons/react/solid';
 import React, { PropsWithChildren } from 'react';
 import { Card } from '@frappe/common/design-system';
+import { CardHeader } from '../Card/Header';
 
 type ModalProps = {
   showModal: boolean;
   toggleModal: (nv: boolean) => any;
+  title: string;
 };
-export const Modal = ({ showModal, toggleModal, children, ...props }: PropsWithChildren<ModalProps>) => {
+export const Modal = ({ showModal, toggleModal, title, children, ...props }: PropsWithChildren<ModalProps>) => {
+  const handleClickOut = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.currentTarget === event.target) {
+      toggleModal(false)
+    }
+  }
+
   return (
     <div
       className={
@@ -14,16 +22,17 @@ export const Modal = ({ showModal, toggleModal, children, ...props }: PropsWithC
           ? 'bg-gray-500 bg-opacity-50 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 outline-none focus:outline-none'
           : 'hidden'
       }
-      style={{ zIndex: 100 }}
-      onClick={toggleModal(false)}
+      onClick={handleClickOut}
     >
-      <Card className="flex flex-col xl:w-1/4 lg:w-1/3 md:w-5/12 w-2/3 rounded-t-xl" rounded={false}>
+      <Card className="flex flex-col xl:w-2/6 lg:w-2/3 md:w-5/12 w-2/3 rounded-xl" rounded={false}>
         <div className="flex flex-row w-full mb-6">
+          <div className="ml-4 mt-4 text-xl">{title}</div>
           <XIcon
             onClick={() => toggleModal(false)}
-            className="ml-auto mr-0 my-auto h-8 w-8 text-gray-800 hover:text-gray-700 cursor-pointer"
+            className="ml-auto mr-4 mt-4 my-auto h-8 w-8 text-gray-400 hover:text-gray-500 cursor-pointer"
           />
         </div>
+        
         {children}
       </Card>
     </div>
