@@ -8,7 +8,7 @@ type ModalProps = {
   title: string;
 };
 export const Modal = ({ showModal, toggleModal, title, children, ...props }: PropsWithChildren<ModalProps>) => {
-  const handleClickOut = (event: MouseEvent<HTMLDivElement>) => {
+  const handleClickOut = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget === event.target) {
       toggleModal(false)
     }
