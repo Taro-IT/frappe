@@ -8,7 +8,7 @@ export const RegisterForm = () => {
   return (
     <Form className="flex flex-col w-full p-8" onSubmit={onSubmit}>
       <TextField label="Email" type="email" name="email" validations={{ required: 'El email es requerido' }} />
-      <TextField label="Nombre" name="name" validations={{ required: 'EL nombre es requerido' }} />
+      <TextField label="Nombre" name="name" validations={{ required: 'El nombre es requerido' }} />
       <TextField label="Contraseña" type="password" name="password" validations={{ required: 'La contraseña es requerida', minLength: {
           value: 6,
           message: 'El tamaño mínimo es de seis caracteres',
