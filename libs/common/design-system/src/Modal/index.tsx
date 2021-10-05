@@ -1,7 +1,6 @@
 import { XIcon } from '@heroicons/react/solid';
-import React, { PropsWithChildren } from 'react';
-import { Card } from '@frappe/common/design-system';
-import { CardHeader } from '../Card/Header';
+import  { PropsWithChildren } from 'react';
+import { Card } from '../index';
 
 type ModalProps = {
   showModal: boolean;
