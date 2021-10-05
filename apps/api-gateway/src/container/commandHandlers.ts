@@ -10,7 +10,6 @@ export const commandHandlers = (container: AwilixContainer) => {
       asClass(CreateCategoryCommandHandler),
       asClass(UpdateCategoryCommandHandler),
       asClass(AccountSignUpCommandHandler),
-      asClass(AccountSignUpCommandHandler),
     ])
   })
 }
