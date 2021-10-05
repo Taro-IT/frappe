@@ -3,8 +3,11 @@ import styles from "../styles/register.module.scss";
 import {Card, Link} from "@frappe/common/design-system";
 import {LoginForm} from "@frappe/account/ui";
 import React from "react";
+import {useAuth} from "../context/AuthUserContext";
 
 const SigninPage = () => {
+  const { signInWithCredentials } = useAuth();
+
   return (
     <div className= { styles.wrapper }>
       <img className="flex mb-7" src={"/img/cinica-logo.png"} alt={"Cínica logo"} />
@@ -17,7 +20,7 @@ const SigninPage = () => {
           </h2>
         </Card.Header>
 
-        <LoginForm />
+        <LoginForm onSubmit={ signInWithCredentials } />
 
         <Card.Footer>
           <h2>

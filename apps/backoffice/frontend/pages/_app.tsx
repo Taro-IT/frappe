@@ -1,13 +1,13 @@
 import React from "react";
 import { AppProps } from 'next/app';
-import { initAuth } from "../utils/initAuth";
+import {AuthUserProvider} from "../context/AuthUserContext";
 
 import './styles.scss';
 
-initAuth();
-
 const CinicaApp = ({ Component, pageProps }: AppProps) => (
-  <Component {...pageProps} />
+  <AuthUserProvider>
+    <Component {...pageProps} />
+  </AuthUserProvider>
 );
 
 export default CinicaApp;
