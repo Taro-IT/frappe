@@ -5,8 +5,8 @@ import axios from 'axios';
 import clsx from 'clsx'
 
 type category = {
-    id: string,
-    name: string
+    readonly id: string,
+    readonly name: string
 }
 
 const CategoryList = props => {
@@ -50,6 +50,28 @@ const CategoryList = props => {
         setNewName(event.target.value)
     }
 
+    const editCategory = (id:string, name:string) => {
+        setEditModal(true)
+        setCurrentCategory({id, name})
+        setNameErrors(false)
+    }
+    const SaveChangesButton = (props) => {
+        const saveChanges = () => {
+            updateCategory(props.id, props.name)
+        }
+        return (
+            <Button title="Guardar cambios" onClick={saveChanges} variant="cta" className={"mt-4"} />
+        )
+    }
+    const EditButton = (props) => {
+        const edit = () => {
+            editCategory(props.id, props.name)
+        }
+        return (
+            <Button title="Editar" className="ml-2 w-24" variant="cta" onClick={edit}/>
+        )
+    }
+
     const useCategories = useMemo(() => categories.map((category, index) => {
         return (
             <>
@@ -58,12 +80,13 @@ const CategoryList = props => {
                     <p className={clsx("text-lg", "mb-12")}>Productos en esta categoría: 4</p>
                     <Button title="Eliminar" className="mr-2 w-24" variant="cta" onClick={()=>{ console.log("Method not implemented yet.");
                     }}/>
-                    <Button title="Editar" className="ml-2 w-24" variant="cta" onClick={()=>{setEditModal(true);setCurrentCategory({id: category.id, name: category.name});setNameErrors(false)}}/>
+                    <EditButton id={category.id} name={category.name} />
                 </Card>
 
             </>
         )
     }), [categories])
+
     
     return (
         <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 m-12 max-h-screen overflow-y-scroll">
@@ -74,7 +97,7 @@ const CategoryList = props => {
                             <label className="text-base w-full my-1">Nuevo nombre</label>
                             <input className="border-2 border-blue-100 rounded w-full" onChange={handleNameChange} type="name" name="categoryName" />
                             {nameErrors && <SpanError message="El nombre no puede ser vacío ni igual al anterior"/>}
-                            <Button title="Guardar cambios" onClick={()=>{updateCategory(currentCategory.id, newName)}} variant="cta" className={"mt-4"} />
+                            <SaveChangesButton id={currentCategory.id} name={newName}/>
                         </form>
                     </Modal>
             }

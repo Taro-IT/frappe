@@ -4,7 +4,7 @@ import { Card } from '../index';
 
 type ModalProps = {
   showModal: boolean;
-  toggleModal: (nv: boolean) => any;
+  toggleModal: (nv: boolean) => unknown;
   title: string;
 };
 export const Modal = ({ showModal, toggleModal, title, children, ...props }: PropsWithChildren<ModalProps>) => {
@@ -12,6 +12,10 @@ export const Modal = ({ showModal, toggleModal, title, children, ...props }: Pro
     if (event.currentTarget === event.target) {
       toggleModal(false)
     }
+  }
+
+  const closeModal = () => {
+    toggleModal(false)
   }
 
   return (
@@ -27,7 +31,7 @@ export const Modal = ({ showModal, toggleModal, title, children, ...props }: Pro
         <div className="flex flex-row w-full mb-6">
           <div className="ml-4 mt-4 text-xl">{title}</div>
           <XIcon
-            onClick={() => toggleModal(false)}
+            onClick={closeModal}
             className="ml-auto mr-4 mt-4 my-auto h-8 w-8 text-gray-400 hover:text-gray-500 cursor-pointer"
           />
         </div>
