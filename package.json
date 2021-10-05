@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
+    "nx": "nx",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx lint",
@@ -44,6 +45,7 @@
     "mermaid": "^8.12.1",
     "mongodb": "^4.1.2",
     "next": "11.1.0",
+    "next-absolute-url": "^1.2.2",
     "next-firebase-auth": "^0.13.3",
     "prism-react-renderer": "^1.2.1",
     "ramda": "^0.27.1",
