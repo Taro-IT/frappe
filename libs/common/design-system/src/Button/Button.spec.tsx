@@ -6,7 +6,6 @@ describe('Button', () => {
   it('should render a Button', () => {
     const onClick = jest.fn();
     const title = StringMother.randomWord();
-
     const { getByText } = render(<Button onClick={onClick} title={ title } />);
     const button = getByText(title);
 
@@ -19,7 +18,7 @@ describe('Button', () => {
 
   it('should run onClick event', () => {
     const onClick = jest.fn();
-    const title = StringMother.random();
+    const title = StringMother.randomWord();
 
     const { getByText, } = render(<Button onClick={onClick} title={ title } />);
     const button = getByText(title);
