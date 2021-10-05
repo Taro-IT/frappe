@@ -66,7 +66,7 @@ const CategoryList = props => {
     }), [categories])
     
     return (
-        <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 m-12">
+        <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 m-12 max-h-screen overflow-y-scroll">
             {useCategories.length ? useCategories : "No tienes categorías registradas."}
             {displayEditModal &&
                     <Modal title={`Editar categoría - ${currentCategory.name}`} showModal={displayEditModal} toggleModal={setEditModal} >

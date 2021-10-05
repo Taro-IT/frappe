@@ -10,7 +10,7 @@ const ListCategoriesPage = () => {
     })
   }
   return (
-    <div className="bg-gray-200 w-full h-full absolute overflow-auto">
+    <div className="bg-gray-200 w-full max-h-screen overflow-auto">
         <AddCategory onAddCategory={addCategoryHandler}/>
         <CategoryList categories={categoriesList}/>
     </div>
