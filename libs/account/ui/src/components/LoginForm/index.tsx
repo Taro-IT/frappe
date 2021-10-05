@@ -1,7 +1,5 @@
 import {Button, Form, TextField} from "@frappe/common/design-system";
 import React from "react";
-import firebase from "firebase/app";
-import 'firebase/auth';
 import {UserCredential} from "firebase/auth";
 import {wrapError} from "@frappe/common/utils";
 import {useRouter} from "next/router";
@@ -23,9 +21,8 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
     }
 
     console.log(response);
-    // TODO Change to /dashboard
     await router.push('/dashboard');
-    event?.preventDefault()
+    event?.preventDefault();
   }
 
   return (

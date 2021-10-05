@@ -30,4 +30,3 @@ export const AuthUserProvider: FC = ({ children }) => {
 }
 
 export const useAuth = () => useContext(AuthUserContext);
-

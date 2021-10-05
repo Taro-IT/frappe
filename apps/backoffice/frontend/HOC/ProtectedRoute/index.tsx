@@ -21,8 +21,6 @@ export const ProtectedRoute = (Component): FC => (props): JSX.Element => {
     // TODO Loading Component
   }
 
-  // TODO Wrap Component
-
   return (
     <Component { ...props } />
   )
