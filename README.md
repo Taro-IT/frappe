@@ -21,6 +21,8 @@
 ```
 
 --------------
+## Capacitaciones
+Las grabaciones de las capacitaciones dadas las puedes encontrar en el siguiente [link](https://drive.google.com/drive/u/0/folders/13gn9Q3hNlYKyifhG0UxqdRCdgrS6qCF9)
 ## Estructura de archivos
 ### Front-end
 
