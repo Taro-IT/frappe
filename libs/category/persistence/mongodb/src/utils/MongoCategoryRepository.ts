@@ -1,5 +1,6 @@
 import {MongoRepository} from "@frappe/common/persistence/mongodb";
 import {Category, CategoryId, CategoryName, CategoryPrimitives, CategoryRepository} from "@frappe/category/domain";
+import { Console } from "console";
 
 export class MongoCategoryRepository extends MongoRepository implements CategoryRepository {
 
@@ -43,6 +44,17 @@ export class MongoCategoryRepository extends MongoRepository implements Category
 
   return documents?.map((doc) => Category.fromPrimitives({...doc, id: doc._id} as CategoryPrimitives)) || []
   }
+
+  async delete(id: CategoryId): Promise<boolean | null> {
+    const collection = await this.collection();
+    const document = await collection.findOne({_id: id.value})
+    if (document === null) {
+      return null
+    }
+
+    return await (await collection.deleteOne(document)).acknowledged
+    
+  } 
   
 
 
