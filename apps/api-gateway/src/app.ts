@@ -7,7 +7,6 @@ interface AppProps {
   readonly router: express.Router;
 }
 
-
 export const configureApp = ({ router }: AppProps): express.Express => {
   const app = express();
 
