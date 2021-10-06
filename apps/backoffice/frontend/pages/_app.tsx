@@ -8,5 +8,4 @@ function CustomApp({ Component, pageProps }: AppProps) {
   );
 }
 
-
 export default CustomApp;
