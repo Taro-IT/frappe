@@ -4,9 +4,6 @@ import {Card, Link} from "@frappe/common/design-system";
 
 import styles from '../styles/register.module.scss';
 
-
-
-
 const RegisterPage = () => (
   <div className= { styles.wrapper }>
     <img className="flex mb-7" src={"/img/cinica-logo.png"} alt={"Cínica logo"} />

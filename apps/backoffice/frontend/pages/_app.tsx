@@ -8,4 +8,7 @@ const CinicaApp = ({ Component, pageProps }: AppProps) => {
   );
 }
 
+
+
+
 export default CinicaApp;
