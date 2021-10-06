@@ -132,8 +132,11 @@ jobs:
         run: echo "::set-output name=base::$(git rev-parse HEAD~1)"
 
       - name: Build
+        env:
+          NX_BASE: ${{ steps.nx-base.outputs.base }}
         run: |
           npm run build -- api-gateway --base=$NX_BASE --prod
+          (cd dist/apps/api-gateway && npm install)
 
       - name: Azure
         uses: azure/webapps-deploy@v2
