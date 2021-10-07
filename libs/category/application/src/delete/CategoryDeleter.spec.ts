@@ -1,4 +1,4 @@
-import {CategoryAlreadyExists, CategoryRepository, CategoryNotFound} from "@frappe/category/domain";
+import {CategoryRepository, CategoryNotFound} from "@frappe/category/domain";
 import {CategoryDeleter} from "./CategoryDeleter";
 import { CategoryFinder} from "../find"
 import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended'

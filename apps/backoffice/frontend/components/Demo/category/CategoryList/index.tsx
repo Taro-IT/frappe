@@ -54,20 +54,6 @@ const CategoryList = props => {
         setNameErrors(false)
         return
     }
-    const requestDelete = async (id:string) => {
-        try{
-            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`)
-            setMessage("Categoría borrada con éxito.")
-            setSuccess(true)
-        }catch (error){
-            console.error("La categoría no se pudo borar", error);
-            setMessage("La categoría no se pudo borar.")
-            setSuccess(false)
-        }
-        setDeleteModal(false)
-        setDisplayResultModal(true)
-        return
-    }
     const handleNameChange = (event) => {
         setNewName(event.target.value)
     }
@@ -81,8 +67,19 @@ const CategoryList = props => {
     }
     type buttonprops = {id:string,name?:string}
     const ConfirmDeleteCategory = ({id}:buttonprops) => {
-        const confirmDelete = () =>{
-            requestDelete(id)
+        const confirmDelete = async () =>{
+            try{
+                await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`)
+                setMessage("Categoría borrada con éxito.")
+                setSuccess(true)
+            }catch (error){
+                console.error("La categoría no se pudo borar", error);
+                setMessage("La categoría no se pudo borar.")
+                setSuccess(false)
+            }
+            setDeleteModal(false)
+            setDisplayResultModal(true)
+            return
         }
         return(
             <Button title="Eliminar" onClick={confirmDelete} variant="cta" className={"mt-4"} />
@@ -109,13 +106,14 @@ const CategoryList = props => {
     }
 
     const useCategories = useMemo(() => categories.map((category, index) => {
+        const {id, name} = category
         return (
             <>
                 <Card className={clsx(classes.categories, "text-center", "p-4")} key={index}>
                     <h1 className={clsx("text-2xl")}>{category.name}</h1>
                     <p className={clsx("text-lg", "mb-12")}>Productos en esta categoría: 4</p>
-                    <EditButton id={category.id} name={category.name} />
-                    <DeleteButton id={category.id} name={category.name}/>
+                    <EditButton id={id} name={name} />
+                    <DeleteButton id={id} name={name}/>
                 </Card>
 
             </>

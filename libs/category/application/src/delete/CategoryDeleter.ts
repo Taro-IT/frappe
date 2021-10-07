@@ -1,10 +1,6 @@
 import { CategoryId, CategoryNotFound, CategoryRepository} from "@frappe/category/domain";
 import { CategoryFinder } from "../find";
 
-
-// SOLID
-// Una Clase por lo general solo debe tener un método público
-
 interface Props {
   readonly categoryRepository: CategoryRepository;
   readonly categoryFinder: CategoryFinder;
