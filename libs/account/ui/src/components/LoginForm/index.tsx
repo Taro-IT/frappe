@@ -1,7 +1,7 @@
-import {Button, Form, TextField} from "@frappe/common/design-system";
-import React from "react";
+import {Button, Form, SpanError, TextField} from "@frappe/common/design-system";
+import React, {useState} from "react";
 import {UserCredential} from "firebase/auth";
-import {wrapError} from "@frappe/common/utils";
+import {Nullable, wrapError} from "@frappe/common/utils";
 import {useRouter} from "next/router";
 import {SubmitHandler} from "react-hook-form";
 
@@ -12,21 +12,28 @@ type LoginFormProps = {
 // TODO Add validation to Protected Routes
 export const LoginForm = ({ onSubmit }: LoginFormProps) => {
   const router = useRouter();
+  const [generalError, setGeneralError] = useState<Nullable<string>>(null);
 
   const handleSubmit: SubmitHandler<{ readonly email: string, password: string }> = async (data, event) => {
-    const [submitError, response] = await wrapError(onSubmit(data.email, data.password));
+    event?.preventDefault();
+
+    setGeneralError(null);
+
+    const [submitError,] = await wrapError(onSubmit(data.email, data.password));
 
     if (submitError !== null) {
-      console.error(submitError);
+      setGeneralError('Usuario o contraseña invalidos');
+      return;
     }
 
-    console.log(response);
-    await router.push('/dashboard');
-    event?.preventDefault();
+    setGeneralError(null);
+    return await router.push('/dashboard');
   }
 
   return (
     <Form className="flex flex-col w-full p-8" onSubmit={ handleSubmit }>
+      { generalError && <SpanError message={generalError} /> }
+
       <TextField label="Email" type="email" name="email" validations={{ required: 'El email es requerido' }} />
       <TextField label="Contraseña" type="password" name="password" validations={{ required: 'La contraseña es requerida' }} />
 

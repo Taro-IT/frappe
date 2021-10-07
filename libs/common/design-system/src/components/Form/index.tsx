@@ -10,9 +10,12 @@ type FormProps<FormValues = unknown> = {
 export function Form<FormValues>({ onSubmit, defaultValues, className, children }: PropsWithChildren<FormProps<FormValues>>) {
   const methods = useForm({ defaultValues });
 
+  const handleSubmit: SubmitHandler<FormValues> = (data, event) => {
+    onSubmit(data)
+  };
   return (
     <FormProvider { ...methods }>
-      <form onSubmit={ methods.handleSubmit(onSubmit) } className={ className }>
+      <form onSubmit={ methods.handleSubmit(handleSubmit) } className={ className } noValidate>
         { children }
       </form>
     </FormProvider>

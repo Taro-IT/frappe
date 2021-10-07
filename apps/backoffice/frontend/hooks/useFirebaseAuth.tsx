@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react';
 import { User, signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
-import { Nullable } from "@frappe/common/utils";
-import {auth} from "../utils/third-party/firebase";
+import {Nullable, wrapError} from '@frappe/common/utils';
+import {auth} from '../utils/third-party/firebase';
 
 interface UseFirebaseAuthReturnType {
   readonly currentUser: Nullable<User>;
@@ -19,7 +19,15 @@ export const useFirebaseAuth = (): UseFirebaseAuthReturnType => {
     setLoading(true);
   }
 
-  const signInWithCredentials = (email: string, password: string) => signInWithEmailAndPassword(auth, email, password);
+  const signInWithCredentials = async (email: string, password: string) => {
+    const [error, response] = await wrapError(signInWithEmailAndPassword(auth, email, password));
+
+    if (error !== null) {
+      throw error;
+    }
+
+    return response;
+  }
   const signOut = () => auth.signOut().then(clearAuth);
 
   const authStateChanged = async (user?: User) => {
