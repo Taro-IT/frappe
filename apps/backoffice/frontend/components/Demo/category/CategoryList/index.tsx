@@ -85,7 +85,7 @@ const CategoryList = props => {
 
             </>
         )
-    }), [categories, EditButton])
+    }), [categories])
 
 
     return (
