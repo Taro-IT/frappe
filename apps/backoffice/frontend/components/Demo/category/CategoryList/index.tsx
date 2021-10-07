@@ -91,7 +91,7 @@ const CategoryList = props => {
             setCurrentCategory({id,name})
         }
         return(
-            <Button title="Eliminar" className="mr-2 w-24" variant="cta" onClick={deleteCategory}/>
+            <Button title="Eliminar" className="ml-2 w-24" variant="cta" onClick={deleteCategory}/>
         )
     }
 
@@ -125,11 +125,11 @@ const CategoryList = props => {
             }
             {displayDeleteModal && 
                 <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title='Eliminar categoría'>
-                    <div>
-                        <p className="text-lg">
+                    <div className="flex flex-col w-full px-20 mb-4 py-2 justify-center">
+                        <p className="text-2xl text-center mb-4">
                             ¿Estás seguro de querer borrar la categoría {currentCategory.name}?
                         </p>
-                        <p className="text-md text-red-200">
+                        <p className="text-sm text-red-500 text-center">
                             Esta acción es irreversible y afectará a los zapatos que son parte de esta categoría
                         </p>
                         <ConfirmDeleteCategory id={currentCategory.id}/>
