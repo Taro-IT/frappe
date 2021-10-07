@@ -89,13 +89,13 @@ const CategoryList = props => {
 
     
     return (
-        <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 m-12 max-h-screen overflow-y-scroll">
+        <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 m-12 overflow-y-scroll">
             {useCategories.length ? useCategories : "No tienes categorías registradas."}
             {displayEditModal &&
                     <Modal title={`Editar categoría - ${currentCategory.name}`} showModal={displayEditModal} toggleModal={setEditModal} >
                         <form className="flex flex-col w-full px-20 mb-4 py-2">
                             <label className="text-base w-full my-1">Nuevo nombre</label>
-                            <input className="border-2 border-blue-100 rounded w-full" onChange={handleNameChange} type="name" name="categoryName" />
+                            <input className="border-2 border-gray-500 rounded w-full placeholder-gray-500" placeholder={currentCategory.name} onChange={handleNameChange} type="name" name="categoryName" />
                             {nameErrors && <SpanError message="El nombre no puede ser vacío ni igual al anterior"/>}
                             <SaveChangesButton id={currentCategory.id} name={newName}/>
                         </form>
