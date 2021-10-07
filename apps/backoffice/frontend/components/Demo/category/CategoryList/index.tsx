@@ -15,6 +15,7 @@ const CategoryList = props => {
     const [currentCategory, setCurrentCategory] = useState<category>()
     const [newName, setNewName] = useState<string>("")
     const [nameErrors, setNameErrors] = useState<boolean>(false)
+    const [displayDeleteModal, setDeleteModal] = useState<boolean>(false)
 
     // TODO: centralize to state management -> refactor to custom hook
     useEffect(() => {
@@ -45,15 +46,17 @@ const CategoryList = props => {
         setNameErrors(false)
         return
     }
-
+    const requestDelete = async (id:string) => {
+        try{
+            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`)
+        }catch (error){
+            console.error("La categoría no se pudo borar", error);
+        }
+        setDeleteModal(false)
+        return
+    }
     const handleNameChange = (event) => {
         setNewName(event.target.value)
-    }
-
-    const editCategory = (id:string, name:string) => {
-        setEditModal(true)
-        setCurrentCategory({id, name})
-        setNameErrors(false)
     }
     const SaveChangesButton = (props) => {
         const saveChanges = () => {
@@ -63,12 +66,32 @@ const CategoryList = props => {
             <Button title="Guardar cambios" onClick={saveChanges} variant="cta" className={"mt-4"} />
         )
     }
-    const EditButton = (props) => {
+    type buttonprops = {id:string,name?:string}
+    const ConfirmDeleteCategory = ({id}:buttonprops) => {
+        const confirmDelete = () =>{
+            requestDelete(id)
+        }
+        return(
+            <Button title="Eliminar" onClick={confirmDelete} variant="cta" className={"mt-4"} />
+        )
+    }
+    const EditButton = ({id,name}:buttonprops) => {
         const edit = () => {
-            editCategory(props.id, props.name)
+            setEditModal(true)
+            setCurrentCategory({id, name})
+            setNameErrors(false)
         }
         return (
             <Button title="Editar" className="ml-2 w-24" variant="cta" onClick={edit}/>
+        )
+    }
+    const DeleteButton = ({id,name}:buttonprops) => {
+        const deleteCategory = () => {
+            setDeleteModal(true);
+            setCurrentCategory({id,name})
+        }
+        return(
+            <Button title="Eliminar" className="mr-2 w-24" variant="cta" onClick={deleteCategory}/>
         )
     }
 
@@ -78,9 +101,8 @@ const CategoryList = props => {
                 <Card className={clsx(classes.categories, "text-center", "p-4")} key={index}>
                     <h1 className={clsx("text-2xl")}>{category.name}</h1>
                     <p className={clsx("text-lg", "mb-12")}>Productos en esta categoría: 4</p>
-                    <Button title="Eliminar" className="mr-2 w-24" variant="cta" onClick={()=>{ console.log("Method not implemented yet.");
-                    }}/>
                     <EditButton id={category.id} name={category.name} />
+                    <DeleteButton id={category.id} name={category.name}/>
                 </Card>
 
             </>
@@ -100,6 +122,19 @@ const CategoryList = props => {
                             <SaveChangesButton id={currentCategory.id} name={newName}/>
                         </form>
                     </Modal>
+            }
+            {displayDeleteModal && 
+                <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title='Eliminar categoría'>
+                    <div>
+                        <p className="text-lg">
+                            ¿Estás seguro de querer borrar la categoría {currentCategory.name}?
+                        </p>
+                        <p className="text-md text-red-200">
+                            Esta acción es irreversible y afectará a los zapatos que son parte de esta categoría
+                        </p>
+                        <ConfirmDeleteCategory id={currentCategory.id}/>
+                    </div>
+                </Modal>
             }
         </div>
     )
