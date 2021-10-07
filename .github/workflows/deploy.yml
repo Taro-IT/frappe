@@ -84,12 +84,8 @@ jobs:
         id: nx-base
         run: echo "::set-output name=base::$(git rev-parse HEAD~1)"
 
-      - name: Deploy
+      - name: Setup local env
         env:
-          USE_SSH: true
-          GIT_USER: git
-          NX_BASE: ${{ steps.nx-base.outputs.base }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }
           NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }
@@ -101,9 +97,30 @@ jobs:
           NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }
           NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }
         run: |
+          touch .env
+          echo $FIREBASE_CLIENT_EMAIL >> .env
+          echo $FIREBASE_PRIVATE_KEY >> .env
+          echo $NEXT_PUBLIC_FIREBASE_PROJECT_ID >> .env
+          echo $NEXT_PUBLIC_FIREBASE_DATABASE_URL >> .env
+          echo $NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY >> .env
+          echo $NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN >> .env
+          echo $NEXT_PUBLIC_FIREBASE_BUCKET >> .env
+          echo $NEXT_PUBLIC_FIREBASE_MESSAGING_ID >> .env
+          echo $NEXT_PUBLIC_FIREBASE_APP_ID >> .env
+          echo $NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID >> .env
+
+      - name: Deploy
+        env:
+          USE_SSH: true
+          GIT_USER: git
+          NX_BASE: ${{ steps.nx-base.outputs.base }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           git config --global user.email "alonsovla@gmail.com"
           git config --global user.name "Vladimir Salvador"
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+
+          cat .env
 
           npm run affected -- --target=deploy --base=$NX_BASE --prod
 
