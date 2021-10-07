@@ -123,6 +123,4 @@ jobs:
         run: |
           echo $ENV_TEST_FILE | base64 --decode > .env
 
-          cat .env
-
           npm run affected:build -- --base=$NX_BASE
