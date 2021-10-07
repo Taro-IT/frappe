@@ -3,6 +3,7 @@ import { Button, Card, Modal, SpanError} from '@frappe/common/design-system';
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import clsx from 'clsx'
+import {BadgeCheckIcon, ExclamationIcon} from '@heroicons/react/solid'
 
 type category = {
     readonly id: string,
@@ -16,6 +17,9 @@ const CategoryList = props => {
     const [newName, setNewName] = useState<string>("")
     const [nameErrors, setNameErrors] = useState<boolean>(false)
     const [displayDeleteModal, setDeleteModal] = useState<boolean>(false)
+    const [message, setMessage] = useState<string>("")
+    const [displayResultModal, setDisplayResultModal] = useState<boolean>(false)
+    const [success, setSuccess] = useState<boolean>()
 
     // TODO: centralize to state management -> refactor to custom hook
     useEffect(() => {
@@ -39,8 +43,12 @@ const CategoryList = props => {
             await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`, {
             name: name
             })
+            setMessage("La categoría se editó con éxito.")
+            setSuccess(true)
         } catch (error) {
             console.error("La categoría ya existe.", error);
+            setMessage("La categoría no se pudo editar")
+            setSuccess(false)
         }
         setEditModal(false)
         setNameErrors(false)
@@ -49,10 +57,15 @@ const CategoryList = props => {
     const requestDelete = async (id:string) => {
         try{
             await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`)
+            setMessage("Categoría borrada con éxito.")
+            setSuccess(true)
         }catch (error){
             console.error("La categoría no se pudo borar", error);
+            setMessage("La categoría no se pudo borar.")
+            setSuccess(false)
         }
         setDeleteModal(false)
+        setDisplayResultModal(true)
         return
     }
     const handleNameChange = (event) => {
@@ -134,6 +147,18 @@ const CategoryList = props => {
                         </p>
                         <ConfirmDeleteCategory id={currentCategory.id}/>
                     </div>
+                </Modal>
+            }
+            {displayResultModal && 
+                <Modal showModal={displayResultModal} toggleModal={setDisplayResultModal} title="">
+                    <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
+                        { success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
+                        {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
+                        <p className="text-2xl text-center mb-4">
+                            {message}
+                        </p>
+                    </div>
+
                 </Modal>
             }
         </div>
