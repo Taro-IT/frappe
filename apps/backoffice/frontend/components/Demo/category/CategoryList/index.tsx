@@ -136,7 +136,7 @@ const CategoryList = props => {
                         </form>
                     </Modal>
             }
-            {displayDeleteModal && 
+            {displayDeleteModal &&
                 <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title='Eliminar categoría'>
                     <div className="flex flex-col w-full px-20 mb-4 py-2 justify-center">
                         <p className="text-2xl text-center mb-4">
@@ -149,7 +149,7 @@ const CategoryList = props => {
                     </div>
                 </Modal>
             }
-            {displayResultModal && 
+            {displayResultModal &&
                 <Modal showModal={displayResultModal} toggleModal={setDisplayResultModal} title="">
                     <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
                         { success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}

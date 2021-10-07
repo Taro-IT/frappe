@@ -52,9 +52,9 @@ export class MongoCategoryRepository extends MongoRepository implements Category
       return null
     }
 
-    return await (await collection.deleteOne(document)).acknowledged
+    return (await collection.deleteOne(document)).acknowledged
     
-  } 
+  }
   
 
 
