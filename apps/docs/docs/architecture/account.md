@@ -15,7 +15,7 @@
 <table>
   <theader >
     <th >Diagrama de flujo</th>
-      <th style="text-align:center">Artefactos de diseño</th>
+      <th style={{textAlign:"center"}}>Artefactos de diseño</th>
   </theader>
 
   <tbody align="center">
