@@ -13,7 +13,7 @@ export const configureApp = ({ router }: AppProps): express.Express => {
   app.use(cors()); // CORS
   app.use(helmet()); // Security Headers
   app.use(express.json()); // Response JSON
-  
+
   app.use('/api', router);
   app.use(errorHandler);
 

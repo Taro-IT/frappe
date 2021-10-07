@@ -22,6 +22,7 @@
     "@dinnosc/criteria": "^0.2.3",
     "@docusaurus/core": "^2.0.0-alpha.70",
     "@docusaurus/preset-classic": "^2.0.0-alpha.70",
+    "@heroicons/react": "^1.0.4",
     "@mdx-js/react": "^1.6.21",
     "@nrwl/next": "12.9.0",
     "@tshio/awilix-resolver": "^1.0.2",

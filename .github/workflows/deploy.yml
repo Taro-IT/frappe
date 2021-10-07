@@ -96,3 +96,52 @@ jobs:
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 
           npm run affected -- --target=deploy --base=$NX_BASE --prod
+
+  deploy-azure:
+    needs:
+      - release
+
+    if: needs.release.outputs.tag
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Cache
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install --ignore-scripts
+
+      - name: Setup Base
+        id: nx-base
+        run: echo "::set-output name=base::$(git rev-parse HEAD~1)"
+
+      - name: Build
+        env:
+          NX_BASE: ${{ steps.nx-base.outputs.base }}
+        run: |
+          npm run build -- api-gateway --base=$NX_BASE --prod
+          (cd dist/apps/api-gateway && npm install)
+
+      - name: Azure
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: pruebas-cinica-mx-node
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: dist/apps/api-gateway
+

@@ -1,0 +1,10 @@
+{
+  "name": "api-gateway",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node main"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

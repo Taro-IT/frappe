@@ -10,7 +10,7 @@ type RegisterFormType = {
 export const useRegisterForm = () => {
   const onSubmit: SubmitHandler<RegisterFormType> = async (data: RegisterFormType) => {
     try {
-      await axios.post(`${ process.env.NEXT_PUBLIC_API_URL }/api/accounts/signup`, data);
+      await axios.post(`${ process.env.NEXT_PUBLIC_API_URL }/accounts/signup`, data);
 
       console.log('User created')
     } catch (error) {
