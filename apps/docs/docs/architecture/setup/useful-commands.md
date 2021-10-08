@@ -1,5 +1,6 @@
 ---
-title: Comandos utiles
+title: Comandos útiles
+sidebar_label: Comandos útiles
 sidebar_position: 3
 ---
 
