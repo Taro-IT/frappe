@@ -1,38 +1,38 @@
-import {Category, CategoryAlreadyExists, CategoryId, CategoryName, CategoryRepository} from "@frappe/category/domain";
-import { CategoryNameFinder } from "../find";
+import {Order, OrderAlreadyExists, OrderId, OrderName, OrderRepository} from "@frappe/order/domain";
+import { OrderNameFinder } from "../find";
 
 
 // SOLID
 // Una Clase por lo general solo debe tener un método público
 
 interface Props {
-  readonly categoryRepository: CategoryRepository;
-  readonly categoryNameFinder: CategoryNameFinder;
+  readonly orderRepository: OrderRepository;
+  readonly orderNameFinder: OrderNameFinder;
 }
 
-export class CategoryCreator {
-  private readonly categoryNameFinder: CategoryNameFinder;
-  private readonly categoryRepository: CategoryRepository;
+export class OrderCreator {
+  private readonly orderNameFinder: OrderNameFinder;
+  private readonly orderRepository: OrderRepository;
 
-  constructor({ categoryRepository, categoryNameFinder }: Props) {
-    this.categoryRepository = categoryRepository;
-    this.categoryNameFinder = categoryNameFinder;
+  constructor({ orderRepository, orderNameFinder }: Props) {
+    this.orderRepository = orderRepository;
+    this.orderNameFinder = orderNameFinder;
   }
 
   async execute(id: string, name: string) {
-    const exists = await this.categoryExists(name)
+    const exists = await this.orderExists(name)
 
     if(exists === null) {
-      throw new CategoryAlreadyExists(name);
+      throw new OrderAlreadyExists(name);
     }
 
-    const category = new Category(new CategoryId(id), new CategoryName(name));
-    return this.categoryRepository.save(category);
+    const order = new Order(new OrderId(id), new OrderName(name));
+    return this.orderRepository.save(order);
   }
 
-  private async categoryExists(name: string) {
+  private async orderExists(name: string) {
     try {
-      await this.categoryNameFinder.execute(name)
+      await this.orderNameFinder.execute(name)
       return null
     } catch (error) {
       return error

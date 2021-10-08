@@ -1,8 +1,8 @@
 export enum OrderStatuses {
   ABIERTO = 'ABIERTO',
   EN_PROCESO = 'EN_PROCESO',
-  CERRADO = 'CERRADO',
-  RETRASADO = 'RETRASADO'
+  LISTO_PARA_ENVIO = 'LISTO_PARA_ENVIO',
+  ATRASADO = 'ATRASADO'
 }
 
 export interface OrderItemType {
