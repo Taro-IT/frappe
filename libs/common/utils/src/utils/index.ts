@@ -1,1 +1,1 @@
-export { Nullable } from './Nullable';
+export type { Nullable } from './Nullable';

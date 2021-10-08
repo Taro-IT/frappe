@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import classes from './CategoryList.module.scss';
 import { Button, Card, Modal, SpanError} from '@frappe/common/design-system';
 import { useEffect, useMemo, useState } from 'react';
@@ -9,7 +10,7 @@ type category = {
     readonly name: string
 }
 
-const CategoryList = props => {
+const CategoryList = () => {
     const [categories, setCategories] = useState([])
     const [displayEditModal, setEditModal] = useState<boolean>(false)
     const [currentCategory, setCurrentCategory] = useState<category>()
@@ -87,7 +88,7 @@ const CategoryList = props => {
         )
     }), [categories])
 
-    
+
     return (
         <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 m-12 overflow-y-scroll">
             {useCategories.length ? useCategories : "No tienes categorías registradas."}
