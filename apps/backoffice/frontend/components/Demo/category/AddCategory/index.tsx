@@ -39,7 +39,7 @@ const CreateCategory = props => {
                   value={categoryName}
                   onChange={nameChangeHandler}
               ></input>
-             <Button type="submit" onClick={addCategoryHandler} title="Agregar"></Button>
+             <Button variant="cta" type="submit" onClick={addCategoryHandler} title="Agregar"></Button>
           </form>
       </Card>
     );

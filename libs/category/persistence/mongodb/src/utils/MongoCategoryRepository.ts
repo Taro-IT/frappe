@@ -14,9 +14,9 @@ export class MongoCategoryRepository extends MongoRepository implements Category
   async find(id: CategoryId): Promise<Category | null> {
     const collection = await this.collection();
     const document = await collection.findOne({ _id: id.value });
-
+    
     if (!document) {
-      return null;
+      return null
     }
 
     return Category.fromPrimitives({ ...document, id: document._id } as CategoryPrimitives);
@@ -44,4 +44,6 @@ export class MongoCategoryRepository extends MongoRepository implements Category
   return documents?.map((doc) => Category.fromPrimitives({...doc, id: doc._id} as CategoryPrimitives)) || []
   }
   
+
+
 }
