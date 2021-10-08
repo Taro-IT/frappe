@@ -18,7 +18,10 @@
     "common-test": "libs/common/test",
     "common-utils": "libs/common/utils",
     "common-value-object": "libs/common/value-object",
-    "docs": "apps/docs"
+    "docs": "apps/docs",
+    "shipping-application": "libs/shipping/application",
+    "shipping-domain": "libs/shipping/domain",
+    "shipping-test": "libs/shipping/test"
   },
   "cli": {
     "defaultCollection": "@nrwl/express"
