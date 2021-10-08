@@ -1,48 +1,28 @@
-import { Card } from '@frappe/common/design-system';
+import {Card, Form, TextField} from '@frappe/common/design-system';
 import { Button } from '@frappe/common/design-system';
 import classes from './AddCategory.module.scss'
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
-const CreateCategory = props => {
-    const [categoryName, setCategoryName] = useState('')
+import {wrapError} from "@frappe/common/utils";
+const CreateCategory = () => {
+  const addCategoryHandler = async (data: { 'category-name': string }) => {
+    const [error] = await wrapError(axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories`, { name: data["category-name"] }));
 
-    const addCategoryHandler = async (event) => {
-      event.preventDefault();
-      if(categoryName=="") return;
-      try {
-        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
-          name: categoryName
-        })
-      } catch (error) {
-        console.error("La categoría ya existe.");
-        
-      }
-      
-      setCategoryName('')
+    if (error !== null) {
+      throw error;
     }
+  }
 
-    
+  return (
+    <Card className={classes.input}>
+      <Form onSubmit={ addCategoryHandler } >
+        <TextField name="category-name" label="Nombre de la categoría" validations={{ required: 'La categoria es requerida' }} />
 
-    const nameChangeHandler = (event) => {
-      setCategoryName(event.target.value)
-    }
-
-
-    return (
-      <Card className={classes.input}>
-          <form>
-              <label htmlFor='categoryName'>Nombre de la categoría</label>
-              <input
-                  id='categoryName'
-                  type='text'
-                  value={categoryName}
-                  onChange={nameChangeHandler}
-              ></input>
-             <Button variant="cta" type="submit" onClick={addCategoryHandler} title="Agregar"></Button>
-          </form>
-      </Card>
-    );
+        <Button variant="cta" type="submit"  title="Agregar" />
+      </Form>
+    </Card>
+  );
 };
 
 export default CreateCategory;
