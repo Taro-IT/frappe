@@ -1,6 +1,5 @@
 import {MongoRepository} from "@frappe/common/persistence/mongodb";
 import {Category, CategoryId, CategoryName, CategoryPrimitives, CategoryRepository} from "@frappe/category/domain";
-import { Console } from "console";
 
 export class MongoCategoryRepository extends MongoRepository implements CategoryRepository {
 
