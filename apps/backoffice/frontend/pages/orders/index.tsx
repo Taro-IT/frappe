@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
+import OrderList from '../../components/Demo/order/OrderList'
 
 const ListOrdersPage = () => {
   const [ordersList, setOrdersList] = useState([])
 
-  const addOrderHandler = (uName) => {
+  const addOrderHandler = ({newOrder}) => {
     setOrdersList(prevOrdersList => {
       return [
         ...prevOrdersList, 
-        {
-          name: uName, id:Math.random().toString()
-        }
+        newOrder
       ];
     })
   }
   return (
     <div className="bg-gray-200 w-full h-full absolute">
-
+        <OrderList orders={ordersList}/>
     </div>
   )
 }

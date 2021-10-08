@@ -1,0 +1,22 @@
+.orders {
+  margin: 2rem auto;
+  width: 90%;
+  
+  }
+.orders ul {
+list-style: none;
+padding: 1rem;
+}
+.orders li {
+border: 1px solid #ccc;
+margin: 0.5rem 0;
+padding: 0.5rem;
+}
+
+.product-item p{
+  display: inline;
+}
+
+.expand-icon {
+  color: #b7912d;
+}
