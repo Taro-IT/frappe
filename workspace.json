@@ -23,6 +23,7 @@
     "order-application": "libs/order/application",
     "order-domain": "libs/order/domain",
     "order-persistance-mongodb": "libs/order/persistance/mongodb",
+    "order-test": "libs/order/test",
     "product": "libs/product",
     "product-application": "libs/product/application",
     "product-domain": "libs/product/domain",

@@ -14,4 +14,8 @@ export class StringMother {
     return faker.internet.email();
   }
 
+  static url(): string {
+    return faker.internet.url()
+  }
+
 }
