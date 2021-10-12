@@ -21,6 +21,7 @@
     "docs": "apps/docs",
     "shipping-application": "libs/shipping/application",
     "shipping-domain": "libs/shipping/domain",
+    "shipping-infrastructure-skydropx": "libs/shipping/infrastructure/skydropx",
     "shipping-test": "libs/shipping/test"
   },
   "cli": {

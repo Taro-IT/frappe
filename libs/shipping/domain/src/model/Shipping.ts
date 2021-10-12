@@ -1,8 +1,8 @@
-import {ShippingId} from "./ShippingId";
-import {ShippingTrackingNumber} from "./ShippingTrackingNumber";
-import {ShippingAddress} from "./ShippingAddress";
-import {ShippingProvider} from "./ShippingProvider";
-import {ShippingParcel} from "./ShippingParcel";
+import { ShippingId } from './ShippingId';
+import { ShippingTrackingNumber } from './ShippingTrackingNumber';
+import { ShippingAddress } from './ShippingAddress';
+import { ShippingProvider } from './ShippingProvider';
+import { ShippingParcel } from './ShippingParcel';
 
 export class Shipping {
   readonly id: ShippingId;

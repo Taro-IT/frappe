@@ -1,1 +1,1 @@
-export {ShippingMother} from "./utils/ShippingMother";
+export { ShippingMother } from './utils/ShippingMother';

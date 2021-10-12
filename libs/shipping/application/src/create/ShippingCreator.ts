@@ -1,4 +1,4 @@
-import {Shipping, ShippingRepository} from "@frappe/shipping/domain";
+import { Shipping, ShippingRepository } from '@frappe/shipping/domain';
 
 interface ShippingCreatorDeps {
   readonly shippingRepository: ShippingRepository;

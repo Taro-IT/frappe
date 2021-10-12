@@ -1,7 +1,7 @@
-import React from "react";
-import {ProtectedRoute} from "../HOC/ProtectedRoute";
-import {useAuth} from "../context/AuthUserContext";
-import {Button} from "@frappe/common/design-system";
+import React from 'react';
+import { ProtectedRoute } from '../HOC/ProtectedRoute';
+import { useAuth } from '../context/AuthUserContext';
+import { Button } from '@frappe/common/design-system';
 
 const DashboardPage = () => {
   const { signOut } = useAuth();
@@ -9,10 +9,9 @@ const DashboardPage = () => {
   return (
     <div>
       Dashboard Page
-
-      <Button title="Signout" onClick={ signOut } />
+      <Button title="Signout" onClick={signOut} />
     </div>
-  )
-}
+  );
+};
 
 export default ProtectedRoute(DashboardPage);

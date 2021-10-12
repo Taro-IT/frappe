@@ -1,1 +1,1 @@
-export {ShippingRepository} from "./ShippingRepository";
+export { ShippingRepository } from './ShippingRepository';

@@ -1,4 +1,3 @@
-import {StringValue} from "@frappe/common/value-object";
+import { StringValue } from '@frappe/common/value-object';
 
-export class ShippingReference extends StringValue{
-}
+export class ShippingReference extends StringValue {}

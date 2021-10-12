@@ -1,2 +1,1 @@
-export class ShippingDimension {
-}
+export class ShippingDimension {}

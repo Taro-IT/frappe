@@ -1,1 +1,1 @@
-export {UserMother} from "./UserMother";
+export { UserMother } from './UserMother';

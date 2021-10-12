@@ -4,5 +4,4 @@ export class ShippingWidth {
   constructor(value: number) {
     this.value = value;
   }
-
 }

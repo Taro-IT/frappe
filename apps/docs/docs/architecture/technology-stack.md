@@ -9,22 +9,23 @@ Se optó por la utilización del stack de desarrollo MENN.
 ## Tecnologías
 
 - MongoDB
+
   - ¿Por qué?
     - Permite el cambio del schema de datos de una manera sencilla
     - Sistema de control de acceso robusto
   - La arquitectura debe permitir el cambio sencillo y rápido de motor de base de datos
   - La arquitectura debe permitir el poder utilizar otro motor de base de datos en el caso de que un requisito lo requiera
 
-
 - Express
+
   - ¿Por qué?
     - Framework minimalista y flexible de fácil acceso
     - Facilidad de encontrar documentación
     - Creación de APIs de manera fácil, sencilla y eficiente
   - La arquitectura debe permitir el cambio de Framework Backend de manera que no afecte la lógica de negocio
-  
 
 - Next
+
   - ¿Por qué?
     - Permite hacer uso de los diferentes esquemas de renderizado para una aplicación web
       - Server Side Rendering (SSR)
@@ -35,7 +36,7 @@ Se optó por la utilización del stack de desarrollo MENN.
 
 - Node
   - ¿Por qué?
-    - Permite funciones Event-Driven 
+    - Permite funciones Event-Driven
     - Permite ejecuciones asíncronas
     - Rápido y altamente escalable
 
@@ -44,4 +45,4 @@ Por otra parte se optó por utilizar el mismo lenguaje de programación para bac
 
 La comunicación entre los diferentes componentes tecnológicos puede ser vista en el siguiente diagrama:
 
-![Communication between the technology components](../assets/stack-communication.png "Stack Communication")
+![Communication between the technology components](../assets/stack-communication.png 'Stack Communication')
