@@ -6,7 +6,7 @@ import faker from 'faker';
 export class OrderItemMother {
 
   static random(): OrderItemType {
-    return {      
+    return {
       id: UuidMother.random(),
       productId: UuidMother.random(),
       productName: StringMother.randomWord(),

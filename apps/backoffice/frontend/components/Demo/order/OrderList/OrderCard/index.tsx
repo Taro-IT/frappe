@@ -41,7 +41,7 @@ const OrderCard = ({items, id, order}: OrderCardProps) => {
   return (
     <Card className={clsx(classes.orders, "text-left", "p-4")} key={id}>
       <div className="flex flex-row py-4 align-middle">
-        {closed ? 
+        {closed ?
           <ChevronDownIcon className={clsx("h-5", classes['expand-icon'], "inline-block", "align-bottom", "m-2")} onClick={handleExpandOrder}/>:
           <ChevronRightIcon className={clsx("h-5", classes['expand-icon'], "inline-block", "align-bottom", "m-2")} onClick={handleExpandOrder}/>
         }
@@ -50,7 +50,7 @@ const OrderCard = ({items, id, order}: OrderCardProps) => {
       <hr className={clsx("mb-2", !closed && "invisible")}/>
       {
         items.map(({ id, ...item }) => (
-          closed && 
+          closed &&
           <div className="p-4">
             <div className="flex flex-row">
               <p className="mr-12 text-xl" key={ id }> { item.productName }  </p>

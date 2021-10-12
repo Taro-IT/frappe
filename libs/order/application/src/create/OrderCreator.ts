@@ -19,7 +19,7 @@ export class OrderCreator {
   }
 
   async execute(
-    id: string, 
+    id: string,
     items: OrderItemType[],
     subtotal: number,
     total: number,
@@ -33,7 +33,7 @@ export class OrderCreator {
     }
 
     const order = new Order(
-      new OrderId(id), 
+      new OrderId(id),
       items.map((item) => OrderItem.fromPrimitives(item)),
       new OrderSubtotal(subtotal),
       new OrderTotal(total),

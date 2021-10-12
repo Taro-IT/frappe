@@ -4,7 +4,7 @@ import { Uuid } from "@frappe/common/value-object";
 import { CreateOrderCommand } from "@frappe/order/application"
 
 
-export const createOrderHandler = (commandBus: CommandBus): RequestHandler => 
+export const createOrderHandler = (commandBus: CommandBus): RequestHandler =>
     async (req, res, next: NextFunction) => {
         const id = Uuid.create().value
         try {
