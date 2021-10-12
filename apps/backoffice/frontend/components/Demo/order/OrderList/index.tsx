@@ -24,7 +24,7 @@ const OrderList = props => {
 
     const useOrders = useMemo(() => orders.map((order, index) => {
         return (
-          <OrderCard id={index} order={order} items={order.items} />
+          <OrderCard id={index} order={order} items={order.items} key={index}/>
         )
     }), [orders])
 
