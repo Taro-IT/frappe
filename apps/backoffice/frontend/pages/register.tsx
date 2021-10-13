@@ -2,7 +2,6 @@ import React from "react";
 import {RegisterForm} from "@frappe/account/ui";
 import {Card, Link} from "@frappe/common/design-system";
 
-
 import styles from '../styles/register.module.scss';
 
 const RegisterPage = () => (
