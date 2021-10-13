@@ -1,11 +1,11 @@
-import {QueryHandler} from "@tshio/query-bus";
-import {FindOrderQuery} from "./FindOrderQuery";
-import {OrderFinder} from "./OrderFinder";
-import { OrderPrimitives } from "@frappe/order/domain";
+import { QueryHandler } from '@tshio/query-bus';
+import { FindOrderQuery } from './FindOrderQuery';
+import { OrderFinder } from './OrderFinder';
+import { OrderPrimitives } from '@frappe/order/domain';
 
 type Props = {
-  readonly orderFinder: OrderFinder
-}
+  readonly orderFinder: OrderFinder;
+};
 
 interface FindOrderQueryHandlerResult {
   readonly result: OrderPrimitives;
@@ -22,9 +22,8 @@ export class FindOrderQueryHandler implements QueryHandler<FindOrderQuery, FindO
 
   async execute(Query: FindOrderQuery) {
     const { id } = Query.payload;
-    
-    const result = await this.OrderFinder.execute(id);
-    return { result }
-  }
 
+    const result = await this.OrderFinder.execute(id);
+    return { result };
+  }
 }

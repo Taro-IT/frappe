@@ -1,19 +1,19 @@
-import { OrderRepository } from "@frappe/order/domain";
+import { OrderRepository } from '@frappe/order/domain';
 
 interface Props {
-    readonly orderRepository: OrderRepository
+  readonly orderRepository: OrderRepository;
 }
 
 export class OrderLister {
-    private readonly orderRepository: OrderRepository;
+  private readonly orderRepository: OrderRepository;
 
-    constructor({ orderRepository }: Props) {
-        this.orderRepository = orderRepository;
-    }
+  constructor({ orderRepository }: Props) {
+    this.orderRepository = orderRepository;
+  }
 
-    async execute() {
-        const orders = await this.orderRepository.all();
+  async execute() {
+    const orders = await this.orderRepository.all();
 
-        return orders.map((cat) => cat.toPrimitives())
-    }
+    return orders.map(cat => cat.toPrimitives());
+  }
 }

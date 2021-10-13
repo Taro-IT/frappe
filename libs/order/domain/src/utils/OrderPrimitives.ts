@@ -6,7 +6,7 @@ export enum OrderStatuses {
 }
 
 export interface OrderItemType {
-  readonly id: string
+  readonly id: string;
   readonly productId: string;
   readonly productName: string;
   readonly productPrice: number;
@@ -16,11 +16,9 @@ export interface OrderItemType {
 
 export interface OrderPrimitives {
   readonly id: string;
-  readonly items: OrderItemType[]
+  readonly items: OrderItemType[];
   readonly subtotal: number;
   readonly total: number;
   readonly dateCreated: Date;
   readonly status: OrderStatuses;
 }
-
-

@@ -1,6 +1,6 @@
-import {Collection, MongoClient} from "mongodb";
-import {MongoCriteriaMapper} from "./MongoCriteriaMapper";
-import {Criteria, OrderTypes} from "@dinnosc/criteria";
+import { Collection, MongoClient } from 'mongodb';
+import { MongoCriteriaMapper } from './MongoCriteriaMapper';
+import { Criteria, OrderTypes } from '@dinnosc/criteria';
 
 interface MongoRepositoryDependencies {
   readonly mongoClient: Promise<MongoClient>;
@@ -50,7 +50,7 @@ export abstract class MongoRepository {
     if (criteria.hasOrder()) {
       const { orderBy, orderType } = criteria.order;
 
-      reference.sort({ [orderBy.value]: orderType.value === OrderTypes.ASC ? 1 : -1 })
+      reference.sort({ [orderBy.value]: orderType.value === OrderTypes.ASC ? 1 : -1 });
     }
 
     if (criteria.limit !== undefined) {

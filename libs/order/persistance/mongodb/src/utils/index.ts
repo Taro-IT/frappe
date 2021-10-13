@@ -1,1 +1,1 @@
-export { MongoOrderRepository } from "./MongoOrderRepository"
+export { MongoOrderRepository } from './MongoOrderRepository';

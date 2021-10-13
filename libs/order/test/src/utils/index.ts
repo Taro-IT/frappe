@@ -1,2 +1,2 @@
-export {OrderMother} from './OrderMother'
-export {OrderStatusMother} from './OrderStatusMother'
+export { OrderMother } from './OrderMother';
+export { OrderStatusMother } from './OrderStatusMother';

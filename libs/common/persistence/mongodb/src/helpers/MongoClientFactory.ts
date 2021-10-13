@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb';
 
 interface MongoClientDependencies {
   readonly mongoUrl: string;
@@ -8,4 +8,4 @@ export const MongoClientFactory = ({ mongoUrl }: MongoClientDependencies): Promi
   const client = new MongoClient(mongoUrl, { ignoreUndefined: true });
 
   return client.connect();
-}
+};

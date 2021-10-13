@@ -1,4 +1,4 @@
-import {Query} from "@tshio/query-bus";
+import { Query } from '@tshio/query-bus';
 
 interface FindOrderQueryPayload {
   readonly id: string;
@@ -7,7 +7,5 @@ interface FindOrderQueryPayload {
 export class FindOrderQuery implements Query<FindOrderQueryPayload> {
   readonly type = FindOrderQuery.name;
 
-  constructor(
-    readonly payload: FindOrderQueryPayload
-  ) { }
+  constructor(readonly payload: FindOrderQueryPayload) {}
 }

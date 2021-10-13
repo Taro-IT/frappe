@@ -1,10 +1,10 @@
-import {CommandHandler} from "@tshio/command-bus";
-import {CreateCategoryCommand} from "./CreateCategoryCommand";
-import {CategoryCreator} from "./CategoryCreator";
+import { CommandHandler } from '@tshio/command-bus';
+import { CreateCategoryCommand } from './CreateCategoryCommand';
+import { CategoryCreator } from './CategoryCreator';
 
 type CategoryProps = {
-  readonly categoryCreator: CategoryCreator
-}
+  readonly categoryCreator: CategoryCreator;
+};
 
 export class CreateCategoryCommandHandler implements CommandHandler<CreateCategoryCommand> {
   private readonly categoryCreator: CategoryCreator;
@@ -17,8 +17,7 @@ export class CreateCategoryCommandHandler implements CommandHandler<CreateCatego
 
   async execute(command: CreateCategoryCommand) {
     const { id, name } = command.payload;
-    
+
     return this.categoryCreator.execute(id, name);
   }
-
 }

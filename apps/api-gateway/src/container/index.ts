@@ -1,16 +1,16 @@
-import {asFunction, asValue, AwilixContainer, createContainer, InjectionMode} from "awilix";
-import {commonDependencies} from "./commonDependencies";
-import {configureApp} from "../app";
-import http from "http";
-import {queryHandlers} from "./queryHandlers";
-import {commandHandlers} from "./commandHandlers";
-import {eventHandlers} from "./eventHandlers";
-import {registerCollectionModule} from "../category";
-import { registerAccountModule } from "../account";
-import { registerOrderModule } from "../order";
+import { asFunction, asValue, AwilixContainer, createContainer, InjectionMode } from 'awilix';
+import { commonDependencies } from './commonDependencies';
+import { configureApp } from '../app';
+import http from 'http';
+import { queryHandlers } from './queryHandlers';
+import { commandHandlers } from './commandHandlers';
+import { eventHandlers } from './eventHandlers';
+import { registerCollectionModule } from '../category';
+import { registerAccountModule } from '../account';
+import { registerOrderModule } from '../order';
 
 interface ContainerType {
-  readonly server: http.Server
+  readonly server: http.Server;
 }
 
 export const configureContainer = (): AwilixContainer<ContainerType> => {
@@ -25,7 +25,7 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   // Register Modules
   registerCollectionModule(container);
   registerAccountModule(container);
-  registerOrderModule(container)
+  registerOrderModule(container);
 
   container.register({
     app: asFunction(configureApp).singleton()
@@ -36,4 +36,4 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   });
 
   return container;
-}
+};

@@ -2,7 +2,6 @@ import { NumberMother, StringMother, UuidMother } from '@frappe/common/test';
 import { OrderItemType } from '@frappe/order/domain';
 
 export class OrderItemMother {
-
   static random(): OrderItemType {
     return {
       id: UuidMother.random(),
@@ -10,7 +9,7 @@ export class OrderItemMother {
       productName: StringMother.randomWord(),
       productPrice: NumberMother.randomPositive(),
       quantity: NumberMother.randomPositive(),
-      pdfFile: StringMother.url(),
-    }
+      pdfFile: StringMother.url()
+    };
   }
 }

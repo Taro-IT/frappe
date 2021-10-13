@@ -1,10 +1,9 @@
-import { OrderItemType } from "../../utils";
-import { OrderItemId } from "./OrderItemId";
-import { OrderItemPdfFile } from "./OrderItemPdfFile";
-import { OrderItemQuantity } from "./OrderItemQuantity";
-import { ProductId, ProductName, ProductPrice } from '@frappe/product/domain'
+import { OrderItemType } from '../../utils';
+import { OrderItemId } from './OrderItemId';
+import { OrderItemPdfFile } from './OrderItemPdfFile';
+import { OrderItemQuantity } from './OrderItemQuantity';
+import { ProductId, ProductName, ProductPrice } from '@frappe/product/domain';
 export class OrderItem {
-  
   constructor(
     readonly id: OrderItemId,
     readonly productId: ProductId,
@@ -22,7 +21,7 @@ export class OrderItem {
       new ProductPrice(primitives.productPrice),
       new OrderItemQuantity(primitives.quantity),
       new OrderItemPdfFile(primitives.pdfFile)
-    )
+    );
   }
 
   toPrimitives(): OrderItemType {
@@ -33,7 +32,6 @@ export class OrderItem {
       productPrice: this.productPrice.value,
       quantity: this.quantity.value,
       pdfFile: this.pdfFile?.value
-
-    }
+    };
   }
 }

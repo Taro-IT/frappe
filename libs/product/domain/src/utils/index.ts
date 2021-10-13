@@ -1,1 +1,1 @@
-export {ProductPrimitives} from './ProductPrimitives'
+export { ProductPrimitives } from './ProductPrimitives';

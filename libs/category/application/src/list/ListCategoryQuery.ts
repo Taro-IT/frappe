@@ -1,10 +1,7 @@
-import { Query } from "@tshio/query-bus";
-
+import { Query } from '@tshio/query-bus';
 
 export class ListCategoryQuery implements Query<Record<string, never>> {
-    readonly type = ListCategoryQuery.name;
+  readonly type = ListCategoryQuery.name;
 
-    constructor(
-        readonly payload: Record<string, never>
-    ) { }
+  constructor(readonly payload: Record<string, never>) {}
 }

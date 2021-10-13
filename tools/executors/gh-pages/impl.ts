@@ -23,7 +23,7 @@ const ghPagesExecutor: Executor<Options> = async (options, ctx) => {
   await buildProject(project);
 
   const { outputPath } = options;
-  await touch(`${ outputPath }/.nojekyll`)
+  await touch(`${outputPath}/.nojekyll`);
   await publishToGHPages(outputPath);
 
   return { success: true };

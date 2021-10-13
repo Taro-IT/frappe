@@ -1,7 +1,7 @@
-import {OrderNotFound, OrderRepository, OrderId} from "@frappe/order/domain";
+import { OrderNotFound, OrderRepository, OrderId } from '@frappe/order/domain';
 
 interface Props {
-  readonly orderRepository: OrderRepository
+  readonly orderRepository: OrderRepository;
 }
 
 export class OrderFinder {
@@ -14,10 +14,10 @@ export class OrderFinder {
   async execute(id: string) {
     const order = await this.orderRepository.find(new OrderId(id));
 
-    if(order === null) {
-      throw new OrderNotFound(id)
+    if (order === null) {
+      throw new OrderNotFound(id);
     }
 
-    return order.toPrimitives()
+    return order.toPrimitives();
   }
 }

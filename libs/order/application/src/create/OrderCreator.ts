@@ -1,5 +1,17 @@
-import {Order, OrderAlreadyExists, OrderDateCreated, OrderId, OrderItem, OrderItemType, OrderRepository, OrderStatus, OrderStatuses, OrderSubtotal, OrderTotal} from "@frappe/order/domain";
-import { OrderFinder } from "..";
+import {
+  Order,
+  OrderAlreadyExists,
+  OrderDateCreated,
+  OrderId,
+  OrderItem,
+  OrderItemType,
+  OrderRepository,
+  OrderStatus,
+  OrderStatuses,
+  OrderSubtotal,
+  OrderTotal
+} from '@frappe/order/domain';
+import { OrderFinder } from '..';
 
 // SOLID
 // Una Clase por lo general solo debe tener un método público
@@ -26,15 +38,15 @@ export class OrderCreator {
     dateCreated: Date,
     status: OrderStatuses
   ) {
-    const exists = await this.orderExists(id)
+    const exists = await this.orderExists(id);
 
-    if(exists === null) {
+    if (exists === null) {
       throw new OrderAlreadyExists(id);
     }
 
     const order = new Order(
       new OrderId(id),
-      items.map((item) => OrderItem.fromPrimitives(item)),
+      items.map(item => OrderItem.fromPrimitives(item)),
       new OrderSubtotal(subtotal),
       new OrderTotal(total),
       new OrderDateCreated(dateCreated),
@@ -45,10 +57,10 @@ export class OrderCreator {
 
   private async orderExists(id: string) {
     try {
-      await this.orderFinder.execute(id)
-      return null
+      await this.orderFinder.execute(id);
+      return null;
     } catch (error) {
-      return error
+      return error;
     }
   }
 }

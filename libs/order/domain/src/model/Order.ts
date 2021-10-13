@@ -1,10 +1,10 @@
-import { OrderPrimitives } from "../utils";
-import { OrderItem } from "./order-items/OrderItem";
-import { OrderDateCreated } from "./OrderDateCreated";
-import { OrderId } from "./OrderId";
-import { OrderStatus } from "./OrderStatus";
-import { OrderSubtotal } from "./OrderSubtotal";
-import { OrderTotal } from "./OrderTotal";
+import { OrderPrimitives } from '../utils';
+import { OrderItem } from './order-items/OrderItem';
+import { OrderDateCreated } from './OrderDateCreated';
+import { OrderId } from './OrderId';
+import { OrderStatus } from './OrderStatus';
+import { OrderSubtotal } from './OrderSubtotal';
+import { OrderTotal } from './OrderTotal';
 
 export class Order {
   constructor(
@@ -16,7 +16,6 @@ export class Order {
     readonly status: OrderStatus
   ) {}
 
-
   static fromPrimitives(primitives: OrderPrimitives): Order {
     return new Order(
       new OrderId(primitives.id),
@@ -24,7 +23,7 @@ export class Order {
       new OrderSubtotal(primitives.subtotal),
       new OrderTotal(primitives.total),
       new OrderDateCreated(primitives.dateCreated),
-      new OrderStatus(primitives.status),
+      new OrderStatus(primitives.status)
     );
   }
 
@@ -36,6 +35,6 @@ export class Order {
       total: this.total.value,
       dateCreated: this.dateCreated.value,
       status: this.status.value
-    }
+    };
   }
 }

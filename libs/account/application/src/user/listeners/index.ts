@@ -1,1 +1,1 @@
-export {CreateUserOnAccountRegistered} from "./CreateUserOnAccountRegistered";
+export { CreateUserOnAccountRegistered } from './CreateUserOnAccountRegistered';

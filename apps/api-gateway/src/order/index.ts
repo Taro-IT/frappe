@@ -1,7 +1,7 @@
-import {AwilixContainer, asClass, asFunction} from "awilix";
-import {orderRouting} from "./order.routing";
-import {MongoOrderRepository} from "@frappe/order/persistance/mongodb";
-import { OrderCreator, OrderFinder, OrderLister } from "@frappe/order/application";
+import { AwilixContainer, asClass, asFunction } from 'awilix';
+import { orderRouting } from './order.routing';
+import { MongoOrderRepository } from '@frappe/order/persistance/mongodb';
+import { OrderCreator, OrderFinder, OrderLister } from '@frappe/order/application';
 
 export const registerOrderModule = (container: AwilixContainer) => {
   container.register({
@@ -10,5 +10,5 @@ export const registerOrderModule = (container: AwilixContainer) => {
     orderLister: asClass(OrderLister).singleton(),
     orderCreator: asClass(OrderCreator).singleton(),
     orderRouting: asFunction(orderRouting).singleton()
-  })
-}
+  });
+};

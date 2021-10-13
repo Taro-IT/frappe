@@ -1,10 +1,10 @@
-import {CommandHandler} from "@tshio/command-bus";
-import {CreateOrderCommand} from "./CreateOrderCommand";
-import {OrderCreator} from "./OrderCreator";
+import { CommandHandler } from '@tshio/command-bus';
+import { CreateOrderCommand } from './CreateOrderCommand';
+import { OrderCreator } from './OrderCreator';
 
 type Props = {
-  readonly orderCreator: OrderCreator
-}
+  readonly orderCreator: OrderCreator;
+};
 
 export class CreateOrderCommandHandler implements CommandHandler<CreateOrderCommand> {
   private readonly orderCreator: OrderCreator;
@@ -16,9 +16,8 @@ export class CreateOrderCommandHandler implements CommandHandler<CreateOrderComm
   }
 
   async execute(command: CreateOrderCommand) {
-    const { id, items, subtotal, total, dateCreated, status} = command.payload;
-    
+    const { id, items, subtotal, total, dateCreated, status } = command.payload;
+
     return this.orderCreator.execute(id, items, subtotal, total, dateCreated, status);
   }
-
 }

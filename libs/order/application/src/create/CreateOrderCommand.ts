@@ -1,5 +1,5 @@
-import { OrderItemType, OrderStatuses } from "@frappe/order/domain";
-import {Command} from "@tshio/command-bus";
+import { OrderItemType, OrderStatuses } from '@frappe/order/domain';
+import { Command } from '@tshio/command-bus';
 
 interface CreateOrderCommandPayload {
   readonly id: string;
@@ -7,13 +7,11 @@ interface CreateOrderCommandPayload {
   readonly subtotal: number;
   readonly total: number;
   readonly dateCreated: Date;
-  readonly status: OrderStatuses
+  readonly status: OrderStatuses;
 }
 
 export class CreateOrderCommand implements Command<CreateOrderCommandPayload> {
   readonly type = CreateOrderCommand.name;
 
-  constructor(
-    readonly payload: CreateOrderCommandPayload
-  ) { }
+  constructor(readonly payload: CreateOrderCommandPayload) {}
 }

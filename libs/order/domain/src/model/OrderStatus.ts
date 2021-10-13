@@ -9,6 +9,6 @@ export class OrderStatus {
   }
 
   protected throwErrorForInvalidValue(value: string): void {
-    throw new InvalidOrderStatus(value)
+    throw new InvalidOrderStatus(value);
   }
 }

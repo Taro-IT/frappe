@@ -1,9 +1,7 @@
-
-import {Category, CategoryRepository} from "@frappe/category/domain";
-import {CategoryLister} from "./CategoryLister";
-import { mock, MockProxy } from 'jest-mock-extended'
-import {CategoryMother} from "@frappe/category/test";
-
+import { Category, CategoryRepository } from '@frappe/category/domain';
+import { CategoryLister } from './CategoryLister';
+import { mock, MockProxy } from 'jest-mock-extended';
+import { CategoryMother } from '@frappe/category/test';
 
 describe('CategoryLister', () => {
   let categoryRepository: MockProxy<CategoryRepository>;
@@ -14,21 +12,20 @@ describe('CategoryLister', () => {
     categoryRepository = mock<CategoryRepository>();
 
     lister = new CategoryLister({ categoryRepository });
-  })
+  });
 
   it('should list all categories', async () => {
-    
-    const categories = new Array<Category>(5).fill(CategoryMother.random())
-    
+    const categories = new Array<Category>(5).fill(CategoryMother.random());
+
     categoryRepository.all.mockResolvedValueOnce(categories);
     await lister.execute();
-    expect(categoryRepository.all).toReturn()
+    expect(categoryRepository.all).toReturn();
   });
 
   it('should return an empty object', async () => {
-    const categories: Category[] = []
+    const categories: Category[] = [];
     categoryRepository.all.mockResolvedValueOnce(categories);
     await lister.execute();
-    expect(categoryRepository.all).toReturn()
+    expect(categoryRepository.all).toReturn();
   });
 });

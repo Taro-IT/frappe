@@ -1,9 +1,9 @@
-import {asClass, AwilixContainer} from "awilix";
-import {asArray} from "@tshio/awilix-resolver";
-import {UpdateCategoryCommandHandler} from "@frappe/category/application";
-import {CreateCategoryCommandHandler} from "@frappe/category/application";
-import {AccountSignUpCommandHandler} from "@frappe/account/application";
-import { CreateOrderCommandHandler } from "@frappe/order/application";
+import { asClass, AwilixContainer } from 'awilix';
+import { asArray } from '@tshio/awilix-resolver';
+import { UpdateCategoryCommandHandler } from '@frappe/category/application';
+import { CreateCategoryCommandHandler } from '@frappe/category/application';
+import { AccountSignUpCommandHandler } from '@frappe/account/application';
+import { CreateOrderCommandHandler } from '@frappe/order/application';
 
 export const commandHandlers = (container: AwilixContainer) => {
   container.register({
@@ -12,7 +12,7 @@ export const commandHandlers = (container: AwilixContainer) => {
       asClass(AccountSignUpCommandHandler),
       asClass(CreateOrderCommandHandler),
       asClass(UpdateCategoryCommandHandler),
-      asClass(AccountSignUpCommandHandler),
+      asClass(AccountSignUpCommandHandler)
     ])
-  })
-}
+  });
+};
