@@ -46,3 +46,12 @@ npm i -g @nrwl/cli
   # with nx
   nx affected:test
   ```
+
+- Creación de libs 
+  ```shell
+  # with npm
+  npm run nx -- g @nrwl/node:lib libPath
+  
+  # with nx
+  nx g @nrwl/node:lib libPath
+  ```
