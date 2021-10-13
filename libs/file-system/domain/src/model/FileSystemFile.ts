@@ -1,17 +1,18 @@
-import { BlobServiceClient } from '@azure/storage-blob';
 import { FileSystemFileName } from './FileSystemFileName';
-import { FileSystemContent } from './FileSystemContent';
+import { FileSystemFileContent } from './FileSystemFileContent';
+import { FileSystemFilePrimitives } from '../utils'
 
 export class FileSystemFile {
 
   constructor(
     readonly name: FileSystemFileName,
-    readonly content: FileSystemContent
+    readonly content: FileSystemFileContent
   ) {}
 
-  // TODO ADD fromPrimitives (Create Primitives on utils)
+  fromPrimitives(primitives: FileSystemFilePrimitives): FileSystemFile {
+    return new FileSystemFile(new FileSystemFileName(primitives.name), new FileSystemFileContent(primitives.content));
+  }
 
-  // TODO ADD FileSystemFilePrimitives
   toPrimitives() {
     return {
       name: this.name.value, 

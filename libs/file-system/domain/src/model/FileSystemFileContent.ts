@@ -1,3 +1,3 @@
-export class FileSystemContent {
+export class FileSystemFileContent {
   constructor(readonly value: File) {}
 }
