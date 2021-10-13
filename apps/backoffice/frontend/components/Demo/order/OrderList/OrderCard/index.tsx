@@ -3,7 +3,7 @@ import { useState } from 'react';
 import clsx from 'clsx'
 import classes from '../OrderList.module.scss';
 import {ChevronRightIcon, ChevronDownIcon} from '@heroicons/react/outline'
-import { Button, Card} from '@frappe/common/design-system';
+import { Card} from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
 
 type OrderCardProps = {
@@ -36,7 +36,7 @@ const OrderCard = ({items, order}: OrderCardProps) => {
 
 
   const handleExpandOrder = () => {
-    setExpanded(previous => !previous)  
+    setExpanded(previous => !previous)
   }
 
   const handlePDFOpen = (pdfFile) => window.open(pdfFile, '_blank')

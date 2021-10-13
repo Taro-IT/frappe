@@ -8,7 +8,7 @@ export class OrderMother {
   static random(): Order {
     return new Order(
       new OrderId(UuidMother.random()),
-      Array<OrderItem>(3).map(item => OrderItem.fromPrimitives(OrderItemMother.random())),
+      Array<OrderItem>(3).fill(OrderItem.fromPrimitives(OrderItemMother.random())),
       new OrderSubtotal(NumberMother.randomPositive()),
       new OrderTotal(NumberMother.randomPositive()),
       new OrderDateCreated(DateMother.random()),

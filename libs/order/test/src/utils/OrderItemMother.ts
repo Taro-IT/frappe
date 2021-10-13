@@ -1,6 +1,5 @@
 import { NumberMother, StringMother, UuidMother } from '@frappe/common/test';
 import { OrderItemType } from '@frappe/order/domain';
-import faker from 'faker';
 
 export class OrderItemMother {
 

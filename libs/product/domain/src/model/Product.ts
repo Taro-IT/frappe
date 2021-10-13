@@ -9,7 +9,7 @@ export class Product {
     readonly price: ProductPrice
   ) {}
 
-  toPrimitives(primitives: ProductPrimitives) {
+  toPrimitives() {
     return {
       id: this.id.value,
       name: this.name.value,
