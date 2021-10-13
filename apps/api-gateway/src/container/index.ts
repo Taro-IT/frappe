@@ -6,6 +6,7 @@ import {queryHandlers} from "./queryHandlers";
 import {commandHandlers} from "./commandHandlers";
 import {eventHandlers} from "./eventHandlers";
 import {registerCollectionModule} from "../category";
+import {registerFileSystemModule} from "../file-system"
 import { registerAccountModule } from "../account";
 
 interface ContainerType {
@@ -24,6 +25,7 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   // Register Modules
   registerCollectionModule(container);
   registerAccountModule(container);
+  registerFileSystemModule(container);
 
   container.register({
     app: asFunction(configureApp).singleton()

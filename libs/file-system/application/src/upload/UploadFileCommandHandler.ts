@@ -6,10 +6,6 @@ type Props = {
   readonly fileUploader: FileUploader
 }
 
-/*
- *
-*/
-
 export class UploadFileCommandHandler implements CommandHandler<UploadFileCommand> {
   private readonly fileUploader: FileUploader;
 

@@ -1,3 +1,7 @@
-import { Uuid } from '@frappe/common/value-object';
+export class FileSystemFileName {
+  readonly value: string;
 
-export class FileSystemFileName extends Uuid { }
+  constructor(value: string) {
+    this.value = value;
+  }
+}
