@@ -4,13 +4,15 @@ import clsx from 'clsx'
 import classes from '../OrderList.module.scss';
 import {ChevronRightIcon, ChevronDownIcon} from '@heroicons/react/outline'
 import { Button, Card} from '@frappe/common/design-system';
+import ItemCard from '../ItemCard';
 
 type OrderCardProps = {
   readonly items,
-  readonly id
-  readonly order
+  readonly order,
+  readonly id,
 }
-const OrderCard = ({items, id, order}: OrderCardProps) => {
+
+const OrderCard = ({items, order}: OrderCardProps) => {
   const [closed, setExpanded] = useState<boolean>(false)
   const monthNames = [
     "Enero",
@@ -32,18 +34,19 @@ const OrderCard = ({items, id, order}: OrderCardProps) => {
   const month = prettyDate.getMonth()
   const day = prettyDate.getDay()
 
+
   const handleExpandOrder = () => {
-    setExpanded((previous) => {
-      return !previous
-    })
+    setExpanded(previous => !previous)  
   }
 
+  const handlePDFOpen = (pdfFile) => window.open(pdfFile, '_blank')
+
   return (
-    <Card className={clsx(classes.orders, "text-left", "p-4")} key={id}>
+    <Card className={clsx(classes.orders)}>
       <div className="flex flex-row py-4 align-middle">
         {closed ?
-          <ChevronDownIcon className={clsx("h-5", classes['expand-icon'], "inline-block", "align-bottom", "m-2")} onClick={handleExpandOrder}/>:
-          <ChevronRightIcon className={clsx("h-5", classes['expand-icon'], "inline-block", "align-bottom", "m-2")} onClick={handleExpandOrder}/>
+          <ChevronDownIcon className={clsx(classes['chevron-icon'], classes['expand-icon'])} onClick={handleExpandOrder}/>:
+          <ChevronRightIcon className={clsx(classes['chevron-icon'], classes['expand-icon'])} onClick={handleExpandOrder}/>
         }
         <h1 className={clsx("text-2xl")}>{`Orden del ${day} de ${monthNames[month]} del ${year}`}</h1>
       </div>
@@ -51,16 +54,7 @@ const OrderCard = ({items, id, order}: OrderCardProps) => {
       {
         items.map(({ id, ...item }) => (
           closed &&
-          <div className="p-4">
-            <div className="flex flex-row">
-              <p className="mr-12 text-xl" key={ id }> { item.productName }  </p>
-              <p className="text-gray-500 mr-12 text-lg">${item.productPrice}</p>
-              <p className="mr-2 text-lg">{`Cantidad: ${item.quantity}`} </p>
-                <Button title={'Ver PDF'} variant={"cta"} className="flex ml-auto" onClick={() => window.open(item.pdfFile, '_blank')}/>
-            </div>
-            <img className="my-6 rounded-xl" src="https://cinica.mx/wp-content/uploads/2021/07/PHOTO-2020-07-22-22-35-46-3.jpeg" alt="foto del producto" width="10%"/>
-            <hr className={clsx("mb-2")}/>
-          </div>
+          <ItemCard onItemClick={handlePDFOpen} id={id} item={item} imgSrc="https://cinica.mx/wp-content/uploads/2021/07/PHOTO-2020-07-22-22-35-46-3.jpeg" />
         ))
       }
     </Card>

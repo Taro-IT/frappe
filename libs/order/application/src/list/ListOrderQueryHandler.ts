@@ -12,16 +12,16 @@ export interface ListOrderQueryHandlerResult {
 }
 
 export class ListOrderQueryHandler implements QueryHandler<ListOrderQuery, ListOrderQueryHandlerResult> {
-    private readonly OrderLister: OrderLister;
+    private readonly orderLister: OrderLister;
 
     readonly queryType = ListOrderQuery.name;
 
     constructor({ orderLister }: Props) {
-        this.OrderLister = orderLister;
+        this.orderLister = orderLister;
     }
 
     async execute() {
-        const result = await this.OrderLister.execute();
+        const result = await this.orderLister.execute();
         return { result }
     }
 

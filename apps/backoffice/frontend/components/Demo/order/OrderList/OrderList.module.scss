@@ -1,22 +1,23 @@
 .orders {
-  margin: 2rem auto;
-  width: 90%;
-  
-  }
+  @apply m-8 w-11/12 text-left p-4;
+}
+
 .orders ul {
-list-style: none;
-padding: 1rem;
+  @apply list-none p-4;
 }
 .orders li {
-border: 1px solid #ccc;
-margin: 0.5rem 0;
-padding: 0.5rem;
+  @apply border-t border-solid mx-2 my-0 p-2;
+  border: #ccc;
 }
 
 .product-item p{
-  display: inline;
+  @apply inline;
 }
 
 .expand-icon {
   color: #b7912d;
+}
+
+.chevron-icon {
+  @apply h-5 inline-block align-bottom m-2;
 }

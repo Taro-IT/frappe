@@ -1,9 +1,9 @@
 ---
-title: Production environment
+title: Ambiente de Producción
 sidebar_position: 2
 ---
 
-# Production Environment
+# Ambiente de Producción
 
 ## Tecnologías
 

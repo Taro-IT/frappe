@@ -2,12 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import OrderCard from './OrderCard';
 
-type order = {
-    readonly id: string,
-    readonly name: string
-}
-
-const OrderList = props => {
+const OrderList = () => {
     const [orders, setOrders] = useState([])
 
     // TODO: centralize to state management -> refactor to custom hook
@@ -22,9 +17,9 @@ const OrderList = props => {
         getOrders()
     }, [])
 
-    const useOrders = useMemo(() => orders.map((order, index) => {
+    const useOrders = useMemo(() => orders.map((order) => {
         return (
-          <OrderCard id={index} order={order} items={order.items} key={index}/>
+          <OrderCard id={order.id} order={order} items={order.items} key={order.id}/>
         )
     }), [orders])
 

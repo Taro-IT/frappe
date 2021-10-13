@@ -1,5 +1,3 @@
-
-
 import {Order, OrderRepository} from "@frappe/order/domain";
 import {OrderLister} from "./OrderLister";
 import { mock, MockProxy } from 'jest-mock-extended'

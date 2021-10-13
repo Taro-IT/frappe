@@ -32,7 +32,7 @@ export class OrderItem {
       productName: this.productName.value,
       productPrice: this.productPrice.value,
       quantity: this.quantity.value,
-      pdfFile: this.pdfFile.value
+      pdfFile: this.pdfFile?.value
 
     }
   }

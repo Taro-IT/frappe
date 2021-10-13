@@ -11,7 +11,7 @@ export interface OrderItemType {
   readonly productName: string;
   readonly productPrice: number;
   readonly quantity: number;
-  readonly pdfFile: string;
+  readonly pdfFile?: string;
 }
 
 export interface OrderPrimitives {

@@ -1,6 +1,5 @@
 import { NumberMother, StringMother, UuidMother } from '@frappe/common/test';
-import { OrderItem, OrderItemId, OrderItemPdfFile, OrderItemQuantity, OrderItemType } from '@frappe/order/domain';
-import { ProductId, ProductName, ProductPrice } from '@frappe/product/domain';
+import { OrderItemType } from '@frappe/order/domain';
 import faker from 'faker';
 
 export class OrderItemMother {
@@ -15,13 +14,4 @@ export class OrderItemMother {
       pdfFile: StringMother.url(),
     }
   }
-
-  static randomWord(): string {
-    return faker.lorem.word();
-  }
-
-  static email(): string {
-    return faker.internet.email();
-  }
-
 }

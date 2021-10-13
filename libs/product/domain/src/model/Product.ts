@@ -9,6 +9,15 @@ export class Product {
     readonly price: ProductPrice
   ) {}
 
+  toPrimitives(primitives: ProductPrimitives) {
+    return {
+      id: this.id.value,
+      name: this.name.value,
+      price: this.price.value,
+     
+    }
+  }
+
   static fromPrimitives(primitives: ProductPrimitives): Product {
     return new Product(
       new ProductId(primitives.id),

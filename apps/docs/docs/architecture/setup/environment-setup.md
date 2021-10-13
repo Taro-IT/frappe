@@ -1,12 +1,12 @@
 ---
-title: Local environment
+title: Ambiente Local
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Environment Setup
+# Configuración del ambiente local
 
 ## Tecnologías
 - Node v14.17.6
