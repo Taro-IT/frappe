@@ -18,7 +18,10 @@
     "common-test": "libs/common/test",
     "common-utils": "libs/common/utils",
     "common-value-object": "libs/common/value-object",
-    "docs": "apps/docs"
+    "docs": "apps/docs",
+    "email-application": "libs/email/application",
+    "email-domain": "libs/email/domain",
+    "email-infrastructure-sendgrid": "libs/email/infrastructure/sendgrid"
   },
   "cli": {
     "defaultCollection": "@nrwl/express"

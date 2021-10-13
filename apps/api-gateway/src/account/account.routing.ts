@@ -11,7 +11,7 @@ interface AccountRoutingDeps {
 export const accountRouting = ({ commandBus }: AccountRoutingDeps) => {
   const router = express.Router();
 
-  router.post('/signup', makeValidateBody(dtos.AccountSignUpDto), handlers.signUpHandler(commandBus))
+  router.post('/signup', handlers.signUpHandler(commandBus))
 
   return router;
 }

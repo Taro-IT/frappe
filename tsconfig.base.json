@@ -29,7 +29,10 @@
       "@frappe/common/persistence/mongodb": ["libs/common/persistence/mongodb/src/index.ts"],
       "@frappe/common/test": ["libs/common/test/src/index.ts"],
       "@frappe/common/utils": ["libs/common/utils/src/index.ts"],
-      "@frappe/common/value-object": ["libs/common/value-object/src/index.ts"]
+      "@frappe/common/value-object": ["libs/common/value-object/src/index.ts"],
+      "@frappe/email/application": ["libs/email/application/src/index.ts"],
+      "@frappe/email/domain": ["libs/email/domain/src/index.ts"],
+      "@frappe/email/infrastructure/sendgrid": ["libs/email/infrastructure/sendgrid/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
