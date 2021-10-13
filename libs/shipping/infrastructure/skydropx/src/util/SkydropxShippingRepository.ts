@@ -7,9 +7,16 @@ import {
 } from '@frappe/shipping/domain';
 import Axios, { AxiosInstance, AxiosError } from 'axios';
 import { wrapError } from '@frappe/common/utils';
+
+/** Skydropx Shipping Integration */
 export class SkydropxShippingRepository implements ShippingRepository {
   private readonly http: AxiosInstance;
 
+  /**
+   * Create a Shipping Integration Providers
+   *
+   * Skydropx documentation {@link https://docs.skydropx.com/#skydropx-api}
+   */
   constructor() {
     this.http = Axios.create({
       baseURL: 'https://api.skydropx.com/v1'
@@ -17,6 +24,14 @@ export class SkydropxShippingRepository implements ShippingRepository {
     this.http.defaults.headers.common['Authorization'] = `Token token=${process.env.SKYDROPX_API_KEY}`;
   }
 
+  /**
+   * Saves a Shipping into Skydropx Platform
+   *
+   * @remarks This method is part of the {@link @frappe/shipping/infrastructure/skydropx}
+   *
+   * @param shipping - Domain Shipping Object
+   *
+   */
   async save(shipping: Shipping): Promise<void> {
     const [error] = await wrapError<AxiosError<unknown>, unknown>(
       this.http.post('/shipments', {
@@ -62,7 +77,13 @@ export class SkydropxShippingRepository implements ShippingRepository {
       this.handleError(error);
     }
   }
-  handleError(error: AxiosError<unknown>) {
+
+  /**
+   * This function handles errors from Skydropx and transform to DomainErrors
+   *
+   * @param error - Skydropx error handling
+   */
+  private handleError(error: AxiosError<unknown>) {
     switch (error.message) {
       case '400':
         throw new InvalidShippingInstance();

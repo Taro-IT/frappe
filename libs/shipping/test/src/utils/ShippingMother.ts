@@ -26,7 +26,13 @@ import {
 import { Uuid } from '@frappe/common/value-object';
 import faker from 'faker';
 
+
+/** Shipping utility to creates a Shipping Object */
 export class ShippingMother {
+
+  /**
+   * Creates a random Shipping Object
+   */
   static random(): Shipping {
     return new Shipping(
       new ShippingId(Uuid.create().value),
@@ -46,6 +52,9 @@ export class ShippingMother {
     );
   }
 
+  /**
+   * Creates a random ShippingAddress Object
+   */
   static randomAddress(): ShippingAddress {
     return new ShippingAddress(
       new ShippingProvince(faker.address.state()),
