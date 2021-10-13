@@ -43,6 +43,11 @@ export class MongoCategoryRepository extends MongoRepository implements Category
 
   return documents?.map((doc) => Category.fromPrimitives({...doc, id: doc._id} as CategoryPrimitives)) || []
   }
+
+  async delete(id: CategoryId): Promise<boolean | null> {
+    const collection = await this.collection();
+    return (await collection.deleteOne({_id: id.value})).acknowledged
+  }
   
 
 
