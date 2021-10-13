@@ -5,7 +5,7 @@ import {
   ShippingAPIUnathenticated,
   ShippingRepository
 } from '@frappe/shipping/domain';
-import Axios, { AxiosInstance, AxiosError, AxiosPromise } from 'axios';
+import Axios, { AxiosInstance, AxiosError } from 'axios';
 import { wrapError } from '@frappe/common/utils';
 export class SkydropxShippingRepository implements ShippingRepository {
   private readonly http: AxiosInstance;
@@ -18,7 +18,7 @@ export class SkydropxShippingRepository implements ShippingRepository {
   }
 
   async save(shipping: Shipping): Promise<void> {
-    const [error, shipments] = await wrapError<AxiosError<unknown>, unknown>(
+    const [error] = await wrapError<AxiosError<unknown>, unknown>(
       this.http.post('/shipments', {
         address_from: {
           province: shipping.address_from.province.value,
