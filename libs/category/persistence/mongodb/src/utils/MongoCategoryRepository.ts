@@ -46,13 +46,7 @@ export class MongoCategoryRepository extends MongoRepository implements Category
 
   async delete(id: CategoryId): Promise<boolean | null> {
     const collection = await this.collection();
-    const document = await collection.findOne({_id: id.value})
-    if (document === null) {
-      return null
-    }
-
-    return (await collection.deleteOne(document)).acknowledged
-    
+    return (await collection.deleteOne({_id: id.value})).acknowledged
   }
   
 
