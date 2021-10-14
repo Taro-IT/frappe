@@ -23,6 +23,15 @@
     "shipping-domain": "libs/shipping/domain",
     "shipping-infrastructure-skydropx": "libs/shipping/infrastructure/skydropx",
     "shipping-test": "libs/shipping/test"
+    "order": "libs/order",
+    "order-application": "libs/order/application",
+    "order-domain": "libs/order/domain",
+    "order-persistance-mongodb": "libs/order/persistance/mongodb",
+    "order-test": "libs/order/test",
+    "product": "libs/product",
+    "product-application": "libs/product/application",
+    "product-domain": "libs/product/domain",
+    "product-persistance-mongodb": "libs/product/persistance/mongodb"
   },
   "cli": {
     "defaultCollection": "@nrwl/express"

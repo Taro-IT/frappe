@@ -2,7 +2,7 @@ import { CommandHandler } from '@tshio/command-bus';
 import { CreateCategoryCommand } from './CreateCategoryCommand';
 import { CategoryCreator } from './CategoryCreator';
 
-type Props = {
+type CategoryProps = {
   readonly categoryCreator: CategoryCreator;
 };
 
@@ -11,7 +11,7 @@ export class CreateCategoryCommandHandler implements CommandHandler<CreateCatego
 
   readonly commandType = CreateCategoryCommand.name;
 
-  constructor({ categoryCreator }: Props) {
+  constructor({ categoryCreator }: CategoryProps) {
     this.categoryCreator = categoryCreator;
   }
 

@@ -1,5 +1,5 @@
-import {isUUID} from "class-validator";
-import {InvalidUuid} from "../errors";
+import { isUUID } from 'class-validator';
+import { InvalidUuid } from '../errors';
 import { v4 } from 'uuid';
 
 export class Uuid {
@@ -12,7 +12,7 @@ export class Uuid {
   }
 
   static create(): Uuid {
-    return new Uuid(v4())
+    return new Uuid(v4());
   }
 
   private ensureIsUuid(value: string): void {

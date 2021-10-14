@@ -1,13 +1,6 @@
-import {
-  Category,
-  CategoryAlreadyExists,
-  CategoryNotFound,
-  CategoryPrimitives,
-  CategoryRepository
-} from '@frappe/category/domain';
+import { Category, CategoryRepository } from '@frappe/category/domain';
 import { CategoryLister } from './CategoryLister';
-import { CategoryNameFinder } from '../find/find-by-name/CategoryNameFinder';
-import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended';
+import { mock, MockProxy } from 'jest-mock-extended';
 import { CategoryMother } from '@frappe/category/test';
 
 describe('CategoryLister', () => {

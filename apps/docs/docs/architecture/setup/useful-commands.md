@@ -1,9 +1,9 @@
 ---
-title: Comandos utiles
+title: Comandos útiles
 sidebar_position: 3
 ---
 
-# Useful Commands
+# Comandos Útiles
 
 Para simplificar los comandos se recomienda la instalación de nx de manera global:
 
@@ -49,4 +49,14 @@ npm i -g @nrwl/cli
 
   # with nx
   nx affected:test
+  ```
+
+- Creación de libs
+
+  ```shell
+  # with npm
+  npm run nx -- g @nrwl/node:lib libPath
+
+  # with nx
+  nx g @nrwl/node:lib libPath
   ```
