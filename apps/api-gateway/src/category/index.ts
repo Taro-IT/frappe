@@ -6,7 +6,8 @@ import {
   CategoryLister,
   CategoryFinder,
   CategoryNameFinder,
-  CategoryUpdater
+  CategoryUpdater,
+  CategoryDeleter
 } from '@frappe/category/application';
 
 export const registerCollectionModule = (container: AwilixContainer) => {
@@ -17,6 +18,7 @@ export const registerCollectionModule = (container: AwilixContainer) => {
     categoryLister: asClass(CategoryLister).singleton(),
     categoryCreator: asClass(CategoryCreator).singleton(),
     categoryUpdater: asClass(CategoryUpdater).singleton(),
+    categoryDeleter: asClass(CategoryDeleter).singleton(),
     categoryRouting: asFunction(categoryRouting).singleton()
   });
 };
