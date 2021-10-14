@@ -4,9 +4,10 @@ import { MongoCategoryRepository } from '@frappe/category/persistence/mongodb';
 import {
   CategoryCreator,
   CategoryLister,
-  CategoryFinder,
   CategoryNameFinder,
-  CategoryUpdater
+  CategoryDeleter,
+  CategoryUpdater,
+  CategoryFinder
 } from '@frappe/category/application';
 
 export const registerCollectionModule = (container: AwilixContainer) => {
@@ -17,6 +18,7 @@ export const registerCollectionModule = (container: AwilixContainer) => {
     categoryLister: asClass(CategoryLister).singleton(),
     categoryCreator: asClass(CategoryCreator).singleton(),
     categoryUpdater: asClass(CategoryUpdater).singleton(),
+    categoryDeleter: asClass(CategoryDeleter).singleton(),
     categoryRouting: asFunction(categoryRouting).singleton()
   });
 };

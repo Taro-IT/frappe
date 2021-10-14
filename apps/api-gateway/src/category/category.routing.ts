@@ -16,6 +16,7 @@ export const categoryRouting = ({ commandBus, queryBus }: CollectionRoutingDeps)
   router.post('/', makeValidateBody(dtos.CreateCategoryDto), handlers.createCategoryHandler(commandBus));
   router.patch('/:id', makeValidateBody(dtos.UpdateCategoryDto), handlers.updateCategoryHandler(commandBus));
   router.get('/', handlers.listCategoryHandler(queryBus));
+  router.delete('/:id', handlers.deleteCategoryHandler(commandBus));
 
   return router;
 };

@@ -3,6 +3,7 @@ import { Button, Card, Modal, SpanError } from '@frappe/common/design-system';
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import clsx from 'clsx';
+import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
 
 type category = {
   readonly id: string;
@@ -15,6 +16,10 @@ const CategoryList = props => {
   const [currentCategory, setCurrentCategory] = useState<category>();
   const [newName, setNewName] = useState<string>('');
   const [nameErrors, setNameErrors] = useState<boolean>(false);
+  const [displayDeleteModal, setDeleteModal] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
+  const [displayResultModal, setDisplayResultModal] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>();
 
   // TODO: centralize to state management -> refactor to custom hook
   useEffect(() => {
@@ -37,22 +42,19 @@ const CategoryList = props => {
       await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`, {
         name: name
       });
+      setMessage('La categoría se editó con éxito.');
+      setSuccess(true);
     } catch (error) {
       console.error('La categoría ya existe.', error);
+      setMessage('La categoría no se pudo editar');
+      setSuccess(false);
     }
     setEditModal(false);
     setNameErrors(false);
     return;
   };
-
   const handleNameChange = event => {
     setNewName(event.target.value);
-  };
-
-  const editCategory = (id: string, name: string) => {
-    setEditModal(true);
-    setCurrentCategory({ id, name });
-    setNameErrors(false);
   };
   const SaveChangesButton = props => {
     const saveChanges = () => {
@@ -60,30 +62,51 @@ const CategoryList = props => {
     };
     return <Button title="Guardar cambios" onClick={saveChanges} variant="cta" className={'mt-4'} />;
   };
-  const EditButton = props => {
+  type buttonprops = { id: string; name?: string };
+  const ConfirmDeleteCategory = ({ id }: buttonprops) => {
+    const confirmDelete = async () => {
+      try {
+        await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`);
+        setMessage('Categoría borrada con éxito.');
+        setSuccess(true);
+      } catch (error) {
+        console.error('La categoría no se pudo borar', error);
+        setMessage('La categoría no se pudo borar.');
+        setSuccess(false);
+      }
+      setDeleteModal(false);
+      setDisplayResultModal(true);
+      return;
+    };
+    return <Button title="Eliminar" onClick={confirmDelete} variant="cta" className={'mt-4'} />;
+  };
+  const EditButton = ({ id, name }: buttonprops) => {
     const edit = () => {
-      editCategory(props.id, props.name);
+      setEditModal(true);
+      setCurrentCategory({ id, name });
+      setNameErrors(false);
     };
     return <Button title="Editar" className="ml-2 w-24" variant="cta" onClick={edit} />;
+  };
+  const DeleteButton = ({ id, name }: buttonprops) => {
+    const deleteCategory = () => {
+      setDeleteModal(true);
+      setCurrentCategory({ id, name });
+    };
+    return <Button title="Eliminar" className="ml-2 w-24" variant="cta" onClick={deleteCategory} />;
   };
 
   const useCategories = useMemo(
     () =>
       categories.map((category, index) => {
+        const { id, name } = category;
         return (
           <>
             <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
               <h1 className={clsx('text-2xl')}>{category.name}</h1>
               <p className={clsx('text-lg', 'mb-12')}>Productos en esta categoría: 4</p>
-              <Button
-                title="Eliminar"
-                className="mr-2 w-24"
-                variant="cta"
-                onClick={() => {
-                  console.log('Method not implemented yet.');
-                }}
-              />
-              <EditButton id={category.id} name={category.name} />
+              <EditButton id={id} name={name} />
+              <DeleteButton id={id} name={name} />
             </Card>
           </>
         );
@@ -112,6 +135,28 @@ const CategoryList = props => {
             {nameErrors && <SpanError message="El nombre no puede ser vacío ni igual al anterior" />}
             <SaveChangesButton id={currentCategory.id} name={newName} />
           </form>
+        </Modal>
+      )}
+      {displayDeleteModal && (
+        <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title="Eliminar categoría">
+          <div className="flex flex-col w-full px-20 mb-4 py-2 justify-center">
+            <p className="text-2xl text-center mb-4">
+              ¿Estás seguro de querer borrar la categoría {currentCategory.name}?
+            </p>
+            <p className="text-sm text-red-500 text-center">
+              Esta acción es irreversible y afectará a los zapatos que son parte de esta categoría
+            </p>
+            <ConfirmDeleteCategory id={currentCategory.id} />
+          </div>
+        </Modal>
+      )}
+      {displayResultModal && (
+        <Modal showModal={displayResultModal} toggleModal={setDisplayResultModal} title="">
+          <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
+            {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
+            {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
+            <p className="text-2xl text-center mb-4">{message}</p>
+          </div>
         </Modal>
       )}
     </div>
