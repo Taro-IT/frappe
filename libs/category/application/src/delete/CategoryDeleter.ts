@@ -1,5 +1,5 @@
-import { CategoryId, CategoryNotFound, CategoryRepository} from "@frappe/category/domain";
-import { CategoryFinder } from "../find";
+import { CategoryId, CategoryNotFound, CategoryRepository } from '@frappe/category/domain';
+import { CategoryFinder } from '../find';
 
 interface Props {
   readonly categoryRepository: CategoryRepository;
@@ -16,9 +16,9 @@ export class CategoryDeleter {
   }
 
   async execute(id: string) {
-    const exists = await this.categoryExists(id)
+    const exists = await this.categoryExists(id);
 
-    if(exists !== null) {
+    if (exists !== null) {
       throw new CategoryNotFound(id);
     }
 
@@ -27,10 +27,10 @@ export class CategoryDeleter {
 
   private async categoryExists(id: string) {
     try {
-      await this.categoryFinder.execute(id)
-      return null
+      await this.categoryFinder.execute(id);
+      return null;
     } catch (error) {
-      return error
+      return error;
     }
   }
 }

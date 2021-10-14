@@ -1,4 +1,4 @@
-import {Query} from "@tshio/query-bus";
+import { Query } from '@tshio/query-bus';
 
 interface FindCategoryQueryPayload {
   readonly id: string;
@@ -7,7 +7,5 @@ interface FindCategoryQueryPayload {
 export class FindCategoryQuery implements Query<FindCategoryQueryPayload> {
   readonly type = FindCategoryQuery.name;
 
-  constructor(
-    readonly payload: FindCategoryQueryPayload
-  ) { }
+  constructor(readonly payload: FindCategoryQueryPayload) {}
 }

@@ -1,1 +1,1 @@
-export {AccountSignUpDto} from "./AccountSignUp.dto";
+export { AccountSignUpDto } from './AccountSignUp.dto';

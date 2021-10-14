@@ -1,2 +1,2 @@
-export { UserPrimitives } from "./UserPrimitives";
-export { UserRepository } from "./UserRepository"
+export { UserPrimitives } from './UserPrimitives';
+export { UserRepository } from './UserRepository';

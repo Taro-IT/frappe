@@ -1,4 +1,4 @@
-import {Command} from "@tshio/command-bus";
+import { Command } from '@tshio/command-bus';
 
 interface DeleteCategoryCommandPayload {
   readonly id: string;
@@ -7,7 +7,5 @@ interface DeleteCategoryCommandPayload {
 export class DeleteCategoryCommand implements Command<DeleteCategoryCommandPayload> {
   readonly type = DeleteCategoryCommand.name;
 
-  constructor(
-    readonly payload: DeleteCategoryCommandPayload
-  ) { }
+  constructor(readonly payload: DeleteCategoryCommandPayload) {}
 }

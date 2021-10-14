@@ -1,5 +1,5 @@
-import {MongoRepository} from "@frappe/common/persistence/mongodb";
-import {User, UserRepository} from "@frappe/account/domain";
+import { MongoRepository } from '@frappe/common/persistence/mongodb';
+import { User, UserRepository } from '@frappe/account/domain';
 
 export class MongoUserRepository extends MongoRepository implements UserRepository {
   protected moduleName(): string {
@@ -9,5 +9,4 @@ export class MongoUserRepository extends MongoRepository implements UserReposito
   save(user: User): Promise<void> {
     return this.persist(user.id.value, user);
   }
-
 }

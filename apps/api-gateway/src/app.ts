@@ -1,7 +1,7 @@
-import cors from "cors";
-import express from "express"
-import helmet from "helmet";
-import { errorHandler } from "./middlewares";
+import cors from 'cors';
+import express from 'express';
+import helmet from 'helmet';
+import { errorHandler } from './middlewares';
 
 interface AppProps {
   readonly router: express.Router;
@@ -18,4 +18,4 @@ export const configureApp = ({ router }: AppProps): express.Express => {
   app.use(errorHandler);
 
   return app;
-}
+};

@@ -1,7 +1,6 @@
 import faker from 'faker';
 
 export class StringMother {
-
   static random(): string {
     return faker.lorem.text();
   }
@@ -13,5 +12,4 @@ export class StringMother {
   static email(): string {
     return faker.internet.email();
   }
-
 }

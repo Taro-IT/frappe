@@ -1,7 +1,7 @@
-import {asClass, asFunction, AwilixContainer} from "awilix";
-import {MongoUserRepository} from "@frappe/account/persistence/mongodb";
-import {AccountSignUpper, UserCreator} from "@frappe/account/application";
-import {accountRouting} from "./account.routing";
+import { asClass, asFunction, AwilixContainer } from 'awilix';
+import { MongoUserRepository } from '@frappe/account/persistence/mongodb';
+import { AccountSignUpper, UserCreator } from '@frappe/account/application';
+import { accountRouting } from './account.routing';
 
 export const registerAccountModule = (container: AwilixContainer) => {
   container.register({
@@ -9,5 +9,5 @@ export const registerAccountModule = (container: AwilixContainer) => {
     userCreator: asClass(UserCreator).singleton(),
     accountSignUpper: asClass(AccountSignUpper).singleton(),
     accountRouting: asFunction(accountRouting)
-  })
-}
+  });
+};

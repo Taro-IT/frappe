@@ -1,7 +1,7 @@
-import {CategoryNotFound, CategoryName, CategoryRepository} from "@frappe/category/domain";
+import { CategoryNotFound, CategoryName, CategoryRepository } from '@frappe/category/domain';
 
 interface Props {
-  readonly categoryRepository: CategoryRepository
+  readonly categoryRepository: CategoryRepository;
 }
 
 export class CategoryNameFinder {
@@ -14,10 +14,10 @@ export class CategoryNameFinder {
   async execute(name: string) {
     const category = await this.categoryRepository.findByName(new CategoryName(name));
 
-    if(category === null) {
-      throw new CategoryNotFound(name)
+    if (category === null) {
+      throw new CategoryNotFound(name);
     }
 
-    return category.toPrimitives()
+    return category.toPrimitives();
   }
 }
