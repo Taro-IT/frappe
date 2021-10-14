@@ -1,5 +1,5 @@
 export class ShippingAPIInternalError extends Error {
   constructor() {
-    super('Interal shipping API failed');
+    super('Internal shipping API failed');
   }
 }

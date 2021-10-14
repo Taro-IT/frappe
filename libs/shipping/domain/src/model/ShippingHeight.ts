@@ -1,4 +1,4 @@
-export class ShippingLenght {
+export class ShippingHeight {
   readonly value: number;
 
   constructor(value: number) {

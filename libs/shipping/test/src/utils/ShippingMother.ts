@@ -11,9 +11,9 @@ import {
   ShippingEmail,
   ShippingReference,
   ShippingWeight,
-  ShippingHeightm,
+  ShippingHeight,
   ShippingWidth,
-  ShippingLenght,
+  ShippingLength,
   ShippingMassUnit,
   ShippingDistanceUnit,
   ShippingContent,
@@ -40,9 +40,9 @@ export class ShippingMother {
       new ShippingProvider(faker.lorem.word()),
       new ShippingParcel(
         new ShippingWeight(faker.datatype.float()),
-        new ShippingHeightm(faker.datatype.float()),
+        new ShippingHeight(faker.datatype.float()),
         new ShippingWidth(faker.datatype.float()),
-        new ShippingLenght(faker.datatype.float()),
+        new ShippingLength(faker.datatype.float()),
         new ShippingMassUnit('G'),
         new ShippingDistanceUnit('CM'),
         new ShippingContent(faker.lorem.word())

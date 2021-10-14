@@ -54,7 +54,7 @@ export class SkydropxShippingRepository implements ShippingRepository {
             mass_unit: shipping.parcel.mass_unit.value,
             height: shipping.parcel.height.value,
             width: shipping.parcel.width.value,
-            length: shipping.parcel.lenght.value
+            length: shipping.parcel.length.value
           }
         ],
         address_to: {
