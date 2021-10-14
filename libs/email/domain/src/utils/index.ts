@@ -1,2 +1,2 @@
 export {EmailProvider} from "./EmailProvider";
-export {MailPrimitives} from "./MailPrimitives";
+export {EmailPrimitives} from "./EmailPrimitives";

@@ -1,3 +1,3 @@
 import {EmailValue} from "@frappe/common/value-object";
 
-export class MailEmail extends EmailValue { }
+export class EmailAddress extends EmailValue { }

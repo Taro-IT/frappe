@@ -1,14 +1,18 @@
-import MailService from "@sendgrid/mail";
-import {EmailProvider, Mail} from "@frappe/email/domain";
+import EmailService from "@sendgrid/mail";
+import {EmailProvider, Email} from "@frappe/email/domain";
 
 export class SendgridEmailProvider implements EmailProvider {
-  private readonly client = MailService;
+  private readonly client = EmailService;
 
   constructor() {
     this.client.setApiKey(process.env.SENDGRID_API_KEY);
   }
 
-  async send(mail: Mail): Promise<void> {
+  /**
+   * Sends the email through SendGrid using templates.
+   * @param mail 
+   */
+  async send(mail: Email): Promise<void> {
     const { to, id, data } = mail.toPrimitives();
 
     await this.client.send({

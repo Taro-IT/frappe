@@ -1,5 +1,5 @@
 import {EventSubscriberInterface, EventSubscribersMeta} from "@tshio/event-dispatcher";
-import {EmailProvider, Mail} from "@frappe/email/domain";
+import {EmailProvider, Email} from "@frappe/email/domain";
 import {UserRegistered} from "@frappe/account/domain";
 import { EmailTemplates } from "../..";
 
@@ -21,9 +21,7 @@ export class SendEmailOnUserRegistered implements EventSubscriberInterface {
   execute(event: UserRegistered) {
     const { email, name } = event.payload;
 
-    console.log(event.payload);
-
-    const confirmEmail = Mail.fromPrimitives({
+    const confirmEmail = Email.fromPrimitives({
       id: EmailTemplates.Generic,
       to: email,
       data: {
