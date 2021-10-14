@@ -1,37 +1,32 @@
-import React from "react";
-import { AppProps } from 'next/app';
-import {AuthUserProvider} from "../context/AuthUserContext";
+/* This example requires Tailwind CSS v2.0+ */
 import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/outline'
-
-import './styles.scss';
+import { FC } from 'react'
 
 const navigation = [
-  { name: 'Ordenes', icon: HomeIcon, href: '#', current: true },
-  { name: 'Catalogo', icon: FolderIcon, href: '#', current: false },
-  { name: 'Usuarios', icon: UsersIcon, href: '#', current: false },
+  { name: 'Dashboard', icon: HomeIcon, href: '#', current: true },
+  { name: 'Team', icon: UsersIcon, href: '#', current: false },
+  { name: 'Projects', icon: FolderIcon, href: '#', current: false },
+  { name: 'Calendar', icon: CalendarIcon, href: '#', current: false },
+  { name: 'Documents', icon: InboxIcon, href: '#', current: false },
+  { name: 'Reports', icon: ChartBarIcon, href: '#', current: false },
 ]
 
 const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(' ')
 }
 
-const CinicaApp = ({ Component, pageProps }: AppProps) => (
-  <div className="flex flex-col flex-grow border-r border-black pt-5 pb-4 bg-black overflow-y-auto">
-
-    {/* Logo */}
+const Sidebar = () => {
+  return (
+    <div className="flex flex-col flex-grow border-r border-gray-200 pt-5 pb-4 bg-white overflow-y-auto">
       <div className="flex items-center flex-shrink-0 px-4 space-y-5">
         <img
           className="h-8 w-auto"
-          src="/img/cinica-logo.png"
+          src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
           alt="Workflow"
         />
       </div>
-
-      {/* Content */}
       <div className="mt-5 flex-grow flex flex-col">
-
-        {/* Item */}
-        <nav className="flex-1 bg-black space-y-1" aria-label="Sidebar">
+        <nav className="flex-1 bg-white space-y-1" aria-label="Sidebar">
           {navigation.map((item) => (
             <a
               key={item.name}
@@ -56,6 +51,8 @@ const CinicaApp = ({ Component, pageProps }: AppProps) => (
         </nav>
       </div>
     </div>
-);
+  )
+}
 
-export default CinicaApp;
+
+export default Sidebar
