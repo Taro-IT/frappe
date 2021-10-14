@@ -22,7 +22,7 @@
     "shipping-application": "libs/shipping/application",
     "shipping-domain": "libs/shipping/domain",
     "shipping-infrastructure-skydropx": "libs/shipping/infrastructure/skydropx",
-    "shipping-test": "libs/shipping/test"
+    "shipping-test": "libs/shipping/test",
     "order": "libs/order",
     "order-application": "libs/order/application",
     "order-domain": "libs/order/domain",
