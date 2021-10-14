@@ -1,8 +1,9 @@
 ---
+title: Stack de tecnologías
 sidebar_position: 1
 ---
 
-# Technology Stack
+# Stack de tecnologías
 
 Se optó por la utilización del stack de desarrollo MENN.
 

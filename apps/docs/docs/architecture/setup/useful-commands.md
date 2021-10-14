@@ -1,9 +1,9 @@
 ---
-title: Comandos utiles
+title: Comandos útiles
 sidebar_position: 3
 ---
 
-# Useful Commands
+# Comandos Útiles
 
 Para simplificar los comandos se recomienda la instalación de nx de manera global:
 

@@ -7,6 +7,7 @@ import { commandHandlers } from './commandHandlers';
 import { eventHandlers } from './eventHandlers';
 import { registerCollectionModule } from '../category';
 import { registerAccountModule } from '../account';
+import { registerOrderModule } from '../order';
 
 interface ContainerType {
   readonly server: http.Server;
@@ -24,6 +25,7 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   // Register Modules
   registerCollectionModule(container);
   registerAccountModule(container);
+  registerOrderModule(container);
 
   container.register({
     app: asFunction(configureApp).singleton()

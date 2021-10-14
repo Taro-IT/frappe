@@ -12,4 +12,8 @@ export class StringMother {
   static email(): string {
     return faker.internet.email();
   }
+
+  static url(): string {
+    return faker.internet.url();
+  }
 }
