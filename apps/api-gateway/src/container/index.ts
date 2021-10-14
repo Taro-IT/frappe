@@ -7,7 +7,7 @@ import { commandHandlers } from './commandHandlers';
 import { eventHandlers } from './eventHandlers';
 import { registerCollectionModule } from '../category';
 import { registerAccountModule } from '../account';
-import {registerShippingModule} from "../shipping";
+import { registerShippingModule } from '../shipping';
 
 interface ContainerType {
   readonly server: http.Server;

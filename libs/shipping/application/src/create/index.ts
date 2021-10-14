@@ -1,1 +1,1 @@
-export {ShippingCreator} from "./ShippingCreator";
+export { ShippingCreator } from './ShippingCreator';

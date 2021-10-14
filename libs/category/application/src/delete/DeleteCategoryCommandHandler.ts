@@ -1,10 +1,10 @@
-import {CommandHandler} from "@tshio/command-bus";
-import {DeleteCategoryCommand} from "./DeleteCategoryCommand";
-import {CategoryDeleter} from "./CategoryDeleter";
+import { CommandHandler } from '@tshio/command-bus';
+import { DeleteCategoryCommand } from './DeleteCategoryCommand';
+import { CategoryDeleter } from './CategoryDeleter';
 
 type Props = {
-  readonly categoryDeleter: CategoryDeleter
-}
+  readonly categoryDeleter: CategoryDeleter;
+};
 
 export class DeleteCategoryCommandHandler implements CommandHandler<DeleteCategoryCommand> {
   private readonly categoryDeleter: CategoryDeleter;
@@ -16,9 +16,8 @@ export class DeleteCategoryCommandHandler implements CommandHandler<DeleteCatego
   }
 
   async execute(command: DeleteCategoryCommand) {
-    const { id} = command.payload;
-    
+    const { id } = command.payload;
+
     return this.categoryDeleter.execute(id);
   }
-
 }

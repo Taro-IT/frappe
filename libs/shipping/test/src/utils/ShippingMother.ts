@@ -26,10 +26,8 @@ import {
 import { Uuid } from '@frappe/common/value-object';
 import faker from 'faker';
 
-
 /** Shipping utility to creates a Shipping Object */
 export class ShippingMother {
-
   /**
    * Creates a random Shipping Object
    */
