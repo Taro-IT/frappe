@@ -13,7 +13,7 @@ export const commandHandlers = (container: AwilixContainer) => {
       asClass(AccountSignUpCommandHandler),
       asClass(CreateOrderCommandHandler),
       asClass(UpdateCategoryCommandHandler),
-      asClass(DeleteCategoryCommandHandler),
+      asClass(DeleteCategoryCommandHandler)
     ])
   });
 };

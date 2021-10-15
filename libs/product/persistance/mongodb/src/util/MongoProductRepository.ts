@@ -1,6 +1,6 @@
-import {MongoRepository} from "@frappe/common/persistence/mongodb";
-import {Product, ProductPrimitives, ProductRepository} from "@frappe/product/domain";
-import {Criteria} from "@dinnosc/criteria";
+import { MongoRepository } from '@frappe/common/persistence/mongodb';
+import { Product, ProductPrimitives, ProductRepository } from '@frappe/product/domain';
+import { Criteria } from '@dinnosc/criteria';
 
 export class MongoProductRepository extends MongoRepository implements ProductRepository {
   protected moduleName(): string {

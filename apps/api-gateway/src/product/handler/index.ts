@@ -1,1 +1,1 @@
-export {searchProductsHandler} from "./searchProductsHandler";
+export { searchProductsHandler } from './searchProductsHandler';

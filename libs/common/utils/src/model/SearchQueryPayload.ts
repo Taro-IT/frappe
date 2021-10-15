@@ -1,4 +1,4 @@
-import {FilterPrimitive, NonMethodKeys, OrderTypes} from '@dinnosc/criteria';
+import { FilterPrimitive, NonMethodKeys, OrderTypes } from '@dinnosc/criteria';
 
 export interface OrderPrimitive<T> {
   by: NonMethodKeys<T> | '';

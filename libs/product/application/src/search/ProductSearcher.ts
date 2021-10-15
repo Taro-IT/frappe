@@ -1,6 +1,6 @@
-import {Product, ProductPrimitives, ProductRepository} from "@frappe/product/domain";
-import {Criteria, Filter, FilterPrimitive, Limit, Offset, Order} from "@dinnosc/criteria";
-import {OrderPrimitive} from "@frappe/common/utils";
+import { Product, ProductPrimitives, ProductRepository } from '@frappe/product/domain';
+import { Criteria, Filter, FilterPrimitive, Limit, Offset, Order } from '@dinnosc/criteria';
+import { OrderPrimitive } from '@frappe/common/utils';
 
 interface ProductSearcherDeps {
   readonly productRepository: ProductRepository;
@@ -13,7 +13,12 @@ export class ProductSearcher {
     this.productRepository = productRepository;
   }
 
-  async execute(filters: FilterPrimitive<Product>[], order: OrderPrimitive<Product>, limit?: number, offset?: number): Promise<{ products: ProductPrimitives[], total: number }> {
+  async execute(
+    filters: FilterPrimitive<Product>[],
+    order: OrderPrimitive<Product>,
+    limit?: number,
+    offset?: number
+  ): Promise<{ products: ProductPrimitives[]; total: number }> {
     // TODO Check Criteria lib
     const criteria = new Criteria<Product>(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -21,7 +26,7 @@ export class ProductSearcher {
       { value: filters.map(filter => Filter.fromValue(filter)) },
       Order.fromValue(order.by, order.type),
       limit !== undefined ? new Limit(limit) : undefined,
-      offset !== undefined ? new Offset(offset) : undefined,
+      offset !== undefined ? new Offset(offset) : undefined
     );
 
     const dbObjects = await this.productRepository.search(criteria);

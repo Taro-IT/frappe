@@ -1,5 +1,5 @@
-import {QueryBus} from "@tshio/query-bus";
-import express from "express";
+import { QueryBus } from '@tshio/query-bus';
+import express from 'express';
 import * as handlers from './handler';
 
 interface ProductRoutingDeps {
@@ -13,4 +13,4 @@ export const productRouting = ({ queryBus }: ProductRoutingDeps) => {
   router.get('/', handlers.searchProductsHandler(queryBus));
 
   return router;
-}
+};
