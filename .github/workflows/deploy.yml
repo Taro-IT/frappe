@@ -95,8 +95,6 @@ jobs:
           git config --global user.name "Vladimir Salvador"
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 
-          cat .env
-
           npm run affected -- --target=deploy --base=$NX_BASE --prod
 
   deploy-azure:
@@ -146,4 +144,3 @@ jobs:
           app-name: pruebas-cinica-mx-node
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: dist/apps/api-gateway
-

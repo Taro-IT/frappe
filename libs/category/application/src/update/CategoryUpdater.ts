@@ -1,4 +1,10 @@
-import {  CategoryRepository, CategoryIdNotFound, CategoryPrimitives, Category, CategoryAlreadyExists } from '@frappe/category/domain';
+import {
+  CategoryRepository,
+  CategoryIdNotFound,
+  CategoryPrimitives,
+  Category,
+  CategoryAlreadyExists
+} from '@frappe/category/domain';
 import { CategoryFinder, CategoryNameFinder } from '../find';
 
 interface Props {
@@ -20,21 +26,20 @@ export class CategoryUpdater {
 
   async execute(id: string, name: string) {
     const category = await this.categoryExists(id);
-    
 
-    if(category === null) {
+    if (category === null) {
       throw new CategoryIdNotFound(id);
     }
 
     const nameExists = await this.nameExists(name);
 
-    if(nameExists === null) {
+    if (nameExists === null) {
       throw new CategoryAlreadyExists(name);
     }
 
-    const updatedCategory:CategoryPrimitives = {...category, name}
+    const updatedCategory: CategoryPrimitives = { ...category, name };
 
-    return this.categoryRepository.save(Category.fromPrimitives(updatedCategory))
+    return this.categoryRepository.save(Category.fromPrimitives(updatedCategory));
   }
 
   private async nameExists(name: string) {
@@ -45,7 +50,7 @@ export class CategoryUpdater {
       return error;
     }
   }
-  
+
   private async categoryExists(id: string) {
     try {
       const category = await this.categoryFinder.execute(id);

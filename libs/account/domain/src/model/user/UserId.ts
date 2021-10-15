@@ -1,3 +1,3 @@
-import {StringValue} from "@frappe/common/value-object";
+import { StringValue } from '@frappe/common/value-object';
 
-export class UserId extends StringValue { }
+export class UserId extends StringValue {}

@@ -12,9 +12,9 @@ export const touch = (path: string) =>
           }
 
           close(fd, err => (err ? reject(err) : resolve(fd)));
-        })
+        });
       }
 
       resolve();
-    })
+    });
   });

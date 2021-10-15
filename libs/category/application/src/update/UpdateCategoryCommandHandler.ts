@@ -1,10 +1,10 @@
-import {CommandHandler} from "@tshio/command-bus";
-import {UpdateCategoryCommand} from "./UpdateCategoryCommand";
-import {CategoryUpdater} from "./CategoryUpdater";
+import { CommandHandler } from '@tshio/command-bus';
+import { UpdateCategoryCommand } from './UpdateCategoryCommand';
+import { CategoryUpdater } from './CategoryUpdater';
 
 type Props = {
-  readonly categoryUpdater: CategoryUpdater
-}
+  readonly categoryUpdater: CategoryUpdater;
+};
 
 export class UpdateCategoryCommandHandler implements CommandHandler<UpdateCategoryCommand> {
   private readonly categoryUpdater: CategoryUpdater;
@@ -20,5 +20,4 @@ export class UpdateCategoryCommandHandler implements CommandHandler<UpdateCatego
 
     return this.categoryUpdater.execute(id, name);
   }
-
 }

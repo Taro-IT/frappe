@@ -1,6 +1,6 @@
-import {useAuth} from "../../context/AuthUserContext";
-import {useRouter} from "next/router";
-import React, {useEffect} from "react";
+import { useAuth } from '../../context/AuthUserContext';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
 // eslint-disable-next-line react/display-name
 export const ProtectedRoute = BasePageComponent => props => {
@@ -16,13 +16,10 @@ export const ProtectedRoute = BasePageComponent => props => {
     }
   }, [loading, router, user]);
 
-
   if (loading) {
     return null;
     // TODO Loading Component
   }
 
-  return (
-    <BasePageComponent { ...props } />
-  )
-}
+  return <BasePageComponent {...props} />;
+};

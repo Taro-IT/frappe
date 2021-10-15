@@ -12,16 +12,15 @@
 
 ## Diagramas de diseño
 
-| Tipo de diagrama | Artefactos |
-| ------------------|--------------------- |
-| Diagrama de actividad | ![Solution Chart](../../assets/PP-DG302.png "Delete category chart") |
-| Wireframes | [PP-WF302.](https://www.figma.com/file/MiuSV67DUVkzMeMKJeAhP0/Untitled?node-id=0%3A1) |
-| Diseño de pruebas |[PP-TS302](https://taro-depto-ti.atlassian.net/wiki/spaces/FC/pages/589845/FRAPPE-302+Yo+como+administrador+quiero+eliminar+una+colecci+n+para+reducir+las+categor+as+del+cat+logo#Dise%C3%B1o-de-pruebas-backend)|
+| Tipo de diagrama      | Artefactos                                                                                                                                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Diagrama de actividad | ![Solution Chart](../../assets/PP-DG302.png 'Delete category chart')                                                                                                                                               |
+| Wireframes            | [PP-WF302.](https://www.figma.com/file/MiuSV67DUVkzMeMKJeAhP0/Untitled?node-id=0%3A1)                                                                                                                              |
+| Diseño de pruebas     | [PP-TS302](https://taro-depto-ti.atlassian.net/wiki/spaces/FC/pages/589845/FRAPPE-302+Yo+como+administrador+quiero+eliminar+una+colecci+n+para+reducir+las+categor+as+del+cat+logo#Dise%C3%B1o-de-pruebas-backend) |
 
 ## Artefactos generados
 
 - <a href="https://github.com/Taro-IT/frappe/pull/25">Pull request</a>
-
 
 ## Autores
 
@@ -29,8 +28,8 @@
 - Ivan Alejandro Díaz Peralta
 
 ## Auditoría
--
 
+-
 
 ## Versión
 

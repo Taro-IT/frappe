@@ -1,6 +1,5 @@
-import {Category, CategoryAlreadyExists, CategoryId, CategoryName, CategoryRepository} from "@frappe/category/domain";
-import { CategoryNameFinder } from "../find";
-
+import { Category, CategoryAlreadyExists, CategoryId, CategoryName, CategoryRepository } from '@frappe/category/domain';
+import { CategoryNameFinder } from '../find';
 
 // SOLID
 // Una Clase por lo general solo debe tener un método público
@@ -20,9 +19,9 @@ export class CategoryCreator {
   }
 
   async execute(id: string, name: string) {
-    const exists = await this.categoryExists(name)
+    const exists = await this.categoryExists(name);
 
-    if(exists === null) {
+    if (exists === null) {
       throw new CategoryAlreadyExists(name);
     }
 
@@ -32,10 +31,10 @@ export class CategoryCreator {
 
   private async categoryExists(name: string) {
     try {
-      await this.categoryNameFinder.execute(name)
-      return null
+      await this.categoryNameFinder.execute(name);
+      return null;
     } catch (error) {
-      return error
+      return error;
     }
   }
 }

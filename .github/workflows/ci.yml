@@ -45,7 +45,6 @@ jobs:
           npm run lint-staged
           npm run affected:lint -- --base=$NX_BASE
 
-
   test:
     runs-on: ubuntu-latest
 

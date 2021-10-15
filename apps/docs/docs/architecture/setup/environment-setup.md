@@ -1,14 +1,15 @@
 ---
-title: Local environment
+title: Ambiente Local
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Environment Setup
+# Configuración del ambiente local
 
 ## Tecnologías
+
 - Node v14.17.6
 - MongoDB v4.4
 - Docker (Opcional)
@@ -17,8 +18,8 @@ import TabItem from '@theme/TabItem';
 
 Los siguiente los pasos para instalar las tecnologías usadas para el desarrollo del proyecto:
 
-
 ### Node
+
 <Tabs>
   <TabItem value="download" label="Ejecutable" default>
     <ol>
