@@ -1,4 +1,4 @@
-import { Nullable } from "../utils"
+import { Nullable } from '../utils';
 
 type WrapErrorResponse<E extends Error, Res> = [Nullable<E>, Nullable<Res>];
 
@@ -10,4 +10,4 @@ export const wrapError = async <E extends Error, Res>(promise: Promise<Res>): Pr
   } catch (error) {
     return [error as unknown as E, null];
   }
-}
+};

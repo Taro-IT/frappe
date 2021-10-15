@@ -1,1 +1,1 @@
-export * from './errorHandler'
+export * from './errorHandler';

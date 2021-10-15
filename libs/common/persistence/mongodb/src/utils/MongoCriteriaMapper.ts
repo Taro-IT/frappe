@@ -1,10 +1,9 @@
-import {Criteria, Operator} from "@dinnosc/criteria";
+import { Criteria, Operator } from '@dinnosc/criteria';
 
 export class MongoCriteriaMapper {
-
   transformQuery(criteria: Criteria) {
     if (criteria.hasFilters()) {
-      return {}
+      return {};
     }
 
     return criteria.filters.reduce((query, { field, operator, value }) => {
@@ -16,19 +15,19 @@ export class MongoCriteriaMapper {
           query[key] = fieldValue;
           break;
         case Operator.NOT_EQUAL:
-          query[key] = { $ne: fieldValue }
+          query[key] = { $ne: fieldValue };
           break;
         case Operator.GT:
-          query[key] = { $gt: fieldValue }
+          query[key] = { $gt: fieldValue };
           break;
         case Operator.LT:
-          query[key] = { $lt: fieldValue }
+          query[key] = { $lt: fieldValue };
           break;
         case Operator.CONTAINS:
-          query[key] = { $regex: new RegExp(fieldValue, 'ig') }
+          query[key] = { $regex: new RegExp(fieldValue, 'ig') };
           break;
         case Operator.NOT_CONTAINS:
-          query[key] = { $not: { $regex: new RegExp(fieldValue, 'ig') } }
+          query[key] = { $not: { $regex: new RegExp(fieldValue, 'ig') } };
           break;
       }
 

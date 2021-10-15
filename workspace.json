@@ -22,6 +22,15 @@
     "email-application": "libs/email/application",
     "email-domain": "libs/email/domain",
     "email-infrastructure-sendgrid": "libs/email/infrastructure/sendgrid"
+    "order": "libs/order",
+    "order-application": "libs/order/application",
+    "order-domain": "libs/order/domain",
+    "order-persistance-mongodb": "libs/order/persistance/mongodb",
+    "order-test": "libs/order/test",
+    "product": "libs/product",
+    "product-application": "libs/product/application",
+    "product-domain": "libs/product/domain",
+    "product-persistance-mongodb": "libs/product/persistance/mongodb"
   },
   "cli": {
     "defaultCollection": "@nrwl/express"

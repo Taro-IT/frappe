@@ -1,7 +1,7 @@
-import admin, {FirebaseError} from 'firebase-admin';
-import {wrapError} from "@frappe/common/utils";
-import {EventDispatcher} from "@tshio/event-dispatcher";
-import {EmailAlreadyExist, InvalidPasword, UserRegistered} from "@frappe/account/domain";
+import admin, { FirebaseError } from 'firebase-admin';
+import { wrapError } from '@frappe/common/utils';
+import { EventDispatcher } from '@tshio/event-dispatcher';
+import { EmailAlreadyExist, InvalidPasword, UserRegistered } from '@frappe/account/domain';
 
 type AuthError = FirebaseError & Error;
 
@@ -20,7 +20,9 @@ export class AccountSignUpper {
   }
 
   async execute(email: string, password: string, name = ''): Promise<void> {
-    const [authError, user] = await wrapError<AuthError, admin.auth.UserRecord>(this.firebaseAuth.createUser({ email, password, displayName: name }));
+    const [authError, user] = await wrapError<AuthError, admin.auth.UserRecord>(
+      this.firebaseAuth.createUser({ email, password, displayName: name })
+    );
 
     if (authError !== null) {
       this.throwAuthError(authError);

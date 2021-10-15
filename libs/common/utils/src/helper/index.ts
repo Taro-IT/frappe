@@ -1,1 +1,1 @@
-export {wrapError} from "./wrapError";
+export { wrapError } from './wrapError';

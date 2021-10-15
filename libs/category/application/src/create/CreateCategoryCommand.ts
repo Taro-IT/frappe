@@ -1,4 +1,4 @@
-import {Command} from "@tshio/command-bus";
+import { Command } from '@tshio/command-bus';
 
 interface CreateCategoryCommandPayload {
   readonly id: string;
@@ -8,7 +8,5 @@ interface CreateCategoryCommandPayload {
 export class CreateCategoryCommand implements Command<CreateCategoryCommandPayload> {
   readonly type = CreateCategoryCommand.name;
 
-  constructor(
-    readonly payload: CreateCategoryCommandPayload
-  ) { }
+  constructor(readonly payload: CreateCategoryCommandPayload) {}
 }

@@ -1,5 +1,5 @@
-import {isEmail} from "class-validator";
-import {InvalidEmail} from "../errors";
+import { isEmail } from 'class-validator';
+import { InvalidEmail } from '../errors';
 
 export class EmailValue {
   readonly value: string;
@@ -15,5 +15,4 @@ export class EmailValue {
       throw new InvalidEmail(value);
     }
   }
-
 }
