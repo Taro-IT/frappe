@@ -38,7 +38,8 @@
       "@frappe/product": ["libs/product/src/index.ts"],
       "@frappe/product/application": ["libs/product/application/src/index.ts"],
       "@frappe/product/domain": ["libs/product/domain/src/index.ts"],
-      "@frappe/product/persistance/mongodb": ["libs/product/persistance/mongodb/src/index.ts"]
+      "@frappe/product/persistance/mongodb": ["libs/product/persistance/mongodb/src/index.ts"],
+      "@frappe/product/test": ["libs/product/test/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
