@@ -1,0 +1,1 @@
+export {MongoProductRepository} from "./MongoProductRepository";
