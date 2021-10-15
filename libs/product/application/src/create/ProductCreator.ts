@@ -11,7 +11,7 @@ export class ProductCreator {
     this.productRepository = productRepository;
   }
 
-  async execute(id: string, name: string, price:number, amount:number, categories: string[], description:string, images: string[], isCustom: boolean, isInSale: boolean, isLimited: boolean, isOutOfStock: boolean, materials: string[], sizes: number[] ) {
+  async execute(id: string, name: string, price:number, categories: string[], description:string, images: string[], isCustom: boolean, isInSale: boolean, isLimited: boolean, isOutOfStock: boolean, materials: string[], sizes: number[], amount:number,  ) {
    
     // TODO: use search to validate that product doesn't exists
 
@@ -19,7 +19,6 @@ export class ProductCreator {
       new ProductId(id),
       new ProductName(name),
       new ProductPrice(price),
-      new ProductAmount(amount),
       new ProductCategories(categories),
       new ProductDescription(description),
       new ProductImages(images),
@@ -29,6 +28,7 @@ export class ProductCreator {
       new ProductIsOutOfStock(isOutOfStock),
       new ProductMaterials(materials),
       new ProductSizes(sizes),
+      new ProductAmount(amount),
         );
     return this.productRepository.save(product);
   }

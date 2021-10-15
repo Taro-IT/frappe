@@ -2,7 +2,6 @@ export interface ProductPrimitives {
   readonly id: string;
   readonly name: string;
   readonly price: number;
-  readonly amount: number;
   readonly categories: string[];
   readonly description: string;
   readonly images: string[];
@@ -12,4 +11,5 @@ export interface ProductPrimitives {
   readonly isOutOfStock: boolean;
   readonly materials: string[];
   readonly sizes: number[];
+  readonly amount?: number;
 }

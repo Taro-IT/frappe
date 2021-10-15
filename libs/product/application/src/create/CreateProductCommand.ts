@@ -4,7 +4,6 @@ interface CreateProductCommandPayload {
   readonly id: string;
   readonly name: string;
   readonly description: string;
-  readonly amount:number;
   readonly price: number;
   readonly categories:string[];
   readonly images:string[];
@@ -14,6 +13,7 @@ interface CreateProductCommandPayload {
   readonly isLimited: boolean;
   readonly materials: string[];
   readonly sizes: number[];
+  readonly amount:number;
 }
 
 export class CreateProductCommand implements Command<CreateProductCommandPayload> {

@@ -16,8 +16,8 @@ export class CreateProductCommandHandler implements CommandHandler<CreateProduct
   }
 
   async execute(command: CreateProductCommand) {
-    const { id, name, price, amount, categories, description, images, isCustom, isInSale, isLimited, isOutOfStock, materials, sizes} = command.payload;
+    const { id, name, price, categories, description, images, isCustom, isInSale, isLimited, isOutOfStock, materials, sizes, amount} = command.payload;
 
-    return this.productCreator.execute(id, name, price, amount, categories, description, images, isCustom, isInSale, isLimited, isOutOfStock, materials, sizes);
+    return this.productCreator.execute(id, name, price, categories, description, images, isCustom, isInSale, isLimited, isOutOfStock, materials, sizes, amount);
   }
 }

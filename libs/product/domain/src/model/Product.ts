@@ -5,17 +5,26 @@ import { ProductPrimitives } from '../utils/ProductPrimitives';
 
 
 export class Product {
-  constructor(readonly id: ProductId, readonly name: ProductName, readonly price: ProductPrice, readonly amount: ProductAmount,
-    readonly categories: ProductCategories, readonly description: ProductDescription, readonly images: ProductImages,
-    readonly isCustom: ProductIsCustom, readonly isInSale: ProductIsInSale, readonly isLimited: ProductIsLimited,
-    readonly isOutOfStock: ProductIsOutOfStock, readonly materials: ProductMaterials, readonly sizes: ProductSizes) {}
+  constructor(
+    readonly id: ProductId, 
+    readonly name: ProductName, 
+    readonly price: ProductPrice,
+    readonly categories: ProductCategories, 
+    readonly description: ProductDescription, 
+    readonly images: ProductImages,
+    readonly isCustom: ProductIsCustom, 
+    readonly isInSale: ProductIsInSale, 
+    readonly isLimited: ProductIsLimited,
+    readonly isOutOfStock: ProductIsOutOfStock, 
+    readonly materials: ProductMaterials, 
+    readonly sizes: ProductSizes, 
+    readonly amount?: ProductAmount) {}
 
   toPrimitives() {
     return {
       id: this.id.value,
       name: this.name.value,
       price: this.price.value,
-      amount: this.amount.value,
       categories: this.categories.value,
       description: this.description.value,
       images: this.images.value,
@@ -24,7 +33,8 @@ export class Product {
       isLimited: this.isLimited.value,
       isOutOfStock: this.isOutOfStock.value,
       materials: this.materials.value,
-      sizes: this.sizes.value
+      sizes: this.sizes.value,
+      amount: this.amount?.value
       
     };
   }
@@ -34,7 +44,6 @@ export class Product {
       new ProductId(primitives.id),
       new ProductName(primitives.name),
       new ProductPrice(primitives.price),
-      new ProductAmount(primitives.amount),
       new ProductCategories(primitives.categories),
       new ProductDescription(primitives.description),
       new ProductImages(primitives.images),
@@ -44,6 +53,7 @@ export class Product {
       new ProductIsOutOfStock(primitives.isOutOfStock),
       new ProductMaterials(primitives.materials),
       new ProductSizes(primitives.sizes),
+      new ProductAmount(primitives.amount)
     );
   }
 }
