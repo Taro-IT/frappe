@@ -17,4 +17,10 @@ export class MongoProductRepository extends MongoRepository implements ProductRe
 
     return products.map(product => Product.fromPrimitives({ ...product, id: product._id } as ProductPrimitives));
   }
+
+  async total(): Promise<number> {
+    const collection = await this.collection();
+
+    return collection.countDocuments();
+  }
 }

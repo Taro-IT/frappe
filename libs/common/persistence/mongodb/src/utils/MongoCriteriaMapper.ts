@@ -2,11 +2,11 @@ import { Criteria, Operator } from '@dinnosc/criteria';
 
 export class MongoCriteriaMapper {
   transformQuery<T>(criteria: Criteria<T>) {
-    if (criteria.hasFilters()) {
+    if (!criteria.hasFilters()) {
       return {};
     }
 
-    return criteria.filters.value().reduce((query, { field, operator, value }) => {
+    return criteria.filters.value.reduce((query, { field, operator, value }) => {
       const key = field.value === 'id' ? '_id' : field.value;
       const fieldValue = value.value;
 
