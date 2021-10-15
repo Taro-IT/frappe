@@ -9,8 +9,8 @@ export class SendgridEmailProvider implements EmailProvider {
   }
 
   /**
-   * Sends the email through SendGrid using templates.
-   * @param mail
+   * Sends an email through SendGrid using templates.
+   * @param mail the Email that is going to be sent.
    */
   async send(mail: Email): Promise<void> {
     const { to, id, data } = mail.toPrimitives();

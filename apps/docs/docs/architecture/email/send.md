@@ -2,7 +2,7 @@
 
 ## Requisito
 
-- "Yo como usuario del sistema quiero recibir un correo cada vez que se publique un evento.".
+- Yo como usuario del sistema quiero recibir un correo cada vez que se publique un evento.
 
 ## Acceptance criteria
 
@@ -15,7 +15,7 @@ Entonces los usuarios relevantes recibirán un correo.
 ## Diagramas
 
 | Diagrama | Artefactos |
-| ------------------|--------------------- |
+| ---------------------|------------------------ |
 | [Diagrama de actividad](https://lucid.app/lucidchart/5e95085f-6356-4a1f-b9b9-bcf0c4aeb9ad/edit?viewport_loc=-454%2C146%2C2274%2C1084%2C98TTJ~8Bs_WK&invitationId=inv_0445573f-2ae8-4eb3-a484-055f1aff7687) | ![Diagrama](../../assets/PP-HA97.png ) |
 
 ## Architecture Spike

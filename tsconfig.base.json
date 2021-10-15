@@ -32,7 +32,7 @@
       "@frappe/common/value-object": ["libs/common/value-object/src/index.ts"],
       "@frappe/email/application": ["libs/email/application/src/index.ts"],
       "@frappe/email/domain": ["libs/email/domain/src/index.ts"],
-      "@frappe/email/infrastructure/sendgrid": ["libs/email/infrastructure/sendgrid/src/index.ts"]
+      "@frappe/email/infrastructure/sendgrid": ["libs/email/infrastructure/sendgrid/src/index.ts"],
       "@frappe/order": ["libs/order/src/index.ts"],
       "@frappe/order/application": ["libs/order/application/src/index.ts"],
       "@frappe/order/domain": ["libs/order/domain/src/index.ts"],

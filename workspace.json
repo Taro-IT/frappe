@@ -21,7 +21,7 @@
     "docs": "apps/docs",
     "email-application": "libs/email/application",
     "email-domain": "libs/email/domain",
-    "email-infrastructure-sendgrid": "libs/email/infrastructure/sendgrid"
+    "email-infrastructure-sendgrid": "libs/email/infrastructure/sendgrid",
     "order": "libs/order",
     "order-application": "libs/order/application",
     "order-domain": "libs/order/domain",

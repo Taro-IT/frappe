@@ -26,8 +26,8 @@ export class SendEmailOnUserRegistered implements EventSubscriberInterface {
       to: email,
       data: {
         name,
-        body: 'Body',
-        subject: 'Bienvenido a Cinica'
+        body: '¡Muchas gracias por registrarte en Cínica! Esperamos que nuestros productos sean de tu agrado.',
+        subject: 'Bienvenido a Cínica'
       }
     });
 
