@@ -1,4 +1,3 @@
-import { OrderItemType, OrderStatuses } from '@frappe/order/domain';
 import { Command } from '@tshio/command-bus';
 
 interface CreateProductCommandPayload {

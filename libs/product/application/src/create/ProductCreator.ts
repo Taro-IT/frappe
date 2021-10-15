@@ -1,4 +1,4 @@
-import { Product, ProductId, ProductName, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductisOutOfStock,ProductMaterials, ProductSizes,ProductRepository } from '@frappe/product/domain';
+import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes,ProductRepository } from '@frappe/product/domain';
 
 interface Props {
   readonly productRepository: ProductRepository;
@@ -11,7 +11,7 @@ export class ProductCreator {
     this.productRepository = productRepository;
   }
 
-  async execute(id: string, name: string, price:number, amount:number, categories: string[], description:string, images: string[], isCustom: boolean, isInSale: boolean, isLimited: boolean, isOutOfStock: boolean, materials: string[], sizes: string[] ) {
+  async execute(id: string, name: string, price:number, amount:number, categories: string[], description:string, images: string[], isCustom: boolean, isInSale: boolean, isLimited: boolean, isOutOfStock: boolean, materials: string[], sizes: number[] ) {
    
     // TODO: use search to validate that product doesn't exists
 
