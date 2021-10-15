@@ -1,7 +1,7 @@
 import {MongoRepository} from '@frappe/common/persistence/mongodb';
 import {Product, ProductId, ProductPrimitives, ProductRepository} from '@frappe/product/domain';
 
-export class MongoProductRepository extends MongoRepository implements ProductRepository { 
+export class MongoProductRepository extends MongoRepository implements ProductRepository {
   /**
    * Finds a product @see {@link Product}
    * @param id - The id of the product you want to find

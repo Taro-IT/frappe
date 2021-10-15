@@ -1,4 +1,4 @@
-import { ProductName, ProductPrice, ProductId, ProductAmount, ProductCategories, ProductDescription, ProductImages, 
+import { ProductName, ProductPrice, ProductId, ProductAmount, ProductCategories, ProductDescription, ProductImages,
   ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock, ProductMaterials, ProductSizes } from '.';
 import { ProductPrimitives } from '../utils/ProductPrimitives';
 

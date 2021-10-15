@@ -15,7 +15,7 @@ export class FileSystemFile {
 
   toPrimitives() {
     return {
-      name: this.name.value, 
+      name: this.name.value,
       content: this.content.value
     }
   }

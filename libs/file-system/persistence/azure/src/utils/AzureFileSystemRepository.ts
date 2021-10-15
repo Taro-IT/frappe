@@ -7,7 +7,7 @@ import { FileSystemFile, FileSystemRepository } from '@frappe/file-system/domain
   * Manages the connection with Azure's blob storage
   */
 export class AzureFileSystemRepository implements FileSystemRepository {
-  private readonly container: ContainerClient; 
+  private readonly container: ContainerClient;
   
   constructor() {
     const client: BlobServiceClient = BlobServiceClient.fromConnectionString(`${process.env.AZURE_CONNECTION_STRING}`);
