@@ -12,8 +12,8 @@ interface CreateProductCommandPayload {
   readonly isInSale: boolean;
   readonly isOutOfStock: boolean;
   readonly isLimited: boolean;
-  readonly materials: string;
-  readonly sizes: string[];
+  readonly materials: string[];
+  readonly sizes: number[];
 }
 
 export class CreateProductCommand implements Command<CreateProductCommandPayload> {
