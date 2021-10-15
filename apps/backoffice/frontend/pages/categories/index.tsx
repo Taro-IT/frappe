@@ -1,3 +1,4 @@
+import { Sidebar, SidebarMobile } from '@frappe/common/design-system'
 import React, { useState } from 'react'
 import AddCategory from '../../components/Demo/category/AddCategory'
 import CategoryList from '../../components/Demo/category/CategoryList'
@@ -10,9 +11,12 @@ const ListCategoriesPage = () => {
     })
   }
   return (
-    <div className="bg-gray-100 w-full position-absolute flex flex-col h-screen overflow-auto">
-      <AddCategory onAddCategory={addCategoryHandler}/>
-      <CategoryList categories={categoriesList}/>
+    <div className="bg-gray-100 w-full h-screen flex flex-row">
+        <Sidebar />
+        <div className="flex flex-col flex-grow">
+          <AddCategory onAddCategory={addCategoryHandler}/>
+          <CategoryList categories={categoriesList}/>
+        </div>
     </div>
   )
 }
