@@ -2,3 +2,4 @@ export * from './components';
 export { default as Card } from './Card';
 export { Button } from './Button';
 export { Modal } from './Modal';
+export { Sidebar } from './Sidebar';
