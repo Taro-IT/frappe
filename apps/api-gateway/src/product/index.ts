@@ -6,7 +6,7 @@ import {
 } from '@frappe/product/application';
 
 
-export const createProductModule = (container: AwilixContainer) => {
+export const registerProductModule = (container: AwilixContainer) => {
   container.register({
     productRepository: asClass(MongoProductRepository).singleton(),
     productCreator: asClass(ProductCreator),
