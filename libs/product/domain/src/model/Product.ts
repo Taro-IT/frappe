@@ -6,18 +6,18 @@ import { ProductPrimitives } from '../utils/ProductPrimitives';
 
 export class Product {
   constructor(
-    readonly id: ProductId, 
-    readonly name: ProductName, 
+    readonly id: ProductId,
+    readonly name: ProductName,
     readonly price: ProductPrice,
-    readonly categories: ProductCategories, 
-    readonly description: ProductDescription, 
+    readonly categories: ProductCategories,
+    readonly description: ProductDescription,
     readonly images: ProductImages,
-    readonly isCustom: ProductIsCustom, 
-    readonly isInSale: ProductIsInSale, 
+    readonly isCustom: ProductIsCustom,
+    readonly isInSale: ProductIsInSale,
     readonly isLimited: ProductIsLimited,
-    readonly isOutOfStock: ProductIsOutOfStock, 
-    readonly materials: ProductMaterials, 
-    readonly sizes: ProductSizes, 
+    readonly isOutOfStock: ProductIsOutOfStock,
+    readonly materials: ProductMaterials,
+    readonly sizes: ProductSizes,
     readonly amount?: ProductAmount) {}
 
   toPrimitives() {

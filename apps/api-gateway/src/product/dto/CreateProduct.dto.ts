@@ -49,7 +49,7 @@ export class CreateProductDto {
   @IsString({
       each: true
   })
-  readonly materials: string[];  
+  readonly materials: string[];
       
   @IsNotEmpty()
   @IsNumber({},{
