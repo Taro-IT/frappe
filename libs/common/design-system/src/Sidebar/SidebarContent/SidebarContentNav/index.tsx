@@ -1,4 +1,5 @@
 import { ColorSwatchIcon, FolderIcon, ShoppingCartIcon, UsersIcon } from "@heroicons/react/solid";
+import SidebarContentUser from "../SidebarContentUser";
 
 const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(' ')
@@ -13,6 +14,7 @@ const navigation = [
 
 const SidebarContentNav = () => {
   return (
+    <>
     <nav className="flex-1 bg-primary" aria-label="Sidebar">
       {
         navigation.map(item => <a key={item.name} href={item.href} className={classNames('my-2 hover:text-yellow-400 text-white', 'border-transparent text-white hover:text-yellow-400', 'group flex items-center px-3 py-2 text-sm font-medium border-l-4')}>
@@ -21,6 +23,8 @@ const SidebarContentNav = () => {
         </a>)
       }
     </nav>
+    <SidebarContentUser />
+    </>
   );
 }
 

@@ -1,17 +1,25 @@
 import SidebarContentNav from "./SidebarContentNav";
 import SidebarContentUser from "./SidebarContentUser";
+import SidebarLogo from '../SidebarLogo'
 import { MenuIcon } from "@heroicons/react/solid";
-
+import { useState } from "react";
 
 const SidebarContent = () => {
-  return (
-    <div className="flex flex-row w-screen flex-grow mt-5">
-      <div className="">
-        <MenuIcon className="align-middle" />
+  const [open, setOpen] = useState(Boolean)
 
+  const handleOpenSidebar = () => {
+    setOpen(previous => !previous)
+  }
+  return (
+    <div className="flex flex-col">
+      <div className="flex flex-row">
+          <MenuIcon className="text-white h-10 pl-2" onClick={handleOpenSidebar}/>
+          <SidebarLogo />
       </div>
-     {/*  <SidebarContentNav/>
-      <SidebarContentUser /> */}
+      {open && <div className="flex flex-row">  
+        <SidebarContentNav/>
+        
+      </div>}
     </div>
   );
 }
