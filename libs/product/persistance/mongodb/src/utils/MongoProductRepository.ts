@@ -1,5 +1,5 @@
 import {MongoRepository} from '@frappe/common/persistence/mongodb';
-import {Product, ProductId, ProductPrimitives, ProductRepository} from '@frappe/product/domain';
+import {Product, ProductId, ProductPrimitives, ProductRepository, ProductName} from '@frappe/product/domain';
 
 export class MongoProductRepository extends MongoRepository implements ProductRepository {
   /**
@@ -24,7 +24,24 @@ export class MongoProductRepository extends MongoRepository implements ProductRe
  * @returns a new Product
  */
   save(product: Product): Promise<void> {
-   return this.persist(product.id.value, product)
+    return this.persist(product.id.value, product)
+  }
+
+  /**
+   * Finds a product by name @see {@link Product}
+   * @param name - The name of the product that will be searched.
+   *
+   * @returns the Product with the given name.
+  */
+  async findByName(name: ProductName): Promise<Product | null> {
+    const collection = await this.collection();
+    const document = await collection.findOne({ name: name.value });
+
+    if (document === null) {
+      return null;
+    }
+
+    return Product.fromPrimitives({ ...document, id: document._id } as ProductPrimitives);
   }
 
   protected moduleName(): string {
