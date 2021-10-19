@@ -1,13 +1,13 @@
 import {CommandHandler} from "@tshio/command-bus";
 import {UploadFileCommand} from "./UploadFileCommand";
-import {FileUploader} from "./FileUploader";
+import {FileSystemFileUploader} from "./FileSystemFileUploader";
 
 type Props = {
-  readonly fileUploader: FileUploader
+  readonly fileUploader: FileSystemFileUploader
 }
 
 export class UploadFileCommandHandler implements CommandHandler<UploadFileCommand> {
-  private readonly fileUploader: FileUploader;
+  private readonly fileUploader: FileSystemFileUploader;
 
   readonly commandType = UploadFileCommand.name;
 
