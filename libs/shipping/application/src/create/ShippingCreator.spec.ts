@@ -14,7 +14,7 @@ describe('ShippingCreator', () => {
     service = new ShippingCreator({ shippingRepository });
   });
 
-  it('should creates a ShippingOrder', async () => {
+  it('should create a ShippingOrder', async () => {
     const shipping = ShippingMother.random();
 
     await service.execute(shipping);
