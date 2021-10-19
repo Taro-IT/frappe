@@ -4,10 +4,10 @@ import { MongoCategoryRepository } from '@frappe/category/persistence/mongodb';
 import {
   CategoryCreator,
   CategoryLister,
+  CategoryFinder,
   CategoryNameFinder,
-  CategoryDeleter,
   CategoryUpdater,
-  CategoryFinder
+  CategoryDeleter
 } from '@frappe/category/application';
 
 export const registerCollectionModule = (container: AwilixContainer) => {
