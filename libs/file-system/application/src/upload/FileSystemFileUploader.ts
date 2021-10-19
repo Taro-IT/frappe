@@ -3,7 +3,7 @@ import {FileSystemRepository, FileSystemFile, FileSystemFileName, FileSystemFile
 interface Props {
   readonly fileSystemRepository: FileSystemRepository
 }
-export class FileUploader {
+export class FileSystemFileUploader {
   private readonly fileSystemRepository: FileSystemRepository;
 
   constructor({fileSystemRepository}: Props){
