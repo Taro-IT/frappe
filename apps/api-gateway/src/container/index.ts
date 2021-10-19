@@ -7,6 +7,7 @@ import { commandHandlers } from './commandHandlers';
 import { eventHandlers } from './eventHandlers';
 import { registerCollectionModule } from '../category';
 import { registerAccountModule } from '../account';
+import { registerShippingModule } from '../shipping';
 import { registerOrderModule } from '../order';
 import {registerFileSystemModule} from "../file-system";
 import {registerProductModule} from "../product"
@@ -28,6 +29,7 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   registerCollectionModule(container);
   registerAccountModule(container);
   registerFileSystemModule(container);
+  registerShippingModule(container);
   registerOrderModule(container);
   registerProductModule(container);
 
