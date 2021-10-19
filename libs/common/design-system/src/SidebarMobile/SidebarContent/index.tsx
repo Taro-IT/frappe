@@ -16,7 +16,7 @@ const SidebarContent = () => {
           <MenuIcon className="text-white h-10 pl-2" onClick={handleOpenSidebar}/>
           <SidebarLogo />
       </div>
-      {open && <div className="flex flex-row">  
+      {open && <div className="flex flex-row">
         <SidebarContentNav/>
         
       </div>}
