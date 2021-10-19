@@ -1,4 +1,4 @@
-import { Category, CategoryAlreadyExists, CategoryId, CategoryName, CategoryRepository } from '@frappe/category/domain';
+import { Category, CategoryAlreadyExists, CategoryId, CategoryIsActive, CategoryName, CategoryRepository } from '@frappe/category/domain';
 import { CategoryNameFinder } from '../find';
 
 // SOLID
@@ -25,7 +25,11 @@ export class CategoryCreator {
       throw new CategoryAlreadyExists(name);
     }
 
-    const category = new Category(new CategoryId(id), new CategoryName(name));
+    const category = new Category(
+      new CategoryId(id),
+      new CategoryName(name),
+      new CategoryIsActive(true)
+    );
     return this.categoryRepository.save(category);
   }
 
