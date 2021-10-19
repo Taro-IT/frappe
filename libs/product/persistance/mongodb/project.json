@@ -1,0 +1,23 @@
+{
+  "root": "libs/product/persistance/mongodb",
+  "sourceRoot": "libs/product/persistance/mongodb/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/product/persistance/mongodb/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/product/persistance/mongodb"],
+      "options": {
+        "jestConfig": "libs/product/persistance/mongodb/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

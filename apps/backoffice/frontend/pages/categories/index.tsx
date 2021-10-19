@@ -1,5 +1,5 @@
 import { Sidebar, SidebarMobile } from '@frappe/common/design-system'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import AddCategory from '../../components/Demo/category/AddCategory'
 import CategoryList from '../../components/Demo/category/CategoryList'
 import { getSelectorsByUserAgent } from 'react-device-detect';
@@ -14,14 +14,6 @@ export async function getServerSideProps(context) {
 
 const ListCategoriesPage = ({ sa }) => {
   const { isMobile } = getSelectorsByUserAgent(sa)
-  const [categoriesList, setCategoriesList] = useState([])
-  
-  const addCategoryHandler = (uName) => {
-    setCategoriesList(prevCategoriesList => {
-      return [...prevCategoriesList, {name: uName, id:Math.random().toString()}];
-    })
-  }
-  
 
   return (
     isMobile ?
@@ -29,16 +21,16 @@ const ListCategoriesPage = ({ sa }) => {
       <div className="bg-gray-100 w-full h-screen flex flex-col">
         <SidebarMobile />
         <div className="flex flex-col flex-grow pt-20">
-          <AddCategory onAddCategory={addCategoryHandler}/>
-          <CategoryList categories={categoriesList}/>
+          <AddCategory />
+          <CategoryList />
         </div>
       </div>
     ) : (
       <div className="bg-gray-100 w-full h-screen flex flex-row">
       <Sidebar />
       <div className="flex flex-col flex-grow pt-20">
-      <AddCategory onAddCategory={addCategoryHandler}/>
-      <CategoryList categories={categoriesList}/>
+      <AddCategory />
+      <CategoryList />
       </div>
     </div>
     )

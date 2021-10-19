@@ -1,1 +1,1 @@
-export {MongoClientFactory} from "./MongoClientFactory";
+export { MongoClientFactory } from './MongoClientFactory';

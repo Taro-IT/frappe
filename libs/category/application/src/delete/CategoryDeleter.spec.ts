@@ -1,9 +1,8 @@
-import {CategoryRepository, CategoryNotFound} from "@frappe/category/domain";
-import {CategoryDeleter} from "./CategoryDeleter";
-import { CategoryFinder} from "../find"
-import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended'
-import {CategoryMother} from "@frappe/category/test";
-
+import { CategoryRepository, CategoryNotFound } from '@frappe/category/domain';
+import { CategoryDeleter } from './CategoryDeleter';
+import { CategoryFinder } from '../find';
+import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended';
+import { CategoryMother } from '@frappe/category/test';
 
 describe('CategoryDeleter', () => {
   let categoryRepository: MockProxy<CategoryRepository>;
@@ -16,7 +15,7 @@ describe('CategoryDeleter', () => {
     categoryFinder = mockDeep<CategoryFinder>(new CategoryFinder({ categoryRepository }));
 
     deleter = new CategoryDeleter({ categoryRepository, categoryFinder });
-  })
+  });
 
   it('should delete a Category', async () => {
     const category = CategoryMother.random();

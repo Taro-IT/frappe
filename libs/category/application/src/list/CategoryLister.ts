@@ -1,19 +1,19 @@
-import { CategoryRepository } from "@frappe/category/domain";
+import { CategoryRepository } from '@frappe/category/domain';
 
 interface Props {
-    readonly categoryRepository: CategoryRepository
+  readonly categoryRepository: CategoryRepository;
 }
 
 export class CategoryLister {
-    private readonly categoryRepository: CategoryRepository;
+  private readonly categoryRepository: CategoryRepository;
 
-    constructor({ categoryRepository }: Props) {
-        this.categoryRepository = categoryRepository;
-    }
+  constructor({ categoryRepository }: Props) {
+    this.categoryRepository = categoryRepository;
+  }
 
-    async execute() {
-        const categories = await this.categoryRepository.all();
+  async execute() {
+    const categories = await this.categoryRepository.all();
 
-        return categories.map((cat) => cat.toPrimitives())
-    }
+    return categories.map(cat => cat.toPrimitives());
+  }
 }
