@@ -1,5 +1,4 @@
 import SidebarContentNav from "./SidebarContentNav";
-import SidebarContentUser from "./SidebarContentUser";
 import SidebarLogo from '../SidebarLogo'
 import { MenuIcon } from "@heroicons/react/solid";
 import { useState } from "react";
