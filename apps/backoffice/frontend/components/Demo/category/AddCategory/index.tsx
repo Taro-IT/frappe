@@ -1,10 +1,10 @@
 import { Card } from '@frappe/common/design-system';
 import { Button } from '@frappe/common/design-system';
 import classes from './AddCategory.module.scss';
-
 import { useState } from 'react';
 import axios from 'axios';
-const CreateCategory = props => {
+
+const CreateCategory = () => {
   const [categoryName, setCategoryName] = useState('');
 
   const addCategoryHandler = async event => {
