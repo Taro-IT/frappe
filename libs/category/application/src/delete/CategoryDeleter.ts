@@ -21,9 +21,10 @@ export class CategoryDeleter {
   }
 
   async execute(id: string) {
+
     const category = await this.categoryExists(id);
 
-    if (category !== null) {
+    if (category === null) {
       throw new CategoryNotFound(id);
     }
 

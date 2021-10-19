@@ -100,6 +100,8 @@ const CategoryList = () => {
     () =>
       categories.map((category, index) => {
         const { id, name } = category;
+        console.log(category.isActive);
+        if(category.isActive !== false){
         return (
           <>
             <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
@@ -110,6 +112,7 @@ const CategoryList = () => {
             </Card>
           </>
         );
+      };
       }),
     [categories]
   );
