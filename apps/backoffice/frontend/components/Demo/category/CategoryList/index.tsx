@@ -101,14 +101,12 @@ const CategoryList = () => {
       categories.map((category, index) => {
         const { id, name } = category;
         return (
-          <>
-            <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
-              <h1 className={clsx('text-2xl')}>{category.name}</h1>
-              <p className={clsx('text-lg', 'mb-12')}>Productos en esta categoría: 4</p>
-              <EditButton id={id} name={name} />
-              <DeleteButton id={id} name={name} />
-            </Card>
-          </>
+          <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
+            <h1 className={clsx('text-2xl')}>{category.name}</h1>
+            <p className={clsx('text-lg', 'mb-12')}>Productos en esta categoría: 4</p>
+            <EditButton id={id} name={name} />
+            <DeleteButton id={id} name={name} />
+          </Card>
         );
       }),
     [categories]
