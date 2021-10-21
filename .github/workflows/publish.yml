@@ -1,0 +1,42 @@
+name: Publish Documentation
+
+on:
+  push:
+    branches:
+      - dev
+    paths:
+      - 'apps/docs/**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Configure SSH
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
+
+      - name: Release to Github Pages
+        env:
+          USE_SSH: true
+          GIT_USER: git
+        run: |
+          git config --global user.email "alonsovla@gmail.com"
+          git config --global user.name "Vladimir Salvador"
+          if [ -e yarn.lock ]; then
+            yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+            npm ci
+          else
+            npm i
+          fi
+          npm run deploy
