@@ -53,7 +53,7 @@ Las grabaciones de las capacitaciones dadas las puedes encontrar en el siguiente
 Para tener siempre a la mano los hacks para usar typescript, recomendamos tener a la mano este [link](https://devhints.io/typescript)
 
 ##### Frappé Cheatsheet
-Pueden encontrarse en la [Wiki](taro-it.github.io/frappe/)
+Pueden encontrarse en la [Wiki](https://taro-it.github.io/frappe/)
 
 ##### Documentación de tecnologías
 
