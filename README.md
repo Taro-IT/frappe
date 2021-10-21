@@ -1,4 +1,6 @@
-# Developer Onboarding - Frappé
+# Frappé _(developer-onboarding)_
+
+> Este repositorio aloja el código del proyecto realizado para Cínica, el cuál es un ecommerce usando MERN
 
 ## Instalación del repositorio
 <!-- TODO: ADD link to .env -->
@@ -17,7 +19,7 @@
 
 ---
 
-## Comandos básicos
+## Uso
 
 - **Correr ambiente:**
 
@@ -57,3 +59,8 @@ Pueden encontrarse en la [Wiki](taro-it.github.io/frappe/)
 
 **[Hero Icons](https://heroicons.dev):** Iconografía de la plataforma
 **[Tailwind](https://tailwindcss.com)**: Librería de estilos para la plataforma
+
+### Maintainers 
+- [Vladimir Salvador](https://github.com/dinnos)
+- [Eduardo Castillo](https://github.com/eacp)
+
