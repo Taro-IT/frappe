@@ -16,7 +16,7 @@ A continuación se muestra el estándar que sigue el repositorio de Frappé. Por
 
 ---
 
-## Convención de nombres
+## Convención de nombres.
 
 ### Folders
 

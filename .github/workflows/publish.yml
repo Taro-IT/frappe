@@ -29,9 +29,12 @@ jobs:
         env:
           USE_SSH: true
           GIT_USER: git
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.email "alonsovla@gmail.com"
           git config --global user.name "Vladimir Salvador"
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+
           if [ -e yarn.lock ]; then
             yarn install --frozen-lockfile
           elif [ -e package-lock.json ]; then
@@ -39,4 +42,5 @@ jobs:
           else
             npm i
           fi
+          
           npm run nx -- run docs:deploy
