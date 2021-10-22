@@ -1,4 +1,4 @@
-name: Publish Documentation
+name: Publish Wiki Documentation
 
 on:
   push:
