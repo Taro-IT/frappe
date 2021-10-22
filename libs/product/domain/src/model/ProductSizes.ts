@@ -1,8 +1,3 @@
-export class ProductSizes {
-    readonly value: number[];
-  
-    constructor(value: number[]) {
-      this.value = value;
-    }
-  }
+import { NumberArrayValue } from '@frappe/common/value-object';
+export class ProductSizes extends NumberArrayValue {}
   

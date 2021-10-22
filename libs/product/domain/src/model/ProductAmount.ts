@@ -1,8 +1,3 @@
-export class ProductAmount {
-    readonly value: number;
-  
-    constructor(value: number) {
-      this.value = value;
-    }
-  }
-  
+import { NumberValue } from '@frappe/common/value-object';
+
+export class ProductAmount extends NumberValue {}

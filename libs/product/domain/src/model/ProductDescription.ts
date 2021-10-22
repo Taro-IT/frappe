@@ -1,8 +1,4 @@
-export class ProductDescription {
-    readonly value: string;
-  
-    constructor(value: string) {
-      this.value = value;
-    }
-  }
+import { StringValue } from '@frappe/common/value-object';
+
+export class ProductDescription extends StringValue{}
   

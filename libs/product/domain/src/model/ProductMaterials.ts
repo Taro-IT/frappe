@@ -1,7 +1,3 @@
-export class ProductMaterials {
-    readonly value: string[];
+import { StringArrayValue } from '@frappe/common/value-object';
+export class ProductMaterials extends StringArrayValue {}
   
-    constructor(value: string[]) {
-      this.value = value;
-    }
-  }

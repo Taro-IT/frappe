@@ -2,8 +2,7 @@ import {Card} from '@frappe/common/design-system'
 import {AddProductForm} from "@frappe/account/ui";
 
 
-const AddProduct = () => {
-  return (
+const AddProduct = () =>  (
     <Card className="w-50">
         <Card.Header title="Crea un nuevo producto"/>
           <AddProductForm />
@@ -12,6 +11,6 @@ const AddProduct = () => {
 
     </Card>
   )
-}
+
 
 export default AddProduct

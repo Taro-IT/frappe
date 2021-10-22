@@ -1,8 +1,3 @@
-export class ProductIsInSale {
-    readonly value: boolean;
-  
-    constructor(value: boolean) {
-      this.value = value;
-    }
-  }
+import { BooleanValue } from '@frappe/common/value-object';
+export class ProductIsInSale extends BooleanValue{}
   

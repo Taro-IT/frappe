@@ -1,8 +1,6 @@
 import { BlobServiceClient, BlockBlobParallelUploadOptions, ContainerClient } from '@azure/storage-blob';
 import { FileSystemFile, FileSystemRepository } from '@frappe/file-system/domain'
 
-
-
   /**
   * Manages the connection with Azure's blob storage
   */

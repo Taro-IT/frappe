@@ -1,12 +1,12 @@
 import {FileSystemRepository, FileSystemFile, FileSystemFileName, FileSystemFileContent} from '@frappe/file-system/domain'
 
-interface Props {
+interface FileSystemFileUploaderProps {
   readonly fileSystemRepository: FileSystemRepository
 }
 export class FileSystemFileUploader {
   private readonly fileSystemRepository: FileSystemRepository;
 
-  constructor({fileSystemRepository}: Props){
+  constructor({fileSystemRepository}: FileSystemFileUploaderProps){
     this.fileSystemRepository = fileSystemRepository;
   }
 

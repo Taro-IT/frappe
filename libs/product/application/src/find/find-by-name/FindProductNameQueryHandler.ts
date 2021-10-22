@@ -3,7 +3,7 @@ import { FindProductNameQuery } from './FindProductNameQuery';
 import { ProductNameFinder } from './ProductNameFinder';
 import { ProductPrimitives } from '@frappe/product/domain';
 
-type Props = {
+type FindProductNameQueryHandlerProps = {
   readonly productNameFinder: ProductNameFinder;
 };
 
@@ -18,7 +18,7 @@ export class FindProductNameQueryHandler
 
   readonly queryType = FindProductNameQuery.name;
 
-  constructor({ productNameFinder }: Props) {
+  constructor({ productNameFinder }: FindProductNameQueryHandlerProps) {
     this.ProductNameFinder = productNameFinder;
   }
 

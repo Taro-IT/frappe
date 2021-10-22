@@ -2,6 +2,9 @@ import {MongoRepository} from '@frappe/common/persistence/mongodb';
 import {Product, ProductId, ProductPrimitives, ProductRepository, ProductName} from '@frappe/product/domain';
 
 export class MongoProductRepository extends MongoRepository implements ProductRepository {
+  protected moduleName(): string {
+    return 'products';
+  }
   /**
    * Finds a product @see {@link Product}
    * @param id - The id of the product you want to find
@@ -23,7 +26,7 @@ export class MongoProductRepository extends MongoRepository implements ProductRe
  *
  * @returns a new Product
  */
-  save(product: Product): Promise<void> {
+  save(product: Product): Promise<void> {        
     return this.persist(product.id.value, product)
   }
 
@@ -44,7 +47,4 @@ export class MongoProductRepository extends MongoRepository implements ProductRe
     return Product.fromPrimitives({ ...document, id: document._id } as ProductPrimitives);
   }
 
-  protected moduleName(): string {
-    return 'products';
-  }
 }

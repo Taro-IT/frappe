@@ -1,5 +1,6 @@
 import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes,ProductRepository, ProductAlreadyExists } from '@frappe/product/domain';
 import { ProductNameFinder } from '../find/find-by-name';
+import {wrapError} from '@frappe/common/utils'
 
 interface Props {
   readonly productRepository: ProductRepository;
@@ -42,11 +43,7 @@ export class ProductCreator {
   }
 
   private async productExists(name: string) {
-    try {
-      await this.productNameFinder.execute(name);
-      return null;
-    } catch (error) {
-      return error;
-    }
+    const [error] = await wrapError(this.productNameFinder.execute(name))
+    return error;
   }
 }

@@ -1,13 +1,13 @@
 import { ProductNotFound, ProductName, ProductRepository } from '@frappe/product/domain';
 
-interface Props {
+interface ProductNameFinderProps {
   readonly productRepository: ProductRepository;
 }
 
 export class ProductNameFinder {
   private readonly productRepository: ProductRepository;
 
-  constructor({ productRepository }: Props) {
+  constructor({ productRepository }: ProductNameFinderProps) {
     this.productRepository = productRepository;
   }
 
