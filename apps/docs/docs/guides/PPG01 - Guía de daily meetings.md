@@ -7,13 +7,13 @@
 ## Pre-requisitos
 
 - Haber revisado y actualizado el Omnipointment semanal.
-- Tener abierto el documento de [Planeación - Frappé](https://docs.google.com/spreadsheets/d/1p8eNzn0IgJH-SGfaK-i6bGYGC0DOQpu-bQXMhOE0LYU/edit#gid=299758818) y el [Proceso de juntas diarias departamental](https://taro-it.github.io/docs/procesos/P07-proceso-juntas-diarias/)
+- Tener abierto el documento de [Planeación - Frappé](https://docs.google.com/spreadsheets/d/1p8eNzn0IgJH-SGfaK-i6bGYGC0DOQpu-bQXMhOE0LYU/edit#gid=299758818) y el [Proceso de juntas diarias](https://taro-it.github.io/docs/procesos/P07-proceso-juntas-diarias/)
 
 ## Pasos a seguir
 
 :::note
 
-Durante la reunión se debe seguir el [proceso de juntas diarias departamental](https://taro-it.github.io/docs/procesos/P07-proceso-juntas-diarias/), pero se tienen que  integrar las siguientes actividades en la fase correspondiente.
+Durante la reunión se debe seguir el [proceso de juntas diarias](https://taro-it.github.io/docs/procesos/P07-proceso-juntas-diarias/), pero se tienen que  integrar las siguientes actividades en la fase correspondiente.
 
 :::
 
