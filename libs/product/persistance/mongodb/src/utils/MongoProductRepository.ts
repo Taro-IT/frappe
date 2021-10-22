@@ -26,7 +26,7 @@ export class MongoProductRepository extends MongoRepository implements ProductRe
  *
  * @returns a new Product
  */
-  save(product: Product): Promise<void> {        
+  save(product: Product): Promise<void> {    
     return this.persist(product.id.value, product)
   }
 
