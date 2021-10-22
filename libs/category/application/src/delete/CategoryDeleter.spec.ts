@@ -22,7 +22,7 @@ describe('CategoryDeleter', () => {
     categoryRepository.find.mockResolvedValueOnce(category);
     await deleter.execute(category.id.value);
 
-    expect(categoryRepository.save).toHaveBeenCalledWith(category.id);
+    expect(categoryRepository.delete).toHaveBeenCalledWith(category.id);
   });
 
   it('should throw a CategoryNotFound', async () => {
