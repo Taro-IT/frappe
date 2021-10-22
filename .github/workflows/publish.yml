@@ -1,9 +1,11 @@
-name: Publish Documentation
+name: Publish Wiki Documentation
 
 on:
   push:
     branches:
       - dev
+    paths:
+      - 'apps/docs/**'
 
 jobs:
   release:
@@ -37,4 +39,4 @@ jobs:
           else
             npm i
           fi
-          npm run deploy
+          npm run nx -- run docs:deploy
