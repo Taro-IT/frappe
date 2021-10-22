@@ -1,0 +1,23 @@
+{
+  "root": "libs/email/infrastructure/sendgrid",
+  "sourceRoot": "libs/email/infrastructure/sendgrid/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/email/infrastructure/sendgrid/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/email/infrastructure/sendgrid"],
+      "options": {
+        "jestConfig": "libs/email/infrastructure/sendgrid/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

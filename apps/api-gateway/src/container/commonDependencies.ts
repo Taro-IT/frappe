@@ -6,6 +6,7 @@ import { EventDispatcher } from '@tshio/event-dispatcher';
 import { configureRouter } from '../routes';
 import { createLogger, restrictFromProduction } from '@tshio/logger';
 import * as admin from 'firebase-admin';
+import {SendgridEmailProvider} from "@frappe/email/infrastructure/sendgrid";
 
 const connectFirebase = () =>
   admin.initializeApp({
@@ -30,6 +31,7 @@ export const commonDependencies = (container: AwilixContainer) => {
     commandBus: asClass(CommandBus).classic().singleton(),
     eventBus: asClass(EventDispatcher).classic().singleton(),
     firebaseApp: asFunction(connectFirebase).singleton(),
-    firebaseAuth: asFunction(provideFirebaseAuth).singleton()
+    firebaseAuth: asFunction(provideFirebaseAuth).singleton(),
+    emailProvider: asClass(SendgridEmailProvider).singleton()
   });
 };
