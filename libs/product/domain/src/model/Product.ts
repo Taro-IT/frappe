@@ -1,5 +1,5 @@
 import { ProductName, ProductPrice } from '.';
-import { ProductPrimitives } from '../utils/ProductPrimitives';
+import { ProductPrimitives } from '../utils';
 import { ProductId } from './ProductId';
 
 export class Product {
