@@ -9,7 +9,6 @@ type LoginFormProps = {
   onSubmit: (email: string, password: string) => Promise<UserCredential>;
 };
 
-// TODO Add validation to Protected Routes
 export const LoginForm = ({ onSubmit }: LoginFormProps) => {
   const router = useRouter();
   const [generalError, setGeneralError] = useState<Nullable<string>>(null);

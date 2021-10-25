@@ -1,8 +1,8 @@
-# PP-99 Listar órdenes de compra
+# PP-HA99 Listar órdenes de compra
 
 ## Requisito
 
-- "Yo como administrador quiero ver las órdenes de compra de mis clientes para ver el backlog de las órdenes".
+- Yo como administrador quiero ver las órdenes de compra de mis clientes para ver el backlog de las órdenes.
 
 ## Acceptance criteria
 

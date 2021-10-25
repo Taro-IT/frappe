@@ -9,7 +9,7 @@ async function buildProject(project: string) {
 
 async function publishToGHPages(outputPath: string) {
   try {
-    const { stderr, stdout } = await asyncExec(`npm run gh-pages -- -d ${outputPath}`);
+    const { stderr, stdout } = await asyncExec(`npm run gh-pages -- -d ${outputPath} -b frappe-wiki`);
 
     console.log(stderr, stdout);
   } catch (error) {

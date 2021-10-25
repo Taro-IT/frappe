@@ -13,9 +13,11 @@ export function Form<FormValues>({
   className,
   children
 }: PropsWithChildren<FormProps<FormValues>>) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const methods = useForm({ defaultValues });
 
-  const handleSubmit: SubmitHandler<FormValues> = (data, event) => {
+  const handleSubmit: SubmitHandler<FormValues> = data => {
     onSubmit(data);
   };
   return (

@@ -22,10 +22,6 @@
     "file-system-application": "libs/file-system/application",
     "file-system-domain": "libs/file-system/domain",
     "file-system-persistence-azure": "libs/file-system/persistence/azure",
-    "shipping-application": "libs/shipping/application",
-    "shipping-domain": "libs/shipping/domain",
-    "shipping-infrastructure-skydropx": "libs/shipping/infrastructure/skydropx",
-    "shipping-test": "libs/shipping/test",
     "email-application": "libs/email/application",
     "email-domain": "libs/email/domain",
     "email-infrastructure-sendgrid": "libs/email/infrastructure/sendgrid",
@@ -37,7 +33,11 @@
     "product": "libs/product",
     "product-application": "libs/product/application",
     "product-domain": "libs/product/domain",
-    "product-persistance-mongodb": "libs/product/persistance/mongodb"
+    "product-persistance-mongodb": "libs/product/persistance/mongodb",
+    "shipping-application": "libs/shipping/application",
+    "shipping-domain": "libs/shipping/domain",
+    "shipping-infrastructure-skydropx": "libs/shipping/infrastructure/skydropx",
+    "shipping-test": "libs/shipping/test"
   },
   "cli": {
     "defaultCollection": "@nrwl/express"
