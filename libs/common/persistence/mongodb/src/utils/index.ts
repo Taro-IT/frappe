@@ -1,2 +1,2 @@
-export {MongoCriteriaMapper} from './MongoCriteriaMapper';
-export {MongoRepository} from './MongoRepository';
+export { MongoCriteriaMapper } from './MongoCriteriaMapper';
+export { MongoRepository } from './MongoRepository';

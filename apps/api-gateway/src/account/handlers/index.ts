@@ -1,1 +1,1 @@
-export {signUpHandler} from "./signUpHandler";
+export { signUpHandler } from './signUpHandler';

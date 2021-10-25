@@ -1,9 +1,8 @@
-import {CategoryAlreadyExists, CategoryRepository} from "@frappe/category/domain";
-import {CategoryCreator} from "./CategoryCreator";
-import { CategoryNameFinder} from "../find"
-import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended'
-import {CategoryMother} from "@frappe/category/test";
-
+import { CategoryAlreadyExists, CategoryRepository } from '@frappe/category/domain';
+import { CategoryCreator } from './CategoryCreator';
+import { CategoryNameFinder } from '../find';
+import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended';
+import { CategoryMother } from '@frappe/category/test';
 
 describe('CategoryCreator', () => {
   let categoryRepository: MockProxy<CategoryRepository>;
@@ -16,7 +15,7 @@ describe('CategoryCreator', () => {
     categoryNameFinder = mockDeep<CategoryNameFinder>(new CategoryNameFinder({ categoryRepository }));
 
     creator = new CategoryCreator({ categoryRepository, categoryNameFinder });
-  })
+  });
 
   it('should create a new Category', async () => {
     const category = CategoryMother.random();

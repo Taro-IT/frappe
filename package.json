@@ -25,6 +25,7 @@
     "@heroicons/react": "^1.0.4",
     "@mdx-js/react": "^1.6.21",
     "@nrwl/next": "12.9.0",
+    "@sendgrid/mail": "^7.4.7",
     "@tshio/awilix-resolver": "^1.0.2",
     "@tshio/command-bus": "^1.0.3",
     "@tshio/event-dispatcher": "^1.0.2",

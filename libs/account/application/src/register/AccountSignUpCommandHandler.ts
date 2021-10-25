@@ -1,6 +1,6 @@
-import {CommandHandler} from "@tshio/command-bus";
-import {AccountSignUpCommand} from "./AccountSignUpCommand";
-import {AccountSignUpper} from "./AccountSignUpper";
+import { CommandHandler } from '@tshio/command-bus';
+import { AccountSignUpCommand } from './AccountSignUpCommand';
+import { AccountSignUpper } from './AccountSignUpper';
 
 interface AccountSignUpCommandHandlerDeps {
   readonly accountSignUpper: AccountSignUpper;
@@ -19,5 +19,4 @@ export class AccountSignUpCommandHandler implements CommandHandler<AccountSignUp
 
     return this.accountSignUpper.execute(email, password, name);
   }
-
 }

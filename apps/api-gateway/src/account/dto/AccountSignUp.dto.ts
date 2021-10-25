@@ -1,7 +1,6 @@
-import {IsEmail, IsNotEmpty, MinLength} from "class-validator";
+import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
 
 export class AccountSignUpDto {
-
   @IsEmail()
   readonly email: string;
 

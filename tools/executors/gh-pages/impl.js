@@ -57,7 +57,7 @@ function publishToGHPages(outputPath) {
             switch (_b.label) {
                 case 0:
                     _b.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, exec_1.asyncExec("npm run gh-pages -- -d " + outputPath)];
+                    return [4 /*yield*/, exec_1.asyncExec("npm run gh-pages -- -d " + outputPath + " -b frappe-wiki")];
                 case 1:
                     _a = _b.sent(), stderr = _a.stderr, stdout = _a.stdout;
                     console.log(stderr, stdout);
@@ -80,12 +80,12 @@ var ghPagesExecutor = function (options, ctx) { return __awaiter(void 0, void 0,
             case 1:
                 _a.sent();
                 outputPath = options.outputPath;
-                return [4 /*yield*/, touch_1.touch(outputPath + "/.nojekyll")
-                    // await publishToGHPages(outputPath);
-                ];
+                return [4 /*yield*/, touch_1.touch(outputPath + "/.nojekyll")];
             case 2:
                 _a.sent();
-                // await publishToGHPages(outputPath);
+                return [4 /*yield*/, publishToGHPages(outputPath)];
+            case 3:
+                _a.sent();
                 return [2 /*return*/, { success: true }];
         }
     });

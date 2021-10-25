@@ -1,6 +1,6 @@
-import {EventSubscriberInterface, EventSubscribersMeta} from "@tshio/event-dispatcher";
-import {UserRegistered} from "@frappe/account/domain";
-import {UserCreator} from "../create";
+import { EventSubscriberInterface, EventSubscribersMeta } from '@tshio/event-dispatcher';
+import { UserRegistered } from '@frappe/account/domain';
+import { UserCreator } from '../create';
 
 interface CreateUserOnAccountRegisteredDeps {
   readonly userCreator: UserCreator;
@@ -14,9 +14,7 @@ export class CreateUserOnAccountRegistered implements EventSubscriberInterface {
   }
 
   getSubscribedEvents(): EventSubscribersMeta[] {
-    return [
-      { name: UserRegistered.name, method: 'execute' }
-    ];
+    return [{ name: UserRegistered.name, method: 'execute' }];
   }
 
   execute(event: UserRegistered) {

@@ -1,5 +1,5 @@
 import { XIcon } from '@heroicons/react/solid';
-import  { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { Card } from '../index';
 
 type ModalProps = {
@@ -7,16 +7,16 @@ type ModalProps = {
   toggleModal: (nv: boolean) => unknown;
   title: string;
 };
-export const Modal = ({ showModal, toggleModal, title, children, ...props }: PropsWithChildren<ModalProps>) => {
+export const Modal = ({ showModal, toggleModal, title, children }: PropsWithChildren<ModalProps>) => {
   const handleClickOut = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget === event.target) {
-      toggleModal(false)
+      toggleModal(false);
     }
-  }
+  };
 
   const closeModal = () => {
-    toggleModal(false)
-  }
+    toggleModal(false);
+  };
 
   return (
     <div
@@ -35,7 +35,7 @@ export const Modal = ({ showModal, toggleModal, title, children, ...props }: Pro
             className="ml-auto mr-4 mt-4 my-auto h-8 w-8 text-gray-400 hover:text-gray-500 cursor-pointer"
           />
         </div>
-        
+
         {children}
       </Card>
     </div>

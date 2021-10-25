@@ -1,1 +1,1 @@
-export { MongoCategoryRepository } from "./MongoCategoryRepository";
+export { MongoCategoryRepository } from './MongoCategoryRepository';

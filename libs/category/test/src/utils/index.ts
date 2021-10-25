@@ -1,1 +1,1 @@
-export {CategoryMother} from "./CategoryMother";
+export { CategoryMother } from './CategoryMother';

@@ -1,2 +1,2 @@
-export {EmailAlreadyExist} from './EmailAlreadyExist';
-export {InvalidPasword} from './InvalidPasword';
+export { EmailAlreadyExist } from './EmailAlreadyExist';
+export { InvalidPasword } from './InvalidPasword';
