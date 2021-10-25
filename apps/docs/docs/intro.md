@@ -13,11 +13,12 @@ que permitirá el desarrollo de cada uno de los miembros del departamento como p
 ## Visión
 
 ## Necesidades
+- La comunicación en el cliente se hace por WA y toma un aproximado de 2 horas para completar una compra, mandando muchas imágenes y explicando las opciones de personalización
+- La comunicación con el taller es complicada porque los encargados son mayores y les cuesta manejar la tecnología, causando que las ordenes se confundan y entreguen zapatos que no son 
 
 ## Objetivos
 
-1. Reducir el tiempo de venta de 2 - 4 horas a 10 - 20 min y eliminar la necesidad de la participación del socio formador en este proceso, por medio de la implementación de un módulo de ventas interactivo, para aumentar las ventas potenciales y brindar un mejor servicio al cliente.
-
-2. Proveer una comunicación de las órdenes de venta para los artesanos que sea instantánea y precisa, permitiendo acceso 24/7 al listado de ventas y emitiendo una ficha técnica con las especificaciones del pedido del cliente, evitando triangular los pedidos entre el cliente, el socio formador, y los artesanos
+1. Reducir el tiempo de venta de 2 - 4 horas a 10 - 20 min y eliminar la necesidad de la participación del socio formador en este proceso para el 27 de octubre de 2021
+2. Proveer una comunicación de las órdenes de venta para los artesanos que sea instantánea y precisa, emitiendo una ficha técnica con las especificaciones del pedido del cliente para el 24 de noviembre de 2021.
 
 ## Identidad
