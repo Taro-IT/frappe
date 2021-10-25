@@ -16,4 +16,8 @@ que permitirá el desarrollo de cada uno de los miembros del departamento como p
 
 ## Objetivos
 
+1. Reducir el tiempo de venta de 2 - 4 horas a 10 - 20 min y eliminar la necesidad de la participación del socio formador en este proceso, por medio de la implementación de un módulo de ventas interactivo, para aumentar las ventas potenciales y brindar un mejor servicio al cliente.
+
+2. Proveer una comunicación de las órdenes de venta para los artesanos que sea instantánea y precisa, permitiendo acceso 24/7 al listado de ventas y emitiendo una ficha técnica con las especificaciones del pedido del cliente, evitando triangular los pedidos entre el cliente, el socio formador, y los artesanos
+
 ## Identidad
