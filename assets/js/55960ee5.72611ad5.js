@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfrappe=self.webpackChunkfrappe||[]).push([[121],{1665:e=>{e.exports=[]}}]);
