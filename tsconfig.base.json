@@ -30,16 +30,25 @@
       "@frappe/common/test": ["libs/common/test/src/index.ts"],
       "@frappe/common/utils": ["libs/common/utils/src/index.ts"],
       "@frappe/common/value-object": ["libs/common/value-object/src/index.ts"],
+      "@frappe/file-system/application": ["libs/file-system/application/src/index.ts"],
+      "@frappe/file-system/domain": ["libs/file-system/domain/src/index.ts"],
+      "@frappe/file-system/persistence/azure": ["libs/file-system/persistence/azure/src/index.ts"],
+      "@frappe/email/application": ["libs/email/application/src/index.ts"],
+      "@frappe/email/domain": ["libs/email/domain/src/index.ts"],
+      "@frappe/email/infrastructure/sendgrid": ["libs/email/infrastructure/sendgrid/src/index.ts"],
       "@frappe/order": ["libs/order/src/index.ts"],
       "@frappe/order/application": ["libs/order/application/src/index.ts"],
       "@frappe/order/domain": ["libs/order/domain/src/index.ts"],
       "@frappe/order/persistance/mongodb": ["libs/order/persistance/mongodb/src/index.ts"],
       "@frappe/order/test": ["libs/order/test/src/index.ts"],
-      "@frappe/product": ["libs/product/src/index.ts"],
       "@frappe/product/application": ["libs/product/application/src/index.ts"],
       "@frappe/product/domain": ["libs/product/domain/src/index.ts"],
       "@frappe/product/persistance/mongodb": ["libs/product/persistance/mongodb/src/index.ts"],
-      "@frappe/product/test": ["libs/product/test/src/index.ts"]
+      "@frappe/product/test": ["libs/product/test/src/index.ts"],
+      "@frappe/shipping/application": ["libs/shipping/application/src/index.ts"],
+      "@frappe/shipping/domain": ["libs/shipping/domain/src/index.ts"],
+      "@frappe/shipping/infrastructure/skydropx": ["libs/shipping/infrastructure/skydropx/src/index.ts"],
+      "@frappe/shipping/test": ["libs/shipping/test/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

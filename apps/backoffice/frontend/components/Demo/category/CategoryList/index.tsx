@@ -2,15 +2,15 @@ import classes from './CategoryList.module.scss';
 import { Button, Card, Modal, SpanError } from '@frappe/common/design-system';
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
-import clsx from 'clsx';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
+import clsx from 'clsx';
 
 type category = {
   readonly id: string;
   readonly name: string;
 };
 
-const CategoryList = props => {
+const CategoryList = () => {
   const [categories, setCategories] = useState([]);
   const [displayEditModal, setEditModal] = useState<boolean>(false);
   const [currentCategory, setCurrentCategory] = useState<category>();

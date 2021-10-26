@@ -1,10 +1,10 @@
 import { Card } from '@frappe/common/design-system';
 import { Button } from '@frappe/common/design-system';
 import classes from './AddCategory.module.scss';
-
 import { useState } from 'react';
 import axios from 'axios';
-const CreateCategory = props => {
+
+const CreateCategory = () => {
   const [categoryName, setCategoryName] = useState('');
 
   const addCategoryHandler = async event => {
@@ -29,8 +29,8 @@ const CreateCategory = props => {
     <Card className={classes.input}>
       <form>
         <label htmlFor="categoryName">Nombre de la categoría</label>
-        <input id="categoryName" type="text" value={categoryName} onChange={nameChangeHandler}></input>
-        <Button variant="cta" type="submit" onClick={addCategoryHandler} title="Agregar"></Button>
+        <input id="categoryName" type="text" value={categoryName} onChange={nameChangeHandler} />
+        <Button variant="cta" type="submit" onClick={addCategoryHandler} title="Agregar" />
       </form>
     </Card>
   );

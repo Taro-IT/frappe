@@ -16,7 +16,7 @@ A continuación se muestra el estándar que sigue el repositorio de Frappé. Por
 
 ---
 
-## Convención de nombres
+## Convención de nombres.
 
 ### Folders
 
@@ -81,7 +81,7 @@ Por ejemplo los archivos del modelo de contexto **_category_** se llamarán `Cat
 
 - Todas las funciones deben estar comentadas, explicando de manera concisa el propósito de la misma.
 
-- Los comentarios de las funciones deberán seguir el estándar [jsdoc](https://jsdoc.app/).
+- Los comentarios de las funciones deberán seguir el estándar [tsdoc](https://tsdoc.org/).
   Por ejemplo:
 
 ```ts

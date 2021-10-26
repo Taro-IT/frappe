@@ -1,1 +1,0 @@
-export { searchProductsHandler } from './searchProductsHandler';

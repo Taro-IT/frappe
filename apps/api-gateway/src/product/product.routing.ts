@@ -1,15 +1,19 @@
-import { QueryBus } from '@tshio/query-bus';
 import express from 'express';
-import * as handlers from './handler';
+import { CommandBus } from '@tshio/command-bus';
+import { makeValidateBody } from 'express-class-validator';
+import * as dtos from './dto';
+import * as handlers from './handlers';
+import { QueryBus } from '@tshio/query-bus';
 
 interface ProductRoutingDeps {
+  readonly commandBus: CommandBus;
   readonly queryBus: QueryBus;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const productRouting = ({ queryBus }: ProductRoutingDeps) => {
+export const productRouting = ({ commandBus, queryBus }: ProductRoutingDeps) => {
   const router = express.Router();
 
+  router.post('/', makeValidateBody(dtos.CreateProductDto), handlers.createProductHandler(commandBus));
   router.get('/', handlers.searchProductsHandler(queryBus));
 
   return router;

@@ -1,7 +1,7 @@
 import {mock, MockProxy} from "jest-mock-extended";
 import {ProductRepository} from "@frappe/product/domain";
 import {ProductSearcher} from "./ProductSearcher";
-import { Operator, OrderTypes } from "@dinnosc/criteria";
+import { OrderTypes } from "@dinnosc/criteria";
 import { ProductMother } from "@frappe/product/test";
 
 describe('ProductSearcher', () => {
@@ -27,7 +27,7 @@ describe('ProductSearcher', () => {
     const run = async () => service.execute([],{by:"",type:OrderTypes.NONE});
     await expect(run()).resolves.toEqual({products: products.map(product => product.toPrimitives()), total: products.length});
   });
-  
+
   it('should return filtered products by name', async () => {
     const products = Array.from({length: 5}, () => ProductMother.random());
     repository.search.mockResolvedValue([products[0]]);
@@ -51,5 +51,5 @@ describe('ProductSearcher', () => {
     const run = async () => service.execute([{field: "id", operator: "EQUAL", value: products[0].id.value }],{by:"",type:OrderTypes.NONE});
     await expect(run()).resolves.toEqual({products: [products[0].toPrimitives()] , total: 1});
   });
-  
+
 });

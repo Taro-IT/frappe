@@ -42,7 +42,7 @@ jobs:
         env:
           NX_BASE: ${{ steps.nx-base.outputs.base }}
         run: |
-          npm run lint-staged
+          npm run format -- --uncommitted
           npm run affected:lint -- --base=$NX_BASE
 
   test:

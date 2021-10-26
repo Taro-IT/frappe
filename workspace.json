@@ -19,16 +19,25 @@
     "common-utils": "libs/common/utils",
     "common-value-object": "libs/common/value-object",
     "docs": "apps/docs",
+    "file-system-application": "libs/file-system/application",
+    "file-system-domain": "libs/file-system/domain",
+    "file-system-persistence-azure": "libs/file-system/persistence/azure",
+    "email-application": "libs/email/application",
+    "email-domain": "libs/email/domain",
+    "email-infrastructure-sendgrid": "libs/email/infrastructure/sendgrid",
     "order": "libs/order",
     "order-application": "libs/order/application",
     "order-domain": "libs/order/domain",
     "order-persistance-mongodb": "libs/order/persistance/mongodb",
     "order-test": "libs/order/test",
-    "product": "libs/product",
     "product-application": "libs/product/application",
     "product-domain": "libs/product/domain",
+    "product-test": "libs/product/test",
     "product-persistance-mongodb": "libs/product/persistance/mongodb",
-    "product-test": "libs/product/test"
+    "shipping-application": "libs/shipping/application",
+    "shipping-domain": "libs/shipping/domain",
+    "shipping-infrastructure-skydropx": "libs/shipping/infrastructure/skydropx",
+    "shipping-test": "libs/shipping/test"
   },
   "cli": {
     "defaultCollection": "@nrwl/express"
