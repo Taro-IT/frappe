@@ -1,0 +1,14 @@
+.wrapper {
+  @apply grid w-screen h-full;
+  grid-template-areas: "sidebar products";
+  grid-template-rows: 1fr;
+  grid-template-columns: 20% 80%;
+
+  &-sidebar {
+    grid-area: sidebar;
+  }
+
+  &-content {
+    grid-area: products;
+  }
+}

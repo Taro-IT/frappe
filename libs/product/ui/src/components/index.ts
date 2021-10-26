@@ -1,0 +1,1 @@
+export { ShopSidebar } from './ShopSidebar';
