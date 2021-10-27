@@ -31,7 +31,7 @@ export const NavbarMobile = () => {
         
         <div className="absolute top-24 left-0">
           <nav className=" w-screen flex flex-col bg-primary  left-0" aria-label="Navbar">
-            {navItems.map(item => <Link variant="nav-item-mobile" href={item.href} text={item.href}/>)}
+            {navItems.map((item, index) => <Link key={ index } variant="nav-item" href={item.href} text={item.text} />)}
           </nav>
 
           <div className="bg-primary flex-row flex left-0 w-full py-2">

@@ -20,7 +20,7 @@ export const Navbar = () => {
       <img src="/img/cinica-logo.png" alt="Cínica Logo" />
       
       <nav className="flex w-screen self-center justify-center" aria-label="Navbar">
-        {navItems.map(item => <Link variant="nav-item" href={item.href} text={item.text} />)}
+        {navItems.map((item, index) => <Link key={ index } variant="nav-item" href={item.href} text={item.text} />)}
       </nav>
 
       <div className="ml-auto self-center flex">
