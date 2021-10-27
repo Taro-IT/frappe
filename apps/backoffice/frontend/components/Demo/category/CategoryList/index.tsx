@@ -23,6 +23,10 @@ const CategoryList = () => {
 
   // TODO: centralize to state management -> refactor to custom hook
   useEffect(() => {
+    var guardado = localStorage.getItem('objeto');
+    var obj1 = JSON.parse(guardado);
+    console.log('objetoObtenido: ', obj1);
+    
     const getCategories = async (): Promise<void> => {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
       const data = response.data.result;
@@ -89,6 +93,10 @@ const CategoryList = () => {
     return <Button title="Editar" className="ml-2 w-24" variant="cta" onClick={edit} />;
   };
   const DeleteButton = ({ id, name }: buttonprops) => {
+    var products = [];
+    products[0] = { 'nombre': 'Chido', 'estilo': 'normal', 'color': 'azul' };
+    products[1] = { 'nombre': 'Chido2', 'estilo': 'normal', 'color': 'rojo' };
+    localStorage.setItem('objeto',JSON.stringify(products));
     const deleteCategory = () => {
       setDeleteModal(true);
       setCurrentCategory({ id, name });
