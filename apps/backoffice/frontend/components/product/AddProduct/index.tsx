@@ -3,7 +3,7 @@ import {AddProductForm} from "@frappe/account/ui";
 
 
 const AddProduct = () =>  (
-    <Card className="w-50">
+    <Card className="">
         <Card.Header title="Crea un nuevo producto"/>
           <AddProductForm />
         <Card.Footer>
