@@ -2,6 +2,13 @@ import React, { useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
 import { Link } from '..';
 
+const navItems = [
+  {href: "shop", text: "Tienda"},
+  {href: "about", text: "Nosotros"},
+  {href: "outlet", text: "Outlet"},
+  {href: "contact", text: "Contacto"}
+]
+
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
 
@@ -13,10 +20,7 @@ export const Navbar = () => {
       <img src="/img/cinica-logo.png" alt="Cínica Logo" />
       
       <nav className="flex w-screen self-center justify-center" aria-label="Navbar">
-        <Link variant="nav-item" href="shop" text="Tienda" />
-        <Link variant="nav-item" href="about" text="Nosotros" />
-        <Link variant="nav-item" href="outlet" text="Outlet" />
-        <Link variant="nav-item" href="contact" text="Contacto" />
+        {navItems.map(item => <Link variant="nav-item" href={item.href} text={item.text} />)}
       </nav>
 
       <div className="ml-auto self-center flex">

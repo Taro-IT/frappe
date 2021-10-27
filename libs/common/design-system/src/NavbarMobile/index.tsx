@@ -1,5 +1,13 @@
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon, MenuIcon } from '@heroicons/react/solid'
 import React, { useState } from 'react'
+import { Link } from '..'
+
+const navItems = [
+  {href: "shop", text: "Tienda"},
+  {href: "about", text: "Nosotros"},
+  {href: "outlet", text: "Outlet"},
+  {href: "contact", text: "Contacto"}
+]
 
 export const NavbarMobile = () => {
   const [open, setOpen] = useState(false)
@@ -23,10 +31,7 @@ export const NavbarMobile = () => {
         
         <div className="absolute top-24 left-0">
           <nav className=" w-screen flex flex-col bg-primary  left-0" aria-label="Navbar">
-            <a className="text-white hover:text-yellow-400 text-3xl font-light pl-2 pt-2" href="shop">Tienda</a>
-            <a className="text-white hover:text-yellow-400 text-3xl font-light pl-2 pt-2" href="about">Nosotros</a>
-            <a className="text-white hover:text-yellow-400 text-3xl font-light pl-2 pt-2" href="outlet">Outlet</a>
-            <a className="text-white hover:text-yellow-400 text-3xl font-light pl-2 pt-2 pb-4" href="contact">Contacto</a>
+            {navItems.map(item => <Link variant="nav-item-mobile" href={item.href} text={item.href}/>)}
           </nav>
 
           <div className="bg-primary flex-row flex left-0 w-full py-2">
