@@ -1,15 +1,6 @@
 import React, { useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
 
-const navigation = [
-  { name: 'Ajustes', icon: CogIcon, href: 'settings' },
-  { name: 'Cerrar Sesión', icon: LogoutIcon, href: 'logout' },
-]
-
-const classNames = (...classes: string[]) => {
-  return classes.filter(Boolean).join(' ')
-}
-
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
 

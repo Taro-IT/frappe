@@ -8,8 +8,8 @@ const ListCategoriesPage = () => {
 
   return (
    <>
-{/*       <AddCategory />
-      <CategoryList /> */}
+      <AddCategory />
+      <CategoryList />
    </>
   )
 }
