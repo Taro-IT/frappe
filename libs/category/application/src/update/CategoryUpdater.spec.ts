@@ -1,6 +1,6 @@
 import { CategoryAlreadyExists, CategoryRepository, CategoryIdNotFound } from '@frappe/category/domain';
 import { CategoryUpdater } from './CategoryUpdater';
-import { CategoryNameFinder } from '../find/find-by-name/CategoryNameFinder';
+import { CategoryNameFinder } from '../find/find-by-name';
 import { CategoryFinder } from '../find/find-by-id';
 import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended';
 import { CategoryMother } from '@frappe/category/test';

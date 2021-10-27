@@ -1,5 +1,5 @@
 import { OrderPrimitives } from '../utils';
-import { OrderItem } from './order-items/OrderItem';
+import { OrderItem } from './order-items';
 import { OrderDateCreated } from './OrderDateCreated';
 import { OrderId } from './OrderId';
 import { OrderStatus } from './OrderStatus';

@@ -42,5 +42,5 @@ jobs:
           else
             npm i
           fi
-          
+
           npm run nx -- run docs:deploy

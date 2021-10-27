@@ -1,0 +1,1 @@
+export { AzureFileSystemRepository } from "./AzureFileSystemRepository";
