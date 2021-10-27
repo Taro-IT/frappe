@@ -3,8 +3,8 @@ import React from 'react'
 import { getSelectorsByUserAgent } from 'react-device-detect'
 import clsx from 'clsx';
 
-export const AdminLayout = ({children, sa}) => {
-  const { isMobile } = getSelectorsByUserAgent(sa)
+export const AdminLayout = ({children, userAgent}) => {
+  const { isMobile } = getSelectorsByUserAgent(userAgent)
 
   return (
     <div className={ clsx('bg-gray-100 w-full h-screen flex', isMobile ? 'flex-col' : 'flex-row') }>

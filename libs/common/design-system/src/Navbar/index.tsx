@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
+import { Link } from '..';
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
@@ -12,10 +13,10 @@ export const Navbar = () => {
       <img src="/img/cinica-logo.png" alt="Cínica Logo" />
       
       <nav className="flex w-screen self-center justify-center" aria-label="Navbar">
-        <a className="text-white hover:text-yellow-400 text-3xl font-light px-10" href="shop">Tienda</a>
-        <a className="text-white hover:text-yellow-400 text-3xl font-light px-10" href="about">Nosotros</a>
-        <a className="text-white hover:text-yellow-400 text-3xl font-light px-10" href="outlet">Outlet</a>
-        <a className="text-white hover:text-yellow-400 text-3xl font-light px-10" href="contact">Contacto</a>
+        <Link variant="nav-item" href="shop" text="Tienda" />
+        <Link variant="nav-item" href="about" text="Nosotros" />
+        <Link variant="nav-item" href="outlet" text="Outlet" />
+        <Link variant="nav-item" href="contact" text="Contacto" />
       </nav>
 
       <div className="ml-auto self-center flex">

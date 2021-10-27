@@ -12,7 +12,7 @@ export const withUserAgent = WrappedComponent => {
     const props = WrappedComponent.getInitialProps && await WrappedComponent.getInitialProps(context)
     return {
       ...props,
-      sa: context.req.headers['user-agent']
+      userAgent: context.req.headers['user-agent']
     }
   };
   FunctionalComponent.Layout = WrappedComponent.Layout ?? Noop;

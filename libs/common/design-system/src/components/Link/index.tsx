@@ -6,7 +6,7 @@ import clsx from 'clsx';
 type LinkProps = {
   readonly text: string;
   readonly href: string;
-  readonly variant?: 'cta';
+  readonly variant?: 'cta' | 'nav-item';
 };
 
 export const Link = ({ text, href, variant = 'cta' }: LinkProps) => (

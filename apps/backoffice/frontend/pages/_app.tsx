@@ -6,12 +6,12 @@ import { Noop } from '../layouts/Noop';
 import { NextComponentType } from 'next';
 
 const CinicaApp = ({ Component, pageProps }: AppProps) => {
-  const Layout = (Component as NextComponentType & {Layout?: FC<{sa: string}>}).Layout ?? Noop
+  const Layout = (Component as NextComponentType & {Layout?: FC<{userAgent: string}>}).Layout ?? Noop
   
   return (
     
     <AuthUserProvider>
-      <Layout sa={pageProps.sa}>
+      <Layout userAgent={pageProps.userAgent}>
         <Component {...pageProps} />
       </Layout>
     </AuthUserProvider>

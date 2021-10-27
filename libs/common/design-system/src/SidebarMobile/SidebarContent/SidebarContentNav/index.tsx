@@ -14,7 +14,6 @@ const navigation = [
 
 const SidebarContentNav = () => {
   return (
-    <>
     <nav className="flex-1 bg-primary flex-row" aria-label="Sidebar">
       {
         navigation.map(item => <a key={item.name} href={item.href} className={classNames('my-2 hover:text-yellow-400 text-white', 'border-transparent text-white hover:text-yellow-400', 'group px-3 py-2 text-sm font-medium border-l-4 flex flex-row')}>
@@ -24,7 +23,6 @@ const SidebarContentNav = () => {
       }
     <SidebarContentUser/>
     </nav>
-    </>
   );
 }
 

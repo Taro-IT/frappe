@@ -6,4 +6,14 @@
       color: #766131;
     }
   }
+  &.nav-item {
+    @apply text-white;
+    @apply text-3xl;
+    @apply font-light ;
+    @apply px-10;
+
+    &:hover {
+      @apply text-yellow-400;
+    }
+  }
 }
