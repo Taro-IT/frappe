@@ -4,6 +4,8 @@ import { UpdateCategoryCommandHandler } from '@frappe/category/application';
 import { CreateCategoryCommandHandler } from '@frappe/category/application';
 import { CreateOrderCommandHandler } from '@frappe/order/application';
 import { AccountSignUpCommandHandler } from '@frappe/account/application';
+import { UploadFileCommandHandler } from "@frappe/file-system/application";
+import { CreateProductCommandHandler } from "@frappe/product/application";
 import { DeleteCategoryCommandHandler } from '@frappe/category/application';
 
 export const commandHandlers = (container: AwilixContainer) => {
@@ -11,9 +13,11 @@ export const commandHandlers = (container: AwilixContainer) => {
     commandHandlers: asArray<unknown>([
       asClass(CreateCategoryCommandHandler),
       asClass(AccountSignUpCommandHandler),
+      asClass(UploadFileCommandHandler),
       asClass(CreateOrderCommandHandler),
       asClass(UpdateCategoryCommandHandler),
       asClass(DeleteCategoryCommandHandler),
+      asClass(CreateProductCommandHandler),
     ])
   });
 };

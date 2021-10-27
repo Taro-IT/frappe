@@ -6,7 +6,7 @@ export class MongoCriteriaMapper {
       return {};
     }
 
-    return criteria.filters.reduce((query, { field, operator, value }) => {
+    return criteria.filters.value().reduce((query, { field, operator, value }) => {
       const key = field.value === 'id' ? '_id' : field.value;
       const fieldValue = value.value;
 

@@ -1,7 +1,7 @@
 ---
-id: code-checklist
-slug: /code-checklist
-sidebar_position: 2
+id: checklist
+slug: /checklist
+sidebar_position: 3
 ---
 
 # Checklist de código

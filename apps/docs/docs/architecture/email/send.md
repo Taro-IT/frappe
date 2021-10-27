@@ -25,7 +25,7 @@ Documentación consultada:
 
 -  [How to set up domain authentication](https://docs.sendgrid.com/ui/account-and-settings/how-to-set-up-domain-authentication)
 -  [DKIM Records Explained](https://docs.sendgrid.com/ui/account-and-settings/dkim-records)
--  [SendGrid](https://app.sendgrid.com/guide/integrate/langs/nodejs) (Falta cuenta de equipo para poder acceder a esta liga. Por el momento se puede consultar con la cuenta de Eduardo)
+-  [SendGrid](https://app.sendgrid.com/guide/integrate/langs/nodejs) (Falta cuenta de equipo para poder acceder a esta liga. Por el momento se puede consultar con la cuenta de Eduardo.)
 -  [SendGrid Templates with Parameters (Dynamic Template Data) and Send Email using Python Libraries](https://code.luasoftware.com/tutorials/sendgrid/python-sendgrid-with-parameters/)
 
 ## Artefactos generados
@@ -43,4 +43,4 @@ Documentación consultada:
 
 ## Versión
 
-- 1.0
+- 1.0 - Creación del documento
