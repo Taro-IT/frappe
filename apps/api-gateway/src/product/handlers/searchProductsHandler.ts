@@ -9,7 +9,7 @@ export const searchProductsHandler =
     const { filters, order, limit, offset } = req.query;
 
     const query = new SearchProductsQuery({
-      filters: JSON.parse(filters as string),
+      filters: filters ? JSON.parse(filters as string) : [],
       order: JSON.parse(order as string),
       limit: limit !== undefined ? Number(limit as string) : undefined,
       offset: offset !== undefined ? Number(offset as string) : undefined

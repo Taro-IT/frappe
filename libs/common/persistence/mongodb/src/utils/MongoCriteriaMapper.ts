@@ -2,7 +2,7 @@ import { Criteria, Operator } from '@dinnosc/criteria';
 
 export class MongoCriteriaMapper {
   transformQuery<T>(criteria: Criteria<T>) {
-    if (!criteria.hasFilters()) {
+    if (criteria.filters.value.length === 0) {
       return {};
     }
 

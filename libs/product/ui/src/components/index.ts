@@ -1,1 +1,2 @@
-export { ShopSidebar } from './ShopSidebar';
+export { StoreProductContent } from './StoreProductContent';
+export { StoreSidebar } from './StoreSidebar';

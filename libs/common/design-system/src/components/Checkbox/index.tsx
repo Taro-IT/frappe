@@ -3,10 +3,11 @@ import React, { ChangeEventHandler } from 'react';
 interface CheckboxProps {
   readonly name: string;
   readonly label: string;
+  readonly value?: boolean;
   readonly onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const Checkbox = ({ name, label, onChange }: CheckboxProps) => {
+export const Checkbox = ({ name, label, value = false, onChange }: CheckboxProps) => {
   return (
     <div className='relative flex items-start'>
       <div className='flex items-center h-5'>
@@ -16,6 +17,7 @@ export const Checkbox = ({ name, label, onChange }: CheckboxProps) => {
           type='checkbox'
           className='focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded'
           onChange={ onChange }
+          checked={ value }
         />
       </div>
       {
