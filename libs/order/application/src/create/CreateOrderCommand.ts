@@ -6,7 +6,6 @@ interface CreateOrderCommandPayload {
   readonly items: OrderItemType[];
   readonly subtotal: number;
   readonly total: number;
-  readonly dateCreated: Date;
   readonly status: OrderStatuses;
   readonly isDelayed: boolean;
 }

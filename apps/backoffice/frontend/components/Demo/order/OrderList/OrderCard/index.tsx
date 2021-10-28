@@ -28,6 +28,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     'Diciembre'
   ];
 
+  //TODO: arreglar fechas incorrectas (Defect log línea 27).
   const prettyDate = new Date(order.dateCreated);
   const year = prettyDate.getFullYear();
   const month = prettyDate.getMonth();

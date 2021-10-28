@@ -32,12 +32,12 @@ export class OrderCreator {
   }
 
   //TODO: isDelayed debería ser falso desde que se crea, solo se agregó para hacer pruebas en lo que queda el caso del update
+  //TODO status debería ser OrderStatuses.ABIERTA, solo está el campo para hacer pruebas en lo que queda el update
   async execute(
     id: string,
     items: OrderItemType[],
     subtotal: number,
     total: number,
-    dateCreated: Date,
     status: OrderStatuses,
     isDelayed: boolean
   ) {
@@ -52,7 +52,7 @@ export class OrderCreator {
       items.map(item => OrderItem.fromPrimitives(item)),
       new OrderSubtotal(subtotal),
       new OrderTotal(total),
-      new OrderDateCreated(dateCreated),
+      new OrderDateCreated(new Date()),
       new OrderStatus(status),
       new OrderIsDelayed(isDelayed)
     );
