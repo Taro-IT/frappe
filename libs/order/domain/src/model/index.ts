@@ -5,3 +5,4 @@ export * from './OrderId';
 export * from './OrderStatus';
 export * from './OrderSubtotal';
 export * from './OrderTotal';
+export * from './OrderIsDelayed';

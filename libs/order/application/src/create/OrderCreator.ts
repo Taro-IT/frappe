@@ -9,7 +9,8 @@ import {
   OrderStatus,
   OrderStatuses,
   OrderSubtotal,
-  OrderTotal
+  OrderTotal,
+  OrderIsDelayed
 } from '@frappe/order/domain';
 import { OrderFinder } from '..';
 
@@ -30,13 +31,15 @@ export class OrderCreator {
     this.orderFinder = orderFinder;
   }
 
+  //TODO: isDelayed debería ser falso desde que se crea, solo se agregó para hacer pruebas en lo que queda el caso del update
   async execute(
     id: string,
     items: OrderItemType[],
     subtotal: number,
     total: number,
     dateCreated: Date,
-    status: OrderStatuses
+    status: OrderStatuses,
+    isDelayed: boolean
   ) {
     const exists = await this.orderExists(id);
 
@@ -50,7 +53,8 @@ export class OrderCreator {
       new OrderSubtotal(subtotal),
       new OrderTotal(total),
       new OrderDateCreated(dateCreated),
-      new OrderStatus(status)
+      new OrderStatus(status),
+      new OrderIsDelayed(isDelayed)
     );
     return this.orderRepository.save(order);
   }

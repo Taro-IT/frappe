@@ -8,6 +8,7 @@ interface CreateOrderCommandPayload {
   readonly total: number;
   readonly dateCreated: Date;
   readonly status: OrderStatuses;
+  readonly isDelayed: boolean;
 }
 
 export class CreateOrderCommand implements Command<CreateOrderCommandPayload> {
