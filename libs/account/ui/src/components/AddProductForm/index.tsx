@@ -10,6 +10,8 @@ export const AddProductForm = () => {
   const [, setCategories] = useState();
   const [options, setOptions] = useState();
 
+  const sizes = ["22.5", "23", "23.5","24","24.5", "25", "25.5", "26", "26.5"]
+
   type Category = {
     id: string,
     name : string,
@@ -47,7 +49,7 @@ export const AddProductForm = () => {
     <Form className="flex flex-col w-full p-8" onSubmit={onSubmit}>
       <TextField label="Nombre del producto" type="name" name="productName" validations={{ required: 'El nombre del producto es requerido' }} />
       <TextField label="Materiales disponibles" name="materials" validations={{ required: 'Los materiales son requeridos' }} />
-      <label className={'w-1/3'}>
+      <label className={'w-1/3 mt-4 mb-3'}>
           Categoría(s)
       </label>
       <Select
@@ -58,17 +60,31 @@ export const AddProductForm = () => {
         classNamePrefix="Selecciona algunas categorías"
         styles={customStyles}
       />
-      <label className={'w-1/3'}>
+      <label className={'w-1/3 mt-4 mb-3'}>
           Tallas disponibles
       </label>
-      <div className="border border- border-gray-300 w-20 h-10 cursor-pointer rounded-md content-center">
-        <div>22</div>
+      <div className="flex flex-row space-x-4 mb-4">
+        {sizes.map(size => 
+          <div className={`border border- border-gray-300 w-20 h-10 cursor-pointer rounded-md p-2`}>
+            <div>{size}</div>
+          </div>
+        )}
       </div>
+      
       <TextField label="Precio" type="name" name="price" validations={{ required: 'El precio es requerido'}}/>
-      <TextField label="¿Este producto tiene stock?" type="name" name="stock" />
-      <TextField label="Descripción" type="text-area" name="description"/>
+      <label className={'w-1/3 mt-4 mb-3'}>
+          ¿Este producto tiene stock?
+      </label>
+      
+      <label className={'w-1/3 mt-4 mb-3'}>
+          Descripción
+      </label>
+      <input type="textarea" />
+      
       <TextField label="Imágenes" type="name" name="images"/>
-      <TextField label="¿Es customizable?" type="name" name="isCustomizable" />
+      <label className={'w-1/3 mt-4 mb-3'}>
+          ¿Este producto es personalizable?
+      </label>
 
 
       <Button title="Crear cuenta" type="submit" variant="cta" className={"mt-4"} />
