@@ -1,25 +1,18 @@
-import { Button, Card, Modal, SpanError } from '@frappe/common/design-system';
+import { Button, Card, Modal } from '@frappe/common/design-system';
 import classes from './CartDetails.module.scss';
 import { useState, useMemo, useEffect } from 'react';
-import axios from 'axios';
+import { BadgeCheckIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
 
 const CartView = () => {
-  const [categoryName, setCategoryName] = useState('');
   const [cartItems, setCartItems] = useState([]);
+  const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   var totalPrice = 0;
 
   
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // var products = [];
-      // products[0] = { 'name': 'Chido', 'color': 'azul', 'productId':'alsk-1234' , 'amount':'1', 'additionalComments':'Tamaño grande', 'size':'23', 'price':'2300', 'image':'https://cinicastaticfiles.blob.core.windows.net/uploads/c93b52d0-eabf-4c7d-9f94-e28a16fc62fb.jpeg'};
-      // products[1] = { 'name': 'Chido2', 'color': 'rojo', 'productId':'alsk-1235' , 'amount':'1', 'additionalComments':'Tamaño grande', 'size':'22', 'price':'2003', 'image':'https://cinicastaticfiles.blob.core.windows.net/uploads/c93b52d0-eabf-4c7d-9f94-e28a16fc62fb.jpeg'};
-      // products[2] = { 'name': 'Chido2', 'color': 'rojo', 'productId':'alsk-1235' , 'amount':'1', 'additionalComments':'Tamaño grande', 'size':'26', 'price':'2003', 'image':'https://cinicastaticfiles.blob.core.windows.net/uploads/c93b52d0-eabf-4c7d-9f94-e28a16fc62fb.jpeg'};
-      // products[3] = { 'name': 'Chido2', 'color': 'rojo', 'productId':'alsk-1235' , 'amount':'1', 'additionalComments':'Tamaño grande', 'size':'27', 'price':'2003', 'image':'https://cinicastaticfiles.blob.core.windows.net/uploads/c93b52d0-eabf-4c7d-9f94-e28a16fc62fb.jpeg'};
-      // products[4] = { 'name': 'Chido2', 'color': 'rojo', 'productId':'alsk-1235' , 'amount':'1', 'additionalComments':'Tamaño grande', 'size':'25', 'price':'2003', 'image':'https://cinicastaticfiles.blob.core.windows.net/uploads/c93b52d0-eabf-4c7d-9f94-e28a16fc62fb.jpeg'};
-      // localStorage.setItem('objeto',JSON.stringify(products));
       setCartItems(JSON.parse(localStorage.getItem('objeto')));
       if(cartItems === null){
         var cartArray = [];
@@ -28,24 +21,6 @@ const CartView = () => {
       }
     }
   }, []);
-
-  const addCategoryHandler = async event => {
-    event.preventDefault();
-    if (categoryName == '') return;
-    try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
-        name: categoryName
-      });
-    } catch (error) {
-      console.error('La categoría ya existe.');
-    }
-
-    setCategoryName('');
-  };
-
-  const nameChangeHandler = event => {
-    setCategoryName(event.target.value);
-  };
 
   type buttonprops = { id: number; productId?: string };
 
@@ -65,6 +40,7 @@ const CartView = () => {
       }
       cartItems.splice(i, 1);
       localStorage.setItem('objeto',JSON.stringify(cartItems));
+      setDisplayConfirmationModal(true);
     };
     return <Button title="Quitar" className="ml-2 w-24 pl-32" variant="cta"  onClick={deleteItem}/>;
   };
@@ -111,6 +87,14 @@ const CartView = () => {
             </div>         
           </div>
         
+      )}
+      {displayConfirmationModal && (
+        <Modal showModal={displayConfirmationModal} toggleModal={setDisplayConfirmationModal} title="">
+          <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
+            <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />
+            <p className="text-2xl text-center mb-4">Se ha eliminado el producto de tu carrito</p>
+          </div>
+        </Modal>
       )}
     </div>
   );
