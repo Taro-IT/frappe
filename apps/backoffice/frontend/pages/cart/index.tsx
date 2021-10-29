@@ -7,6 +7,7 @@ const CartDetailPage = () => {
 
   return (
    <>
+      <h1 className='self-center text-4xl pb-4'>Mi carrito</h1>
       <CartView></CartView>
    </>
   )
