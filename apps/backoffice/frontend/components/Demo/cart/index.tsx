@@ -13,18 +13,18 @@ const CartView = () => {
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setCartItems(JSON.parse(localStorage.getItem('objeto')));
+      setCartItems(JSON.parse(localStorage.getItem('items')));
       if(cartItems === null){
         var cartArray = [];
-        localStorage.setItem('objeto',JSON.stringify(cartArray));
-        setCartItems(JSON.parse(localStorage.getItem('objeto')));
+        localStorage.setItem('items',JSON.stringify(cartArray));
+        setCartItems(JSON.parse(localStorage.getItem('items')));
       }
     }
   }, []);
 
   type buttonprops = { id: number; productId?: string };
 
-  const EditButton = ({ id, productId }: buttonprops) => {
+  const ViewDetailButton = ({ id, productId }: buttonprops) => {
     return <Button title="Ver detalle" className="ml-2 w-24" variant="cta"  />;
   };
 
@@ -39,12 +39,14 @@ const CartView = () => {
         i++;
       }
       cartItems.splice(i, 1);
-      localStorage.setItem('objeto',JSON.stringify(cartItems));
+      localStorage.setItem('items',JSON.stringify(cartItems));
       setDisplayConfirmationModal(true);
     };
     return <Button title="Quitar" className="ml-2 w-24 pl-32" variant="cta"  onClick={deleteItem}/>;
   };
 
+
+  //Creates the cards for all the items in the cart using localStorage
   const useCartItems = useMemo(
     () =>
       
@@ -62,7 +64,7 @@ const CartView = () => {
                 <p className='pl-4 pt-4 text-left'>Talla: {category.size}</p>
                 <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${category.price}</p>
                 <div className='flex flex-row pt-4'>
-                  <EditButton id={index} productId={category.productId}/>
+                  <ViewDetailButton id={index} productId={category.productId}/>
                   <DeleteButton id={index} productId={name} />
                 </div>
               </div>
