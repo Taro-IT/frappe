@@ -1,2 +1,2 @@
 export type { SearchQueryPayload, OrderPrimitive } from './SearchQueryPayload';
-export { SearchQueryResponse } from './SearchQueryResponse';
+export type { SearchQueryResponse } from './SearchQueryResponse';
