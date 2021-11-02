@@ -1,5 +1,5 @@
 import {Card} from '@frappe/common/design-system'
-import {AddProductForm} from "@frappe/account/ui";
+import AddProductForm from "../components/AddProductForm";
 
 
 const AddProduct = () =>  (
