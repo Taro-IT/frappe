@@ -19,8 +19,9 @@
   },
   "private": true,
   "dependencies": {
+    "@dinnosc/criteria": "^0.11.0",
+    "@dinnosc/value-object": "^0.16.0",
     "@azure/storage-blob": "^12.8.0",
-    "@dinnosc/criteria": "^0.2.3",
     "@docusaurus/core": "^2.0.0-alpha.70",
     "@docusaurus/preset-classic": "^2.0.0-alpha.70",
     "@heroicons/react": "^1.0.4",
