@@ -36,6 +36,8 @@
       "@frappe/file-system/application": ["libs/file-system/application/src/index.ts"],
       "@frappe/file-system/domain": ["libs/file-system/domain/src/index.ts"],
       "@frappe/file-system/persistence/azure": ["libs/file-system/persistence/azure/src/index.ts"],
+      "@frappe/lib-test/domain": ["libs/lib-test/domain/src/index.ts"],
+      "@frappe/lib-test/persistence/mongodb": ["libs/lib-test/persistence/mongodb/src/index.ts"],
       "@frappe/order": ["libs/order/src/index.ts"],
       "@frappe/order/application": ["libs/order/application/src/index.ts"],
       "@frappe/order/domain": ["libs/order/domain/src/index.ts"],

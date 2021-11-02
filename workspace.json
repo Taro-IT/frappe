@@ -27,6 +27,8 @@
     "file-system-application": "libs/file-system/application",
     "file-system-domain": "libs/file-system/domain",
     "file-system-persistence-azure": "libs/file-system/persistence/azure",
+    "lib-test-domain": "libs/lib-test/domain",
+    "lib-test-persistence-mongodb": "libs/lib-test/persistence/mongodb",
     "order": "libs/order",
     "order-application": "libs/order/application",
     "order-domain": "libs/order/domain",
