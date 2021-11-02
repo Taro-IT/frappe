@@ -17,9 +17,9 @@ export const useProducts = () => {
         }
       }
     })
-      .then(products => {
-        setProducts(products.data.items);
-        setTotal(products.data.total);
+      .then(data => {
+        setProducts(data.data.result.items);
+        setTotal(data.data.result.total);
       });
   }, []);
 

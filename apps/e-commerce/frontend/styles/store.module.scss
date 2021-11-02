@@ -10,5 +10,6 @@
 
   &--content {
     grid-area: products;
+    @apply overflow-y-scroll;
   }
 }

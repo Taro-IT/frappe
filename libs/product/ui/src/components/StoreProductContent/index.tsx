@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 import styles from './StoreProductContent.module.scss';
 import { useProducts } from '../../hooks';
+import { ProductList } from '..';
 
 interface StoreProductContentProps {
   readonly className: string;
@@ -16,7 +17,7 @@ export const StoreProductContent = ({ className }: StoreProductContentProps) => 
   return (
     <div className={ clsx(className, styles.wrapper) }>
       <div className={ styles['wrapper--content'] }>
-        { /* TODO Component ProductList */ }
+        <ProductList products={products}/>
         { /* TODO Component Pagination */ }
       </div>
     </div>

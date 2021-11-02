@@ -3,6 +3,7 @@ import express from 'express';
 import helmet from 'helmet';
 import { errorHandler } from './middlewares';
 
+
 interface AppProps {
   readonly router: express.Router;
 }
