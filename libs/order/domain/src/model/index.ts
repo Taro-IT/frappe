@@ -6,3 +6,4 @@ export * from './OrderStatus';
 export * from './OrderSubtotal';
 export * from './OrderTotal';
 export * from './OrderIsDelayed';
+export * from './OrderClientName';

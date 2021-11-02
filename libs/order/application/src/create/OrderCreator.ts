@@ -10,8 +10,10 @@ import {
   OrderStatuses,
   OrderSubtotal,
   OrderTotal,
-  OrderIsDelayed
+  OrderIsDelayed,
+  OrderClientName
 } from '@frappe/order/domain';
+import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
 import { OrderFinder } from '..';
 
 // SOLID
@@ -39,7 +41,9 @@ export class OrderCreator {
     subtotal: number,
     total: number,
     status: OrderStatuses,
-    isDelayed: boolean
+    isDelayed: boolean,
+    address: ShippingAddressPrimitives,
+    clientName: string,
   ) {
     const exists = await this.orderExists(id);
 
@@ -54,7 +58,9 @@ export class OrderCreator {
       new OrderTotal(total),
       new OrderDateCreated(new Date()),
       new OrderStatus(status),
-      new OrderIsDelayed(isDelayed)
+      new OrderIsDelayed(isDelayed),
+      ShippingAddress.fromPrimitives(address),
+      new OrderClientName(clientName)
     );
     return this.orderRepository.save(order);
   }
