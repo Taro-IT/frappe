@@ -14,7 +14,7 @@
 1.  Para crear una librería de dominio debes correr el comando 
  `nx g @nrwl/node:lib <lib-name/domain>`
 
-  El comando anterior creará  la siguiente estructura de archivos
+    El comando anterior creará  la siguiente estructura de archivos
   ![domain basic structure](../assets/PPG02-domain-structure.png)
 
 2. Debes borrar la carpeta `lib`y el contenido del archivo index.ts. 
@@ -64,7 +64,9 @@
   ```
 
   7. Crea una carpeta **utils** al nivel de src, la cual contendrá 3 archivos
-    - CasoDeUsoPrimitives.ts
+
+  - CasoDeUsoPrimitives.ts
+
     En nuestro caso se llamará `CategoryPrimitives.ts`, y debe definir una interfaz que tenga todos los primitivos que confirman a tu entidad. Por ejemplo:
 
       ```
@@ -73,7 +75,9 @@
           readonly name: string;
         }
       ```
-    - CasoDeUsoRepository.ts
+
+  - CasoDeUsoRepository.ts
+
       En este caso se llamará `CategoryRepository.ts`. Este archivo define una interfaz con los headers para los métodos que se implementarán en el repositorio de mongo, en el paso siguiente. Un ejemplo puede ser:
       ```
         import { Category, CategoryId, CategoryName } from '../model';
@@ -85,8 +89,10 @@
         }
 
       ```
-    - index.ts
-      Aquí debes exportar los archivos que creaste dentro de la carpeta. Debe verse como:
+
+  - index.ts
+  
+    Aquí debes exportar los archivos que creaste dentro de la carpeta. Debe verse como:
       ```
         export type { CategoryPrimitives } from './CategoryPrimitives';
         export type { CategoryRepository } from './CategoryRepository';
@@ -122,7 +128,7 @@
 3. Después crea una carpeta que se llame `utils` y crea un archivo que se llame `Mongo<NombreLib>Repository.ts`, además de un archivo llamado `index.ts`. La estructura debe quedar como se muestra en la imágen:
 4. En el archivo `Mongo<NombreLib>Repository.ts` debe ir toda la lógica que conecta al servicio externo, en este caso, a Mongo. Puedes basarte en un archivo de algún otro caso de uso para crear el tuyo
 
-Para esta guía crearemos una categoría, así que el archivo de repository debería tener al menos 2 métodos:
+    Para esta guía crearemos una categoría, así que el archivo de repository debería tener al menos 2 métodos:
 ``` 
 import { MongoRepository } from '@frappe/common/persistence/mongodb'; // Importas el Repositorio de Mongo
 import { Category, CategoryId, CategoryName, CategoryPrimitives, CategoryRepository } from '@frappe/category/domain'; // Importas los tipos que creaste en la capa de dominio
@@ -175,7 +181,7 @@ export { MongoCategoryRepository } from './MongoCategoryRepository';
 
 3. A nivel de `src` crearás las carpetas para cada acción de tu caso de uso. Algunos nombres de dichas acciones son **create, delete, find, list, etc.**
 
-Para el ejemplo de esta guía debes crear una carpeta que se llame `create`, la cuál contendrá 3 archivos principales, `CategoryCreator.ts`, `CreateCategoryCommand.ts` y `CreateCategoryCommandHandler.ts`. 
+    Para el ejemplo de esta guía debes crear una carpeta que se llame `create`, la cuál contendrá 3 archivos principales, `CategoryCreator.ts`, `CreateCategoryCommand.ts` y `CreateCategoryCommandHandler.ts`. 
 **Recuerda sustituir la palabra _Category_ por la correspondiente a tu caso de uso.**
 
 4. Para llenar el archivo `CreateCategoryCommand.ts` deberás crear el payload necesario para crear una categoría en forma de una interfz. Además de un constructor para tu comando. Por ejemplo:
@@ -293,7 +299,7 @@ export * from './find';
 ```
 8. Asegúrate que la estructura de archivos se vea algo así.
 ![final structure 1](../assets/PPG02-1-final-structure.png)
-![final structure 2](../assets/PPG02-2-final-strucutre.png)
+![final structure 2](../assets/PPG02-2-final-structure.png)
 
 
 ## Salidas
