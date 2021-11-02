@@ -76,7 +76,8 @@ const CartView = () => {
   );
 
   return (
-    <div className=" overflow-y-scroll">
+    <div className=" mt-16">
+      <h1 className='self-center text-4xl text-center pb-4'>Mi carrito</h1>
       {cartItems.length ? useCartItems : 'No tienes productos en tu carrito.'}
       {cartItems.length && (
         
