@@ -37,7 +37,7 @@ export abstract class MongoRepository {
     await collection.updateOne({ _id: id }, { $set: document }, { upsert: true });
   }
 
-  protected async searchByCriteria(criteria?: Criteria) {
+  protected async searchByCriteria<T>(criteria?: Criteria<T>) {
     const collection = await this.collection();
 
     if (criteria === undefined) {
