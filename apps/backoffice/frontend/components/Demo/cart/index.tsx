@@ -15,7 +15,7 @@ const CartView = () => {
     if (typeof window !== 'undefined') {
       setCartItems(JSON.parse(localStorage.getItem('items')));
       if(cartItems === null){
-        let cartArray = [];
+        const cartArray = [];
         localStorage.setItem('items',JSON.stringify(cartArray));
         setCartItems(JSON.parse(localStorage.getItem('items')));
       }
