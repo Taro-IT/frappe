@@ -15,7 +15,9 @@ export class Order {
     readonly total: OrderTotal,
     readonly dateCreated: OrderDateCreated,
     readonly status: OrderStatus,
-    readonly isDelayed: OrderIsDelayed
+    readonly isDelayed: OrderIsDelayed,
+    //readonly address: ShippingAddress,
+    //readonly clientName: OrderClientName
   ) {}
 
   static fromPrimitives(primitives: OrderPrimitives): Order {

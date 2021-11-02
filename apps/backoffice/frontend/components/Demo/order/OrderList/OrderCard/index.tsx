@@ -4,6 +4,7 @@ import classes from '../OrderList.module.scss';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline';
 import { Card } from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
+import * as React from 'react';
 
 type OrderCardProps = {
   readonly items;
@@ -28,11 +29,10 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     'Diciembre'
   ];
 
-  //TODO: arreglar fechas incorrectas (Defect log línea 27).
   const prettyDate = new Date(order.dateCreated);
-  const year = prettyDate.getFullYear();
-  const month = prettyDate.getMonth();
-  const day = prettyDate.getDay();
+  const year = prettyDate.getUTCFullYear();
+  const month = prettyDate.getUTCMonth();
+  const day = prettyDate.getUTCDate();
 
   const handleExpandOrder = () => {
     setExpanded(previous => !previous);
@@ -54,9 +54,25 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
             onClick={handleExpandOrder}
           />
         )}
-        <h1 className={clsx('text-2xl')}>{`Orden del ${day} de ${monthNames[month]} del ${year}`}</h1>
+        <h1 className={clsx('text-2xl')}>{`Orden del ${day} de ${monthNames[month]} del ${year} - NombreCliente`}</h1>
       </div>
+      {/*Solo mostrar la alerta si la orden está atrasada*/}
+      {order.isDelayed && (
+        {/*<Alert severity="error">¡Esta orden de compra está atrasada!</Alert>*/}
+      )}
       <hr className={clsx('mb-2', !closed && 'invisible')} />
+      {/*Dirección de envío y estado de orden de compra*/}
+      {closed && (
+        <div className="flex flex-row justify-evenly">
+          <div>
+            <h5 className="font-bold">Dirección de envío:</h5>
+            <p>mi casita gg</p>
+          </div>
+          <div>
+            <h5 className="font-bold">Estado de la orden de compra</h5>
+          </div>
+        </div>
+      )}
       {items.map(
         ({ id, ...item }) =>
           closed && (
