@@ -7,7 +7,7 @@ import clsx from 'clsx';
 const CartView = () => {
   const [cartItems, setCartItems] = useState([]);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
-  var totalPrice = 0;
+  let totalPrice = 0;
 
   
   
@@ -15,7 +15,7 @@ const CartView = () => {
     if (typeof window !== 'undefined') {
       setCartItems(JSON.parse(localStorage.getItem('items')));
       if(cartItems === null){
-        var cartArray = [];
+        let cartArray = [];
         localStorage.setItem('items',JSON.stringify(cartArray));
         setCartItems(JSON.parse(localStorage.getItem('items')));
       }
@@ -34,7 +34,7 @@ const CartView = () => {
 
   const DeleteButton = ({ id, productId }: buttonprops) => {
     const deleteItem = () => {
-      var i = 0;
+      let i = 0;
       while(i != id){
         i++;
       }
@@ -51,7 +51,7 @@ const CartView = () => {
     () =>
       
       cartItems.map((category, index) => {
-        const { id, name } = category;
+        const { name } = category;
         totalPrice += Number(category.price);
         return (
           <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
