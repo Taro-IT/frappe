@@ -1,5 +1,5 @@
 import React from 'react';
-import { EcommerceLayout } from '@frappe/common/design-system';
+import { EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
 import { StoreProductContent, StoreSidebar } from '@frappe/product/ui';
 
 import styles from '../../styles/store.module.scss';
@@ -13,4 +13,4 @@ const StorePage = () => (
 
 StorePage.Layout = EcommerceLayout;
 
-export default StorePage;
+export default withUserAgent(StorePage);

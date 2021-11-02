@@ -1,7 +1,6 @@
 import React from 'react'
 import CartView from '../../components/Demo/cart';
-import { withUserAgent } from '../../HOC/withUserAgent'
-import { EcommerceLayout } from '@frappe/common/design-system';
+import { EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
 
 const CartDetailPage = () => {
 
