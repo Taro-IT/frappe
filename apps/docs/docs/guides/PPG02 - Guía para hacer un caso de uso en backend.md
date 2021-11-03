@@ -56,7 +56,7 @@
 
      ```
 
-  6. Crea un archivo `index.ts` al nivel de la carpeta **model**, el cual debe exportar cada srchivo que hayas creado. Por ejemplo:
+  6. Crea un archivo `index.ts` al nivel de la carpeta **model**, el cual debe exportar cada archivo que hayas creado. Por ejemplo:
   ```
     export { Category } from './Category';
     export { CategoryId } from './CategoryId';
