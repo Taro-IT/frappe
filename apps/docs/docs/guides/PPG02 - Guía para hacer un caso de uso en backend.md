@@ -184,7 +184,7 @@ export { MongoCategoryRepository } from './MongoCategoryRepository';
     Para el ejemplo de esta guía debes crear una carpeta que se llame `create`, la cuál contendrá 3 archivos principales, `CategoryCreator.ts`, `CreateCategoryCommand.ts` y `CreateCategoryCommandHandler.ts`. 
 **Recuerda sustituir la palabra _Category_ por la correspondiente a tu caso de uso.**
 
-4. Para llenar el archivo `CreateCategoryCommand.ts` deberás crear el payload necesario para crear una categoría en forma de una interfz. Además de un constructor para tu comando. Por ejemplo:
+4. Para llenar el archivo `CreateCategoryCommand.ts` deberás crear el payload necesario para crear una categoría en forma de una interfaz. Además de un constructor para tu comando. Por ejemplo:
 ```
 import { Command } from '@tshio/command-bus';
 
