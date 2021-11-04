@@ -1,2 +1,2 @@
-export { ProductPrimitives } from './ProductPrimitives';
-export { ProductRepository } from './ProductRepository';
+export type { ProductPrimitives } from './ProductPrimitives';
+export type { ProductRepository } from './ProductRepository';
