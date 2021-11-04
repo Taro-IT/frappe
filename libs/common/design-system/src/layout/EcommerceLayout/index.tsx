@@ -1,7 +1,5 @@
-import { getSelectorsByUserAgent } from 'react-device-detect';
+import { getSelectorsByUserAgent } from 'react-device-detect'
 import { Navbar, NavbarMobile } from '../..';
-
-import styles from './EcommerceLayout.module.scss';
 
 export const EcommerceLayout = ({ children, userAgent }: any) => {
   const { isMobile } = getSelectorsByUserAgent(userAgent)
