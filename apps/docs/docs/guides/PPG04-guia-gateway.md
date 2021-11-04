@@ -6,7 +6,7 @@
 
 ## Pre-requisitos
 
-- Haber creado las libs correctamente, siguiendo la [Guía para hacer librerías de backend](./PPG02-Guía-para-hacer-un-caso-de-uso-backend)
+- Haber creado las libs correctamente, siguiendo la [Guía para hacer librerías de backend]()
 - Haber leido [la estructura de archivos](../architecture/file-structure)
 ## Pasos a seguir
 
@@ -175,7 +175,7 @@ export const registerCategoryModule = (container: AwilixContainer) => {
       // Register Modules
       registerCategoryModule(container);
     ```
-    
+
 3. Listo, ya puedes probar tu endpoint con Postman o llamarlo desde el front-end
 
 ## Salidas
