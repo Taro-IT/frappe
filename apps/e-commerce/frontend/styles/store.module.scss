@@ -5,6 +5,7 @@
   grid-template-columns: 20% 80%;
 
   &--sidebar {
+    @apply sticky top-56;
     grid-area: sidebar;
   }
 
