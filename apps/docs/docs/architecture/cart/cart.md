@@ -8,15 +8,15 @@
 
 - Ver productos en el carrito
 
-    - Dados productos agregados en el carrito
-    Cuando el usuario de click en su carrito
+    - Dado que hay productos agregados en el carrito
+    Cuando el usuario de clic en su carrito
     Entonces podrá ver todos los productos que agregó
 
 - No hay productos en el carrito
 
-    - Dados que no hay productos en el carrito
-    Cuando el usuario de click en su carrito
-    Entonces podrá verá un mensaje que le indica que su carrito está vacío
+    - Dado que no hay productos en el carrito
+    Cuando el usuario de clic en su carrito
+    Entonces podrá ver un mensaje que le indica que su carrito está vacío
 
 ## Diagramas de diseño
 
@@ -27,7 +27,7 @@
 
 ## Artefactos generados
 
-- <a href="">Pull request</a>
+- <a href="https://github.com/Taro-IT/frappe/pull/45">Pull request</a>
 
 ## Autores
 

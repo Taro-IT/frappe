@@ -5,9 +5,7 @@ import { EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
 const CartDetailPage = () => {
 
   return (
-   <>
       <CartView></CartView>
-   </>
   )
 }
 
