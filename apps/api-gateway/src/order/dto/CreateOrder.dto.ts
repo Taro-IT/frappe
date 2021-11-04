@@ -1,5 +1,5 @@
 import { OrderItemType, OrderStatuses } from '@frappe/order/domain';
-import { IsDateString, IsEnum, IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 
 export class CreateOrderDto {
   @IsNotEmpty()
@@ -15,10 +15,9 @@ export class CreateOrderDto {
   @IsPositive()
   readonly total: number;
 
-  @IsNotEmpty()
-  @IsDateString()
-  readonly dateCreated: Date;
-
   @IsEnum(OrderStatuses)
   readonly status: OrderStatuses;
+
+  @IsNotEmpty()
+  readonly isDelayed: boolean;
 }
