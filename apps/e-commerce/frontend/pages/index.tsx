@@ -1,4 +1,4 @@
-import { EcommerceLayout } from '@frappe/common/design-system';
+import { EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
 
 const HomePage = () => (
   <div>
@@ -8,4 +8,4 @@ const HomePage = () => (
 
 HomePage.Layout = EcommerceLayout;
 
-export default HomePage;
+export default withUserAgent(HomePage);

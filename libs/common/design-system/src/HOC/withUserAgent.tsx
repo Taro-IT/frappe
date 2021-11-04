@@ -1,4 +1,5 @@
-import { Noop } from "../layouts/Noop";
+// @ts-nocheck
+import { Noop } from "../layout/Noop";
 
 export const withUserAgent = WrappedComponent => {
   const FunctionalComponent = ({children, ...props}) => {
