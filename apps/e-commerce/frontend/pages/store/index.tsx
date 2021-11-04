@@ -13,4 +13,4 @@ const StorePage = () => (
 
 StorePage.Layout = EcommerceLayout;
 
-export default StorePage;
+export default withUserAgent(StorePage);
