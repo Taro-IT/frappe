@@ -8,6 +8,7 @@ import {
   OrderRepository,
   OrderStatus,
   OrderStatuses,
+  OrderTotal,
   OrderSubtotal,
   OrderIsDelayed,
   OrderClientName
