@@ -1,8 +1,8 @@
 export enum OrderStatuses {
-  ABIERTO = 'ABIERTO',
-  EN_PROCESO = 'EN_PROCESO',
-  LISTO_PARA_ENVIO = 'LISTO_PARA_ENVIO',
-  ATRASADO = 'ATRASADO'
+  ABIERTA = 'Abierto',
+  EN_PROCESO = 'En proceso',
+  LISTA_PARA_ENVIO = 'Lista para envío',
+  ENTREGADA = 'Entregada'
 }
 
 export interface OrderItemType {
@@ -21,4 +21,5 @@ export interface OrderPrimitives {
   readonly total: number;
   readonly dateCreated: Date;
   readonly status: OrderStatuses;
+  readonly isDelayed: boolean;
 }

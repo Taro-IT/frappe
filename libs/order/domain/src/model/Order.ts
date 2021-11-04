@@ -5,7 +5,7 @@ import { OrderId } from './OrderId';
 import { OrderStatus } from './OrderStatus';
 import { OrderSubtotal } from './OrderSubtotal';
 import { OrderTotal } from './OrderTotal';
-
+import { OrderIsDelayed } from './OrderIsDelayed';
 export class Order {
   constructor(
     readonly id: OrderId,
@@ -13,7 +13,10 @@ export class Order {
     readonly subtotal: OrderSubtotal,
     readonly total: OrderTotal,
     readonly dateCreated: OrderDateCreated,
-    readonly status: OrderStatus
+    readonly status: OrderStatus,
+    readonly isDelayed: OrderIsDelayed,
+    //readonly address: ShippingAddress,
+    //readonly clientName: OrderClientName
   ) {}
 
   static fromPrimitives(primitives: OrderPrimitives): Order {
@@ -23,7 +26,8 @@ export class Order {
       new OrderSubtotal(primitives.subtotal),
       new OrderTotal(primitives.total),
       new OrderDateCreated(primitives.dateCreated),
-      new OrderStatus(primitives.status)
+      new OrderStatus(primitives.status),
+      new OrderIsDelayed(primitives.isDelayed)
     );
   }
 
@@ -34,7 +38,8 @@ export class Order {
       subtotal: this.subtotal.value,
       total: this.total.value,
       dateCreated: this.dateCreated.value,
-      status: this.status.value
+      status: this.status.value,
+      isDelayed: this.isDelayed.value
     };
   }
 }
