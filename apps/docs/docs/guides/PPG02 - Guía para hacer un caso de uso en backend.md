@@ -76,9 +76,13 @@
         }
       ```
 
-  - CasoDeUsoRepository.ts
+  - ModuloRepository.ts
 
-      En este caso se llamará `CategoryRepository.ts`. Este archivo define una interfaz con los headers para los métodos que se implementarán en el repositorio de mongo, en el paso siguiente. Un ejemplo puede ser:
+      En este caso se llamará `CategoryRepository.ts`. Este archivo define una interfaz con los headers para los métodos que se implementarán en el repositorio de mongo, en el paso siguiente. 
+      
+      En términos más generales, un repository representa la definición del "Contrato" para acceso de datos o integración para un servicio externo I/O.
+
+      Un ejemplo puede ser:
       ```
         import { Category, CategoryId, CategoryName } from '../model';
         import { Nullable } from '@frappe/common/utils';
@@ -128,6 +132,11 @@ export class CategoryAlreadyExists extends Error {
 }
 
 ```
+3. Crea un archivo `index.ts` y exporta tus errores. Por ejemplo:
+```
+export { CategoryAlreadyExists } from './CategoryAlreadyExists';
+
+```
 
 
 
@@ -135,13 +144,13 @@ export class CategoryAlreadyExists extends Error {
 1.  Para crear una librería de persistence debes correr el comando 
  `nx g @nrwl/node:lib <lib-name/persistence/mongodb>`
 
-  Cambia la palabra mongodb si estás conectandote a otro servicio externo. En esta guía nos conectaremos a mongodb.
+    Cambia la palabra mongodb si estás conectandote a otro servicio externo. En esta guía nos conectaremos a mongodb.
 
-  El comando anterior creará  la siguiente estructura de archivos
+    El comando anterior creará  la siguiente estructura de archivos
   ![persistence basic structure](../assets/PPG02-persistence-structure.png)
 
 2. Debes borrar la carpeta `lib`y el contenido del archivo index.ts. 
-3. Después crea una carpeta que se llame `utils` y crea un archivo que se llame `Mongo<NombreLib>Repository.ts`, además de un archivo llamado `index.ts`. La estructura debe quedar como se muestra en la imágen:
+3. Después crea una carpeta que se llame `utils` y crea un archivo que se llame `Mongo<NombreLib>Repository.ts`, además de un archivo llamado `index.ts`. En el Repository deberás implementar todos los "contratos" que definiste en la capa de dominio.
 4. En el archivo `Mongo<NombreLib>Repository.ts` debe ir toda la lógica que conecta al servicio externo, en este caso, a Mongo. Puedes basarte en un archivo de algún otro caso de uso para crear el tuyo
 
     Para esta guía crearemos una categoría, así que el archivo de repository debería tener al menos 2 métodos:
@@ -199,6 +208,13 @@ export { MongoCategoryRepository } from './MongoCategoryRepository';
 
     Para el ejemplo de esta guía debes crear una carpeta que se llame `create`, la cuál contendrá 3 archivos principales, `CategoryCreator.ts`, `CreateCategoryCommand.ts` y `CreateCategoryCommandHandler.ts`. 
 **Recuerda sustituir la palabra _Category_ por la correspondiente a tu caso de uso.**
+
+:::note
+
+  Recuerda que para los casos de uso de lectura crearás Queries, y QueryHandlers. Y para los casos de uso de escritura de datos Commands y CommandHandlers.
+
+:::
+
 
 4. Para llenar el archivo `CreateCategoryCommand.ts` deberás crear el payload necesario para crear una categoría en forma de una interfz. Además de un constructor para tu comando. Por ejemplo:
 ```
