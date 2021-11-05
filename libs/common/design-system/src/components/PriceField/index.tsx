@@ -3,10 +3,15 @@ import clsx from "clsx"
 interface PriceFieldProps{
     readonly label?: string;
     readonly name: string;
+    setPrice: (nv: number) => any;
 }
 
 
-export const PriceField = ({label, name}: PriceFieldProps) => {
+export const PriceField = ({label, name, setPrice}: PriceFieldProps) => {
+    const handlePriceChange = (event: any) => {
+        setPrice(event.target.value)
+    }
+
     return (
         <>
             <div className={clsx('flex w-full')}>
@@ -25,6 +30,7 @@ export const PriceField = ({label, name}: PriceFieldProps) => {
                         type="number"
                         name={name}
                         id={name}
+                        onChange={handlePriceChange}
                         className="pl-4 focus:ring-indigo-500 focus:border-indigo-500 w-full sm:text-sm border-gray-300 rounded-md"
                     />
                 </div>

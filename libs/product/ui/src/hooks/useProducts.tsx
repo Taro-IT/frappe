@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ProductPrimitives } from '@frappe/product/domain';
 import { SearchQueryResponse } from '@frappe/common/utils';
 import { FilterPrimitive } from '@dinnosc/criteria';
+import { useCategories } from '.';
 
 interface UseProducts{
   readonly minPrice?:number;
@@ -11,6 +12,7 @@ interface UseProducts{
 }
 
 export const useProducts = ({minPrice, maxPrice}:UseProducts) => {
+  const { categories } = useCategories();
   const [products, setProducts] = useState<ProductPrimitives[]>([]);
   const [total, setTotal] = useState(0);
   const [filters,setFilters] = useState<FilterPrimitive<ProductPrimitives>[]>([]);
@@ -19,11 +21,20 @@ export const useProducts = ({minPrice, maxPrice}:UseProducts) => {
     const newFilters:FilterPrimitive<ProductPrimitives>[] = [];
     minPrice && newFilters.push({ field:"price", operator: "GT", value:minPrice });
     maxPrice && newFilters.push({ field:"price", operator: "LT", value:maxPrice });
-    setFilters(() => newFilters);
+    setFilters(newFilters);
 
-  },[{minPrice, maxPrice}])
+  },[minPrice, maxPrice])
+
+  // useEffect(() => {
+  //   const newFilters:FilterPrimitive<ProductPrimitives>[] = [];
+  //   newFilters.push({ field:"categories", operator: "EQUAL", value: });
+  //   maxPrice && newFilters.push({ field:"price", operator: "LT", value:maxPrice });
+  //   setFilters(() => newFilters);
+  // },[categories])
 
   useEffect(() => {
+    console.log("hola", minPrice, maxPrice);
+    
     axios.get<SearchQueryResponse<ProductPrimitives>>(`${ process.env.NEXT_PUBLIC_API_URL }/products`, {
       params: {
         filters,
@@ -35,7 +46,6 @@ export const useProducts = ({minPrice, maxPrice}:UseProducts) => {
     })
       .then(data => {
         setProducts(data.data.result.items);
-        setTotal(data.data.result.total);
       });
   }, [filters]);
 

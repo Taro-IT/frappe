@@ -17,7 +17,7 @@ export const Navbar = () => {
   }
   const redirectToHome = () => router.push("/");
   return (
-    <div className="z-10 flex w-full p-4 bg-black h-32 fixed mb-auto ">
+    <div className="z-10 flex w-full p-4 bg-black h-20 fixed mb-auto ">
       <img src="/img/cinica-logo.png" className="cursor-pointer" alt="Cínica Logo" onClick={redirectToHome}/>
       
       <nav className="flex w-full self-center justify-center" aria-label="Navbar">

@@ -1,11 +1,16 @@
 import { PriceField } from "@frappe/common/design-system"
 
-export const PriceSelector = () => {
+type PriceSelectorProps = {
+    readonly setMinPrice: (nv: number) => any;
+    readonly setMaxPrice: (nv: number) => any;
+}
+
+export const PriceSelector = ({setMinPrice, setMaxPrice}: PriceSelectorProps) => {
     return(
         <div className="flex w-full ">
-            <PriceField name="min-price" />
+            <PriceField setPrice={setMinPrice} name="min-price" />
                 <p className="mx-2"> - </p>
-            <PriceField name="max-price" />
+            <PriceField setPrice={setMaxPrice} name="max-price" />
         </div>
     )
 }

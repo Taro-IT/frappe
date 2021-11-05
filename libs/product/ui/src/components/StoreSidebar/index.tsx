@@ -8,11 +8,11 @@ import { PriceSelector } from '../PriceSelector';
 
 interface StoreSidebarProps {
   readonly className: string;
-  readonly setMinPrice: () => unknown;
-  readonly setMaxPrice: () => unknown;
+  readonly setMinPrice: (nv: number) => any;
+  readonly setMaxPrice: (nv: number) => any;
 }
 
-export const StoreSidebar = ({ className }: StoreSidebarProps) => {
+export const StoreSidebar = ({ className, setMinPrice, setMaxPrice }: StoreSidebarProps) => {
   const { categories, handleCategoryCheck } = useCategories();
 
   return (
@@ -31,7 +31,7 @@ export const StoreSidebar = ({ className }: StoreSidebarProps) => {
           <h2 className="text-md font-medium mb-2"> Precio </h2>
 
           <div className="flex justify-around">
-            <PriceSelector/>
+            <PriceSelector setMinPrice={setMinPrice} setMaxPrice={setMaxPrice}/>
           </div>
         </div>
       </div>

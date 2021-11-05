@@ -9,12 +9,10 @@ import { ProductCard } from '../ProductCard';
 
 interface ProductListContentProps {
     readonly products: ProductPrimitives[];
-    readonly setMinPrice: () => unknown;
-    readonly setMaxPrice: () => unknown;
   }
 
 
-  export const ProductList = ({ products, setMinPrice,setMaxPrice }: ProductListContentProps) => {
+  export const ProductList = ({ products }: ProductListContentProps) => {
 
   
     return (
