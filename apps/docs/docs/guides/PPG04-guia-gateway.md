@@ -14,9 +14,11 @@
   :::note
     Para fines ilustrativos, en esta guía se usarán ejemplos del caso CreateCategory
   :::
-  1. Dentro de la carpeta `apps/api-gateway/src` crea una carpeta para tu caso de uso con un nombre significativo
+  1. Dentro de la carpeta `apps/api-gateway/src` crea una carpeta para tu caso de uso el nombre del módulo. (category, product, etc)
   2. Dentro de la carpeta que acabas de crear, haz una nueva con el nombre `handlers`, donde guardarás todos los manejadores para cada caso de uso, como crear, actualizar o eliminar.
   3. Crea un archivo para tu handler con el nombre `<accion><Caso>Handler.ts`, por ejemplo `createCategoryHandler.ts`, el cuál tendrá algo similar al código siguiente:
+
+
     ```
       import { CommandBus } from '@tshio/command-bus';
       import { NextFunction, RequestHandler } from 'express';
@@ -65,6 +67,7 @@
       export class CreateCategoryDto {
         // Declaras el tipo y su validación
         @IsNotEmpty()
+        // TODOS los campos deben ser readonly
         readonly name: string;
       }
 
@@ -75,7 +78,7 @@
 
     ```
 ### Routing
-1. En el nivel root de caso de uso, crea un archivo que se llame `<caso>.routing.ts`, en el cual vas a registrar todas las rutas con sus métodos HTTP, además de los dtos que validarán dichas rutas. En Frappé usamos el estándar que puedes encontrar [aquí](https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/#h-use-nouns-instead-of-verbs-in-endpoint-paths).
+1. En el nivel root de caso de uso, crea un archivo que se llame `<modulo>.routing.ts`, en el cual vas a registrar todas las rutas con sus métodos HTTP, además de los dtos que validarán dichas rutas. En Frappé usamos el estándar que puedes encontrar [aquí](https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/#h-use-nouns-instead-of-verbs-in-endpoint-paths).
 
 ```
 import express from 'express';
@@ -97,6 +100,8 @@ export const categoryRouting = ({ commandBus }: CollectionRoutingDeps) => {
 
   //La sintaxis para rutas es
   // router.<HTTP-Request>('/ruta', makeValidateBody(dtos.<Nombre-dto>), handlers.<nombre-handler>(<bus>));
+
+  // Habrá casos donde no necesites dtos, por ello este parámetro es opcional.
 
   // Una ruta de creación se ve así
   router.post('/', makeValidateBody(dtos.CreateCategoryDto), handlers.createCategoryHandler(commandBus));
@@ -146,6 +151,7 @@ export const registerCategoryModule = (container: AwilixContainer) => {
     Primero define el categoryRouting en la interfaz `RoutesDeps`
     ```
       interface RoutesDeps {
+      // este nombre debe ser igual al del router que creaste en el paso 1
       readonly categoryRouting: express.Router;
       ...
     }
@@ -157,6 +163,8 @@ export const registerCategoryModule = (container: AwilixContainer) => {
 
 ### Registrar handlers y módulo de routas
 1. Al nivel de `src` encuentra la carpeta `container` y abre el archivo `commandHandlers.ts`, en el cuál registrarás los handlers que hayas creado en las librerías. 
+
+    **Recuerda que en commands van los comandos, y en queries, van los queries**
     
     Después de importarlo, solo debes agregar la siguiente línea después del último.
     ```
@@ -180,7 +188,7 @@ export const registerCategoryModule = (container: AwilixContainer) => {
 
 ## Salidas
 
-- Un endpoint de API listo para probarse con Postman o Imsomnia
+- Uno o más endpoints de API listo para probarse con Postman o Imsomnia
 
 ## Autores
 
@@ -189,7 +197,7 @@ export const registerCategoryModule = (container: AwilixContainer) => {
 ## Auditoría
 
 - Vladimir Salvador
-- Raúl Rosario Gálaviz
+- Mauricio Álvarez Milán
 
 ## Versión 1.0
 Se creó la guía
