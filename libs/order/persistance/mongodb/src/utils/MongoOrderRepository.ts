@@ -18,7 +18,7 @@ export class MongoOrderRepository extends MongoRepository implements OrderReposi
   async all(): Promise<Order[]> {
     const collection = await this.collection();
     const documents = await collection.find().toArray();
-
+    
     return documents?.map(doc => Order.fromPrimitives({ ...doc, id: doc._id } as OrderPrimitives)) || [];
   }
 

@@ -11,9 +11,9 @@ import {
   OrderTotal,
   OrderSubtotal,
   OrderIsDelayed,
-  OrderClientName
+  /* OrderClientName */
 } from '@frappe/order/domain';
-import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
+//import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
 import { OrderFinder } from '..';
 
 // SOLID
@@ -42,8 +42,8 @@ export class OrderCreator {
     total: number,
     status: OrderStatuses,
     isDelayed: boolean,
-    address: ShippingAddressPrimitives,
-    clientName: string,
+/*     clientName?: string,
+    address?: ShippingAddressPrimitives */
   ) {
     const exists = await this.orderExists(id);
 
@@ -59,8 +59,8 @@ export class OrderCreator {
       new OrderDateCreated(new Date()),
       new OrderStatus(status),
       new OrderIsDelayed(isDelayed),
-      ShippingAddress.fromPrimitives(address),
-      new OrderClientName(clientName)
+/*       new OrderClientName(clientName),
+      ShippingAddress.fromPrimitives(address), */
     );
     return this.orderRepository.save(order);
   }

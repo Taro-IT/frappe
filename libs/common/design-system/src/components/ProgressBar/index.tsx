@@ -37,19 +37,19 @@ export const ProgressBar = ({status}: PropsWithChildren<ProgressBarrHeaderProps>
             <div className="mt-6" aria-hidden="true">
                 <div className="bg-gray-200 rounded-full overflow-hidden">
                 <div
-                    className="h-2 bg-indigo-600 rounded-full"
+                    className="h-2 bg-yellow-400 rounded-full"
                     style={{ width: `calc((${getStep(status)} * 2 + 1) / 8 * 100%)` }}
                 />
                 </div>
                 <div className="hidden sm:grid grid-cols-4 text-sm font-medium text-gray-600 mt-6">
-                <div className="text-indigo-600">{OrderStatuses.ABIERTA}</div>
-                <div className={clsx(getStep(status) > 0 ? 'text-indigo-600' : '', 'text-center')}>
+                <div className="text-yellow-600">{OrderStatuses.ABIERTA}</div>
+                <div className={clsx(getStep(status) > 0 ? 'text-yellow-600' : '', 'text-center')}>
                     {OrderStatuses.LISTA_PARA_ENVIO}
                 </div>
-                <div className={clsx(getStep(status) > 1 ? 'text-indigo-600' : '', 'text-center')}>
+                <div className={clsx(getStep(status) > 1 ? 'text-yellow-600' : '', 'text-center')}>
                 {OrderStatuses.EN_PROCESO}
                 </div>
-                <div className={clsx(getStep(status) > 2 ? 'text-indigo-600' : '', 'text-right')}>
+                <div className={clsx(getStep(status) > 2 ? 'text-yellow-600' : '', 'text-right')}>
                 {OrderStatuses.ENTREGADA}
                 </div>
                 </div>
@@ -57,3 +57,5 @@ export const ProgressBar = ({status}: PropsWithChildren<ProgressBarrHeaderProps>
             </div>
     )
   }
+
+  //b7912d

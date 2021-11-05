@@ -1,4 +1,4 @@
-import { ShippingAddressPrimitives } from "@frappe/shipping/domain";
+//import { ShippingAddressPrimitives } from "@frappe/shipping/domain";
 
 export enum OrderStatuses {
   ABIERTA = 'Abierto',
@@ -24,6 +24,6 @@ export interface OrderPrimitives {
   readonly dateCreated: Date;
   readonly status: OrderStatuses;
   readonly isDelayed: boolean;
-  readonly address: ShippingAddressPrimitives;
-  readonly clientName: string
+  //readonly address?: ShippingAddressPrimitives;
+  readonly clientName?: string 
 }

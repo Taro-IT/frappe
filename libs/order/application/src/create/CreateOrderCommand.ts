@@ -1,5 +1,5 @@
 import { OrderItemType, OrderStatuses } from '@frappe/order/domain';
-import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
+//import { ShippingAddressPrimitives } from '@frappe/shipping/domain';
 import { Command } from '@tshio/command-bus';
 
 interface CreateOrderCommandPayload {
@@ -9,8 +9,8 @@ interface CreateOrderCommandPayload {
   readonly total: number;
   readonly status: OrderStatuses;
   readonly isDelayed: boolean;
-  readonly address: ShippingAddressPrimitives;
-  readonly clientName: string;
+/*   readonly address?: ShippingAddressPrimitives;
+  readonly clientName?: string; */
 }
 
 export class CreateOrderCommand implements Command<CreateOrderCommandPayload> {

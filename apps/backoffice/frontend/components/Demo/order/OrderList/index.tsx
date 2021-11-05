@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import OrderCard from './OrderCard';
-import { SummariesExample, Badge, ProgressBar } from '@frappe/common/design-system';
-import { OrderStatuses } from '@frappe/order/domain';
+import { Badge } from '@frappe/common/design-system';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
