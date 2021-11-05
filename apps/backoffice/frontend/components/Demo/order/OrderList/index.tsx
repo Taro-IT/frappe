@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import OrderCard from './OrderCard';
-import { SummariesExample, Badge } from '@frappe/common/design-system';
+import { SummariesExample, Badge, ProgressBar } from '@frappe/common/design-system';
+import { OrderStatuses } from '@frappe/order/domain';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
@@ -21,7 +22,7 @@ const OrderList = () => {
   const useOrders = useMemo(
     () =>
       orders.map(order => {
-        return <OrderCard id={order.id} order={order} items={order.items} key={order.id} />;
+        return <OrderCard id={order.id} order={order} items={order.items} key={order.id} status={order.status} />;
       }),
     [orders]
   );
@@ -29,7 +30,6 @@ const OrderList = () => {
   return (
     <div className="overflow-y-scroll w-full">
       <Badge content="Atrasado" color="red" />
-      <SummariesExample />
       <div className="w-full  ">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import classes from '../OrderList.module.scss';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline';
-import { Card } from '@frappe/common/design-system';
+import { Card, ProgressBar } from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
 import * as React from 'react';
 
@@ -10,9 +10,10 @@ type OrderCardProps = {
   readonly items;
   readonly order;
   readonly id;
+  readonly status;
 };
 
-const OrderCard = ({ items, order }: OrderCardProps) => {
+const OrderCard = ({ items, order, status }: OrderCardProps) => {
   const [closed, setExpanded] = useState<boolean>(false);
   const monthNames = [
     'Enero',
@@ -42,6 +43,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
 
   return (
     <Card className={clsx(classes.orders)}>
+      <ProgressBar status={status}/>
       <div className="flex flex-row py-4 align-middle">
         {closed ? (
           <ChevronDownIcon
