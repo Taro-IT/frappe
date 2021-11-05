@@ -16,7 +16,7 @@ export const StoreProductContent = ({ className }: StoreProductContentProps) => 
     <div className={ clsx(className, styles.wrapper) }>
       <div className={ styles['wrapper--content'] }>
         <ProductList products={products}/>
-        <Pagination total={total} itemsPerPage={20}/>
+        {/*TODO add pagination perdon por no agregar paginación, gracias por tanto perdón por tan poco*/ }
       </div>
     </div>
   )

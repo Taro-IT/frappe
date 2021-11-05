@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
 import { Link } from '..';
-
+import { Router, useRouter } from 'next/router';
 const navItems = [
-  {href: "shop", text: "Tienda"},
+  {href: "store", text: "Tienda"},
   {href: "about", text: "Nosotros"},
   {href: "outlet", text: "Outlet"},
   {href: "contact", text: "Contacto"}
@@ -11,15 +11,16 @@ const navItems = [
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
-
+  const router = useRouter();
   const handleOpenUser = () => {
     setOpen(previous => !previous)
   }
+  const redirectToHome = () => router.push("/");
   return (
-    <div className="flex w-screen p-4 bg-black h-32 fixed mb-auto ">
-      <img src="/img/cinica-logo.png" alt="Cínica Logo" />
+    <div className="flex w-full p-4 bg-black h-32 fixed mb-auto ">
+      <img src="/img/cinica-logo.png" className="cursor-pointer" alt="Cínica Logo" onClick={redirectToHome}/>
       
-      <nav className="flex w-screen self-center justify-center" aria-label="Navbar">
+      <nav className="flex w-full self-center justify-center" aria-label="Navbar">
         {navItems.map((item, index) => <Link key={ index } variant="nav-item" href={item.href} text={item.text} />)}
       </nav>
 

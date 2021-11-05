@@ -6,8 +6,10 @@ import styles from '../../styles/store.module.scss';
 
 const StorePage = () => (
   <div className={ styles.wrapper }>
-    <StoreSidebar className={ styles['wrapper--sidebar'] } />
-    <StoreProductContent className={ styles['wrapper--content'] } />
+    <div className= {styles['wrapper--main']}>
+      <StoreSidebar className={ styles['wrapper--main--sidebar'] } />
+      <StoreProductContent className={ styles['wrapper--main--content'] } />
+    </div>
   </div>
 )
 
