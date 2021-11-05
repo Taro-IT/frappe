@@ -114,7 +114,23 @@
   9. Verifica que la estructura de estas carpetas se vea así
   ![domain final structure](../assets/PPG02-final-domain-structure.png)
 
-------------------------
+
+#### **Custom errors**
+1. Los errores custom sirven para validar ciertos casos, para crearlos debes hacer una carpeta en la capa de dominio llamada `error`
+2. Crea un archivo con el nombre del error, por ejemplo `CategoryAlreadyExists.ts`. Este archivo contendrá una clase con su constructor, el cuál tendrá el texto del error, por ejemplo:
+```
+export class CategoryAlreadyExists extends Error {
+  // El constructor recibe el nombre de la categoria que ya existe. Un error puede recibir cualquier parámetro para hacer el texto
+  constructor(name: string) {
+    // Llamas al super y ahí mandas el mensaje que quieres que se despliegue
+    super(`The category with name '${name}' already exists.`);
+  }
+}
+
+```
+
+
+
 ### 2 - Capa Persistence
 1.  Para crear una librería de persistence debes correr el comando 
  `nx g @nrwl/node:lib <lib-name/persistence/mongodb>`
@@ -232,7 +248,7 @@ export class CategoryCreator {
     const exists = await this.categoryExists(name);
 
     if (exists === null) {
-      // Si la categoría ya existe, entonces arroja un error custom, esto lo veremos en otra guía.
+      // Si la categoría ya existe, entonces arroja un error custom.
       throw new CategoryAlreadyExists(name);
     }
 
