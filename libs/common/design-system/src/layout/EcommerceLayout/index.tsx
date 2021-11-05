@@ -4,7 +4,7 @@ import { Navbar, NavbarMobile } from '../..';
 export const EcommerceLayout = ({ children, userAgent }: any) => {
   const { isMobile } = getSelectorsByUserAgent(userAgent)
   return(
-    <div>
+    <div className="flex flex-col">
   { isMobile ? <NavbarMobile /> : <Navbar /> }
 
   <div className="flex flex-col flex-grow pt-20">

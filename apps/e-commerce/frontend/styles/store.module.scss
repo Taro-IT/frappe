@@ -1,10 +1,11 @@
 .wrapper {
 
   @apply relative mt-5 ;
-  z-index: -1;
-
+  
+  z-index: 0;
+  
   &--main{
-    @apply grid w-full h-full;
+    @apply relative grid w-full h-full;
     grid-template-areas: "sidebar products";
     grid-template-rows: 1fr;
     grid-template-columns: 25% 75%;
@@ -16,7 +17,10 @@
   
     &--content {
       grid-area: products;
-      @apply overflow-y-scroll;
+      @apply overflow-y-scroll;  
+      
+
+
     }
   }
   
