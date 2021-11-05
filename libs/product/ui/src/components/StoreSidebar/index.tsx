@@ -1,9 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Checkbox } from '@frappe/common/design-system';
+import { Checkbox, PriceField } from '@frappe/common/design-system';
 import { useCategories } from '../../hooks';
 
 import styles from './StoreSidebar.module.scss';
+import { PriceSelector } from '../PriceSelector';
 
 interface StoreSidebarProps {
   readonly className: string;
@@ -28,7 +29,7 @@ export const StoreSidebar = ({ className }: StoreSidebarProps) => {
           <h2 className="text-md font-medium mb-2"> Precio </h2>
 
           <div className="flex justify-around">
-            { /* TODO ADD Price selector */ }
+            <PriceSelector/>
           </div>
         </div>
       </div>
