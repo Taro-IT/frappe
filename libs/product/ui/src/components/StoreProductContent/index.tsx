@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 
 import styles from './StoreProductContent.module.scss';
@@ -11,11 +11,14 @@ interface StoreProductContentProps {
 }
 
 export const StoreProductContent = ({ className }: StoreProductContentProps) => {
-  const { products, total} = useProducts();
+  const [maxPrice,setMaxPrice] = useState(undefined);
+  const [minPrice,setMinPrice] = useState(undefined);
+
+  const { products, total} = useProducts({minPrice,maxPrice});
   return (
     <div className={ clsx(className, styles.wrapper) }>
       <div className={ styles['wrapper--content'] }>
-        <ProductList products={products}/>
+        <ProductList setMinPrice = { () => setMaxPrice } products={products}/>
         {/*TODO add pagination perdon por no agregar paginación, gracias por tanto perdón por tan poco*/ }
       </div>
     </div>

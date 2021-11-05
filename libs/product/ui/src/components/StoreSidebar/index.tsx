@@ -8,6 +8,8 @@ import { PriceSelector } from '../PriceSelector';
 
 interface StoreSidebarProps {
   readonly className: string;
+  readonly setMinPrice: () => unknown;
+  readonly setMaxPrice: () => unknown;
 }
 
 export const StoreSidebar = ({ className }: StoreSidebarProps) => {
