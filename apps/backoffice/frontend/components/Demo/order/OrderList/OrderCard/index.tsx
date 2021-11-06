@@ -2,9 +2,10 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import classes from '../OrderList.module.scss';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline';
-import { Card, Badge, ProgressBar} from '@frappe/common/design-system';
+import { Button, Card, Badge, ProgressBar} from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
 import * as React from 'react';
+import { OrderStatuses } from '@frappe/order/domain'
 
 
 type OrderCardProps = {
@@ -40,6 +41,10 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
     setExpanded(previous => !previous);
   };
 
+  const handleClick = () => {
+    console.log("Imprimir guía de envío")
+  };
+
   const handlePDFOpen = pdfFile => window.open(pdfFile, '_blank');
 
   return (
@@ -57,7 +62,10 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
           />
         )}
         <h1 className={clsx('text-2xl')}>{`Orden del ${day} de ${monthNames[month]} del ${year} - ${order.clientName}`}</h1>
-      </div>
+        {status == OrderStatuses.ABIERTA && (
+        <Button title={'Imprimir Guía'} variant={'cta'} className="flex ml-auto" onClick={handleClick} />
+        )}
+        </div>
       {/*Solo mostrar la alerta si la orden está atrasada*/}
       {order.isDelayed && (
         <Badge content="Atrasada" color="red" />
