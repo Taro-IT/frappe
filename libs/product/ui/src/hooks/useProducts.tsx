@@ -32,9 +32,10 @@ export const useProducts = ({minPrice, maxPrice}:UseProducts) => {
   //   setFilters(() => newFilters);
   // },[categories])
 
+  /// HTTP call that actually works: http://localhost:3000/api/products?filters=[{”field”:“price”,“operator”:“EQUAL”,“value”:5000}]&order={“by”:“”,“type”:“NONE”}
   useEffect(() => {
     console.log("hola", minPrice, maxPrice);
-    
+    const filters = [{ field:"price", operator: "GT", value:2000}]
     axios.get<SearchQueryResponse<ProductPrimitives>>(`${ process.env.NEXT_PUBLIC_API_URL }/products`, {
       params: {
         filters,
@@ -47,7 +48,7 @@ export const useProducts = ({minPrice, maxPrice}:UseProducts) => {
       .then(data => {
         setProducts(data.data.result.items);
       });
-  }, [filters]);
+  }, []);
 
 
   return { products, total };
