@@ -10,6 +10,7 @@ const OrderList = () => {
     const getOrders = async (): Promise<void> => {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
       const data = response.data.result;
+      console.log(data);
       if (data.length !== 0) {
         setOrders(data);
       }
@@ -26,7 +27,7 @@ const OrderList = () => {
   );
 
   return (
-    <div className="overflow-y-scroll w-full">
+    <div className=" w-full">
       {/*Quitar badge atrasado fuera de lugar
       <Badge content="Atrasado" color="red" />*/}
       <div className="w-full  ">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
