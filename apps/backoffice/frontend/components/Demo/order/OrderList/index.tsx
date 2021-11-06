@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import OrderCard from './OrderCard';
-import { Badge } from '@frappe/common/design-system';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
@@ -28,7 +27,8 @@ const OrderList = () => {
 
   return (
     <div className="overflow-y-scroll w-full">
-      <Badge content="Atrasado" color="red" />
+      {/*Quitar badge atrasado fuera de lugar
+      <Badge content="Atrasado" color="red" />*/}
       <div className="w-full  ">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
     </div>
   );
