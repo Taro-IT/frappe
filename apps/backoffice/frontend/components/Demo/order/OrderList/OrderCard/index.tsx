@@ -63,7 +63,7 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
         )}
         <h1 className={clsx('text-2xl')}>{`Orden del ${day} de ${monthNames[month]} del ${year} - ${order.clientName}`}</h1>
         {status != OrderStatuses.ABIERTA && status != "ABIERTO" && (
-        <Button title={'Imprimir Guía'} variant={'cta'} className="flex ml-auto" onClick={handleClick} />
+        <Button title={'Imprimir Guía'} variant={'cta'} className="flex flex-initial ml-auto" onClick={handleClick} />
         )}
         </div>
       {/*Solo mostrar la alerta si la orden está atrasada*/}

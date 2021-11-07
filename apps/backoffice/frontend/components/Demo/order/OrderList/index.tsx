@@ -27,10 +27,10 @@ const OrderList = () => {
   );
 
   return (
-    <div className=" w-full">
+    <div className=" w-full h-full overflow-y-scroll ">
       {/*Quitar badge atrasado fuera de lugar
       <Badge content="Atrasado" color="red" />*/}
-      <div className="w-full  ">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
+      <div className="w-full h-full ">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
     </div>
   );
 };
