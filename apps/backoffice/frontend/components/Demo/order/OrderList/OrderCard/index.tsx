@@ -49,40 +49,42 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
 
   return (
     <Card className={clsx(classes.orders)}>    
-      <div className="flex flex-row py-4 align-middle">
-        {closed ? (
-          <ChevronDownIcon
-            className={clsx(classes['chevron-icon'], classes['expand-icon'])}
-            onClick={handleExpandOrder}
-          />
-        ) : (
-          <ChevronRightIcon
-            className={clsx(classes['chevron-icon'], classes['expand-icon'])}
-            onClick={handleExpandOrder}
-          />
+      <div className="flex flex-row justify-between py-4 align-middle pr-8">
+        <div className="flex">
+          {closed ? (
+            <ChevronDownIcon
+              className={clsx(classes['chevron-icon'], classes['expand-icon'])}
+              onClick={handleExpandOrder}
+            />
+          ) : (
+            <ChevronRightIcon
+              className={clsx(classes['chevron-icon'], classes['expand-icon'])}
+              onClick={handleExpandOrder}
+            />
+          )}
+          <h1 className={clsx('text-2xl')}>{`Orden del ${day} de ${monthNames[month]} del ${year} - ${order.clientName}`}</h1>
+        </div>
+        {/*Solo mostrar la alerta si la orden está atrasada*/}
+        {order.isDelayed && (
+            <Badge content="Atrasada" color="red"/>
         )}
-        <h1 className={clsx('text-2xl')}>{`Orden del ${day} de ${monthNames[month]} del ${year} - ${order.clientName}`}</h1>
-        {status != OrderStatuses.ABIERTA && status != "ABIERTO" && (
-        <Button title={'Imprimir Guía'} variant={'cta'} className="flex flex-initial ml-auto" onClick={handleClick} />
+        {status === OrderStatuses.LISTA_PARA_ENVIO  && (
+        <Button title={'Imprimir Guía'} variant={'cta'} className="flex" onClick={handleClick} />
         )}
         </div>
-      {/*Solo mostrar la alerta si la orden está atrasada*/}
-      {order.isDelayed && (
-        <Badge content="Atrasada" color="red" />
-      )}
+      
       <hr className={clsx('mb-2', !closed && 'invisible')} />
       {/*Dirección de envío y estado de orden de compra*/}
       {closed && (
         <div className="flex flex-row justify-evenly">
           <div>
-            <h5 className="font-bold">Dirección de envío:</h5>
+            <h5 className="font-bold text-center">Dirección de envío:</h5>
             <p>mi casita gg</p>
           </div>
           <div>
-            <h5 className="font-bold">Estado de la orden de compra</h5>
+            <h5 className="font-bold text-center">Estado de la orden de compra:</h5>
             <ProgressBar status={status}/>
           </div>
-          
         </div>
       )}
       {items.map(
@@ -98,9 +100,13 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
       )}
       {/*Total y subtotal*/}
       {closed && (
-        <div className="">
-            <h5 className="font-bold">Subtotal:</h5> ${order.subtotal}
-            <h5 className="font-bold">Total</h5> ${ order.total }          
+        <div className="pr-8 pb-8">
+          <div className="flex justify-end">
+            <h5 className="text-sm">Subtotal: ${ order.subtotal }</h5> 
+          </div>
+          <div className="flex justify-end">
+            <h5 className="font-bold">Total: ${ order.total } </h5>          
+          </div>
         </div>
       )}
     </Card>

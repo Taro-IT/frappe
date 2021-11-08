@@ -12,10 +12,8 @@ type BadgeHeaderProps = {
  */
 export const Badge = ({content, color}: PropsWithChildren<BadgeHeaderProps>) => {
     return (
-      <>
         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-${color}-100 text-gray-800`}>
           {content}
         </span>
-      </>
     )
   }
