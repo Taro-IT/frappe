@@ -6,7 +6,7 @@
 
 ## Pre-requisitos
 
-- Haber creado las libs correctamente, siguiendo la [Guía para hacer librerías de backend]()
+- Haber creado las libs correctamente, siguiendo la [Guía para hacer librerías de backend]
 - Haber leido [la estructura de archivos](../architecture/file-structure)
 ## Pasos a seguir
 
@@ -19,7 +19,7 @@
   3. Crea un archivo para tu handler con el nombre `<accion><Caso>Handler.ts`, por ejemplo `createCategoryHandler.ts`, el cuál tendrá algo similar al código siguiente:
 
 
-    ```
+  ```typescript
       import { CommandBus } from '@tshio/command-bus';
       import { NextFunction, RequestHandler } from 'express';
       // Importa el Comando que creaste en las librerias en la capa de aplicación
@@ -46,10 +46,12 @@
             next(error);
           }
         };
-    ```
-  Recuerda que puedes ver cómo se hicieron los casos de otros módulos para basarte, ya que hay boilerplate y a final de cuentas, es el mismo proceso para todos.
-  4. Dentro de la misma carpeta `handlers` crea un archivo `index.ts` y exporta tus handlers de la siguiente manera:
   ```
+
+  Recuerda que puedes ver cómo se hicieron los casos de otros módulos para basarte, ya que hay boilerplate y a final de cuentas, es el mismo proceso para todos.
+  
+  4. Dentro de la misma carpeta `handlers` crea un archivo `index.ts` y exporta tus handlers de la siguiente manera:
+  ```typescript
     export { createCategoryHandler } from './createCategoryHandler';
   ```
 
@@ -60,7 +62,7 @@
 3. Dentro de tu dto deberás incluir todos los campos que recibes en los request de la API y validarlos con decoradores (class-validators). Puedes ver la lista de decoradores disponibles [aquí](https://github.com/typestack/class-validator).
 
     Un ejemplo de archivo de dto puede ser
-    ```
+    ```typescript
       // Importas el validador que necesitas
       import { IsNotEmpty } from 'class-validator';
 
@@ -72,15 +74,16 @@
       }
 
     ```
+
 4. En el archivo `index.ts` exporta tus dto así
-    ```
+    ```typescript
     export { CreateCategoryDto } from './CreateCategory.dto';
 
     ```
 ### Routing
 1. En el nivel root de caso de uso, crea un archivo que se llame `<modulo>.routing.ts`, en el cual vas a registrar todas las rutas con sus métodos HTTP, además de los dtos que validarán dichas rutas. En Frappé usamos el estándar que puedes encontrar [aquí](https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/#h-use-nouns-instead-of-verbs-in-endpoint-paths).
 
-```
+```typescript
 import express from 'express';
 import { CommandBus } from '@tshio/command-bus';
 import { makeValidateBody } from 'express-class-validator';
@@ -120,7 +123,7 @@ export const categoryRouting = ({ commandBus }: CollectionRoutingDeps) => {
 
 2. En el nivel root de caso de uso, crea un archivo que se llame `index.ts`, en el cual vas a registrar todos tus executers, es decir, los creators, finders, listers, que hayas creado en las libs. Un ejemplo de este archivo puede ser:
 
-```
+```typescript
 import { AwilixContainer, asClass, asFunction } from 'awilix';
 // Importa el archivo de rutas que creaste en el paso anterior
 import { categoryRouting } from './category.routing';
@@ -149,7 +152,7 @@ export const registerCategoryModule = (container: AwilixContainer) => {
     Siguiendo ese ejemplo, debes crear tu ruta de esta manera:
     
     Primero define el categoryRouting en la interfaz `RoutesDeps`
-    ```
+    ```typescript
       interface RoutesDeps {
       // este nombre debe ser igual al del router que creaste en el paso 1
       readonly categoryRouting: express.Router;
@@ -157,7 +160,7 @@ export const registerCategoryModule = (container: AwilixContainer) => {
     }
     ```
     Después nombra tu ruta en el método configureRouter
-    ```
+    ```typescript
       router.use('/categories', routes.categoryRouting);
     ```
 
@@ -167,19 +170,19 @@ export const registerCategoryModule = (container: AwilixContainer) => {
     **Recuerda que en commands van los comandos, y en queries, van los queries**
     
     Después de importarlo, solo debes agregar la siguiente línea después del último.
-    ```
+    ```typescript
       asClass(CreateCategoryCommandHandler),
     ```
 
 2. Ahora abre el archivo `index.ts` e importa el módulo de rutas que definiste en la fase de routing, en el paso 2, por ejemplo:
 
-    ```
+    ```typescript
     import { registerCategoryModule } from '../category';
 
     ```
 
     Después solo llámalo debajo del comentario en la línea 28, así
-    ```
+    ```typescript
       // Register Modules
       registerCategoryModule(container);
     ```
