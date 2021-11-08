@@ -22,15 +22,18 @@
 4. Crea 1 archivo con el nombre de tu caso de uso, para este ejemplo usaremos **Category.ts**, el cuál contendrá 2 métodos:
   - fromPrimitives:
     Este método recibe categoryPrimitives, y devuelve una nueva categoría
-    ```
+
+    ```typescript
     static fromPrimitives(primitives: CategoryPrimitives): Category {
       return new Category(new CategoryId(primitives.id), new CategoryName(primitives.name));
     }
 
     ```
+
   - toPrimitives:
     Devuelve los datos primitivos de un caso de uso.
-    ```
+
+    ```typescript
     toPrimitives(): CategoryPrimitives {
       return {
         id: this.id.value,
@@ -39,16 +42,16 @@
     }
     ```
 
-      :::note
+    :::note
 
-      Recuerda que primitives hace referencia a los tipos de dato primitivos, es decir, strings, numbers, etc. Y los Value Objects son una representación específica de un primitivo.
+    Recuerda que primitives hace referencia a los tipos de dato primitivos, es decir, strings, numbers, etc. Y los Value Objects son una representación específica de un primitivo.
 
-      :::
+    :::
 
   5. Crea 1 archivo para cada campo de tu entidad, con el nombre `<CasoDeUso><NombreDelCampo>.ts`, por ejemplo, CategoryId.ts
      Cada uno de estos archivos debe ser una clase que extiende del value object de su primitive, por ejemplo:
 
-     ```
+     ```typescript
       // CategoryId.ts
       import { Uuid } from '@frappe/common/value-object';
 
@@ -57,7 +60,7 @@
      ```
 
   6. Crea un archivo `index.ts` al nivel de la carpeta **model**, el cual debe exportar cada archivo que hayas creado. Por ejemplo:
-  ```
+  ```typescript
     export { Category } from './Category';
     export { CategoryId } from './CategoryId';
     export { CategoryName } from './CategoryName';
@@ -69,7 +72,7 @@
 
     En nuestro caso se llamará `CategoryPrimitives.ts`, y debe definir una interfaz que tenga todos los primitivos que confirman a tu entidad. Por ejemplo:
 
-      ```
+      ```typescript
         export interface CategoryPrimitives {
           readonly id: string;
           readonly name: string;
@@ -83,7 +86,7 @@
       En términos más generales, un repository representa la definición del "Contrato" para acceso de datos o integración para un servicio externo I/O.
 
       Un ejemplo puede ser:
-      ```
+      ```typescript
         import { Category, CategoryId, CategoryName } from '../model';
         import { Nullable } from '@frappe/common/utils';
 
@@ -97,20 +100,18 @@
   - index.ts
   
     Aquí debes exportar los archivos que creaste dentro de la carpeta. Debe verse como:
-      ```
-        export type { CategoryPrimitives } from './CategoryPrimitives';
-        export type { CategoryRepository } from './CategoryRepository';
+    ```typescript
+      export type { CategoryPrimitives } from './CategoryPrimitives';
+      export type { CategoryRepository } from './CategoryRepository';
 
-      ```
+    ```
 
-  :::note
-
+    :::note
       En esta capa también crearás los Custom Errors que puedas necesitar cuando crees tus métodos en la capa de aplicación
-
-  :::
+    :::
 
   8. En el index.ts al nivel de domain, exporta todas las carpetas que creaste.
-  ```
+  ```typescript
   export * from './model';
   export * from './utils';
   ```
@@ -122,7 +123,8 @@
 #### **Custom errors**
 1. Los errores custom sirven para validar ciertos casos, para crearlos debes hacer una carpeta en la capa de dominio llamada `error`
 2. Crea un archivo con el nombre del error, por ejemplo `CategoryAlreadyExists.ts`. Este archivo contendrá una clase con su constructor, el cuál tendrá el texto del error, por ejemplo:
-```
+
+```typescript
 export class CategoryAlreadyExists extends Error {
   // El constructor recibe el nombre de la categoria que ya existe. Un error puede recibir cualquier parámetro para hacer el texto
   constructor(name: string) {
@@ -132,8 +134,9 @@ export class CategoryAlreadyExists extends Error {
 }
 
 ```
+
 3. Crea un archivo `index.ts` y exporta tus errores. Por ejemplo:
-```
+```typescript
 export { CategoryAlreadyExists } from './CategoryAlreadyExists';
 
 ```
@@ -154,7 +157,8 @@ export { CategoryAlreadyExists } from './CategoryAlreadyExists';
 4. En el archivo `Mongo<NombreLib>Repository.ts` debe ir toda la lógica que conecta al servicio externo, en este caso, a Mongo. Puedes basarte en un archivo de algún otro caso de uso para crear el tuyo
 
     Para esta guía crearemos una categoría, así que el archivo de repository debería tener al menos 2 métodos:
-``` 
+
+``` typescript
 import { MongoRepository } from '@frappe/common/persistence/mongodb'; // Importas el Repositorio de Mongo
 import { Category, CategoryId, CategoryName, CategoryPrimitives, CategoryRepository } from '@frappe/category/domain'; // Importas los tipos que creaste en la capa de dominio
 
@@ -187,8 +191,9 @@ export class MongoCategoryRepository extends MongoRepository implements Category
 ```
 
 4. En el archivo `index.ts` a nivel de la carpeta `utils`, exporta el archivo que acabas de crear.
-```
-export { MongoCategoryRepository } from './MongoCategoryRepository';
+
+```typescript
+  export { MongoCategoryRepository } from './MongoCategoryRepository';
 ```
 
 5. En el archivo `index.ts` a nivel de la carpeta `src`, exporta la carpeta utils.
@@ -206,7 +211,7 @@ export { MongoCategoryRepository } from './MongoCategoryRepository';
 
 3. A nivel de `src` crearás las carpetas para cada acción de tu caso de uso. Algunos nombres de dichas acciones son **create, delete, find, list, etc.**
 
-    Para el ejemplo de esta guía debes crear una carpeta que se llame `create`, la cuál contendrá 3 archivos principales, `CategoryCreator.ts`, `CreateCategoryCommand.ts` y `CreateCategoryCommandHandler.ts`. 
+  Para el ejemplo de esta guía debes crear una carpeta que se llame `create`, la cuál contendrá 3 archivos principales, `CategoryCreator.ts`, `CreateCategoryCommand.ts` y `CreateCategoryCommandHandler.ts`. 
 **Recuerda sustituir la palabra _Category_ por la correspondiente a tu caso de uso.**
 
 :::note
@@ -216,8 +221,9 @@ export { MongoCategoryRepository } from './MongoCategoryRepository';
 :::
 
 
-4. Para llenar el archivo `CreateCategoryCommand.ts` deberás crear el payload necesario para crear una categoría en forma de una interfz. Además de un constructor para tu comando. Por ejemplo:
-```
+4. Para llenar el archivo `CreateCategoryCommand.ts` deberás crear el payload necesario para crear una categoría en forma de una interfaz. Además de un constructor para tu comando. Por ejemplo:
+
+```typescript
 import { Command } from '@tshio/command-bus';
 
 // Los campos necesarios para crear una categoría
@@ -226,7 +232,7 @@ interface CreateCategoryCommandPayload {
   readonly name: string;
 }
 
-/El constructor del comando
+//El constructor del comando
 export class CreateCategoryCommand implements Command<CreateCategoryCommandPayload> {
   //Esta linea crea una variable type que guarda el nombre del comando.
   readonly type = CreateCategoryCommand.name;
@@ -236,7 +242,8 @@ export class CreateCategoryCommand implements Command<CreateCategoryCommandPaylo
 
 ```
 5. El archivo `CategoryCreator.ts` es quien hace toda la mágia ya que es el encargado que hacer llegar la información a nuestro repositorio que escribirmos en la capa de persitence. Aquí vas a poner una parte la lógica de verificación de datos y podrás llamar los métodos del repositorio.  Por ejemplo:
-```
+
+```typescript
 import { Category, CategoryAlreadyExists, CategoryId, CategoryName, CategoryRepository } from '@frappe/category/domain';
 import { CategoryNameFinder } from '../find'; // En esta guía suponemos que ya se implementó este caso
 
@@ -287,10 +294,12 @@ export class CategoryCreator {
 }
 
 ```
+
 Los creators son muy similares en la forma, sin embargo la implementación de execute puede variar.
 
 6. El archivo `CreateCategoryCommandHandler.ts` es el encargado de manejar la lógica de los comandos, es decir, cuando se llama un comando, el handler es el encargado de que se ejecute.  Un command handler puede verse así:
-```
+
+```typescript
 import { CommandHandler } from '@tshio/command-bus';
 
 // Debes importar el command y el creator
@@ -325,10 +334,12 @@ export class CreateCategoryCommandHandler implements CommandHandler<CreateCatego
 ```
 
 7. Vuelve al `index.ts` del nivel src y exporta los casos que creaste. Por ejemplo:
-```
+
+```typescript
 export * from './create';
 export * from './find';
 ```
+
 8. Asegúrate que la estructura de archivos se vea algo así.
 ![final structure 1](../assets/PPG02-1-final-structure.png)
 ![final structure 2](../assets/PPG02-2-final-structure.png)
