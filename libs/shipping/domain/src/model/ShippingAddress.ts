@@ -18,14 +18,15 @@ export class ShippingAddress {
     readonly zip: ShippingZip,
     readonly country: ShippingCountry,
     readonly address1: AddressLine,
-    readonly company: ShippingCompany,
-    readonly address2: AddressLine,
     readonly phone: ShippingPhone,
     readonly email: ShippingEmail,
+    readonly company?: ShippingCompany,
+    readonly address2?: AddressLine,
     readonly reference?: ShippingReference
   ) {}
 
   static fromPrimitives(primitives: ShippingAddressPrimitives): ShippingAddress {
+
     return new ShippingAddress(
       new ShippingProvince(primitives.province),
       new ShippingCity(primitives.city),
@@ -33,10 +34,10 @@ export class ShippingAddress {
       new ShippingZip(primitives.zip),
       new ShippingCountry(primitives.country),
       new AddressLine(primitives.address1),
-      new ShippingCompany(primitives.company),
-      new AddressLine(primitives.address2),
       new ShippingPhone(primitives.phone),
       new ShippingEmail(primitives.email),
+      new ShippingCompany(primitives.company),
+      new AddressLine(primitives.address2),
       new ShippingReference(primitives.reference),
     )
   }
@@ -49,10 +50,10 @@ export class ShippingAddress {
       zip: this.zip.value,
       country: this.country.value,
       address1: this.address1.value,
-      company: this.company.value,
-      address2: this.address2.value,
       phone: this.phone.value,
       email: this.email.value,
+      company: this.company.value,
+      address2: this.address2.value,
       reference: this.reference.value
     }
   }

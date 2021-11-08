@@ -11,9 +11,9 @@ import {
   OrderTotal,
   OrderSubtotal,
   OrderIsDelayed,
-  /* OrderClientName */
+  OrderClientName
 } from '@frappe/order/domain';
-//import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
+import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
 import { OrderFinder } from '..';
 
 // SOLID
@@ -42,8 +42,8 @@ export class OrderCreator {
     total: number,
     status: OrderStatuses,
     isDelayed: boolean,
-/*     clientName?: string,
-    address?: ShippingAddressPrimitives */
+    clientName?: string,
+    address?: ShippingAddressPrimitives
   ) {
     const exists = await this.orderExists(id);
 
@@ -51,17 +51,37 @@ export class OrderCreator {
       throw new OrderAlreadyExists(id);
     }
 
-    const order = new Order(
-      new OrderId(id),
-      items.map(item => OrderItem.fromPrimitives(item)),
-      new OrderSubtotal(subtotal),
-      new OrderTotal(total),
-      new OrderDateCreated(new Date()),
-      new OrderStatus(status),
-      new OrderIsDelayed(isDelayed),
-/*       new OrderClientName(clientName),
-      ShippingAddress.fromPrimitives(address), */
-    );
+    console.log(address)
+    let order : Order;
+    if(address)
+    {
+      order = new Order(
+        new OrderId(id),
+        items.map(item => OrderItem.fromPrimitives(item)),
+        new OrderSubtotal(subtotal),
+        new OrderTotal(total),
+        new OrderDateCreated(new Date()),
+        new OrderStatus(status),
+        new OrderIsDelayed(isDelayed),
+        new OrderClientName(clientName),
+        ShippingAddress.fromPrimitives(address)
+      );
+    }
+    else
+    {
+      order = new Order(
+        new OrderId(id),
+        items.map(item => OrderItem.fromPrimitives(item)),
+        new OrderSubtotal(subtotal),
+        new OrderTotal(total),
+        new OrderDateCreated(new Date()),
+        new OrderStatus(status),
+        new OrderIsDelayed(isDelayed),
+        new OrderClientName(clientName)
+      );
+    }
+    
+
     return this.orderRepository.save(order);
   }
 

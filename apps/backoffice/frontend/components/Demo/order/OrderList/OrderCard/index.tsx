@@ -47,6 +47,8 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
 
   const handlePDFOpen = pdfFile => window.open(pdfFile, '_blank');
 
+  console.log(order);
+
   return (
     <Card className={clsx(classes.orders)}>    
       <div className="flex flex-row justify-between py-4 align-middle pr-8">

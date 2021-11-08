@@ -6,7 +6,7 @@ import { OrderStatus } from './OrderStatus';
 import { OrderSubtotal } from './OrderSubtotal';
 import { OrderTotal } from './OrderTotal';
 import { OrderIsDelayed } from './OrderIsDelayed';
-//import { ShippingAddress } from '@frappe/shipping/domain'
+import { ShippingAddress } from '@frappe/shipping/domain'
 import { OrderClientName } from './OrderClientName';
 export class Order {
   constructor(
@@ -18,7 +18,7 @@ export class Order {
     readonly status: OrderStatus,
     readonly isDelayed: OrderIsDelayed,
     readonly clientName?: OrderClientName,
-    //readonly address?: ShippingAddress,
+    readonly address?: ShippingAddress,
   ) {}
 
   static fromPrimitives(primitives: OrderPrimitives): Order {
@@ -31,7 +31,7 @@ export class Order {
       new OrderStatus(primitives.status),
       new OrderIsDelayed(primitives.isDelayed),
       new OrderClientName(primitives.clientName),
-      //ShippingAddress.fromPrimitives(primitives.address),
+      primitives.address != null ? ShippingAddress.fromPrimitives(primitives.address): null,
     );
   }
 
@@ -45,7 +45,7 @@ export class Order {
       status: this.status.value,
       isDelayed: this.isDelayed.value,
       clientName: this.clientName.value,
-      //address: this.address.toPrimitives(),
+      address: this.address?.toPrimitives(),
     };
   }
 }

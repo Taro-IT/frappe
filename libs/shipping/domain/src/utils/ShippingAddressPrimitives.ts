@@ -5,9 +5,9 @@ export interface ShippingAddressPrimitives {
     readonly zip: string;
     readonly country: string;
     readonly address1: string;
-    readonly company: string;
-    readonly address2: string;
     readonly phone: string;
     readonly email: string;
+    readonly company?: string;
+    readonly address2?: string;
     readonly reference?: string;
   }
