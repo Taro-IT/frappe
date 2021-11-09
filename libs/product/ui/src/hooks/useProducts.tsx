@@ -37,6 +37,7 @@ export const useProducts = ({minPrice, maxPrice, categories}:UseProducts) => {
   useEffect(() => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/products?filters=${JSON.stringify(filters)}&order=${JSON.stringify({by: '',type: 'NONE'})}`;
     axios.get<SearchQueryResponse<ProductPrimitives>>(url).then(result =>
+      //@ts-ignore
       setProducts(result.data.result.items));
   }, [filters]);
   return { products, total };
