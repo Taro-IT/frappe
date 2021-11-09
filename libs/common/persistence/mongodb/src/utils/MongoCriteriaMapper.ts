@@ -9,7 +9,7 @@ export class MongoCriteriaMapper {
 
     const betweenCache: Record<string, boolean> = {};
 
-    return criteria.filters.value.reduce((query, { field, operator, value }) => {
+    const auxBuiltQuery = criteria.filters.value.reduce((query, { field, operator, value }) => {
       //@ts-ignore
       const key = field  === 'id' ? '_id' : field ;
       const fieldValue: unknown = value ;
@@ -49,8 +49,14 @@ export class MongoCriteriaMapper {
           query[key as string] = { $not: { $regex: new RegExp(fieldValue as string, 'ig') } };
           break;
       }
-
+      
+      
       return query;
     }, {});
+
+    console.log('builded query', auxBuiltQuery);
+    
+    return auxBuiltQuery
+    
   }
 }

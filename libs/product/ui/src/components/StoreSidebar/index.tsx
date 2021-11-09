@@ -33,7 +33,7 @@ export const StoreSidebar = ({ className, setMinPrice, setMaxPrice, setCategorie
         </div>
 
         <div>
-          <h2 className="text-md font-medium mb-2"> Precio máximo: </h2>
+          <h2 className="text-md font-medium mb-2"> Precio: </h2>
 
           <div className="flex justify-around">
             <PriceSelector setMinPrice={setMinPrice} setMaxPrice={setMaxPrice}/>

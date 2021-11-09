@@ -15,17 +15,25 @@ interface UseProducts{
 export const useProducts = ({minPrice, maxPrice, categories}:UseProducts) => {
   const [products, setProducts] = useState<ProductPrimitives[]>([]);
   const [total, setTotal] = useState(0);
-  const [filters,setFilters] = useState<FilterPrimitive<ProductPrimitives>[]>([]);
+  const [filters,setFilters] = useState<FilterPrimitive<ProductPrimitives, unknown>[]>([]);
   
   useEffect(()=>{
     const newFilters:FilterPrimitive<ProductPrimitives>[] = [];
 
-    maxPrice && newFilters.push({ field:"price", operator: "LT", value:maxPrice });
-    minPrice && newFilters.push({ field:"price", operator: "GT", value:minPrice });
-    categories && categories.length === 1 && newFilters.push({ field:"categories", operator: "EQUAL", value: categories.pop() })
+    if (maxPrice !== undefined && maxPrice > 0) {
+      newFilters.push({ field:"price", operator: "LT", value:maxPrice });
+    }
+    if (minPrice !== undefined && minPrice > 0) {
+
+      newFilters.push({ field:"price", operator: "GT", value:minPrice });
+    }
+    if (categories !== undefined && categories.length >= 1) {
+       newFilters.push({ field:"categories", operator: "EQUAL", value: categories[0] })
+    }
+    
     setFilters(newFilters);
 
-  },[minPrice, maxPrice, categories])
+  }, [minPrice, maxPrice, categories])
 
   useEffect(() => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/products?filters=${JSON.stringify(filters)}&order=${JSON.stringify({by: '',type: 'NONE'})}`;
