@@ -28,7 +28,7 @@ export class MongoCriteriaMapper {
           // TODO refactor to remove const creation
 
 
-          query[key as string] = (betweenCache[key as string] !== undefined) ? 
+          query[key as string] = (betweenCache[key as string] !== undefined) ?
           { ...auxGt, $gte: Number(fieldValue) } :
           { $gte: Number(fieldValue) };
 
@@ -38,7 +38,7 @@ export class MongoCriteriaMapper {
           // TODO refactor to remove const creation
           
 
-          query[key as string] = (betweenCache[key as string] !== undefined) ? 
+          query[key as string] = (betweenCache[key as string] !== undefined) ?
           { ...auxLt, $lte: Number(fieldValue) } :
           { $lte: Number(fieldValue) };
 
