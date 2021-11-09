@@ -1,7 +1,5 @@
-import React from 'react';
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Card } from '@frappe/common/design-system';
-import { CardHeader } from 'libs/common/design-system/src/Card/Header';
 import { useRouter } from 'next/router';
 
 

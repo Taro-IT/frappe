@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
 import { StoreProductContent, StoreSidebar } from '@frappe/product/ui';
 

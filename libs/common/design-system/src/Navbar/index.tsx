@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
 import { Link } from '..';
-import { Router, useRouter } from 'next/router';
+import {  useRouter } from 'next/router';
 const navItems = [
   {href: "store", text: "Tienda"},
   {href: "about", text: "Nosotros"},

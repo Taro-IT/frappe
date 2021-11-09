@@ -1,4 +1,3 @@
-import React, { useCallback, useState } from 'react';
 import clsx from 'clsx';
 
 import styles from './StoreProductContent.module.scss';
@@ -13,7 +12,7 @@ interface StoreProductContentProps {
 }
 
 export const StoreProductContent = ({ className, minPrice, maxPrice, categories }: StoreProductContentProps) => {
-  const { products, total} = useProducts({minPrice,maxPrice, categories});
+  const { products} = useProducts({minPrice,maxPrice, categories});
   
   return (
     <div className={ clsx(className, styles.wrapper) }>
