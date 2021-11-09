@@ -5,6 +5,7 @@ import { useCategories } from '../../hooks';
 
 import styles from './StoreSidebar.module.scss';
 import { PriceSelector } from '../PriceSelector';
+import { CategoryCheckbox } from './CategoryCheckbox';
 
 interface StoreSidebarProps {
   readonly className: string;
@@ -26,8 +27,8 @@ export const StoreSidebar = ({ className, setMinPrice, setMaxPrice, setCategorie
           <h2 className="text-md font-medium mb-2"> Categorias </h2>
           {
             categories.map(({ id, name, value }) => (
-              <Checkbox key={id} name={ id } label={ name } value={ value } onChange={ handleCategoryCheck } />)
-            )
+              <CategoryCheckbox id={id} name={name} value={value} handleCategoryChange={handleCategoryCheck}/>
+            ))
           }
         </div>
 

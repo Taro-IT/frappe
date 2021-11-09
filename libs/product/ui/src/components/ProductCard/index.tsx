@@ -15,7 +15,7 @@ export const ProductCard = ({ id, name, price, images }: ProductCardProps) => {
   }
 
   return (
-    <Card className="h-72 " onClick={handleClick}>
+    <Card className="h-auto " onClick={handleClick}>
         <div className="p-3 h-full flex flex-col justify-between">
             <div className="flex h-full items-center mb-3">{(images && images[0]) ? <img src={images[0]} />:
               <img src="/img/notFound.jpg"/>}

@@ -26,9 +26,9 @@ export const useCategories = () => {
     const id = event.target.name
 
     setCategories(categories => categories.map(category => {
-      /* if (category.id === id) {
+       if (category.id === id) {
         return { ...category, value: !category.value }
-      } */
+      } 
 
       return ({...category, value: category.id === id});
     }));
