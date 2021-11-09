@@ -1,7 +1,7 @@
 import { ShippingAddressPrimitives } from "@frappe/shipping/domain";
 
 export enum OrderStatuses {
-  ABIERTA = 'Abierto',
+  ABIERTO = 'Abierto',
   EN_PROCESO = 'En proceso',
   LISTA_PARA_ENVIO = 'Lista para envío',
   ENTREGADA = 'Entregada'

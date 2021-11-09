@@ -33,15 +33,11 @@ export class OrderCreator {
     this.orderFinder = orderFinder;
   }
 
-  //TODO: isDelayed debería ser falso desde que se crea, solo se agregó para hacer pruebas en lo que queda el caso del update
-  //TODO status debería ser OrderStatuses.ABIERTA, solo está el campo para hacer pruebas en lo que queda el update
   async execute(
     id: string,
     items: OrderItemType[],
     subtotal: number,
     total: number,
-    status: OrderStatuses,
-    isDelayed: boolean,
     clientName?: string,
     address?: ShippingAddressPrimitives
   ) {
@@ -61,8 +57,8 @@ export class OrderCreator {
         new OrderSubtotal(subtotal),
         new OrderTotal(total),
         new OrderDateCreated(new Date()),
-        new OrderStatus(status),
-        new OrderIsDelayed(isDelayed),
+        new OrderStatus(OrderStatuses.ABIERTO),
+        new OrderIsDelayed(false),
         new OrderClientName(clientName),
         ShippingAddress.fromPrimitives(address)
       );
@@ -75,8 +71,8 @@ export class OrderCreator {
         new OrderSubtotal(subtotal),
         new OrderTotal(total),
         new OrderDateCreated(new Date()),
-        new OrderStatus(status),
-        new OrderIsDelayed(isDelayed),
+        new OrderStatus(OrderStatuses.ABIERTO),
+        new OrderIsDelayed(false),
         new OrderClientName(clientName)
       );
     }

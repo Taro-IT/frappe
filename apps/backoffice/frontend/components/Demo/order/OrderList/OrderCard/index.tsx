@@ -18,18 +18,18 @@ type OrderCardProps = {
 const OrderCard = ({ items, order, status }: OrderCardProps) => {
   const [closed, setExpanded] = useState<boolean>(false);
   const monthNames = [
-    'Enero',
-    'Febrero',
-    'Marzo',
-    'Abril',
-    'Mayo',
-    'Junio',
-    'Julio',
-    'Agosto',
-    'Septiembre',
-    'Octubre',
-    'Noviembre',
-    'Diciembre'
+    'enero',
+    'febrero',
+    'marzo',
+    'abril',
+    'mayo',
+    'junio',
+    'julio',
+    'agosto',
+    'septiembre',
+    'octubre',
+    'noviembre',
+    'diciembre'
   ];
 
   const prettyDate = new Date(order.dateCreated);
@@ -81,9 +81,9 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
         <div className="flex flex-row justify-evenly">
           <div>
             <h5 className="font-bold text-left">Dirección de envío:</h5>
-            <p>{order.address.address1}</p>
-            <p>{order.address.city}, {order.address.province}, {order.address.country}</p>
-            <p>CP: {order.address.zip}</p>
+            <p>{order.address?.address1}</p>
+            <p>{order.address?.city}, {order.address?.province}, {order.address?.country}</p>
+            <p>CP: {order.address?.zip}</p>
             
           </div>
           <div>

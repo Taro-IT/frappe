@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 type BadgeHeaderProps = {
   readonly content: string;
