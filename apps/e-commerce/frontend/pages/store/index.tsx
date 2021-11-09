@@ -4,7 +4,7 @@ import { StoreProductContent, StoreSidebar } from '@frappe/product/ui';
 
 import styles from '../../styles/store.module.scss';
 
-const StorePage = () => { 
+const StorePage = () => {
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();
   const [categories, setCategories] = useState<string[]>();

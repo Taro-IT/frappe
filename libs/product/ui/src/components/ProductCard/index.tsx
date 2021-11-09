@@ -22,7 +22,7 @@ export const ProductCard = ({ id, name, price, images }: ProductCardProps) => {
             </div>
           <div className="flex justify-between">
             <p className="font-bold text-sm">
-              {name} 
+              {name}
             </p>
             <p className="font-semibold text-sm">
               ${price}

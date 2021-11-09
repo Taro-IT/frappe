@@ -13,7 +13,7 @@ interface ProductListContentProps {
   
     return (
       <>
-      {products.length === 0 && 
+      {products.length === 0 &&
         <div className="flex flex-col space-y-4 justify-items-center w-full h-full mt-24">
           <AdjustmentsIcon className="text-center h-24 text-gray-400"/>
             <p className="text-gray-400 text-center align-middle">Ups, no encontramos productos con estos criterios de búsqueda.</p>

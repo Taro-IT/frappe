@@ -26,17 +26,9 @@ export const useProducts = ({minPrice, maxPrice, categories}:UseProducts) => {
 
   },[minPrice, maxPrice, categories])
 
-  // useEffect(() => {
-  //   const newFilters:FilterPrimitive<ProductPrimitives>[] = [];
-  //   newFilters.push({ field:"categories", operator: "EQUAL", value:  });
-  //   maxPrice && newFilters.push({ field:"price", operator: "LT", value:maxPrice });
-  //   setFilters(() => newFilters);
-  // },[categories])
-
-  /// HTTP call that actually works: http://localhost:3000/api/products?filters=[{”field”:“price”,“operator”:“EQUAL”,“value”:5000}]&order={“by”:“”,“type”:“NONE”}
   useEffect(() => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/products?filters=${JSON.stringify(filters)}&order=${JSON.stringify({by: '',type: 'NONE'})}`;
-    axios.get<SearchQueryResponse<ProductPrimitives>>(url).then(result => 
+    axios.get<SearchQueryResponse<ProductPrimitives>>(url).then(result =>
       setProducts(result.data.result.items));
   }, [filters]);
   return { products, total };
