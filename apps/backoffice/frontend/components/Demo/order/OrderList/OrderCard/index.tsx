@@ -80,8 +80,11 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
       {closed && (
         <div className="flex flex-row justify-evenly">
           <div>
-            <h5 className="font-bold text-center">Dirección de envío:</h5>
-            <p>mi casita gg</p>
+            <h5 className="font-bold text-left">Dirección de envío:</h5>
+            <p>{order.address.address1}</p>
+            <p>{order.address.city}, {order.address.province}, {order.address.country}</p>
+            <p>CP: {order.address.zip}</p>
+            
           </div>
           <div>
             <h5 className="font-bold text-center">Estado de la orden de compra:</h5>
