@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import clsx from 'clsx';
 
 import styles from './StoreProductContent.module.scss';
@@ -13,8 +13,10 @@ interface StoreProductContentProps {
 }
 
 export const StoreProductContent = ({ className, minPrice, maxPrice }: StoreProductContentProps) => {
-
+  console.log("MIN", minPrice, "MAX", maxPrice);
   const { products, total} = useProducts({minPrice,maxPrice});
+  
+  
   return (
     <div className={ clsx(className, styles.wrapper) }>
       <div className={ styles['wrapper--content'] }>

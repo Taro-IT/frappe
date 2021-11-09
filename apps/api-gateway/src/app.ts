@@ -11,7 +11,7 @@ interface AppProps {
 export const configureApp = ({ router }: AppProps): express.Express => {
   const app = express();
 
-  app.use(cors()); // CORS
+  app.use(cors({origin: true})); // CORS
   app.use(helmet()); // Security Headers
   app.use(express.json()); // Response JSON
 

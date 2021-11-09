@@ -8,10 +8,6 @@ const StorePage = () => {
   const [minPrice, setMinPrice] = useState<number>();
   const [maxPrice, setMaxPrice] = useState<number>();
   
-  useEffect(() => {
-    console.log("MIN", minPrice, "MAX", maxPrice);
-    
-  },[minPrice, maxPrice])
 
   return (
       <div className={ styles.wrapper }>

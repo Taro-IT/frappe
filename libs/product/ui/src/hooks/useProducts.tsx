@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ProductPrimitives } from '@frappe/product/domain';
 import { SearchQueryResponse } from '@frappe/common/utils';
-import { FilterPrimitive } from '@dinnosc/criteria';
+import { FilterPrimitive, Order } from '@dinnosc/criteria';
 import { useCategories } from '.';
 
 interface UseProducts{
@@ -27,29 +27,16 @@ export const useProducts = ({minPrice, maxPrice}:UseProducts) => {
 
   // useEffect(() => {
   //   const newFilters:FilterPrimitive<ProductPrimitives>[] = [];
-  //   newFilters.push({ field:"categories", operator: "EQUAL", value: });
+  //   newFilters.push({ field:"categories", operator: "EQUAL", value:  });
   //   maxPrice && newFilters.push({ field:"price", operator: "LT", value:maxPrice });
   //   setFilters(() => newFilters);
   // },[categories])
 
   /// HTTP call that actually works: http://localhost:3000/api/products?filters=[{”field”:“price”,“operator”:“EQUAL”,“value”:5000}]&order={“by”:“”,“type”:“NONE”}
   useEffect(() => {
-    console.log("hola", minPrice, maxPrice);
-    const filters = [{ field:"price", operator: "GT", value:2000}]
-    axios.get<SearchQueryResponse<ProductPrimitives>>(`${ process.env.NEXT_PUBLIC_API_URL }/products`, {
-      params: {
-        filters,
-        order: {
-          by: '',
-          type: 'NONE'
-        }
-      }
-    })
-      .then(data => {
-        setProducts(data.data.result.items);
-      });
-  }, []);
-
-
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/products?filters=${JSON.stringify(filters)}&order=${JSON.stringify({by: '',type: 'NONE'})}`;
+    axios.get<SearchQueryResponse<ProductPrimitives>>(url).then(result => 
+      setProducts(result.data.result.items));
+  }, [filters]);
   return { products, total };
 }
