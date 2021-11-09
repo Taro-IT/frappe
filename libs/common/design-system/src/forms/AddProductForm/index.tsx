@@ -1,5 +1,5 @@
-import {Button, Form, TextField} from "@frappe/common/design-system";
-import {useRegisterForm} from "../../hooks";
+import {Button, Checkbox, Form, TextField} from "@frappe/common/design-system";
+import {useRegisterForm} from "@frappe/account/ui";
 
 export const AddProductForm = () => {
   const { onSubmit } = useRegisterForm();
@@ -14,10 +14,10 @@ export const AddProductForm = () => {
       <TextField label="¿Este producto tiene stock?" type="name" name="stock" />
       <TextField label="Descripción" type="text-area" name="description"/>
       <TextField label="Imágenes" type="name" name="images"/>
-      <TextField label="¿Es customizable?" type="name" name="isCustomizable" />
+      <Checkbox label="¿Es customizable?" name="isCustomizable" />
 
 
-      <Button title="Crear cuenta" type="submit" variant="cta" className={"mt-4"} />
+      <Button title="Agregar producto" type="submit" variant="cta" className={"mt-4"} />
     </Form>
   )
 }
