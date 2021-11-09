@@ -45,7 +45,6 @@ export abstract class MongoRepository {
     }
 
     const query = this.mongoCriteriaMapper.transformQuery(criteria);
-    console.log(query);
     const reference = collection.find(query);
 
     if (criteria.hasOrder()) {

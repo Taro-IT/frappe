@@ -8,11 +8,11 @@ import { useCategories } from '.';
 interface UseProducts{
   readonly minPrice?:number;
   readonly maxPrice?:number;
+  readonly categories?: string[]
   
 }
 
-export const useProducts = ({minPrice, maxPrice}:UseProducts) => {
-  const { categories } = useCategories();
+export const useProducts = ({minPrice, maxPrice, categories}:UseProducts) => {
   const [products, setProducts] = useState<ProductPrimitives[]>([]);
   const [total, setTotal] = useState(0);
   const [filters,setFilters] = useState<FilterPrimitive<ProductPrimitives>[]>([]);
@@ -21,9 +21,10 @@ export const useProducts = ({minPrice, maxPrice}:UseProducts) => {
     const newFilters:FilterPrimitive<ProductPrimitives>[] = [];
     minPrice && newFilters.push({ field:"price", operator: "GT", value:minPrice });
     maxPrice && newFilters.push({ field:"price", operator: "LT", value:maxPrice });
+    categories && categories.length === 1 && newFilters.push({ field:"categories", operator: "EQUAL", value: categories.pop() })
     setFilters(newFilters);
 
-  },[minPrice, maxPrice])
+  },[minPrice, maxPrice, categories])
 
   // useEffect(() => {
   //   const newFilters:FilterPrimitive<ProductPrimitives>[] = [];

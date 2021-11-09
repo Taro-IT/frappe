@@ -8,8 +8,9 @@ export class MongoCriteriaMapper {
     }
 
     return criteria.filters.value.reduce((query, { field, operator, value }) => {
+      //@ts-ignore
       const key = field  === 'id' ? '_id' : field ;
-      const fieldValue = value ;
+      const fieldValue: unknown = value ;
       //@ts-ignore
       switch (operator as Operator) {
         case Operator.EQUAL:
@@ -19,10 +20,10 @@ export class MongoCriteriaMapper {
           query[key as string] = { $ne: fieldValue };
           break;
         case Operator.GT:
-          query[key as string] = { $gt: Number(fieldValue) };
+          query[key as string] = { $gte: Number(fieldValue) };
           break;
         case Operator.LT:
-          query[key as string] = { $lt: Number(fieldValue) };
+          query[key as string] = { $lte: Number(fieldValue) };
           break;
         case Operator.CONTAINS:
           query[key as string] = { $regex: new RegExp(fieldValue as string, 'ig') };

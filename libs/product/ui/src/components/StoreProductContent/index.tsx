@@ -4,18 +4,16 @@ import clsx from 'clsx';
 import styles from './StoreProductContent.module.scss';
 import { useProducts } from '../../hooks';
 import { ProductList } from '..';
-import { Pagination } from '@frappe/common/design-system';
 
 interface StoreProductContentProps {
   readonly className: string;
   readonly minPrice?: number;
   readonly maxPrice?: number;
+  readonly categories?: string[]
 }
 
-export const StoreProductContent = ({ className, minPrice, maxPrice }: StoreProductContentProps) => {
-  console.log("MIN", minPrice, "MAX", maxPrice);
-  const { products, total} = useProducts({minPrice,maxPrice});
-  
+export const StoreProductContent = ({ className, minPrice, maxPrice, categories }: StoreProductContentProps) => {
+  const { products, total} = useProducts({minPrice,maxPrice, categories});
   
   return (
     <div className={ clsx(className, styles.wrapper) }>
