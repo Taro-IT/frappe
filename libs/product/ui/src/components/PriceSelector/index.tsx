@@ -8,8 +8,8 @@ type PriceSelectorProps = {
 export const PriceSelector = ({setMinPrice, setMaxPrice}: PriceSelectorProps) => {
     return(
         <div className="flex w-full ">
-            <PriceField setPrice={setMinPrice} name="min-price" />
-                <p className="mx-2"> - </p>
+            {/* <PriceField setPrice={setMinPrice} name="min-price" /> */}
+                {/* <p className="mx-2"> - </p> */}
             <PriceField setPrice={setMaxPrice} name="max-price" />
         </div>
     )

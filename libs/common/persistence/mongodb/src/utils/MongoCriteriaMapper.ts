@@ -7,10 +7,13 @@ export class MongoCriteriaMapper {
       return {};
     }
 
+    const betweenCache: Record<string, boolean> = {};
+
     return criteria.filters.value.reduce((query, { field, operator, value }) => {
       //@ts-ignore
       const key = field  === 'id' ? '_id' : field ;
       const fieldValue: unknown = value ;
+
       //@ts-ignore
       switch (operator as Operator) {
         case Operator.EQUAL:
@@ -20,10 +23,24 @@ export class MongoCriteriaMapper {
           query[key as string] = { $ne: fieldValue };
           break;
         case Operator.GT:
-          query[key as string] = { $gte: Number(fieldValue) };
+          // TODO refactor to remove const creation
+          const auxGt = query[key as string] ?? {};
+
+          query[key as string] = (betweenCache[key as string] !== undefined) ? 
+          { ...auxGt, $gte: Number(fieldValue) } :
+          { $gte: Number(fieldValue) };
+
+          betweenCache[key as string] = true;
           break;
         case Operator.LT:
-          query[key as string] = { $lte: Number(fieldValue) };
+          // TODO refactor to remove const creation
+          const auxLt = query[key as string] ?? {};
+
+          query[key as string] = (betweenCache[key as string] !== undefined) ? 
+          { ...auxLt, $lte: Number(fieldValue) } :
+          { $lte: Number(fieldValue) };
+
+          betweenCache[key as string] = true;
           break;
         case Operator.CONTAINS:
           query[key as string] = { $regex: new RegExp(fieldValue as string, 'ig') };

@@ -19,8 +19,9 @@ export const useProducts = ({minPrice, maxPrice, categories}:UseProducts) => {
   
   useEffect(()=>{
     const newFilters:FilterPrimitive<ProductPrimitives>[] = [];
-    minPrice && newFilters.push({ field:"price", operator: "GT", value:minPrice });
+
     maxPrice && newFilters.push({ field:"price", operator: "LT", value:maxPrice });
+    minPrice && newFilters.push({ field:"price", operator: "GT", value:minPrice });
     categories && categories.length === 1 && newFilters.push({ field:"categories", operator: "EQUAL", value: categories.pop() })
     setFilters(newFilters);
 
