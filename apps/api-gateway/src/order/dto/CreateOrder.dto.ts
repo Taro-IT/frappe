@@ -20,4 +20,7 @@ export class CreateOrderDto {
 
   @IsNotEmpty()
   readonly isDelayed: boolean;
+
+  @IsNotEmpty()
+  readonly clientName: string;
 }

@@ -31,7 +31,7 @@ export class Order {
       new OrderStatus(primitives.status),
       new OrderIsDelayed(primitives.isDelayed),
       new OrderClientName(primitives.clientName),
-      primitives.address != null ? ShippingAddress.fromPrimitives(primitives.address): null,
+      primitives.address != null ? ShippingAddress.fromPrimitives(primitives.address) : null,
     );
   }
 
@@ -44,7 +44,7 @@ export class Order {
       dateCreated: this.dateCreated.value,
       status: this.status.value,
       isDelayed: this.isDelayed.value,
-      clientName: this.clientName.value,
+      clientName: this.clientName?.value,
       address: this.address?.toPrimitives(),
     };
   }
