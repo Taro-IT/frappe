@@ -1,5 +1,5 @@
 import { Checkbox } from "@frappe/common/design-system"
-import { ChangeEventHandler, useState } from "react"
+import { ChangeEventHandler} from "react"
 
 type CategoryCheckboxProps = {
   id: string,

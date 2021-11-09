@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import clsx from 'clsx';
-import { Checkbox } from '@frappe/common/design-system';
 import { useCategories } from '../../hooks';
-
 import styles from './StoreSidebar.module.scss';
 import { PriceSelector } from '../PriceSelector';
 import { CategoryCheckbox } from './CategoryCheckbox';

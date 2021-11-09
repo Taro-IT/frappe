@@ -1,5 +1,5 @@
 import { Product, ProductPrimitives, ProductRepository } from '@frappe/product/domain';
-import { Criteria, Filter, FilterPrimitive, Limit, Offset, Order } from '@dinnosc/criteria';
+import { Criteria, FilterPrimitive, Limit, Offset, Order } from '@dinnosc/criteria';
 import { OrderPrimitive } from '@frappe/common/utils';
 
 interface ProductSearcherDeps {

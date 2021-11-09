@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ProductPrimitives } from '@frappe/product/domain';
 import { SearchQueryResponse } from '@frappe/common/utils';
-import { FilterPrimitive, Order } from '@dinnosc/criteria';
-import { useCategories } from '.';
+import { FilterPrimitive } from '@dinnosc/criteria';
 
 interface UseProducts{
   readonly minPrice?:number;
