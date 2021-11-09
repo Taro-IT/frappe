@@ -1,2 +1,3 @@
-export { OrderPrimitives, OrderItemType, OrderStatuses } from './OrderPrimitives';
+export type { OrderPrimitives } from './OrderPrimitives';
+export  {OrderItemType, OrderStatuses } from './OrderPrimitives';
 export { OrderRepository } from './OrderRepository';
