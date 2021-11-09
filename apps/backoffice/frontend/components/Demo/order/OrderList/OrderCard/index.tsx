@@ -50,7 +50,7 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
   console.log(order);
 
   return (
-    <Card className={clsx(classes.orders)}>    
+    <Card className={clsx(classes.orders)}>
       <div className="flex flex-row justify-between py-4 align-middle pr-8">
         <div className="flex">
           {closed ? (
@@ -107,10 +107,10 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
       {closed && (
         <div className="pr-8 pb-8">
           <div className="flex justify-end">
-            <h5 className="text-sm">Subtotal: ${ order.subtotal }</h5> 
+            <h5 className="text-sm">Subtotal: ${ order.subtotal }</h5>
           </div>
           <div className="flex justify-end">
-            <h5 className="font-bold">Total: ${ order.total } </h5>          
+            <h5 className="font-bold">Total: ${ order.total } </h5>
           </div>
         </div>
       )}

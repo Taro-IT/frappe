@@ -9,7 +9,7 @@ type ProgressBarrHeaderProps = {
 
 /**
  * @content string - The text that will be displayed in the badge.
- * @color string - The color of the badge (gray, red, yellow, green, blue, indigo, purple or pink). 
+ * @color string - The color of the badge (gray, red, yellow, green, blue, indigo, purple or pink).
  */
 export const ProgressBar = ({status}: PropsWithChildren<ProgressBarrHeaderProps>) => {
 

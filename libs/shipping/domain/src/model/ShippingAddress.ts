@@ -43,7 +43,7 @@ export class ShippingAddress {
   }
 
   toPrimitives(): ShippingAddressPrimitives {
-    return { 
+    return {
       province: this.province.value,
       city: this.city.value,
       name: this.name.value,

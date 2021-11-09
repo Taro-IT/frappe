@@ -4,4 +4,4 @@ export class OrderClientName  {
     constructor(value: string) {
       this.value = value;
     }
-  } 
+  }

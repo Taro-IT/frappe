@@ -25,5 +25,5 @@ export interface OrderPrimitives {
   readonly status: OrderStatuses;
   readonly isDelayed: boolean;
   readonly address?: ShippingAddressPrimitives;
-  readonly clientName?: string 
+  readonly clientName?: string
 }
