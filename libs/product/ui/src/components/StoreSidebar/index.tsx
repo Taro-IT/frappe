@@ -27,7 +27,7 @@ export const StoreSidebar = ({ className, setMinPrice, setMaxPrice, setCategorie
           <h2 className="text-md font-medium mb-2"> Categorias </h2>
           {
             categories.map(({ id, name, value }) => (
-              <CategoryCheckbox id={id} name={name} value={value} handleCategoryChange={handleCategoryCheck}/>
+              <CategoryCheckbox key={id} id={id} name={name} value={value} handleCategoryChange={handleCategoryCheck}/>
             ))
           }
         </div>
