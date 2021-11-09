@@ -13,6 +13,7 @@ interface UseProducts{
 
 export const useProducts = ({minPrice, maxPrice, categories}:UseProducts) => {
   const [products, setProducts] = useState<ProductPrimitives[]>([]);
+  const [total] = useState(0);
   const [filters,setFilters] = useState<FilterPrimitive<ProductPrimitives, unknown>[]>([]);
   
   useEffect(()=>{

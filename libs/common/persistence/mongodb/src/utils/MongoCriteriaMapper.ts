@@ -14,6 +14,8 @@ export class MongoCriteriaMapper {
       const key = field  === 'id' ? '_id' : field ;
       const fieldValue: unknown = value ;
 
+      const auxGt = query[key as string] ?? {};
+      const auxLt = query[key as string] ?? {};
       //@ts-ignore
       switch (operator as Operator) {
         case Operator.EQUAL:
@@ -24,7 +26,7 @@ export class MongoCriteriaMapper {
           break;
         case Operator.GT:
           // TODO refactor to remove const creation
-          const auxGt = query[key as string] ?? {};
+
 
           query[key as string] = (betweenCache[key as string] !== undefined) ? 
           { ...auxGt, $gte: Number(fieldValue) } :
@@ -34,7 +36,7 @@ export class MongoCriteriaMapper {
           break;
         case Operator.LT:
           // TODO refactor to remove const creation
-          const auxLt = query[key as string] ?? {};
+          
 
           query[key as string] = (betweenCache[key as string] !== undefined) ? 
           { ...auxLt, $lte: Number(fieldValue) } :
