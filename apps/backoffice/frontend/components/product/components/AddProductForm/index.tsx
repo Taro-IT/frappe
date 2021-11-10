@@ -16,6 +16,7 @@ const AddProductForm = () => {
   const [sizes, setSizes] = useState<number[]>([]);
   const [price, setPrice] = useState<number>();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedImages, setSelectedImages] = useState<string[]>();
 
   const [productName, setProductName] = useState<string>();
 
@@ -88,6 +89,20 @@ const AddProductForm = () => {
     setAmount(parseInt(e.target.value));
   };
 
+  const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //console.log("asdasd", Array.from(e.target.files));
+    console.log(e.target.files);
+    const files = e.target.files;
+    const filesLength = files.length;
+    const fileNames : string[] = []
+    for(let i = 0; i < filesLength; i++ ){
+      const{ name } = files.item(i);
+      fileNames.push(name);
+    } 
+   
+    setSelectedImages(fileNames);
+  }
+  
   return (
     <Form className="flex flex-col w-full p-8" onSubmit={submitProduct}>
       <div className="flex flex-col">
@@ -156,7 +171,7 @@ const AddProductForm = () => {
         onChange={changeProductDescription}
       />
       <label className="w-1/3 mt-4 mb-3">Imágenes</label>
-      <input className={styles['input-file']} type="file"  id="files" name="files" multiple />
+      <input className={styles['input-file']} type="file"  id="files" name="files" multiple onChange={onChangeFile}/>
       <p className="text-xs text-red-500 mt-2">Puedes subir varias imágenes haciendo click en Ctrl (Cmd en Mac) mientras seleccionas.</p>
       <div className="flex flex-row">
         <label className={'w-auto mt-4 mb-3 mr-4'}>¿Este producto es personalizable?</label>
