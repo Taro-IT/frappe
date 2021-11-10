@@ -63,25 +63,26 @@ const AddProductForm = () => {
   const submitProduct = async data => {
     console.log(data, "submit");
 
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
-      ...data,
-      name: productName,
-      price: price,
-      categories: selectedCategories,
-      description: productDescription,
-      images: selectedImages,
-      isCustom: isCustom,
-      isInSale: false, //se va a usar?
-      isLimited: false, //se va a usar?
-      isOutOfStock: false, //se va a usar?
-      materials: ["piel", "gamuza"],
-      sizes: sizes,
-      amount: amount
-    }).then(function (response) {
-      console.log(response);
-    });
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
+        ...data,
+        name: productName,
+        price: price,
+        categories: selectedCategories,
+        description: productDescription,
+        images: selectedImages,
+        isCustom: isCustom,
+        isInSale: false, //se va a usar?
+        isLimited: false, //se va a usar?
+        isOutOfStock: false, //se va a usar?
+        materials: ["piel", "gamuza"],
+        sizes: sizes,
+        amount: amount
+      }).catch()
+    } catch (error) {
 
-
+      console.error("El producto ya existe"); 
+    }
   };
 
   const changePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +120,7 @@ const AddProductForm = () => {
   }
   
   return (
-    <Form className="flex flex-col w-full p-8" onSubmit={submitProduct}>
+    <form className="flex flex-col w-full p-8" onSubmit={submitProduct}>
       <div className="flex flex-col">
         <label className='w-1/3 mt-4 mb-2'>Nombre del producto</label>
         <input
@@ -127,6 +128,7 @@ const AddProductForm = () => {
           onChange={handleProductName}
           placeholder="Bandolera"
           className="border-2 border-gray-200 rounded pl-2 w-full h-8"
+          required
         />
       </div>
 
@@ -147,7 +149,7 @@ const AddProductForm = () => {
       <label className="w-1/3 mt-4 mb-3">Tallas disponibles</label>
       <div className="flex flex-row space-x-4 mb-4">
         {defaultSizes.map(size => (
-          <SizeSelector setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)} />
+          <SizeSelector setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)}/>
         ))}
       </div>
 
@@ -159,11 +161,12 @@ const AddProductForm = () => {
           placeholder="3999.00"
           type="number"
           className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
+          required
         />
       </div>
       <div className="flex flex-row">
         <label className="w-auto mr-4 mt-4 mb-3">¿Este producto tiene stock?</label>
-        <Toggle defaultChecked={isLimited} icons={false} className="mt-4" onChange={handleStockChange} />
+        <Toggle defaultChecked={isLimited} icons={false} className="mt-4" onChange={handleStockChange}/>
       </div>
       {isLimited && (
         <div className="flex flex-col">
@@ -174,19 +177,19 @@ const AddProductForm = () => {
           placeholder="5"
           type="number"
           className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
+          required={isLimited}
         />
       </div>
       )}
-
       <label className="w-1/3 mt-4 mb-3">Descripción</label>
-
       <textarea
         value={productDescription}
         className="border-2 border-gray-200 rounded w-full"
         onChange={changeProductDescription}
+        required
       />
       <label className="w-1/3 mt-4 mb-3">Imágenes</label>
-      <input className={styles['input-file']} type="file"  id="files" name="files" multiple onChange={onChangeFile}/>
+      <input className={styles['input-file']} type="file"  id="files" name="files" multiple onChange={onChangeFile} required/>
       <p className="text-xs text-red-500 mt-2">Puedes subir varias imágenes haciendo click en Ctrl (Cmd en Mac) mientras seleccionas.</p>
       <div className="flex flex-row">
         <label className={'w-auto mt-4 mb-3 mr-4'}>¿Este producto es personalizable?</label>
@@ -197,7 +200,7 @@ const AddProductForm = () => {
       )}
 
       <Button title="Agregar producto" type="submit" variant="cta" className={'mt-4'} />
-    </Form>
+    </form>
   );
 };
 
