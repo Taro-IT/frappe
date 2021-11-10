@@ -1,2 +1,2 @@
-export { ShippingRepository } from './ShippingRepository';
-export { ShippingAddressPrimitives } from './ShippingAddressPrimitives';
+export type { ShippingRepository } from './ShippingRepository';
+export type { ShippingAddressPrimitives } from './ShippingAddressPrimitives';
