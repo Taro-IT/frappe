@@ -1,0 +1,28 @@
+{
+  "root": "apps/e-commerce/frontend-e2e",
+  "sourceRoot": "apps/e-commerce/frontend-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/e-commerce/frontend-e2e/cypress.json",
+        "devServerTarget": "e-commerce-frontend:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "e-commerce-frontend:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/e-commerce/frontend-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["e-commerce-frontend"]
+}

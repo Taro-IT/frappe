@@ -10,10 +10,11 @@ interface ProductRoutingDeps {
   readonly queryBus: QueryBus;
 }
 
-export const productRouting = ({ commandBus}: ProductRoutingDeps) => {
+export const productRouting = ({ commandBus, queryBus }: ProductRoutingDeps) => {
   const router = express.Router();
 
   router.post('/', makeValidateBody(dtos.CreateProductDto), handlers.createProductHandler(commandBus));
+  router.get('/', handlers.searchProductsHandler(queryBus));
 
   return router;
 };

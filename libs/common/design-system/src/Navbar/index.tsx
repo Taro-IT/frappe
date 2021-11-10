@@ -16,7 +16,7 @@ export const Navbar = () => {
     setOpen(previous => !previous)
   }
   return (
-    <div className="flex w-screen p-4 bg-primary h-32">
+    <div className="flex w-screen p-4 bg-primary h-32 fixed mb-auto">
       <img src="/img/cinica-logo.png" alt="Cínica Logo" />
       
       <nav className="flex w-screen self-center justify-center" aria-label="Navbar">

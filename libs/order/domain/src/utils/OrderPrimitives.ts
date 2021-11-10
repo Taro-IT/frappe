@@ -1,8 +1,11 @@
+//User Stories: frappe-91
+import { ShippingAddressPrimitives } from "@frappe/shipping/domain";
+
 export enum OrderStatuses {
-  ABIERTO = 'ABIERTO',
-  EN_PROCESO = 'EN_PROCESO',
-  LISTO_PARA_ENVIO = 'LISTO_PARA_ENVIO',
-  ATRASADO = 'ATRASADO'
+  ABIERTO = 'Abierto',
+  EN_PROCESO = 'En proceso',
+  LISTA_PARA_ENVIO = 'Lista para envío',
+  ENTREGADA = 'Entregada'
 }
 
 export interface OrderItemType {
@@ -21,4 +24,7 @@ export interface OrderPrimitives {
   readonly total: number;
   readonly dateCreated: Date;
   readonly status: OrderStatuses;
+  readonly isDelayed: boolean;
+  readonly address?: ShippingAddressPrimitives;
+  readonly clientName?: string
 }
