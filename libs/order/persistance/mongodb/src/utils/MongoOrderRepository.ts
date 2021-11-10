@@ -27,6 +27,7 @@ export class MongoOrderRepository extends MongoRepository implements OrderReposi
     return this.persist(order.id.value, order);
   }
 
+  //User Story: frappe-91
   /**
  * Returns a collection of all existing orders @see {@link Order}
  *
