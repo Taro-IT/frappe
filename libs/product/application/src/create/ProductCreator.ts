@@ -15,7 +15,21 @@ export class ProductCreator {
     this.productNameFinder = productNameFinder;
   }
 
-  async execute(id: string, name: string, price:number, categories: string[], description:string, images: string[], isCustom: boolean, isInSale: boolean, isLimited: boolean, isOutOfStock: boolean, materials: string[], sizes: number[], amount:number ) {
+  async execute(
+    id: string, 
+    name: string, 
+    price:number, 
+    categories: string[], 
+    description:string, 
+    images: string[], 
+    isCustom: boolean, 
+    isInSale: boolean, 
+    isLimited: boolean, 
+    isOutOfStock: boolean, 
+    materials: string[], 
+    sizes: number[], 
+    amount:number 
+    ) {
     
     const exists = await this.productExists(name);
     

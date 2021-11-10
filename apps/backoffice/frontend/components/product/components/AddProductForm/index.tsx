@@ -61,12 +61,27 @@ const AddProductForm = () => {
   };
 
   const submitProduct = async data => {
-    console.log(data);
+    console.log(data, "submit");
 
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
       ...data,
-      isOutOfStock: false
+      name: productName,
+      price: price,
+      categories: selectedCategories,
+      description: productDescription,
+      images: selectedImages,
+      isCustom: isCustom,
+      isInSale: false, //se va a usar?
+      isLimited: false, //se va a usar?
+      isOutOfStock: false, //se va a usar?
+      materials: ["piel", "gamuza"],
+      sizes: sizes,
+      amount: amount
+    }).then(function (response) {
+      console.log(response);
     });
+
+
   };
 
   const changePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
