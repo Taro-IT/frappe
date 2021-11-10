@@ -1,4 +1,4 @@
-import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes,ProductRepository, ProductAlreadyExists } from '@frappe/product/domain';
+import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes,ProductRepository, ProductAlreadyExists, ProductIsActive } from '@frappe/product/domain';
 import { ProductNameFinder } from '../find/find-by-name';
 import {wrapError} from '@frappe/common/utils'
 
@@ -15,7 +15,7 @@ export class ProductCreator {
     this.productNameFinder = productNameFinder;
   }
 
-  async execute(id: string, name: string, price:number, categories: string[], description:string, images: string[], isCustom: boolean, isInSale: boolean, isLimited: boolean, isOutOfStock: boolean, materials: string[], sizes: number[], amount:number,  ) {
+  async execute(id: string, name: string, price:number, categories: string[], description:string, images: string[], isCustom: boolean, isInSale: boolean, isLimited: boolean, isOutOfStock: boolean, materials: string[], sizes: number[], amount:number ) {
     
     const exists = await this.productExists(name);
     
@@ -36,7 +36,9 @@ export class ProductCreator {
       new ProductIsOutOfStock(isOutOfStock),
       new ProductMaterials(materials),
       new ProductSizes(sizes),
-      new ProductAmount(amount),
+      new ProductIsActive(true),
+      null,
+      new ProductAmount(amount)
     );
     
     return this.productRepository.save(product);
