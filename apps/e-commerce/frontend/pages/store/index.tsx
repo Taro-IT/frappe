@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
 import { StoreProductContent, StoreSidebar } from '@frappe/product/ui';
-
 import styles from '../../styles/store.module.scss';
+//User Stories: frappe-62
 
 const StorePage = () => {
   const [minPrice, setMinPrice] = useState<number>();

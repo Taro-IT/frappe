@@ -1,4 +1,6 @@
 import { Criteria, Operator } from '@dinnosc/criteria';
+//Esta clase recibe los filtros de búsqueda y los mapea con el que corresponde, y regresa la petición adecuada
+//User Stories: frappe-62
 
 export class MongoCriteriaMapper {
   transformQuery<T>(criteria: Criteria<T>) {
