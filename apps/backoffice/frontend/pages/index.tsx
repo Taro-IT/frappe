@@ -1,9 +1,11 @@
 import React from 'react';
 import { AdminLayout } from '../layouts/AdminLayout';
+import { ProtectedRoute } from '../HOC/ProtectedRoute';
 import { Logo, withUserAgent } from '@frappe/common/design-system';
 
 
 const Home = () => {
+
   return(
   <>
     <h1 className="col-end text-center align-middle text-4xl  ">Te damos la bienvenida al portal administrativo de Cínica.</h1>
