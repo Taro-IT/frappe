@@ -6,3 +6,4 @@ export { TextField } from './TextField';
 export { SummariesExample } from './SummariesExample';
 export { Badge } from './Badge';
 export { ProgressBar } from './ProgressBar';
+export { Logo } from './Logo';
