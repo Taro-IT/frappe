@@ -2,13 +2,12 @@ import styles from './Banner.module.scss';
 
 interface BannerProps{
   readonly image:string;
+  readonly width?:string;
 }
 
-export const Banner = ( {image}: BannerProps ) => {
+export const Banner = ( {image, width}: BannerProps ) => {
     return (
-      <div className={styles['Banner']}>
         <div  className={styles['Banner']} >
-          <img hidden className={styles['Banner--BannerItem']} src={image}/> 
+          <img className={styles['Banner--BannerItem']} src={image} width={width}/> 
         </div>
-      </div>
     )};
