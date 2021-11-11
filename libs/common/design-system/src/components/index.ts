@@ -8,3 +8,5 @@ export { PriceField } from './PriceField';
 export { SummariesExample } from './SummariesExample';
 export { Badge } from './Badge';
 export { ProgressBar } from './ProgressBar';
+export { Banner } from './Banner';
+export { Footer } from './Footer';

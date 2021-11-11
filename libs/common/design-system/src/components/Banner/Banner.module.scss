@@ -1,0 +1,16 @@
+.Banner {
+    @apply relative mb-3 rounded overflow-hidden shadow-xl;
+
+    &--BannerItem{
+        @apply relative grid w-full h-auto;
+        -webkit-transition: opacity 0.6s ease-out;
+        transition: opacity 0.6s ease-out;
+        &--BannerOpen:checked{
+            position: static;
+            opacity: 100;
+        }
+    }
+
+}
+
+

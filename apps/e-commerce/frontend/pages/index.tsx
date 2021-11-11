@@ -1,8 +1,8 @@
-import { EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
+import { Banner, EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
 
 const HomePage = () => (
   <div>
-    Home Page
+    <Banner image={'https://wallpaperstock.net/cute-cat-wallpapers_34549_1920x1200.jpg'}/>
   </div>
 )
 
