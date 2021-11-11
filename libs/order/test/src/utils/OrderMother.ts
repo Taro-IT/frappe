@@ -5,9 +5,10 @@ import {
   OrderItem,
   OrderStatus,
   OrderSubtotal,
-  OrderTotal
+  OrderTotal,
+  OrderIsDelayed
 } from '@frappe/order/domain';
-import { DateMother, NumberMother, UuidMother } from '@frappe/common/test';
+import { DateMother, NumberMother, UuidMother, BoolMother } from '@frappe/common/test';
 import { OrderStatusMother } from '.';
 import { OrderItemMother } from './OrderItemMother';
 
@@ -19,7 +20,8 @@ export class OrderMother {
       new OrderSubtotal(NumberMother.randomPositive()),
       new OrderTotal(NumberMother.randomPositive()),
       new OrderDateCreated(DateMother.random()),
-      new OrderStatus(OrderStatusMother.random())
+      new OrderStatus(OrderStatusMother.random()),
+      new OrderIsDelayed(BoolMother.random())
     );
   }
 }
