@@ -7,7 +7,7 @@ export const searchProductsHandler =
   (queryBus: QueryBus): RequestHandler =>
   async (req, res) => {
     const { filters, order, limit, offset } = req.query;
-
+    
     const query = new SearchProductsQuery({
       filters: filters ? JSON.parse(filters as string) : [],
       order: JSON.parse(order as string),
