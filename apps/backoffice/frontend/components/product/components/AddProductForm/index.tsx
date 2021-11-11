@@ -18,9 +18,11 @@ const AddProductForm = () => {
   const [price, setPrice] = useState<number>();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedImages, setSelectedImages] = useState<string[]>();
-  const [success, setSuccess] = useState<boolean>(true);
+  const [showRetroModal, setShowRetroModal] = useState<boolean>(false)
+  const [success, setSuccess] = useState<boolean>();
   const [message, setMessage] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
+  const [imagesURL, setImagesURL] = useState<string[]>()
 
   const [productName, setProductName] = useState<string>();
 
@@ -70,6 +72,14 @@ const AddProductForm = () => {
     if (loading === true) {return}
     setLoading(true)
     try {
+
+      // Post de imágenes
+        selectedImages.map(async img => {
+          var bodyFormData = new FormData();
+          bodyFormData.append('image', img);
+          console.log(await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData))
+        })
+      //Post de productos
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
         name: productName,
         price: price,
@@ -84,11 +94,17 @@ const AddProductForm = () => {
         sizes: sizes,
         amount: amount
       })
+      setShowRetroModal(true)
+      setSuccess(true)
+      setMessage("Producto creado correctamente")
+      setLoading(false)
       return
     } catch (error) {
+      setShowRetroModal(true)
       setSuccess(false)
-      setMessage("Hubo un error: este producto ya existe en la base de datos")
+      setMessage("Este producto ya existe en la base de datos, intenta crear un nuevo producto")
       console.error("El producto ya existe"); 
+      setLoading(false)
       return
     }
   };
@@ -114,7 +130,6 @@ const AddProductForm = () => {
   };
 
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //console.log("asdasd", Array.from(e.target.files));
     console.log(e.target.files);
     const files = e.target.files;
     const filesLength = files.length;
@@ -210,8 +225,8 @@ const AddProductForm = () => {
 
       <Button title="Agregar producto" type="submit" variant="cta" className={'mt-4'} />
     </form>
-      {!success && (
-        <Modal showModal={!success} toggleModal={setSuccess} title="">
+      {showRetroModal && (
+        <Modal showModal={showRetroModal} toggleModal={setShowRetroModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
             {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
             {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
