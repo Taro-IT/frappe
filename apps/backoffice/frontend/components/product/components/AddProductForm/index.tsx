@@ -1,11 +1,12 @@
-import { Button, Form, TextField } from '@frappe/common/design-system';
+import { Button, Form, Modal, TextField } from '@frappe/common/design-system';
 import Select from 'react-select';
-import { useEffect, useState } from 'react';
+import React, { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './AddProductForm.module.scss';
 import 'react-toggle/style.css';
 import Toggle from 'react-toggle';
 import SizeSelector from '../SizeSelector';
+import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
 
 const AddProductForm = () => {
   const [, setCategories] = useState();
@@ -17,6 +18,9 @@ const AddProductForm = () => {
   const [price, setPrice] = useState<number>();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedImages, setSelectedImages] = useState<string[]>();
+  const [success, setSuccess] = useState<boolean>(true);
+  const [message, setMessage] = useState<string>()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [productName, setProductName] = useState<string>();
 
@@ -60,28 +64,32 @@ const AddProductForm = () => {
     setIsCustom(previous => !previous);
   };
 
-  const submitProduct = async data => {
-    console.log(data, "submit");
-
+  const submitProduct = async (e: FormEvent<HTMLFormElement>) => {
+    e.stopPropagation()
+    e.preventDefault()
+    if (loading === true) {return}
+    setLoading(true)
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
-        ...data,
         name: productName,
         price: price,
         categories: selectedCategories,
         description: productDescription,
         images: selectedImages,
         isCustom: isCustom,
-        isInSale: false, //se va a usar?
-        isLimited: false, //se va a usar?
-        isOutOfStock: false, //se va a usar?
+        isInSale: false, //se va a usar? si
+        isLimited: false, //se va a usar? si
+        isOutOfStock: false, //se va a usar? si
         materials: ["piel", "gamuza"],
         sizes: sizes,
         amount: amount
-      }).catch()
+      })
+      return
     } catch (error) {
-
+      setSuccess(false)
+      setMessage("Hubo un error: este producto ya existe en la base de datos")
       console.error("El producto ya existe"); 
+      return
     }
   };
 
@@ -120,6 +128,7 @@ const AddProductForm = () => {
   }
   
   return (
+    <>
     <form className="flex flex-col w-full p-8" onSubmit={submitProduct}>
       <div className="flex flex-col">
         <label className='w-1/3 mt-4 mb-2'>Nombre del producto</label>
@@ -201,6 +210,16 @@ const AddProductForm = () => {
 
       <Button title="Agregar producto" type="submit" variant="cta" className={'mt-4'} />
     </form>
+      {!success && (
+        <Modal showModal={!success} toggleModal={setSuccess} title="">
+          <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
+            {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
+            {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
+            <p className="text-2xl text-center mb-4">{message}</p>
+          </div>
+        </Modal>
+      )}
+    </>
   );
 };
 
