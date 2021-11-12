@@ -124,7 +124,7 @@ const AddProductForm = () => {
   };
 
   const changePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(parseInt(event.target.value));
+    setPrice(parseInt(event.target.value, 10));
   };
 
   const changeProductDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -140,7 +140,7 @@ const AddProductForm = () => {
     setProductName(e.target.value);
   };
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(parseInt(e.target.value));
+    setAmount(parseInt(e.target.value, 10));
   };
 
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -189,7 +189,7 @@ const AddProductForm = () => {
       />
       <label className="w-1/3 mt-4 mb-3">Tallas disponibles</label>
       <div className="flex flex-row space-x-4 mb-4">
-        {defaultSizes.map(size => ( 
+        {defaultSizes.map(size => (
           <SizeSelector key={""} setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)}/>
         ))}
       </div>
