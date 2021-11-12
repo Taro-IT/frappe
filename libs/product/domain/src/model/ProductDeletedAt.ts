@@ -1,4 +1,4 @@
-export class ProductDeletedAt 
+export class ProductDeletedAt
 {
   readonly value: Date;
 

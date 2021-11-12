@@ -32,7 +32,7 @@ describe('ProductCreator', () => {
     const product = ProductMother.random();
 
     productRepository.findByName.mockResolvedValue(product);
-    const response = async () => await creator.execute(product.id.value, product.name.value, product.price.value, product.categories.value, product.description.value, product.images.value, product.isCustom.value, product.isInSale.value, product.isLimited.value, product.isOutOfStock.value, product.materials.value, product.sizes.value, product.amount.value);
+    const response = async () => creator.execute(product.id.value, product.name.value, product.price.value, product.categories.value, product.description.value, product.images.value, product.isCustom.value, product.isInSale.value, product.isLimited.value, product.isOutOfStock.value, product.materials.value, product.sizes.value, product.amount.value);
 
      expect(async () => response()).rejects.toThrow(ProductAlreadyExists);
   });

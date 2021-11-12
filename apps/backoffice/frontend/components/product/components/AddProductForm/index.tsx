@@ -19,15 +19,11 @@ const AddProductForm = () => {
   const [sizes, setSizes] = useState<number[]>([]);
   const [price, setPrice] = useState<number>();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedImages, setSelectedImages] = useState<string[]>();
   const [showRetroModal, setShowRetroModal] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>();
   const [message, setMessage] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
-  const [imagesURL, setImagesURL] = useState<string[]>()
-
   const [productName, setProductName] = useState<string>();
-
   const [productDescription, setProductDescription] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
 
@@ -70,7 +66,6 @@ const AddProductForm = () => {
   };
 
   const submitProduct = async (e: FormEvent<HTMLFormElement>) => {
-    let fileNames : string[] = []
     e.stopPropagation();
     e.preventDefault();
     if (loading === true) {return}
@@ -79,16 +74,14 @@ const AddProductForm = () => {
 
       // Post de imágenes
       const promises = files.map( async file => {
-        const bodyFormData = new FormData(); 
-        bodyFormData.append('file', file);          
+        const bodyFormData = new FormData();
+        bodyFormData.append('file', file);
         console.log(bodyFormData.getAll('file'));
         const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
         return name;
       })
       
-      const fileNames = await Promise.all(promises);
-      setSelectedImages(fileNames);
-      
+      const fileNames = await Promise.all(promises);      
       //Post de productos
           await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
         name: productName,
@@ -103,7 +96,7 @@ const AddProductForm = () => {
         materials: ["piel", "gamuza"],
         sizes: sizes,
         amount: isLimited ? amount : null
-      }) 
+      })
       setShowRetroModal(true)
       setSuccess(true)
       setMessage("Producto creado correctamente")
@@ -113,14 +106,14 @@ const AddProductForm = () => {
       setShowRetroModal(true)
       setSuccess(false)
       setMessage("Este producto ya existe en la base de datos, intenta crear un nuevo producto")
-      console.error("El producto ya existe"); 
+      console.error("El producto ya existe");
       setLoading(false)
       return
     }
   };
 
   const changePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(parseInt(event.target.value));
+    setPrice(parseInt(event.target.value, 10));
   };
 
   const changeProductDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -136,7 +129,7 @@ const AddProductForm = () => {
     setProductName(e.target.value);
   };
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(parseInt(e.target.value));
+    setAmount(parseInt(e.target.value, 10));
   };
 
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -166,7 +159,7 @@ const AddProductForm = () => {
       </div>
 
       {/* Se comenta esta parte hasta que se defina la personalización
-        <TextField label="Materiales disponibles" name="materials" validations={{ required: 'Los materiales son requeridos' }} /> 
+        <TextField label="Materiales disponibles" name="materials" validations={{ required: 'Los materiales son requeridos' }} />
       */}
 
       <label className={'w-1/3 mt-4 mb-3'}>Categoría(s)</label>
@@ -183,7 +176,7 @@ const AddProductForm = () => {
       <label className="w-1/3 mt-4 mb-3">Tallas disponibles</label>
       <div className="flex flex-row space-x-4 mb-4">
         {defaultSizes.map(size => (
-          <SizeSelector setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)}/>
+          <SizeSelector key={""} setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)}/>
         ))}
       </div>
 
