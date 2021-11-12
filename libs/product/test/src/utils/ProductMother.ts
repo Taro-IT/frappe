@@ -1,5 +1,5 @@
-import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes, ProductDeletedAt, ProductIsActive } from '@frappe/product/domain';
-import { StringMother, UuidMother, NumberMother, BooleanMother, DateMother } from '@frappe/common/test';
+import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes, ProductIsActive } from '@frappe/product/domain';
+import { StringMother, UuidMother, NumberMother, BooleanMother } from '@frappe/common/test';
 
 export class ProductMother {
   static random(): Product {
