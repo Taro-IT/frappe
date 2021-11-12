@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-export class BoolMother {
+export class BooleanMother {
   static random(): boolean {
     return faker.datatype.boolean();
   }
