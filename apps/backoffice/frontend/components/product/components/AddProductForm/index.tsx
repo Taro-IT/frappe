@@ -81,7 +81,7 @@ const AddProductForm = () => {
         return name;
       })
       
-      const fileNames = await Promise.all(promises);      
+      const fileNames = await Promise.all(promises);
       //Post de productos
           await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
         name: productName,
@@ -140,7 +140,7 @@ const AddProductForm = () => {
     for(let i = 0; i < filesLength; i++ ){
       const{ name } = files.item(i);
       fileNames.push(name);
-    } 
+    }
     setFiles(fileArray);
   }
   
