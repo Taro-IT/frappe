@@ -1,6 +1,5 @@
 import React from 'react';
 import { AdminLayout } from '../layouts/AdminLayout';
-import { ProtectedRoute } from '../HOC/ProtectedRoute';
 import { Logo, withUserAgent } from '@frappe/common/design-system';
 
 

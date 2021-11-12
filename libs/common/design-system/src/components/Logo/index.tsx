@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useRouter } from 'next/router';
 import { PropsWithChildren } from 'react';
 
 type LogoProps = {
@@ -18,9 +19,13 @@ type LogoProps = {
  * @height - string, optional - The height of the logo.
  */
 export const Logo = ({link, alternative, className, width, height} : PropsWithChildren<LogoProps>) => {
+  const router = useRouter();
+  const handleLink = () => router.push("/");
+  //TODO check redirect with reload 
+  
     return(
       <div className="px-4">
-        <img className={clsx("m-auto", className)} src={link} alt={alternative} width={width} height={height} />
+        <img className={clsx("m-auto", className)} onClick={handleLink} alt={alternative} width={width} height={height} src={link}/>
       </div>
     );
 };
