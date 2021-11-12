@@ -16,19 +16,19 @@ export class ProductCreator {
   }
 
   async execute(
-    id: string, 
-    name: string, 
-    price:number, 
-    categories: string[], 
-    description:string, 
-    images: string[], 
-    isCustom: boolean, 
-    isInSale: boolean, 
+    id: string,
+    name: string,
+    price:number,
+    categories: string[],
+    description:string,
+    images: string[],
+    isCustom: boolean,
+    isInSale: boolean,
     isLimited: boolean, 
-    isOutOfStock: boolean, 
-    materials: string[], 
-    sizes: number[], 
-    amount:number 
+    isOutOfStock: boolean,
+    materials: string[],
+    sizes: number[],
+    amount:number
     ) {
     
     const exists = await this.productExists(name);

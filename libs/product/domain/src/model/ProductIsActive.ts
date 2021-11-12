@@ -1,4 +1,4 @@
-export class ProductIsActive 
+export class ProductIsActive
 {
   readonly value: boolean;
 

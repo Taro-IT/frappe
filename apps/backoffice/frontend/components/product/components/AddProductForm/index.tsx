@@ -23,9 +23,7 @@ const AddProductForm = () => {
   const [success, setSuccess] = useState<boolean>();
   const [message, setMessage] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
-
   const [productName, setProductName] = useState<string>();
-
   const [productDescription, setProductDescription] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
 
@@ -76,8 +74,8 @@ const AddProductForm = () => {
     try {
 
       const promises = files.map( async file => {
-        const bodyFormData = new FormData(); 
-        bodyFormData.append('file', file);          
+        const bodyFormData = new FormData();
+        bodyFormData.append('file', file);
         console.log(bodyFormData.getAll('file'));
         const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
         return name;
@@ -86,10 +84,9 @@ const AddProductForm = () => {
       const fileNames = await Promise.all(promises);
       // Post de imágenes
         // files.forEach(async (file) => {
-        //   var bodyFormData = new FormData(); 
-        //   bodyFormData.append('file', file);          
+        //   var bodyFormData = new FormData();
+        //   bodyFormData.append('file', file);
         //   console.log(bodyFormData.getAll('file'));
-          
         //   const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData)
         //   fileNames.push(name);
 
@@ -111,7 +108,7 @@ const AddProductForm = () => {
         materials: ["piel", "gamuza"],
         sizes: sizes,
         amount: isLimited ? amount : null
-      }) 
+      })
       setShowRetroModal(true)
       setSuccess(true)
       setMessage("Producto creado correctamente")
@@ -121,7 +118,7 @@ const AddProductForm = () => {
       setShowRetroModal(true)
       setSuccess(false)
       setMessage("Este producto ya existe en la base de datos, intenta crear un nuevo producto")
-      console.error("El producto ya existe"); 
+      console.error("El producto ya existe");
       setLoading(false)
       return
     }
@@ -156,7 +153,7 @@ const AddProductForm = () => {
     for(let i = 0; i < filesLength; i++ ){
       const{ name } = files.item(i);
       fileNames.push(name);
-    } 
+    }
    
     //setSelectedImages(fileNames);
 
@@ -178,7 +175,7 @@ const AddProductForm = () => {
       </div>
 
       {/* Se comenta esta parte hasta que se defina la personalización
-        <TextField label="Materiales disponibles" name="materials" validations={{ required: 'Los materiales son requeridos' }} /> 
+        <TextField label="Materiales disponibles" name="materials" validations={{ required: 'Los materiales son requeridos' }} />
       */}
 
       <label className={'w-1/3 mt-4 mb-3'}>Categoría(s)</label>
