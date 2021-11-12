@@ -8,6 +8,8 @@ import Toggle from 'react-toggle';
 import SizeSelector from '../SizeSelector';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
 
+// User Story: Frappe 64
+
 const AddProductForm = () => {
   const [, setCategories] = useState();
   const [options, setOptions] = useState();
@@ -27,6 +29,7 @@ const AddProductForm = () => {
   const [productName, setProductName] = useState<string>();
 
   const [productDescription, setProductDescription] = useState<string>('');
+  const [files, setFiles] = useState<File[]>([]);
 
   const defaultSizes = ['22.5', '23', '23.5', '24', '24.5', '25', '25.5', '26', '26.5'];
 
@@ -67,33 +70,51 @@ const AddProductForm = () => {
   };
 
   const submitProduct = async (e: FormEvent<HTMLFormElement>) => {
-    e.stopPropagation()
-    e.preventDefault()
+    let fileNames : string[] = []
+    e.stopPropagation();
+    e.preventDefault();
     if (loading === true) {return}
     setLoading(true)
     try {
 
+      const promises = files.map( async file => {
+        const bodyFormData = new FormData(); 
+        bodyFormData.append('file', file);          
+        console.log(bodyFormData.getAll('file'));
+        const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
+        return name;
+      })
+      
+      const fileNames = await Promise.all(promises);
+      setSelectedImages(fileNames);
       // Post de imágenes
-        selectedImages.map(async img => {
-          var bodyFormData = new FormData();
-          bodyFormData.append('image', img);
-          console.log(await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData))
-        })
+        // files.forEach(async (file) => {
+        //   var bodyFormData = new FormData(); 
+        //   bodyFormData.append('file', file);          
+        //   console.log(bodyFormData.getAll('file'));
+          
+        //   const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData)
+        //   fileNames.push(name);
+
+        // })
+        // console.log(fileNames);
+        // setSelectedImages(fileNames)
+      
       //Post de productos
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
+          await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
         name: productName,
         price: price,
         categories: selectedCategories,
         description: productDescription,
-        images: selectedImages,
+        images: fileNames,
         isCustom: isCustom,
         isInSale: false, //se va a usar? si
         isLimited: false, //se va a usar? si
         isOutOfStock: false, //se va a usar? si
         materials: ["piel", "gamuza"],
         sizes: sizes,
-        amount: amount
-      })
+        amount: isLimited ? amount : null
+      }) 
       setShowRetroModal(true)
       setSuccess(true)
       setMessage("Producto creado correctamente")
@@ -130,8 +151,9 @@ const AddProductForm = () => {
   };
 
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.files);
+   // console.log(e.target.files);
     const files = e.target.files;
+    const fileArray = Array.from(files);
     const filesLength = files.length;
     const fileNames : string[] = []
     for(let i = 0; i < filesLength; i++ ){
@@ -139,7 +161,9 @@ const AddProductForm = () => {
       fileNames.push(name);
     } 
    
-    setSelectedImages(fileNames);
+    //setSelectedImages(fileNames);
+
+    setFiles(fileArray);
   }
   
   return (
@@ -184,6 +208,7 @@ const AddProductForm = () => {
           onChange={changePrice}
           placeholder="3999.00"
           type="number"
+          min="0"
           className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
           required
         />
@@ -200,6 +225,7 @@ const AddProductForm = () => {
           onChange={handleAmountChange}
           placeholder="5"
           type="number"
+          min="1"
           className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
           required={isLimited}
         />
