@@ -1,6 +1,6 @@
-import { Button, Form, Modal, TextField } from '@frappe/common/design-system';
+import { Button,  Modal } from '@frappe/common/design-system';
 import Select from 'react-select';
-import React, { FormEvent, FormEventHandler, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './AddProductForm.module.scss';
 import 'react-toggle/style.css';
@@ -19,12 +19,10 @@ const AddProductForm = () => {
   const [sizes, setSizes] = useState<number[]>([]);
   const [price, setPrice] = useState<number>();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedImages, setSelectedImages] = useState<string[]>();
   const [showRetroModal, setShowRetroModal] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>();
   const [message, setMessage] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
-  const [imagesURL, setImagesURL] = useState<string[]>()
 
   const [productName, setProductName] = useState<string>();
 
@@ -86,7 +84,6 @@ const AddProductForm = () => {
       })
       
       const fileNames = await Promise.all(promises);
-      setSelectedImages(fileNames);
       // Post de imágenes
         // files.forEach(async (file) => {
         //   var bodyFormData = new FormData(); 
