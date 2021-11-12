@@ -1,3 +1,5 @@
+// User Story: Frappe 64
+
 import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes,ProductRepository, ProductAlreadyExists, ProductIsActive } from '@frappe/product/domain';
 import { ProductNameFinder } from '../find/find-by-name';
 import {wrapError} from '@frappe/common/utils'

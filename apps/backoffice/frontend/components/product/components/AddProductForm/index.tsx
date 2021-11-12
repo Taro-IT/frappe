@@ -1,6 +1,6 @@
-import { Button, Form, Modal, TextField } from '@frappe/common/design-system';
+import { Button, Modal } from '@frappe/common/design-system';
 import Select from 'react-select';
-import React, { FormEvent, FormEventHandler, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './AddProductForm.module.scss';
 import 'react-toggle/style.css';
@@ -77,6 +77,7 @@ const AddProductForm = () => {
     setLoading(true)
     try {
 
+      // Post de imágenes
       const promises = files.map( async file => {
         const bodyFormData = new FormData(); 
         bodyFormData.append('file', file);          
@@ -87,18 +88,6 @@ const AddProductForm = () => {
       
       const fileNames = await Promise.all(promises);
       setSelectedImages(fileNames);
-      // Post de imágenes
-        // files.forEach(async (file) => {
-        //   var bodyFormData = new FormData(); 
-        //   bodyFormData.append('file', file);          
-        //   console.log(bodyFormData.getAll('file'));
-          
-        //   const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData)
-        //   fileNames.push(name);
-
-        // })
-        // console.log(fileNames);
-        // setSelectedImages(fileNames)
       
       //Post de productos
           await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
@@ -108,9 +97,9 @@ const AddProductForm = () => {
         description: productDescription,
         images: fileNames,
         isCustom: isCustom,
-        isInSale: false, //se va a usar? si
-        isLimited: false, //se va a usar? si
-        isOutOfStock: false, //se va a usar? si
+        isInSale: false,
+        isLimited: false,
+        isOutOfStock: false,
         materials: ["piel", "gamuza"],
         sizes: sizes,
         amount: isLimited ? amount : null
@@ -151,7 +140,6 @@ const AddProductForm = () => {
   };
 
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-   // console.log(e.target.files);
     const files = e.target.files;
     const fileArray = Array.from(files);
     const filesLength = files.length;
@@ -160,9 +148,6 @@ const AddProductForm = () => {
       const{ name } = files.item(i);
       fileNames.push(name);
     } 
-   
-    //setSelectedImages(fileNames);
-
     setFiles(fileArray);
   }
   
@@ -193,6 +178,7 @@ const AddProductForm = () => {
         classNamePrefix="Selecciona algunas categorías"
         styles={customStyles}
         onChange={handleSelectCategories}
+        placeholder="Selecciona categorías"
       />
       <label className="w-1/3 mt-4 mb-3">Tallas disponibles</label>
       <div className="flex flex-row space-x-4 mb-4">
@@ -233,8 +219,9 @@ const AddProductForm = () => {
       )}
       <label className="w-1/3 mt-4 mb-3">Descripción</label>
       <textarea
+        placeholder="Escribe una descripción"
         value={productDescription}
-        className="border-2 border-gray-200 rounded w-full"
+        className="border-2 border-gray-200 rounded w-full pl-2 pt-2"
         onChange={changeProductDescription}
         required
       />

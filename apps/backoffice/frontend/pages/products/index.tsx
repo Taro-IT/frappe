@@ -1,3 +1,5 @@
+// User Story: Frappe 64
+
 import React from 'react'
 import AddProduct from '../../components/product/AddProduct'
 import { AdminLayout } from '../../layouts/AdminLayout';
