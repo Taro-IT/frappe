@@ -1,4 +1,4 @@
-import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes,ProductRepository, ProductAlreadyExists } from '@frappe/product/domain';
+import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes } from '@frappe/product/domain';
 import { StringMother, UuidMother, NumberMother, BooleanMother } from '@frappe/common/test';
 
 export class ProductMother {

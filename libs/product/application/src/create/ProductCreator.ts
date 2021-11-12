@@ -24,7 +24,7 @@ export class ProductCreator {
     images: string[],
     isCustom: boolean,
     isInSale: boolean,
-    isLimited: boolean, 
+    isLimited: boolean,
     isOutOfStock: boolean,
     materials: string[],
     sizes: number[],

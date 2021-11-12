@@ -66,7 +66,6 @@ const AddProductForm = () => {
   };
 
   const submitProduct = async (e: FormEvent<HTMLFormElement>) => {
-    let fileNames : string[] = []
     e.stopPropagation();
     e.preventDefault();
     if (loading === true) {return}
@@ -190,8 +189,8 @@ const AddProductForm = () => {
       />
       <label className="w-1/3 mt-4 mb-3">Tallas disponibles</label>
       <div className="flex flex-row space-x-4 mb-4">
-        {defaultSizes.map(size => (
-          <SizeSelector setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)}/>
+        {defaultSizes.map(size => ( 
+          <SizeSelector key={""} setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)}/>
         ))}
       </div>
 

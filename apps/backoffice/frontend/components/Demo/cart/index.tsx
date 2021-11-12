@@ -87,7 +87,7 @@ const CartView = () => {
             </p>
             <div className='self-center'>
               <PayButton></PayButton>
-            </div>         
+            </div>
           </div>
         
       )}
