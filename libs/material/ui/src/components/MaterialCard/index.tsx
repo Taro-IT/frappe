@@ -4,8 +4,8 @@ import { Card, Button } from '@frappe/common/design-system';
 
 
 type MaterialCardProps = {
-  id: string, 
-  name: string, 
+  id: string,
+  name: string,
   image: string,
   setEditModal: (nv:boolean) => any,
   setCurrentMaterial: (nv: any) => any,

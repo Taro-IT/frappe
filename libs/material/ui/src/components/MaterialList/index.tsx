@@ -13,8 +13,8 @@ interface MaterialListContentProps {
   }
   
 export interface Material {
-  readonly id: string, 
-  readonly name:string, 
+  readonly id: string,
+  readonly name:string,
   readonly image:string
 }
 
@@ -62,7 +62,7 @@ export interface Material {
       setEditModal(false);
       setNameErrors(false);
       return;
-    }; 
+    };
   
   
     const SaveChangesButton = props => {
