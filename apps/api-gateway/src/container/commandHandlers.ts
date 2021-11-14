@@ -7,6 +7,7 @@ import { AccountSignUpCommandHandler } from '@frappe/account/application';
 import { UploadFileCommandHandler } from "@frappe/file-system/application";
 import { CreateProductCommandHandler } from "@frappe/product/application";
 import { DeleteCategoryCommandHandler } from '@frappe/category/application';
+import { CreateMaterialCommandHandler } from '@frappe/material/application';
 
 export const commandHandlers = (container: AwilixContainer) => {
   container.register({
@@ -18,6 +19,7 @@ export const commandHandlers = (container: AwilixContainer) => {
       asClass(UpdateCategoryCommandHandler),
       asClass(DeleteCategoryCommandHandler),
       asClass(CreateProductCommandHandler),
+      asClass(CreateMaterialCommandHandler),
     ])
   });
 };

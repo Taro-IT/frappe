@@ -16,11 +16,9 @@ export class CreateMaterialCommandHandler implements CommandHandler<CreateMateri
     this.materialCreator = materialCreator;
   }
 
-  // El método execute llama al método execute del creator, con el payload que definiste en en command
   async execute(command: CreateMaterialCommand) {
     const { id, name, image } = command.payload;
 
-    // Llamas al método execute del creator
     return this.materialCreator.execute(id, name, image);
   }
 }
