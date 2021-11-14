@@ -26,7 +26,7 @@ export class MaterialUpdater {
 
   async execute(id: string, name: string, image: string) {
     const material = await this.materialExists(id);
-
+    
     if (material === null) {
       throw new MaterialIdNotFound(id);
     }

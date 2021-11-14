@@ -13,6 +13,8 @@ export const materialRouting = ({ commandBus }: CollectionRoutingDeps) => {
   
   // User Story: Frappe 508
   router.post('/', makeValidateBody(dtos.CreateMaterialDto), handlers.createMaterialHandler(commandBus));
+  // User Story: Frappe 509
+  router.patch('/:id', makeValidateBody(dtos.UpdateMaterialDto), handlers.updateMaterialHandler(commandBus));
 
   return router;
 };
