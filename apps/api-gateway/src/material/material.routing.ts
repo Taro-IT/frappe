@@ -13,7 +13,7 @@ interface CollectionRoutingDeps {
 export const materialRouting = ({ commandBus, queryBus }: CollectionRoutingDeps) => {
   const router = express.Router();
   
-  // User Story: Frappe 508
+  // User Story: Frappe 71
   router.post('/', makeValidateBody(dtos.CreateMaterialDto), handlers.createMaterialHandler(commandBus));
   // User Story: Frappe 509
   router.patch('/:id', makeValidateBody(dtos.UpdateMaterialDto), handlers.updateMaterialHandler(commandBus));

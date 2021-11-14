@@ -1,4 +1,4 @@
-// User Story: Frappe 508
+// User Story: Frappe 71
 
 import { Button, FileInput, Card, Modal } from '@frappe/common/design-system';
 import classes from './AddMaterial.module.scss';
@@ -58,12 +58,12 @@ const CreateMaterial = () => {
   return (
     <>
     <Card className={classes.input}>
-      <form>
+      <form onSubmit={addMaterialHandler}>
         <label htmlFor="materialName">Nombre del material</label>
-        <input className=" my-2 border-2 border-gray-200 rounded pl-2 w-full h-10" id="materialName" placeholder="Piel roja" type="text" value={materialName} onChange={nameChangeHandler} />
+        <input className=" my-2 border-2 border-gray-200 rounded pl-2 w-full h-10" id="materialName" placeholder="Piel roja" type="text" value={materialName} onChange={nameChangeHandler} required/>
         <label htmlFor="materialName">Imágen del material</label>
         <FileInput setFiles={setFile} clear={clear} multiple={false} required={true}/>
-        <Button variant="cta" type="submit" onClick={addMaterialHandler} title="Agregar" />
+        <Button variant="cta" type="submit" title="Agregar" />
       </form>
     </Card>
     {showRetroModal && (
