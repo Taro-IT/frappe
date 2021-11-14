@@ -10,7 +10,8 @@ interface CollectionRoutingDeps {
 
 export const materialRouting = ({ commandBus }: CollectionRoutingDeps) => {
   const router = express.Router();
-
+  
+  // User Story: Frappe 508
   router.post('/', makeValidateBody(dtos.CreateMaterialDto), handlers.createMaterialHandler(commandBus));
 
   return router;

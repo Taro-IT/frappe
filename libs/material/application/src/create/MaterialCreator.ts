@@ -1,3 +1,5 @@
+// User Story: Frappe 508
+
 import { Material, MaterialAlreadyExists, MaterialId, MaterialName, MaterialImage, MaterialRepository } from '@frappe/material/domain';
 import { MaterialNameFinder } from '../find';
 

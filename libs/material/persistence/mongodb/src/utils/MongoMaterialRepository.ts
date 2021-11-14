@@ -8,6 +8,7 @@ export class MongoMaterialRepository extends MongoRepository implements Material
     return 'materials';
   }
 
+  // User Story: Frappe 508
   /**
    * Saves a new Material @see {@link Material}
    * @param material - The material object that want to saved
@@ -17,7 +18,7 @@ export class MongoMaterialRepository extends MongoRepository implements Material
   async save(material: Material): Promise<void> {
     return this.persist(material.id.value, material);
   }
-
+  
   /**
    * Finds a material by name @see {@link Material}
    * @param name - The name of the material that will be searched.

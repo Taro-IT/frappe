@@ -1,9 +1,11 @@
-  import { IsNotEmpty } from 'class-validator';
+// User Story: Frappe 508
 
-  export class CreateMaterialDto {
-    @IsNotEmpty()
-    readonly name: string;
+import { IsNotEmpty } from 'class-validator';
 
-    @IsNotEmpty()
-    readonly image: string;
-  }
+export class CreateMaterialDto {
+  @IsNotEmpty()
+  readonly name: string;
+
+  @IsNotEmpty()
+  readonly image: string;
+}
