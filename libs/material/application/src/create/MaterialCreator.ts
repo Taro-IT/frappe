@@ -1,6 +1,6 @@
 // User Story: Frappe 508
 
-import { Material, MaterialAlreadyExists, MaterialId, MaterialName, MaterialImage, MaterialRepository } from '@frappe/material/domain';
+import { Material, MaterialAlreadyExists, MaterialId, MaterialName, MaterialImage, MaterialRepository, MaterialIsActive } from '@frappe/material/domain';
 import { MaterialNameFinder } from '../find';
 
 interface Props {
@@ -24,7 +24,7 @@ export class MaterialCreator {
       throw new MaterialAlreadyExists(name);
     }
 
-    const material = new Material(new MaterialId(id), new MaterialName(name), new MaterialImage(image));
+    const material = new Material(new MaterialId(id), new MaterialName(name), new MaterialImage(image), new MaterialIsActive(true));
 
     return this.materialRepository.save(material);
   }
