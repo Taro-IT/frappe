@@ -1,6 +1,6 @@
-import { 
+import {
   Material,
-  MaterialNotFound, 
+  MaterialNotFound,
   MaterialRepository,
   MaterialPrimitives
 } from '@frappe/material/domain';
