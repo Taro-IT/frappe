@@ -1,5 +1,5 @@
 import { MongoRepository } from '@frappe/common/persistence/mongodb';
-import { Material, MaterialName, MaterialPrimitives, MaterialRepository } from '@frappe/material/domain';
+import { Material, MaterialId, MaterialName, MaterialPrimitives, MaterialRepository } from '@frappe/material/domain';
 import { Nullable } from '@frappe/common/utils';
 
 export class MongoMaterialRepository extends MongoRepository implements MaterialRepository {
@@ -31,6 +31,23 @@ export class MongoMaterialRepository extends MongoRepository implements Material
 
 
     if (document === null) {
+      return null;
+    }
+
+    return Material.fromPrimitives({ ...document, id: document._id } as MaterialPrimitives);
+  }
+
+  /**
+   * Finds a material by id @see {@link Material}
+   * @param id - The id of the material that will be searched.
+   *
+   * @returns the Material with the given id.
+  */
+  async find(id: MaterialId): Promise<Nullable<Material>> {
+    const collection = await this.collection();
+    const document = await collection.findOne({ _id: id.value });
+
+    if (!document) {
       return null;
     }
 
