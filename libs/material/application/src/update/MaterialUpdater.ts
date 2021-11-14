@@ -33,7 +33,7 @@ export class MaterialUpdater {
 
     const nameExists = await this.nameExists(name);
 
-    if (nameExists === null) {
+    if (nameExists === null && material.name !== name) {
       throw new MaterialAlreadyExists(name);
     }
 

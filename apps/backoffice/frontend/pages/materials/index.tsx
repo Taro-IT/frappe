@@ -11,7 +11,7 @@ const ListMaterialsPage = () => {
    <>
       <AddMaterial />
       <div className={classes.cards}>
-        <MaterialList materials={materials} />
+        <MaterialList ecommerce={false} materials={materials} />
 
       </div>
    </>

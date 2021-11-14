@@ -9,15 +9,16 @@ import axios from 'axios';
 
 interface MaterialListContentProps {
     readonly materials: MaterialPrimitives[];
+    readonly ecommerce: boolean
   }
   
 export interface Material {
-  id: string, 
-  name:string, 
-  image:string
+  readonly id: string, 
+  readonly name:string, 
+  readonly image:string
 }
 
-  export const MaterialList = ({ materials }: MaterialListContentProps) => {
+  export const MaterialList = ({ materials, ecommerce }: MaterialListContentProps) => {
     const [displayEditModal, setEditModal] = useState<boolean>(false)
     const [nameErrors, setNameErrors] = useState<boolean>()
     const [currentMaterial, setCurrentMaterial] = useState<Material>()
@@ -28,7 +29,7 @@ export interface Material {
     const [file, setFile] = useState<File>()
   
     const updateMaterial = async (id: string, name: string, image: string) => {
-      if (name === currentMaterial.name) {
+      if (name === currentMaterial.name || (!file && name === "")) {
         setNameErrors(true);
         return;
       }
@@ -42,8 +43,9 @@ export interface Material {
           console.table(bodyFormData.getAll('file'));
           const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
           fileURL = name
+        }else{
+          fileURL = image
         }
-        fileURL = image
         await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`, {
           name: postName,
           image: fileURL
@@ -86,7 +88,7 @@ export interface Material {
             <MaterialCard id={material.id} key={material.id} name={material.name} image={material.image} setNameErrors={setNameErrors} setEditModal={setEditModal} setCurrentMaterial={setCurrentMaterial}/>
         ) )}
       </div>
-      {displayEditModal && (
+      {displayEditModal && !ecommerce && (
         <Modal
           title={`Editar material - ${currentMaterial.name}`}
           showModal={displayEditModal}
@@ -101,18 +103,19 @@ export interface Material {
               type="name"
               name="categoryName"
             />
-            {nameErrors && <SpanError message="El nombre no puede ser vacío ni igual al anterior" />}
             <label className="text-base w-full">Imágen actual</label>
               <div className="flex transform scale-75 items-center mb-2">
                 <img src={currentMaterial.image} />
               </div>
             <label className="text-base w-full mb-2">Nueva imágen</label>
               <FileInput setFiles={setFile} multiple={false} required={false}/>
+
+            {nameErrors && <SpanError message="Realiza al menos un cambio" />}
             <SaveChangesButton id={currentMaterial.id} name={newName} image={currentMaterial.image}/>
           </form>
         </Modal>
       )}
-      {displayResultModal && (
+      {displayResultModal && !ecommerce && (
         <Modal showModal={displayResultModal} toggleModal={setDisplayResultModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
             {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}

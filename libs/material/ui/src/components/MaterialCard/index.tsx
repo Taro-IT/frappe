@@ -36,6 +36,7 @@ export const MaterialCard = ({ id, name, image, setEditModal, setCurrentMaterial
                 {name}
               </p>
             </div>
+            {/* TODO: remove button is this is on ecommerce site */}
             <EditButton id={id} name={name} image={image} />
           </div>
       </Card>
