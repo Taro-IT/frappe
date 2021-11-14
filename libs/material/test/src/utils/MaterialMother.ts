@@ -1,5 +1,5 @@
 import { Material, MaterialId, MaterialName, MaterialImage, MaterialIsActive, MaterialDeletedAt} from '@frappe/material/domain';
-import { DateMother, StringMother, UuidMother } from '@frappe/common/test';
+import {StringMother, UuidMother } from '@frappe/common/test';
 
 export class MaterialMother {
   static random(): Material {
