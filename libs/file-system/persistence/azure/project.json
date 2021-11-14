@@ -1,0 +1,23 @@
+{
+  "root": "libs/file-system/persistence/azure",
+  "sourceRoot": "libs/file-system/persistence/azure/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/file-system/persistence/azure/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/file-system/persistence/azure"],
+      "options": {
+        "jestConfig": "libs/file-system/persistence/azure/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

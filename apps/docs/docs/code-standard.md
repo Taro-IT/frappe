@@ -16,7 +16,7 @@ A continuación se muestra el estándar que sigue el repositorio de Frappé. Por
 
 ---
 
-## Convención de nombres
+## Convención de nombres.
 
 ### Folders
 
@@ -81,7 +81,7 @@ Por ejemplo los archivos del modelo de contexto **_category_** se llamarán `Cat
 
 - Todas las funciones deben estar comentadas, explicando de manera concisa el propósito de la misma.
 
-- Los comentarios de las funciones deberán seguir el estándar [jsdoc](https://jsdoc.app/).
+- Los comentarios de las funciones deberán seguir el estándar [tsdoc](https://tsdoc.org/).
   Por ejemplo:
 
 ```ts
@@ -103,8 +103,24 @@ En caso de utilizar el tag `@see` para hacer referencia a algun otro archivo, li
 
 :::
 
+## Variables de entorno y claves de acceso
+- El proyecto utiliza archivos .env para el manejo de variables de entorno
+en modo desarrollo y en producción cuando NO sea posible establecer 
+variables de entorno en el ambiente de producción.
+- Para el correcto manejo de estos archivos, favor de referirse a la [Guía para sincronizar, respaldar y compartir archivos de configuración y variables de entorno](https://taro-it.github.io/docs/guias/G20-guia-archivos-env).
+- No se deben escribir las claves de acceso en el código, 
+como lo establece la [checklist de código](https://docs.google.com/spreadsheets/d/1BTfYvNCsBmU54sY2hRHbU0hQRsxRtR4aCTtCfFbPxrI/edit?usp=sharing).
+
 ## Autores
 
 - Eric Buitrón López
 - Eduardo Andrés Castillo Perera
 - Mauricio Alvarez Milán
+
+## Bitácora de cambios
+
+### Versión 1.0
+Se creó el documento
+
+### Versión 1.1
+Se añadió la sección de Variables de entorno y claves de acceso

@@ -1,12 +1,19 @@
-import React from 'react';
-import AddCategory from '../../components/Demo/category/AddCategory';
-import CategoryList from '../../components/Demo/category/CategoryList';
+import React from 'react'
+import AddCategory from '../../components/Demo/category/AddCategory'
+import CategoryList from '../../components/Demo/category/CategoryList'
+import { AdminLayout } from '../../layouts/AdminLayout';
+import { withUserAgent } from '@frappe/common/design-system';
 
-const ListCategoriesPage = () => (
-  <div className="bg-gray-100 w-full position-absolute flex flex-col h-screen overflow-auto">
-    <AddCategory />
-    <CategoryList />
-  </div>
-);
+const ListCategoriesPage = () => {
 
-export default ListCategoriesPage;
+  return (
+   <>
+      <AddCategory />
+      <CategoryList />
+   </>
+  )
+}
+
+ListCategoriesPage.Layout = AdminLayout;
+
+export default withUserAgent(ListCategoriesPage);

@@ -29,8 +29,8 @@ const CreateCategory = () => {
     <Card className={classes.input}>
       <form>
         <label htmlFor="categoryName">Nombre de la categoría</label>
-        <input id="categoryName" type="text" value={categoryName} onChange={nameChangeHandler}></input>
-        <Button variant="cta" type="submit" onClick={addCategoryHandler} title="Agregar"></Button>
+        <input id="categoryName" type="text" value={categoryName} onChange={nameChangeHandler} />
+        <Button variant="cta" type="submit" onClick={addCategoryHandler} title="Agregar" />
       </form>
     </Card>
   );

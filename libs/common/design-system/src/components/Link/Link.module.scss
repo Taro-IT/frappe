@@ -6,4 +6,26 @@
       color: #766131;
     }
   }
+  &.nav-item {
+    @apply text-white;
+    @apply text-2xl;
+    @apply font-light ;
+    @apply px-10;
+
+    &:hover {
+      @apply text-yellow-400;
+    }
+  }
+
+  &.nav-item-mobile {
+    @apply text-white;
+    @apply text-3xl;
+    @apply font-light ;
+    @apply pl-2;
+    @apply pt-2;
+
+    &:hover {
+      @apply text-yellow-400;
+    }
+  }
 }

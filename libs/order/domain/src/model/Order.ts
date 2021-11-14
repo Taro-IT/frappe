@@ -1,11 +1,14 @@
+//User Stories: frappe-91
 import { OrderPrimitives } from '../utils';
-import { OrderItem } from './order-items/OrderItem';
+import { OrderItem } from './order-items';
 import { OrderDateCreated } from './OrderDateCreated';
 import { OrderId } from './OrderId';
 import { OrderStatus } from './OrderStatus';
 import { OrderSubtotal } from './OrderSubtotal';
 import { OrderTotal } from './OrderTotal';
-
+import { OrderIsDelayed } from './OrderIsDelayed';
+import { ShippingAddress } from '@frappe/shipping/domain'
+import { OrderClientName } from './OrderClientName';
 export class Order {
   constructor(
     readonly id: OrderId,
@@ -13,7 +16,10 @@ export class Order {
     readonly subtotal: OrderSubtotal,
     readonly total: OrderTotal,
     readonly dateCreated: OrderDateCreated,
-    readonly status: OrderStatus
+    readonly status: OrderStatus,
+    readonly isDelayed: OrderIsDelayed,
+    readonly clientName?: OrderClientName,
+    readonly address?: ShippingAddress,
   ) {}
 
   static fromPrimitives(primitives: OrderPrimitives): Order {
@@ -23,7 +29,10 @@ export class Order {
       new OrderSubtotal(primitives.subtotal),
       new OrderTotal(primitives.total),
       new OrderDateCreated(primitives.dateCreated),
-      new OrderStatus(primitives.status)
+      new OrderStatus(primitives.status),
+      new OrderIsDelayed(primitives.isDelayed),
+      new OrderClientName(primitives.clientName),
+      primitives.address != null ? ShippingAddress.fromPrimitives(primitives.address) : null,
     );
   }
 
@@ -34,7 +43,10 @@ export class Order {
       subtotal: this.subtotal.value,
       total: this.total.value,
       dateCreated: this.dateCreated.value,
-      status: this.status.value
+      status: this.status.value,
+      isDelayed: this.isDelayed.value,
+      clientName: this.clientName?.value,
+      address: this.address?.toPrimitives(),
     };
   }
 }

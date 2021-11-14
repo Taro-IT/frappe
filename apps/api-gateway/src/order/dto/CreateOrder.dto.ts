@@ -1,5 +1,8 @@
-import { OrderItemType, OrderStatuses } from '@frappe/order/domain';
-import { IsDateString, IsEnum, IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+import { OrderItemType } from '@frappe/order/domain';
+import { ShippingAddressPrimitives } from '@frappe/shipping/domain';
+import { IsDefined, IsNotEmpty, IsNumber, IsPositive, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer'
+import { ShippingAddressDto } from './ShippingAddress.dto';
 
 export class CreateOrderDto {
   @IsNotEmpty()
@@ -16,9 +19,10 @@ export class CreateOrderDto {
   readonly total: number;
 
   @IsNotEmpty()
-  @IsDateString()
-  readonly dateCreated: Date;
+  readonly clientName: string;
 
-  @IsEnum(OrderStatuses)
-  readonly status: OrderStatuses;
+  @IsDefined()
+  @Type(() => ShippingAddressDto)
+  @ValidateNested()
+  readonly address: ShippingAddressPrimitives
 }

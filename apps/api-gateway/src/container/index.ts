@@ -9,6 +9,8 @@ import { registerCollectionModule } from '../category';
 import { registerAccountModule } from '../account';
 import { registerShippingModule } from '../shipping';
 import { registerOrderModule } from '../order';
+import {registerFileSystemModule} from "../file-system";
+import {registerProductModule} from "../product"
 
 interface ContainerType {
   readonly server: http.Server;
@@ -26,8 +28,10 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   // Register Modules
   registerCollectionModule(container);
   registerAccountModule(container);
+  registerFileSystemModule(container);
   registerShippingModule(container);
   registerOrderModule(container);
+  registerProductModule(container);
 
   container.register({
     app: asFunction(configureApp).singleton()
