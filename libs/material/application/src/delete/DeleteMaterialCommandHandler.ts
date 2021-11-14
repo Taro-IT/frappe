@@ -3,21 +3,21 @@ import { DeleteMaterialCommand } from './DeleteMaterialCommand';
 import { MaterialDeleter } from './MaterialDeleter';
 
 type Props = {
-  readonly categoryDeleter: MaterialDeleter;
+  readonly materialDeleter: MaterialDeleter;
 };
 
 export class DeleteMaterialCommandHandler implements CommandHandler<DeleteMaterialCommand> {
-  private readonly categoryDeleter: MaterialDeleter;
+  private readonly materialDeleter: MaterialDeleter;
 
   readonly commandType = DeleteMaterialCommand.name;
 
-  constructor({ categoryDeleter }: Props) {
-    this.categoryDeleter = categoryDeleter;
+  constructor({ materialDeleter }: Props) {
+    this.materialDeleter = materialDeleter;
   }
 
   async execute(command: DeleteMaterialCommand) {
     const { id } = command.payload;
 
-    return this.categoryDeleter.execute(id);
+    return this.materialDeleter.execute(id);
   }
 }

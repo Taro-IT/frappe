@@ -18,6 +18,8 @@ export const materialRouting = ({ commandBus, queryBus }: CollectionRoutingDeps)
   // User Story: Frappe 509
   router.patch('/:id', makeValidateBody(dtos.UpdateMaterialDto), handlers.updateMaterialHandler(commandBus));
   router.get('/', handlers.listMaterialHandler(queryBus));
+  // User Story: Frappe 68
+  router.delete('/:id', handlers.deleteMaterialHandler(commandBus));
 
   return router;
 };
