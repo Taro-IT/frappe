@@ -8,12 +8,13 @@ type MaterialCardProps = {
   name: string,
   image: string,
   setEditModal: (nv:boolean) => any,
+  setDeleteModal: (nv:boolean) => any,
   setCurrentMaterial: (nv: any) => any,
   setNameErrors: (nv:boolean) => any,
 
 }
 
-export const MaterialCard = ({ id, name, image, setEditModal, setCurrentMaterial, setNameErrors }: MaterialCardProps) => {
+export const MaterialCard = ({ id, name, image, setEditModal, setCurrentMaterial, setNameErrors, setDeleteModal }: MaterialCardProps) => {
 
   const EditButton = ({ id, name, image }: Material) => {
     const edit = () => {
@@ -22,6 +23,14 @@ export const MaterialCard = ({ id, name, image, setEditModal, setCurrentMaterial
       setNameErrors(false);
     };
     return <Button title="Editar" className=" mt-4 w-24" variant="cta" onClick={edit} />;
+  };
+
+  const DeleteButton = ({ id, name, image }: Material) => {
+    const deleteCategory = () => {
+      setDeleteModal(true);
+      setCurrentMaterial({ id, name, image });
+    };
+    return <Button title="Eliminar" className="mt-4 w-24" variant="cta" onClick={deleteCategory} />;
   };
 
   return (
@@ -37,7 +46,10 @@ export const MaterialCard = ({ id, name, image, setEditModal, setCurrentMaterial
               </p>
             </div>
             {/* TODO: remove button is this is on ecommerce site */}
-            <EditButton id={id} name={name} image={image} />
+            <div className="flex flex-row space-x-4">
+              <EditButton id={id} name={name} image={image} />
+              <DeleteButton id={id} name={name} image={image} />
+            </div>
           </div>
       </Card>
       
