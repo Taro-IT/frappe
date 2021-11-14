@@ -1,5 +1,5 @@
 import { MongoRepository } from '@frappe/common/persistence/mongodb';
-import { Material, MaterialId, MaterialName, MaterialPrimitives, MaterialRepository } from '@frappe/material/domain';
+import { Material, MaterialName, MaterialPrimitives, MaterialRepository } from '@frappe/material/domain';
 import { Nullable } from '@frappe/common/utils';
 
 export class MongoMaterialRepository extends MongoRepository implements MaterialRepository {
