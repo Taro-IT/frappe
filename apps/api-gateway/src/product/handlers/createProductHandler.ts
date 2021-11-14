@@ -8,6 +8,9 @@ export const createProductHandler =
   async (req, res, next: NextFunction) => {
     const id = Uuid.create().value;
     try {
+      if(req.body.ammout === undefined || req.body.ammout === null){
+        req.body.ammout = 1;
+      }
       await commandBus.execute(new CreateProductCommand({
         id,
         ...req.body
