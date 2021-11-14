@@ -3,9 +3,12 @@ import { ShippingAddressPrimitives } from '@frappe/shipping/domain';
 import { IsDefined, IsNotEmpty, IsNumber, IsPositive, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer'
 import { ShippingAddressDto } from './ShippingAddress.dto';
+import { OrderItemDto } from './OrderItem.dto';
 
 export class CreateOrderDto {
-  @IsNotEmpty()
+  @IsDefined()
+  @Type(() => OrderItemDto)
+  @ValidateNested()
   readonly items: OrderItemType[];
 
   @IsNotEmpty()

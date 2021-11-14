@@ -13,6 +13,8 @@ export interface OrderItemType {
   readonly productId: string;
   readonly productName: string;
   readonly productPrice: number;
+  readonly productImages: string[];
+  readonly size: number; 
   readonly quantity: number;
   readonly pdfFile?: string;
 }
