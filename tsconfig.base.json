@@ -39,6 +39,7 @@
       "@frappe/material/application": ["libs/material/application/src/index.ts"],
       "@frappe/material/domain": ["libs/material/domain/src/index.ts"],
       "@frappe/material/persistence/mongodb": ["libs/material/persistence/mongodb/src/index.ts"],
+      "@frappe/material/test": ["libs/material/test/src/index.ts"],
       "@frappe/order": ["libs/order/src/index.ts"],
       "@frappe/order/application": ["libs/order/application/src/index.ts"],
       "@frappe/order/domain": ["libs/order/domain/src/index.ts"],

@@ -29,19 +29,20 @@ export const FileInput = ({multiple, required, setFiles, clear}: FileInputProps)
       const name = e.target.files[0].name;
       setFileNames([name])
       setFiles(e.target.files[0]);
-    }else{
-      /*TODO: VALIDATE IT WORKS FOR MANY FILES*/
-      const files = e.target.files;
-      const fileArray = Array.from(files);
-      const filesLength = files.length;
-      const fileNames : string[] = []
-      for(let i = 0; i < filesLength; i++ ){
-        const{ name } = files.item(i);
-        fileNames.push(name);
-      }
-      setFileNames(fileNames)
-      setFiles(fileArray);
     }
+    // else{
+    //   /*TODO: VALIDATE IT WORKS FOR MANY FILES*/
+    //   const files = e.target.files;
+    //   const fileArray = Array.from(files);
+    //   const filesLength = files.length;
+    //   const fileNames : string[] = []
+    //   for(let i = 0; i < filesLength; i++ ){
+    //     const{ name } = files.item(i);
+    //     fileNames.push(name);
+    //   }
+    //   setFileNames(fileNames)
+    //   setFiles(fileArray);
+    // }
     
   }
   return (
