@@ -7,6 +7,7 @@ interface RoutesDeps {
   readonly orderRouting: express.Router;
   readonly productRouting: express.Router;
   readonly materialRouting: express.Router;
+  readonly userRouting: express.Router
 }
 
 export const configureRouter = (routes: RoutesDeps): express.Router => {
@@ -18,6 +19,7 @@ export const configureRouter = (routes: RoutesDeps): express.Router => {
   router.use('/orders', routes.orderRouting);
   router.use('/products', routes.productRouting);
   router.use('/materials', routes.materialRouting);
+  router.use('/users', routes.userRouting);
 
   return router;
 };
