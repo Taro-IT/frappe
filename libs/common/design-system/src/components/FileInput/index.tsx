@@ -4,7 +4,7 @@ type FileInputProps = {
   multiple: boolean
   required: boolean
   setFiles: (nv: any) => any
-  clear: boolean
+  clear?: boolean
 }
 
 export const FileInput = ({multiple, required, setFiles, clear}: FileInputProps) => {

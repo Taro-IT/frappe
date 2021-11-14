@@ -1,16 +1,19 @@
 import React from 'react'
 import AddMaterial from '../../components/material/AddMaterial'
-// import MaterialList from '../../components/Demo/category/MaterialList'
+import {MaterialList, useMaterials} from '@frappe/material/ui'
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
-
+import classes from './Materials.module.scss'
 const ListMaterialsPage = () => {
-
+  const {materials} = useMaterials()
 
   return (
    <>
       <AddMaterial />
-      {/* <MaterialList /> */}
+      <div className={classes.cards}>
+        <MaterialList materials={materials} />
+
+      </div>
    </>
   )
 }

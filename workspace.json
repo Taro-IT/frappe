@@ -31,6 +31,7 @@
     "material-domain": "libs/material/domain",
     "material-persistence-mongodb": "libs/material/persistence/mongodb",
     "material-test": "libs/material/test",
+    "material-ui": "libs/material/ui",
     "order": "libs/order",
     "order-application": "libs/order/application",
     "order-domain": "libs/order/domain",
