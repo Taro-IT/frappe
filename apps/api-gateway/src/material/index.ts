@@ -1,7 +1,7 @@
 import { AwilixContainer, asClass, asFunction } from 'awilix';
 import { materialRouting } from './material.routing';
 import { MongoMaterialRepository } from '@frappe/material/persistence/mongodb';
-import { MaterialCreator, MaterialFinder, MaterialNameFinder, MaterialUpdater } from '@frappe/material/application';
+import { MaterialCreator, MaterialFinder, MaterialLister, MaterialNameFinder, MaterialUpdater } from '@frappe/material/application';
 
 export const registerMaterialModule = (container: AwilixContainer) => {
   container.register({
@@ -10,6 +10,7 @@ export const registerMaterialModule = (container: AwilixContainer) => {
     materialNameFinder: asClass(MaterialNameFinder).singleton(),
     materialFinder: asClass(MaterialFinder).singleton(),
     materialUpdater: asClass(MaterialUpdater).singleton(),
+    materialLister: asClass(MaterialLister).singleton(),
     materialRouting: asFunction(materialRouting).singleton()
   });
 };

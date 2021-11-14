@@ -53,4 +53,20 @@ export class MongoMaterialRepository extends MongoRepository implements Material
 
     return Material.fromPrimitives({ ...document, id: document._id } as MaterialPrimitives);
   }
+
+  /**
+   * Gets all materials @see {@link Material}
+   *
+   * @returns an array with all existing materials
+  */
+  async all(): Promise<Material[] | null> {
+    const collection = await this.collection();
+    const documents = await collection.find().toArray();
+
+    if (!documents) {
+      return null;
+    }
+
+    return documents?.map(doc => Material.fromPrimitives({ ...doc, id: doc._id } as MaterialPrimitives)) || [];
+  }
 }

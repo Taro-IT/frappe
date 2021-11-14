@@ -5,5 +5,5 @@ import { Material, MaterialId, MaterialName } from '../model';
     save(material: Material): Promise<void>;
     findByName(name: MaterialName): Promise<Nullable<Material>>;
     find(id: MaterialId): Promise<Nullable<Material>>;
-
+    all(): Promise<Material[]>;
   }
