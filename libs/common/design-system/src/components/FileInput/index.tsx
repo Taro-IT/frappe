@@ -14,7 +14,7 @@ export const FileInput = ({multiple, required, setFiles, clear}: FileInputProps)
 
   useEffect(() => {
     if(clear === true) {
-      let randomString = Math.random().toString(36);
+      const randomString = Math.random().toString(36);
       setInputKey(randomString)
       setFile(false)
     }
