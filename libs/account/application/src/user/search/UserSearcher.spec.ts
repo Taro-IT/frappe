@@ -1,6 +1,6 @@
 import { mock, MockProxy } from 'jest-mock-extended';
 import { UserRepository } from '@frappe/account/domain';
-import { UserSearcher } from '@frappe/account/application';
+import { UserSearcher } from './UserSearcher';
 import { OrderTypes } from '@dinnosc/criteria';
 import { UserMother } from '@frappe/account/test';
 
