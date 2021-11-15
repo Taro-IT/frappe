@@ -11,6 +11,7 @@ const ListMaterialsPage = () => {
    <>
       <AddMaterial />
       <div className={classes.cards}>
+        {/* // User Story: Frappe 501 */}
         <MaterialList ecommerce={false} materials={materials} />
 
       </div>

@@ -1,3 +1,5 @@
+/* User Story: Frappe 501 */
+
 import { Query } from '@tshio/query-bus';
 
 export class ListMaterialQuery implements Query<Record<string, never>> {

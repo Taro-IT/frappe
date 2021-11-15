@@ -15,8 +15,9 @@ export const materialRouting = ({ commandBus, queryBus }: CollectionRoutingDeps)
   
   // User Story: Frappe 71
   router.post('/', makeValidateBody(dtos.CreateMaterialDto), handlers.createMaterialHandler(commandBus));
-  // User Story: Frappe 509
+  // User Story: Frappe 67
   router.patch('/:id', makeValidateBody(dtos.UpdateMaterialDto), handlers.updateMaterialHandler(commandBus));
+  // User Story: Frappe 501
   router.get('/', handlers.listMaterialHandler(queryBus));
   // User Story: Frappe 68
   router.delete('/:id', handlers.deleteMaterialHandler(commandBus));

@@ -28,7 +28,8 @@ export interface Material {
     const [newName, setNewName] = useState<string>("")
     const [displayResultModal, setDisplayResultModal] = useState<boolean>(false)
     const [file, setFile] = useState<File>()
-  
+    
+    {/* // User Story: Frappe 67 */}
     const updateMaterial = async (id: string, name: string, image: string) => {
       if (name === currentMaterial.name || (!file && name === "")) {
         setNameErrors(true);
@@ -67,7 +68,7 @@ export interface Material {
 
 
   
-    
+    {/* // User Story: Frappe 68 */}
     const ConfirmDeleteMaterial = ({ id }: Material) => {
       const confirmDelete = async () => {
         try {
@@ -108,6 +109,7 @@ export interface Material {
             <p className="text-gray-400 text-center align-middle">Intenta agregar uno.</p>
         </div>
       }
+      {/* // User Story: Frappe 501 */}
       <div className="grid grid-cols-3 gap-4">
         {materials.map(material => {
           if(material.isActive){
@@ -115,6 +117,7 @@ export interface Material {
           }
         })}
       </div>
+      {/* // User Story: Frappe 67 */}
       {displayEditModal && !ecommerce && (
         <Modal
           title={`Editar material - ${currentMaterial.name}`}
@@ -151,6 +154,7 @@ export interface Material {
           </div>
         </Modal>
       )}
+      {/* // User Story: Frappe 68 */}
       {displayDeleteModal && (
         <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title="Eliminar categoría">
           <div className="flex flex-col w-full px-20 mb-4 py-2 justify-center">
