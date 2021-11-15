@@ -17,6 +17,8 @@ export const orderRouting = ({ commandBus, queryBus }: OrderRoutingDeps) => {
   //User Story: frappe-91
   router.get('/', handlers.listOrderHandler(queryBus));
   router.post('/', makeValidateBody(dto.CreateOrderDto), handlers.createOrderHandler(commandBus));
+  //User Story: frappe-507
+  router.patch('/:id', makeValidateBody(dto.UpdateOrderDto), handlers.updateOrderHandler(commandBus));
 
   return router;
 };
