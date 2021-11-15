@@ -18,6 +18,7 @@ export class SendEmailOnPasswordResetCodeCreated implements EventSubscriberInter
   }
 
   execute(event: PasswordResetCodeCreated) {
+    // TODO Create Email Template
     console.log(event);
     return;
   }
