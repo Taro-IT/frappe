@@ -4,7 +4,7 @@ import { Criteria, Operator } from '@dinnosc/criteria';
 
 export class MongoCriteriaMapper {
   transformQuery<T>(criteria: Criteria<T>) {
-    
+
     if (criteria.filters.value.length === 0) {
       return {};
     }
@@ -38,7 +38,7 @@ export class MongoCriteriaMapper {
           break;
         case Operator.LT:
           // TODO refactor to remove const creation
-          
+
 
           query[key as string] = (betweenCache[key as string] !== undefined) ?
           { ...auxLt, $lte: Number(fieldValue) } :
@@ -53,14 +53,11 @@ export class MongoCriteriaMapper {
           query[key as string] = { $not: { $regex: new RegExp(fieldValue as string, 'ig') } };
           break;
       }
-      
-      
+
+
       return query;
     }, {});
 
-    console.log('builded query', auxBuiltQuery);
-    
     return auxBuiltQuery
-    
   }
 }
