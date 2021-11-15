@@ -5,7 +5,7 @@ import { CreatePasswordResetCodeCommand } from '@frappe/account/application';
 import { wrapError } from '@frappe/common/utils';
 
 export const createPasswordResetCodeHandler = (commandBus: CommandBus): RequestHandler =>
-  async (req, res, next) => {
+  async (req, res) => {
     const { email } = req.body as CreatePasswordResetCodeDto;
 
     const command = new CreatePasswordResetCodeCommand({ email });
