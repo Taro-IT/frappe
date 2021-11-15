@@ -14,6 +14,7 @@ interface OrderRoutingDeps {
 export const orderRouting = ({ commandBus, queryBus }: OrderRoutingDeps) => {
   const router = express.Router();
 
+  //User Story: frappe-91
   router.get('/', handlers.listOrderHandler(queryBus));
   router.post('/', makeValidateBody(dto.CreateOrderDto), handlers.createOrderHandler(commandBus));
 

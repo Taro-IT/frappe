@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { configureContainer } from './container';
 
 const bootstrap = async () => {

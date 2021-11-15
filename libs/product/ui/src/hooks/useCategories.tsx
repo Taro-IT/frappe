@@ -25,13 +25,9 @@ export const useCategories = () => {
   const handleCategoryCheck: ChangeEventHandler<HTMLInputElement> = event => {
     const id = event.target.name
 
-    setCategories(categories => categories.map(category => {
-      if (category.id === id) {
-        return { ...category, value: !category.value }
-      }
-
-      return category;
-    }));
+    setCategories(categories => categories.map(category =>
+      ({...category, value: category.id === id ? !category.value:false})
+    ));
   }
 
   return { categories, selectedCategories, handleCategoryCheck };
