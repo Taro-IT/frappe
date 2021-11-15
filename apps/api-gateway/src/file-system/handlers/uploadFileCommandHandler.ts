@@ -11,7 +11,7 @@ export const uploadFileCommandHandler = (commandBus: CommandBus): RequestHandler
     try {
       // @ts-ignore: Because file already exists in multer request
       await commandBus.execute(new UploadFileCommand({ name, content: req.file}));
-      res.status(201).json({ name });
+      res.status(201).json({ name: `${process.env.AZURE_IMAGE_URL}/${name}` });
       
     } catch (error) {
       next(error)

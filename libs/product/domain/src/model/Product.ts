@@ -12,6 +12,8 @@ import { ProductIsOutOfStock } from './ProductIsOutOfStock';
 import { ProductMaterials } from './ProductMaterials';
 import { ProductSizes } from './ProductSizes';
 import { ProductAmount } from './ProductAmount';
+import { ProductIsActive} from './ProductIsActive'
+import { ProductDeletedAt} from './ProductDeletedAt'
 
 export class Product {
   constructor(
@@ -27,7 +29,10 @@ export class Product {
     readonly isOutOfStock: ProductIsOutOfStock,
     readonly materials: ProductMaterials,
     readonly sizes: ProductSizes,
-    readonly amount?: ProductAmount
+    readonly isActive: ProductIsActive,
+    readonly deletedAt?: ProductDeletedAt,
+    readonly amount?: ProductAmount,
+    
   ) {}
 
   static fromPrimitives(primitives: ProductPrimitives): Product {
@@ -44,6 +49,8 @@ export class Product {
       new ProductIsOutOfStock(primitives.isOutOfStock),
       new ProductMaterials(primitives.materials),
       new ProductSizes(primitives.sizes),
+      new ProductIsActive(primitives.isActive),
+      new ProductDeletedAt(primitives.deletedAt),
       new ProductAmount(primitives.amount)
     );
   }
@@ -62,6 +69,8 @@ export class Product {
       isOutOfStock: this.isOutOfStock.value,
       materials: this.materials.value,
       sizes: this.sizes.value,
+      isActive: this.isActive.value,
+      deletedAt: this.deletedAt?.value,
       amount: this.amount?.value
     };
   }

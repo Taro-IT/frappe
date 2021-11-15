@@ -7,7 +7,7 @@ const classNames = (...classes: string[]) => {
 
 const navigation = [
   { name: 'Órdenes', icon: ShoppingCartIcon, href: 'orders' },
-  { name: 'Catálogo', icon: ColorSwatchIcon, href: '' },
+  { name: 'Productos', icon: ColorSwatchIcon, href: 'products' },
   { name: 'Categorías', icon: FolderIcon, href: 'categories' },
   { name: 'Usuarios', icon: UsersIcon, href: '#' },
 ]
