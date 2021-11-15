@@ -6,7 +6,7 @@
 
 ## Acceptance criteria
 
-_Dada un material existente_
+_Dado un material existente_
 
 _Cuando cambie su nombre o su imágen_
 
@@ -34,7 +34,7 @@ _Entonces los productos que la tengan también se verán editados, nunca vacíos
 
   |Llave|Valor|Ejemplo|Descripción|
   |----|------|----|----|
-  |Id| UUID | 37ff754d-66d8-40f5-b4fc-a72d2331213c |Id del maeterial que se va a actualizar|
+  |Id| UUID | 37ff754d-66d8-40f5-b4fc-a72d2331213c |Id del material que se va a actualizar|
 
   **Body**
 
@@ -50,7 +50,7 @@ _Entonces los productos que la tengan también se verán editados, nunca vacíos
   _Default:_ id del material actualizado.
 
   _MaterialAlreadyExists:_ Ya existe un material con ese nombre
-  
+
   _MaterialNotFound:_ No existe un material con el identificador especificado.
 
 ## Artefactos generados
