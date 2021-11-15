@@ -20,6 +20,7 @@
 | Diagrama | Artefactos |
 | ---------------------|------------------------ |
 | Modelo de datos |[Documentación de diseño](https://taro-depto-ti.atlassian.net/wiki/spaces/FC/pages/20480001/FRAPPE-71+Yo+como+administrador+quiero+agregar+un+material+para+poder+ofrecer+variedad+a+mis+clientes#Dise%C3%B1o ) |
+|Diagrama de actividad| [Diagrama](https://app.diagrams.net/#G1kUiv_Q0W6wJ5dc7AuMC07ChIvaYKfbkg)|
 
 ## Documentación API
 
@@ -29,7 +30,7 @@
 
   **Inputs**
 
-    Recibe un nombre y el URL a una imágen.
+  Recibe un nombre y el URL a una imágen.
 
   **Body**
 
