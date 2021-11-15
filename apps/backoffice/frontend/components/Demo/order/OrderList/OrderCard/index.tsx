@@ -3,7 +3,7 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import classes from '../OrderList.module.scss';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline';
-import { Button, Card, Badge, ProgressBar} from '@frappe/common/design-system';
+import { Button, Card, Badge, Modal, ProgressBar} from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
 import * as React from 'react';
 import { OrderStatuses } from '@frappe/order/domain'
@@ -18,6 +18,10 @@ type OrderCardProps = {
 
 const OrderCard = ({ items, order, status }: OrderCardProps) => {
   const [closed, setExpanded] = useState<boolean>(false);
+  const [newStatus, setNewStatus] = useState<string>();
+  const [displayEditModal, setEditModal] = useState<boolean>(false);
+  
+
   const monthNames = [
     'enero',
     'febrero',
@@ -45,6 +49,16 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
   const handleClick = () => {
     console.log("Imprimir guía de envío")
   };
+
+
+  const onChangeValue = (event) => {
+    setNewStatus(event.target.value);
+    console.log(event.target.value)
+  }
+
+  const handleChangeModal = () => {
+    setEditModal(true);
+  }
 
   const handlePDFOpen = pdfFile => window.open(pdfFile, '_blank');
 
@@ -91,6 +105,11 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
             <h5 className="font-bold text-center">Estado de la orden de compra:</h5>
             <ProgressBar status={status}/>
           </div>
+          {(status === OrderStatuses.EN_PROCESO || status === OrderStatuses.LISTA_PARA_ENVIO)  && (  
+          <div className="">
+            <Button title={'Cambiar estatus'} variant={'cta'} className="flex" onClick={handleChangeModal}/>
+          </div>
+          )}
         </div>
       )}
       {items.map(
@@ -114,6 +133,26 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
             <h5 className="font-bold">Total: ${ order.total } </h5>
           </div>
         </div>
+      )}
+      {displayEditModal && (
+        /*Modal donde viene el radio para cambiar el estatus*/
+        /*TODO: Poner el onClick en el botón para que llame la función del query*/
+        <Modal
+          title={`Editar Orden`}
+          showModal={displayEditModal}
+          toggleModal={setEditModal}
+        >
+          <div className="pb-4 flex-row text-center" onChange={onChangeValue}>
+            <h1 className="pb-8 text-lg">Selecciona un nuevo estatus para la orden</h1>
+            <div className="pb-4 ">
+              <input type="radio" value="Lista Para Envio" name="gender" /> Lista Para Envio
+            </div>
+            <div className="pb-4 ">
+              <input type="radio" value="Entregada" name="gender" className="self-center"/> Entregada
+            </div>
+          </div>
+          <Button title={'Guardar'} variant={'cta'} className="text-center" /> 
+        </Modal>
       )}
     </Card>
   );
