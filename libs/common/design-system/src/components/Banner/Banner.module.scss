@@ -1,12 +1,12 @@
 .Banner {
-    @apply mb-3 shadow-xl;
-
-    &--BannerItem{
-        @apply w-full;
-        justify-self: center;
-        height: 30%;
+    @apply shadow-xl w-full ;
+    clip-path: inset(-1rem 0 1rem 0);
+    height: 16rem;
+    width: full;
+    &--img{
+        position: absolute;
+        top: -8rem;
     }
-
 }
 
 

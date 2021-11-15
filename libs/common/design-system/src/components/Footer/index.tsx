@@ -1,6 +1,9 @@
 
 import styles from './Footer.module.scss';
 import {  useRouter } from 'next/router';
+import { BsFacebook, BsInstagram, BsPinterest } from 'react-icons/bs';
+import {FaCcVisa, FaCcPaypal, FaCcMastercard} from 'react-icons/fa';
+import {SiAmericanexpress} from 'react-icons/si';
 
 export const Footer = ( ) => {
   const router = useRouter();
@@ -22,10 +25,20 @@ export const Footer = ( ) => {
       <div className="flex flex-col justify-evenly">
         <div>
           <h3 className={styles['footer--title']}>PAGOS SEGUROS CON:</h3>
-          {/* Insertar imagen correspondiente con métodos de pago. */}
+          <div className="flex justify-evenly w-1/3 pt-2">
+              <FaCcVisa size={25}/>
+              <FaCcMastercard size={25}/>
+              <SiAmericanexpress size={25}/>
+              <FaCcPaypal size={25}/>
+            </div>
           </div>
         <div>
             <h3 className={styles['footer--title']}>SÍGUENOS EN:</h3>
+            <div className="flex justify-evenly w-1/4 pt-2">
+              <a target="_blank" href="https://www.facebook.com/cinicamx/"><BsFacebook size={20}/></a>
+              <a target="_blank" href="https://www.instagram.com/cinicamx/"><BsInstagram size={20}/></a>
+              <a target="_blank" href="https://www.pinterest.com.mx/cinicamx/_saved/"><BsPinterest size={20}/></a>
+            </div>
         </div>
       </div>
     </div>
