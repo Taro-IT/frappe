@@ -14,7 +14,7 @@ export interface OrderItemType {
   readonly productName: string;
   readonly productPrice: number;
   readonly productImages: string[];
-  readonly size: number; 
+  readonly size: number;
   readonly quantity: number;
 }
 
