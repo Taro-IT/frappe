@@ -19,7 +19,6 @@ type OrderCardProps = {
 
 const OrderCard = ({ items, order, status }: OrderCardProps) => {
   const [closed, setExpanded] = useState<boolean>(false);
-  const [pdf, ] = useState<string>();
   
   const monthNames = [
     'enero',

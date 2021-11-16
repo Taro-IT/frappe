@@ -1,5 +1,3 @@
-import { OrderItemType } from '@frappe/order/domain';
-import { ShippingAddressPrimitives } from '@frappe/shipping/domain';
 import { Command } from '@tshio/command-bus';
 
 interface GenerateOrderPdfCommandPayload {

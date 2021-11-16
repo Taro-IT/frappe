@@ -14,7 +14,7 @@ import {
   OrderClientName
 } from '@frappe/order/domain';
 import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
-import { OrderPdfFile } from 'libs/order/domain/src/model/OrderPdfFile';
+import { OrderPdfFile } from '@frappe/order/domain';
 import { OrderFinder } from '..';
 
 // SOLID
