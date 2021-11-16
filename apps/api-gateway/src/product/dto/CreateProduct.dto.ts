@@ -1,3 +1,4 @@
+//User story: frappe-64
 import { IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString } from 'class-validator';
 
 export class CreateProductDto {
