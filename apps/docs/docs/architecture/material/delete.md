@@ -18,7 +18,8 @@ _Entonces el material ya no estará activo y no saldrá en la vista general_
 
 | Diagrama | Artefactos |
 | ---------------------|------------------------ |
-|Diagrama de actividad| [Diagrama](https://app.diagrams.net/#G1kUiv_Q0W6wJ5dc7AuMC07ChIvaYKfbkg)|
+|Diagrama de actividad| ![Diagrama](./delete_activity_diagram.png)|
+|Wireframe| ![Wireframe delete](./delete_wireframe.png)|
 
 ## Documentación API
 
@@ -52,8 +53,9 @@ _Entonces el material ya no estará activo y no saldrá en la vista general_
 - Karla Daniela Romero Pérez
 
 ## Auditoría
--
+- Iván Alejandro Díaz Peralta
 
 ## Versión
 
 - 1.0 - Creación del documento
+- 1.1 - Usar imágenes en los artefactos generados
