@@ -8,3 +8,4 @@ export { PriceField } from './PriceField';
 export { SummariesExample } from './SummariesExample';
 export { Badge } from './Badge';
 export { ProgressBar } from './ProgressBar';
+export { Alert } from './Alert';

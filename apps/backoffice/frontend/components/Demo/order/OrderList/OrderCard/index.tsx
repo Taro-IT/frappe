@@ -1,24 +1,25 @@
-//User Story: frappe-91
+//User Stories: frappe-91, frappe-507
 import { useState } from 'react';
 import clsx from 'clsx';
 import classes from '../OrderList.module.scss';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline';
-import { Button, Card, Badge, Modal, ProgressBar} from '@frappe/common/design-system';
+import { Button, Card, Badge, Modal, ProgressBar, Alert} from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
 import * as React from 'react';
 import { OrderStatuses } from '@frappe/order/domain'
+import axios from 'axios';
 
 
 type OrderCardProps = {
   readonly items;
   readonly order;
   readonly id;
-  readonly status;
 };
 
-const OrderCard = ({ items, order, status }: OrderCardProps) => {
+const OrderCard = ({ items, order }: OrderCardProps) => {
   const [closed, setExpanded] = useState<boolean>(false);
-  const [newStatus, setNewStatus] = useState<string>();
+  const [status, setStatus] = useState<OrderStatuses>(order.status);
+  const [newStatus, setNewStatus] = useState<OrderStatuses>();
   const [displayEditModal, setEditModal] = useState<boolean>(false);
   
 
@@ -51,7 +52,7 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
   };
 
 
-  const onChangeValue = (event) => {
+  const onChangeOrderStatus = (event) => {
     setNewStatus(event.target.value);
     console.log(event.target.value)
   }
@@ -61,6 +62,20 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
   }
 
   const handlePDFOpen = pdfFile => window.open(pdfFile, '_blank');
+
+  const handleChangeStatus = async event => {
+    
+    setStatus(newStatus);
+    event.preventDefault();
+    try {
+      await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/orders/${order.id}`, {
+        status: newStatus
+      });
+    } catch (error) {
+      console.error('No se pudo actualizar el estado de la orden.');
+    }
+    setEditModal(false);
+  }
 
   console.log(order);
 
@@ -105,9 +120,9 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
             <h5 className="font-bold text-center">Estado de la orden de compra:</h5>
             <ProgressBar status={status}/>
           </div>
-          {(status === OrderStatuses.EN_PROCESO || status === OrderStatuses.LISTA_PARA_ENVIO)  && (  
+          {(status != OrderStatuses.ENTREGADA)  && (  
           <div className="">
-            <Button title={'Cambiar estatus'} variant={'cta'} className="flex" onClick={handleChangeModal}/>
+            <Button title={'Cambiar estado de la orden'} variant={'cta'} className="flex" onClick={handleChangeModal}/>
           </div>
           )}
         </div>
@@ -138,20 +153,35 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
         /*Modal donde viene el radio para cambiar el estatus*/
         /*TODO: Poner el onClick en el botón para que llame la función del query*/
         <Modal
-          title={`Editar Orden`}
+          title={`¿Cómo va la orden?`}
           showModal={displayEditModal}
           toggleModal={setEditModal}
         >
-          <div className="pb-4 flex-row text-center" onChange={onChangeValue}>
-            <h1 className="pb-8 text-lg">Selecciona un nuevo estatus para la orden</h1>
-            <div className="pb-4 ">
-              <input type="radio" value="Lista Para Envio" name="gender" /> Lista Para Envio
-            </div>
-            <div className="pb-4 ">
-              <input type="radio" value="Entregada" name="gender" className="self-center"/> Entregada
+          <div className="self-center text-center">
+            <div className="pb-4 flex-row text-left" onChange={onChangeOrderStatus}>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.ABIERTO} name="status" /> {OrderStatuses.ABIERTO}
+              </div>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.EN_PROCESO} name="status" /> {OrderStatuses.EN_PROCESO}
+              </div>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.LISTA_PARA_ENVIO} name="status" /> {OrderStatuses.LISTA_PARA_ENVIO}
+              </div>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.ENTREGADA} name="status" /> {OrderStatuses.ENTREGADA}
+              </div>
             </div>
           </div>
-          <Button title={'Guardar'} variant={'cta'} className="text-center" /> 
+          <Alert 
+            title="¡Advertencia!" 
+            body="Al dar clic en 'Guardar y enviar', se le mandará un correo al cliente notificándole el nuevo estado de su orden"
+            color="yellow"
+            className="w-5/6 self-center"
+          />
+          <div className="p-3  self-center">
+            <Button title={'Guardar y enviar'} variant={'cta'} className="text-center" onClick={handleChangeStatus}/> 
+          </div>
         </Modal>
       )}
     </Card>

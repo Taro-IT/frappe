@@ -33,10 +33,12 @@ import {
       if (order === null) {
         throw new OrderNotFound(id);
       }
+      
   
       const updatedOrder: OrderPrimitives = { ...order, status };
 
-      await this.eventBus.dispatch(new OrderUpdateStatus(updatedOrder));
+      if(status != order.status)
+        await this.eventBus.dispatch(new OrderUpdateStatus(updatedOrder));
 
       return this.orderRepository.save(Order.fromPrimitives(updatedOrder));
     }

@@ -41,13 +41,14 @@ export class SendEmailOnOrderUpdateStatus implements EventSubscriberInterface {
     const month = prettyDate.getUTCMonth();
     const day = prettyDate.getUTCDate();
 
+    const emailText = `Tu orden del ${day} de ${monthNames[month]} del ${year} ahora se encuentra ${status}.`;
+
     const confirmEmail = Email.fromPrimitives({
       id: EmailTemplates.Generic,
       to: address.email,
       data: {
         name: clientName,
-        body: 'Tu orden del ' + day + ' de ' + monthNames[month] + ' del ' + year + ' ahora se encuentra ' + status + '.',
-        footer: '¡Muchas gracias por tu compra!',
+        body: emailText,
         subject: '¡Tu orden de Cínica está más cerca!'
       }
     });
