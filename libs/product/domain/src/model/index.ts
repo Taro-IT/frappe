@@ -12,3 +12,5 @@ export {ProductIsLimited} from './ProductIsLimited';
 export {ProductIsOutOfStock} from './ProductIsOutOfStock';
 export {ProductMaterials} from './ProductMaterials';
 export {ProductSizes} from './ProductSizes';
+export { ProductIsActive } from './ProductIsActive';
+export { ProductDeletedAt } from './ProductDeletedAt';
