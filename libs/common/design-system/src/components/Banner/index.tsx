@@ -8,6 +8,6 @@ interface BannerProps{
 export const Banner = ( {image, width}: BannerProps ) => {
     return (
         <div className={styles['Banner']} >
-          <img  className={styles['Banner--img']} src={image} width={width}/> 
+          <img  className={styles['Banner--img']} src={image} width={width}/>
         </div>
     )};

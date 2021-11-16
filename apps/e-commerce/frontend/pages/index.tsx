@@ -24,14 +24,14 @@ const HomePage = () => (
             <p className={styles['p']}>Trato personalizado a tu disposición.</p>
             </div>
           </li>
-          <li className="flex">  
+          <li className="flex">
             <GiPriceTag size={70} className={styles['icons']}/>
             <div className="flex flex-col justify-center ">
               <b>CUIDANDO TU ECONOMÍA</b>
               <p className={styles['p']}>Los mejores precios del mercado.</p>
             </div>
           </li>
-          <li className="flex"> 
+          <li className="flex">
             <FaCreativeCommonsNc size={70} className={styles['icons']}/>
             <div className="flex flex-col justify-center ">
               <b>CONVIÉRTETE EN SOCIO</b>
