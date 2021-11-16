@@ -4,13 +4,13 @@ import {
   Order,
   OrderPrimitives
 } from '@frappe/order/domain';
-import {FileSystemFileUploader, UploadFileCommand} from '@frappe/file-system/application'
+import {FileSystemFileUploader} from '@frappe/file-system/application'
 import { OrderFinder } from '..';
 import PDFDocument from "pdfkit-table";
 import fs from "fs"
 import { Uuid } from '@frappe/common/value-object';
-import { OrderPrimitive } from '@frappe/common/utils';
 import axios from "axios"
+
 interface Props {
   readonly orderRepository: OrderRepository;
   readonly orderFinder: OrderFinder;
@@ -39,11 +39,19 @@ export class OrderPdfGenerator {
     
     await this.generatePdf(order)
     
+    const azureUrl = `https://${process.env.AZURE_ACCOUNT_NAME}.blob.core.windows.net/${process.env.AZURE_CONTAINER_NAME}/`
     const fileName = `${Uuid.create().value}.pdf`
+    const pdfUrl = azureUrl.concat(fileName)
+    
+    const updatedOrder: OrderPrimitives = {
+      ...order,
+      pdfFile: pdfUrl
+    }
+    this.orderRepository.save(Order.fromPrimitives(updatedOrder));
 
     const docBuffer = fs.readFileSync("/tmp/output.pdf");
     this.fileUploader.execute(fileName, docBuffer);
-    return fileName;
+    return pdfUrl;
 
   }
 

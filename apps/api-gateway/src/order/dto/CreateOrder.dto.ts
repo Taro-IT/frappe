@@ -1,6 +1,6 @@
 import { OrderItemType } from '@frappe/order/domain';
 import { ShippingAddressPrimitives } from '@frappe/shipping/domain';
-import { IsDefined, IsNotEmpty, IsNumber, IsPositive, ValidateNested } from 'class-validator';
+import { IsDefined, IsNotEmpty, IsNumber, IsOptional, IsPositive, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer'
 import { ShippingAddressDto } from './ShippingAddress.dto';
 import { OrderItemDto } from './OrderItem.dto';
@@ -22,7 +22,10 @@ export class CreateOrderDto {
   readonly total: number;
 
   @IsNotEmpty()
-  readonly clientName: string;
+  readonly clientName?: string;
+
+  @IsOptional()
+  readonly pdfFile?: string;
 
   @IsDefined()
   @Type(() => ShippingAddressDto)

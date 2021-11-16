@@ -7,8 +7,8 @@ export const generatePdfHandler =
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id
     try {
-      const url = await commandBus.execute(new GenerateOrderPdfCommand({ id }));
-      res.status(201).json({ url })
+      const fileName = await commandBus.execute(new GenerateOrderPdfCommand({ id }));
+      res.status(201).json({ url: fileName }) 
 
     } catch (error) {
       next(error);
