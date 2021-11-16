@@ -9,7 +9,7 @@ const navigation = [
   { name: 'Órdenes', icon: ShoppingCartIcon, href: 'orders' },
   { name: 'Productos', icon: ColorSwatchIcon, href: 'products' },
   { name: 'Categorías', icon: FolderIcon, href: 'categories' },
-  { name: 'Usuarios', icon: UsersIcon, href: '#' },
+  { name: 'Usuarios', icon: UsersIcon, href: 'users' },
 ]
 
 const SidebarContentNav = () => {
