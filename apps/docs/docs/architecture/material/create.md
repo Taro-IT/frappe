@@ -19,8 +19,9 @@
 
 | Diagrama | Artefactos |
 | ---------------------|------------------------ |
-| Modelo de datos |[Documentación de diseño](https://taro-depto-ti.atlassian.net/wiki/spaces/FC/pages/20480001/FRAPPE-71+Yo+como+administrador+quiero+agregar+un+material+para+poder+ofrecer+variedad+a+mis+clientes#Dise%C3%B1o ) |
-|Diagrama de actividad| [Diagrama](https://app.diagrams.net/#G1kUiv_Q0W6wJ5dc7AuMC07ChIvaYKfbkg)|
+| Modelo de datos |![Documentación de diseño](./create_data_model.png) |
+| Diagrama de actividad| ![Diagrama](./create_activity_diagram.png)|
+| Wireframe| ![Wireframe agregar](./create_wireframe.png)|
 
 ## Documentación API
 
@@ -35,10 +36,12 @@
   **Body**
 
     ```json
+
       {
         "name": "Test 1",
       "image": "https://cinicastaticfiles.blob.core.windows.net/uploads/37ff754d-66d8-40f5-b4fc-a72d2331562c.jpeg"
       }
+
     ```
 
   **Outputs**
@@ -57,8 +60,9 @@
 - Karla Daniela Romero Pérez
 
 ## Auditoría
--
+- Eric Buitrón López
 
 ## Versión
 
 - 1.0 - Creación del documento
+- 1.1 - Agregar imágenes en vez de links
