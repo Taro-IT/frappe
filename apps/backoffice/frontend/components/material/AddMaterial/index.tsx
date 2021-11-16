@@ -60,7 +60,7 @@ const CreateMaterial = () => {
     <Card className={classes.input}>
       <form onSubmit={addMaterialHandler}>
         <label htmlFor="materialName">Nombre del material</label>
-        <input className=" my-2 border-2 border-gray-200 rounded pl-2 w-full h-10" id="materialName" placeholder="Piel roja" type="text" value={materialName} onChange={nameChangeHandler} required/>
+        <input autoComplete="off" className=" my-2 border-2 border-gray-200 rounded pl-2 w-full h-10" id="materialName" placeholder="Piel roja" type="text" value={materialName} onChange={nameChangeHandler} required/>
         <label htmlFor="materialName">Imágen del material</label>
         <FileInput setFiles={setFile} clear={clear} multiple={false} required={true}/>
         <Button variant="cta" type="submit" title="Agregar" />
