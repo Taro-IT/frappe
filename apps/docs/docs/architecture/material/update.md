@@ -17,8 +17,8 @@ _Entonces los productos que la tengan también se verán editados, nunca vacíos
 
 | Diagrama | Artefactos |
 | ---------------------|------------------------ |
-| Modelo de datos |[Documentación de diseño](https://taro-depto-ti.atlassian.net/wiki/spaces/FC/pages/20611073/FRAPPE-68+Yo+como+administrador+quiero+editar+un+material+para+tener+siempre+los+materiales+correctos+en+oferta#Dise%C3%B1o ) |
-|Diagrama de actividad| [Diagrama](https://app.diagrams.net/#G1kUiv_Q0W6wJ5dc7AuMC07ChIvaYKfbkg)|
+|Diagrama de actividad| ![Diagrama](./update_activity_diagram.png)|
+|Wireframe| ![Wireframe update](./update_wireframe.png)|
 
 ## Documentación API
 
@@ -38,12 +38,17 @@ _Entonces los productos que la tengan también se verán editados, nunca vacíos
 
   **Body**
 
-    ```json
-      {
-        "name": "Updated test",
-        "image": "https://cinicastaticfiles.blob.core.windows.net/uploads/37ff754d-66d8-40f5-b4fc-a72d2331213c.jpeg"
-      }
-    ```
+
+  ```json
+    {
+      "name": "Updated Test 1",
+      "image": "https://cinicastaticfiles.blob.core.windows.net/uploads/37ff754d-66d8-40f5-b4fc-a72d2331562c.jpeg"
+    }
+    
+  ```
+    
+
+
 
   **Outputs**
 
@@ -63,8 +68,9 @@ _Entonces los productos que la tengan también se verán editados, nunca vacíos
 - Karla Daniela Romero Pérez
 
 ## Auditoría
--
+- Mauricio Álvarez Milán
 
 ## Versión
 
 - 1.0 - Creación del documento
+- 1.1 - Usar imágenes para los artefactos generados
