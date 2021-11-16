@@ -8,7 +8,7 @@ import Toggle from 'react-toggle';
 import SizeSelector from '../SizeSelector';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
 
-// User Story: Frappe 64
+// User Story: Frappe 64, Frappe 508
 
 const AddProductForm = () => {
   const [, setCategories] = useState();
@@ -24,6 +24,8 @@ const AddProductForm = () => {
   const [message, setMessage] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
   const [productName, setProductName] = useState<string>();
+  const [customParts, setCustomPart] = useState<string[]>([]);
+  const [singlePart, setSinglePart] = useState<string>();
   const [productDescription, setProductDescription] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
 
@@ -61,6 +63,7 @@ const AddProductForm = () => {
   const handleStockChange = () => {
     setIsLimited(previous => !previous);
   };
+  
   const handleCustomChange = () => {
     setIsCustom(previous => !previous);
   };
@@ -128,6 +131,18 @@ const AddProductForm = () => {
   const handleProductName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
   };
+
+  const handleSinglePart = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const part = (e.target.value) ? e.target.value : '';
+    setSinglePart(part);
+  };
+
+  const handleCustomPart = () => {
+    const part = singlePart;
+    setCustomPart(customParts => [...customParts, part]);
+    console.log(customParts[1]);
+  }
+
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(parseInt(e.target.value, 10));
   };
@@ -226,11 +241,31 @@ const AddProductForm = () => {
         <Toggle defaultChecked={isCustom} icons={false} onChange={handleCustomChange} className="mt-4" />
       </div>
       {isCustom && (
-        <p className='text-center text-gray-400 w-1/3 mt-4 mb-2'>AQUI VAN A IR LOS CAMPOS DE CUSTOMIZACIÓN</p>
+        <div>
+          <div>
+            <div>{customParts.map(part =>
+              <div>
+                <p>{part}</p>
+                <Button title="Agregar parte" type="button" variant="cta" className={'mt-4'} />
+              </div>
+            )}
+            </div>
+            <label className='w-1/3 mt-4 mb-2'>Parte personalizable</label>
+            <input
+              id="partName"
+              onChange={handleSinglePart}
+              placeholder="Chinela"
+              className="border-2 border-gray-200 rounded pl-2 w-full h-8"
+              required
+              />
+          </div>
+          {/*TODO: A veces no funciona el botón a la primera*/}
+          <Button title="Agregar parte" type="button" variant="cta" className={'mt-4'} onClick={handleCustomPart} />
+        </div>
       )}
 
       <Button title="Agregar producto" type="submit" variant="cta" className={'mt-4'} />
-    </form>
+      </form>
       {showRetroModal && (
         <Modal showModal={showRetroModal} toggleModal={setShowRetroModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
