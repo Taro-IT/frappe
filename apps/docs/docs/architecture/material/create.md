@@ -35,14 +35,13 @@
 
   **Body**
 
-    ```json
-
-      {
-        "name": "Test 1",
+  ```json
+    {
+      "name": "Test 1",
       "image": "https://cinicastaticfiles.blob.core.windows.net/uploads/37ff754d-66d8-40f5-b4fc-a72d2331562c.jpeg"
-      }
-
-    ```
+    }
+    
+  ```
 
   **Outputs**
 
