@@ -23,6 +23,7 @@ export class MongoProductRepository extends MongoRepository implements ProductRe
   }
 
 /**
+ * User Story: Frappe 64
  * Saves a new Product @see {@link Product}
  * @param product - The product object that want to saved
  *

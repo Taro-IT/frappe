@@ -22,7 +22,7 @@ export const NavbarMobile = () => {
   }
 
   return (
-    <div className="flex flex-col w-screen p-4 bg-primary h-20 sticky">
+    <div className="z-10 flex flex-col w-screen p-4 bg-primary h-20 sticky">
       <div className="flex flex-row items-center">
         <MenuIcon onClick={handleHamburger} className="text-white h-9 w-9 flex flex-col justify-center mr-auto"/>
         <img src="/img/cinica-logo.png" alt="Cínica Logo" className="w-24 flex flex-col"/>

@@ -1,3 +1,4 @@
+//User story: frappe-64
 import { QueryBus } from '@tshio/query-bus';
 import { RequestHandler } from 'express';
 import { SearchProductsQuery } from '@frappe/product/application';
@@ -7,7 +8,7 @@ export const searchProductsHandler =
   (queryBus: QueryBus): RequestHandler =>
   async (req, res) => {
     const { filters, order, limit, offset } = req.query;
-
+    
     const query = new SearchProductsQuery({
       filters: filters ? JSON.parse(filters as string) : [],
       order: JSON.parse(order as string),

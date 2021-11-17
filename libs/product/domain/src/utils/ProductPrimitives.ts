@@ -11,5 +11,7 @@ export interface ProductPrimitives {
   readonly isOutOfStock: boolean;
   readonly materials: string[];
   readonly sizes: number[];
+  readonly isActive: boolean;
+  readonly deletedAt?: Date;
   readonly amount?: number;
 }

@@ -43,7 +43,6 @@ describe('CategoryUpdater', () => {
 
   it('should throw a CategoryIdNotFound error', async () => {
     const category = CategoryMother.random();
-    console.log(category.id.value);
 
     categoryRepository.find.mockRejectedValueOnce(CategoryIdNotFound);
     categoryRepository.findByName.mockRejectedValueOnce(CategoryAlreadyExists);

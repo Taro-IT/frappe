@@ -1,17 +1,23 @@
-import React from 'react';
+import { useEffect } from 'react';
 import clsx from 'clsx';
-import { Checkbox } from '@frappe/common/design-system';
 import { useCategories } from '../../hooks';
-
 import styles from './StoreSidebar.module.scss';
+import { PriceSelector } from '../PriceSelector';
+import { CategoryCheckbox } from './CategoryCheckbox';
 
 interface StoreSidebarProps {
   readonly className: string;
+  readonly setMinPrice: (nv: number) => any;
+  readonly setMaxPrice: (nv: number) => any;
+  readonly setCategories: (categories: string[]) => unknown
 }
 
-export const StoreSidebar = ({ className }: StoreSidebarProps) => {
-  const { categories, handleCategoryCheck } = useCategories();
+export const StoreSidebar = ({ className, setMinPrice, setMaxPrice, setCategories }: StoreSidebarProps) => {
+  const { categories, handleCategoryCheck, selectedCategories } = useCategories();
 
+  useEffect(() => {
+    setCategories(selectedCategories.map(cat => cat.id))
+  }, [selectedCategories])
   return (
     <div className={clsx(className, styles.sidebar)}>
       <div className={ styles['sidebar--content'] }>
@@ -19,16 +25,16 @@ export const StoreSidebar = ({ className }: StoreSidebarProps) => {
           <h2 className="text-md font-medium mb-2"> Categorias </h2>
           {
             categories.map(({ id, name, value }) => (
-              <Checkbox key={id} name={ id } label={ name } value={ value } onChange={ handleCategoryCheck } />)
-            )
+              <CategoryCheckbox key={id} id={id} name={name} value={value} handleCategoryChange={handleCategoryCheck}/>
+            ))
           }
         </div>
 
         <div>
-          <h2 className="text-md font-medium mb-2"> Precio </h2>
+          <h2 className="text-md font-medium mb-2"> Precio: </h2>
 
           <div className="flex justify-around">
-            { /* TODO ADD Price selector */ }
+            <PriceSelector setMinPrice={setMinPrice} setMaxPrice={setMaxPrice}/>
           </div>
         </div>
       </div>

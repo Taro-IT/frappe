@@ -1,5 +1,5 @@
 import { Product, ProductPrimitives, ProductRepository } from '@frappe/product/domain';
-import { Criteria, Filter, FilterPrimitive, Limit, Offset, Order } from '@dinnosc/criteria';
+import { Criteria, FilterPrimitive, Limit, Offset, Order } from '@dinnosc/criteria';
 import { OrderPrimitive } from '@frappe/common/utils';
 
 interface ProductSearcherDeps {
@@ -20,10 +20,11 @@ export class ProductSearcher {
     offset?: number
   ): Promise<{ products: ProductPrimitives[]; total: number }> {
     // TODO Check Criteria lib
+    
     const criteria = new Criteria<Product>(
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      { value: filters.map(filter => Filter.fromValue(filter)) },
+      { value: filters.map(filter => ({value: filter.value, operator: filter.operator, field:filter.field})) },
       Order.fromValue(order.by, order.type),
       limit !== undefined ? new Limit(limit) : undefined,
       offset !== undefined ? new Offset(offset) : undefined
