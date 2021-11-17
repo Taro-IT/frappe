@@ -21,7 +21,7 @@ type LogoProps = {
 export const Logo = ({link, alternative, className, width, height} : PropsWithChildren<LogoProps>) => {
   const router = useRouter();
   const handleLink = () => router.push("/");
-  //TODO check redirect with reload 
+  //TODO check redirect with reload
   
     return(
       <div className="px-4">
