@@ -9,19 +9,19 @@ import { MaterialDeletedAt } from './MaterialDeletedAt';
 
 export class Material {
   constructor(
-    readonly id: MaterialId, 
-    readonly name: MaterialName, 
-    readonly image: MaterialImage, 
-    readonly isActive: MaterialIsActive, 
+    readonly id: MaterialId,
+    readonly name: MaterialName,
+    readonly image: MaterialImage,
+    readonly isActive: MaterialIsActive,
     readonly deletedAt?: MaterialDeletedAt
   ) {}
 
   static fromPrimitives(primitives: MaterialPrimitives): Material {
     return new Material(
-      new MaterialId(primitives.id), 
-      new MaterialName(primitives.name), 
-      new MaterialImage(primitives.image), 
-      new MaterialIsActive(primitives.isActive), 
+      new MaterialId(primitives.id),
+      new MaterialName(primitives.name),
+      new MaterialImage(primitives.image),
+      new MaterialIsActive(primitives.isActive),
       new MaterialDeletedAt(primitives.deletedAt)
     );
   }
