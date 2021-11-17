@@ -17,7 +17,13 @@ export class Material {
   ) {}
 
   static fromPrimitives(primitives: MaterialPrimitives): Material {
-    return new Material(new MaterialId(primitives.id), new MaterialName(primitives.name), new MaterialImage(primitives.image), new MaterialIsActive(primitives.isActive), new MaterialDeletedAt(primitives.deletedAt));
+    return new Material(
+      new MaterialId(primitives.id), 
+      new MaterialName(primitives.name), 
+      new MaterialImage(primitives.image), 
+      new MaterialIsActive(primitives.isActive), 
+      new MaterialDeletedAt(primitives.deletedAt)
+    );
   }
 
   toPrimitives(): MaterialPrimitives {
