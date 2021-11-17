@@ -17,6 +17,7 @@ export const orderRouting = ({ commandBus, queryBus }: OrderRoutingDeps) => {
   //User Story: frappe-91
   router.get('/', handlers.listOrderHandler(queryBus));
   router.post('/', makeValidateBody(dto.CreateOrderDto), handlers.createOrderHandler(commandBus));
+  router.get('/pdf/:id', handlers.generatePdfHandler(commandBus));
 
   return router;
 };
