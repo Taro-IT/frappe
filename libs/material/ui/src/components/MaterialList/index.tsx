@@ -37,7 +37,6 @@ export interface Material {
       }
       try {
         let fileURL = ""
-        let postName = newName !== "" ? newName : currentMaterial.name
         if (file) {
           // Post de imágenes
           const bodyFormData = new FormData();
@@ -45,13 +44,13 @@ export interface Material {
           console.table(bodyFormData.getAll('file'));
           const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
           fileURL = name
-        }else{
-          fileURL = image
         }
-        await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`, {
-          name: postName,
-          image: fileURL
-        });
+
+        const payload = {
+          name: newName ? newName : null,
+          image: fileURL !== "" ? fileURL : null
+        }
+        await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`, payload);
         setDisplayResultModal(true)
         setMessage('El material se editó correctamente.');
         setSuccess(true);

@@ -7,7 +7,8 @@ export class MaterialMother {
       new MaterialId(UuidMother.random()),
       new MaterialName(StringMother.random()),
       new MaterialImage(StringMother.random()),
-      new MaterialIsActive(true)
+      new MaterialIsActive(true),
+      new MaterialDeletedAt(undefined)
     );
   }
   static deleted(): Material {

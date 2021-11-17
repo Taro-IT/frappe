@@ -1,11 +1,11 @@
 // User Story: Frappe 67
 
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class UpdateMaterialDto {
-  @IsNotEmpty()
-  readonly name: string;
+  @IsOptional()
+  readonly name?: string;
 
-  @IsNotEmpty()
-  readonly image: string;
+  @IsOptional()
+  readonly image?: string;
 }

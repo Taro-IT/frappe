@@ -26,7 +26,7 @@ export class MaterialUpdater {
     this.materialNameFinder = materialNameFinder;
   }
 
-  async execute(id: string, name: string, image: string) {
+  async execute(id: string, name?: string, image?: string) {
     const material = await this.materialExists(id);
     
     if (material === null) {
@@ -35,11 +35,15 @@ export class MaterialUpdater {
 
     const nameExists = await this.nameExists(name);
 
-    if (nameExists === null && material.name !== name) {
+    if (nameExists === null) {
       throw new MaterialAlreadyExists(name);
     }
 
-    const updatedMaterial: MaterialPrimitives = { ...material, name, image };
+    const updatedMaterial: MaterialPrimitives = { 
+      ...material, 
+      name: name ? name : material.name,
+      image: image ? image : material.image 
+    };
 
     return this.materialRepository.save(Material.fromPrimitives(updatedMaterial));
   }
