@@ -13,8 +13,9 @@ export interface OrderItemType {
   readonly productId: string;
   readonly productName: string;
   readonly productPrice: number;
+  readonly productImages: string[];
+  readonly size: number;
   readonly quantity: number;
-  readonly pdfFile?: string;
 }
 
 export interface OrderPrimitives {
@@ -26,5 +27,6 @@ export interface OrderPrimitives {
   readonly status: OrderStatuses;
   readonly isDelayed: boolean;
   readonly address?: ShippingAddressPrimitives;
-  readonly clientName?: string
+  readonly clientName?: string;
+  readonly pdfFile?: string;
 }

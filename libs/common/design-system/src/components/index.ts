@@ -9,5 +9,6 @@ export { SummariesExample } from './SummariesExample';
 export { Badge } from './Badge';
 export { ProgressBar } from './ProgressBar';
 export {FileInput } from './FileInput';
+export { Logo } from './Logo';
 export { Banner } from './Banner';
 export { Footer } from './Footer';

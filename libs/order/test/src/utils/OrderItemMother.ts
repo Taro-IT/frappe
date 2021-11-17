@@ -8,8 +8,9 @@ export class OrderItemMother {
       productId: UuidMother.random(),
       productName: StringMother.randomWord(),
       productPrice: NumberMother.randomPositive(),
-      quantity: NumberMother.randomPositive(),
-      pdfFile: StringMother.url()
+      productImages: Array<string>(3).fill(StringMother.url()),
+      size: NumberMother.randomPositive(),
+      quantity: NumberMother.randomPositive()
     };
   }
 }
