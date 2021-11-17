@@ -113,7 +113,17 @@ export interface Material {
       <div className="grid grid-cols-3 gap-4">
         {materials.map(material => {
           if(material.isActive){
-            return <MaterialCard id={material.id} key={material.id} name={material.name} image={material.image} setDeleteModal={setDeleteModal} setNameErrors={setNameErrors} setEditModal={setEditModal} setCurrentMaterial={setCurrentMaterial}/>
+            return (
+              <MaterialCard 
+              id={material.id}
+              key={material.id}
+              name={material.name}
+              image={material.image}
+              setDeleteModal={setDeleteModal}
+              setNameErrors={setNameErrors}
+              setEditModal={setEditModal}
+              setCurrentMaterial={setCurrentMaterial}/>
+            )
           }
         })}
       </div>
