@@ -113,7 +113,7 @@ export interface Material {
         {materials.map(material => {
           if(material.isActive){
             return (
-              <MaterialCard 
+              <MaterialCard
               id={material.id}
               key={material.id}
               name={material.name}

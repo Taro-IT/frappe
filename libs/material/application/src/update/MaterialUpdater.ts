@@ -39,10 +39,10 @@ export class MaterialUpdater {
       throw new MaterialAlreadyExists(name);
     }
 
-    const updatedMaterial: MaterialPrimitives = { 
-      ...material, 
+    const updatedMaterial: MaterialPrimitives = {
+      ...material,
       name: name ? name : material.name,
-      image: image ? image : material.image 
+      image: image ? image : material.image
     };
 
     return this.materialRepository.save(Material.fromPrimitives(updatedMaterial));
