@@ -28,9 +28,7 @@ const OrderList = () => {
   );
 
   return (
-    <div className=" w-full h-full overflow-y-scroll ">
-      <div className="w-full h-full ">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
-    </div>
+      <div className="w-full overflow-auto-y">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
   );
 };
 

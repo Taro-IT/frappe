@@ -7,7 +7,7 @@ import { withUserAgent } from '@frappe/common/design-system';
 const ListOrdersPage = () => {
   return (
     <>
-      <h1 className="text-center align-middle text-4xl  ">Tus órdenes de compra</h1>
+      <h1 className="text-center align-middle text-4xl">Tus órdenes de compra</h1>
       <OrderList />
     </>
   );
