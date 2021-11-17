@@ -3,7 +3,7 @@ import { asArray } from '@tshio/awilix-resolver';
 import { UpdateCategoryCommandHandler } from '@frappe/category/application';
 import { CreateCategoryCommandHandler } from '@frappe/category/application';
 import { CreateOrderCommandHandler } from '@frappe/order/application';
-import { AccountSignUpCommandHandler } from '@frappe/account/application';
+import { AccountSignUpCommandHandler, UpdateUserCommandHandler } from '@frappe/account/application';
 import { UploadFileCommandHandler } from "@frappe/file-system/application";
 import { CreateProductCommandHandler } from "@frappe/product/application";
 import { DeleteCategoryCommandHandler } from '@frappe/category/application';
@@ -18,6 +18,7 @@ export const commandHandlers = (container: AwilixContainer) => {
       asClass(UpdateCategoryCommandHandler),
       asClass(DeleteCategoryCommandHandler),
       asClass(CreateProductCommandHandler),
+      asClass(UpdateUserCommandHandler)
     ])
   });
 };
