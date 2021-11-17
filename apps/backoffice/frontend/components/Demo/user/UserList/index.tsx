@@ -19,11 +19,11 @@ const UserList = () => {
       }
     };
     getUsers();
-  }, [users]);
+  }, []);
 
   const useUsers = useMemo(
   () =>
-    users && users.map(user => {
+    users.map(user => {
       return (
           <UserCard id={user.id} user={user} key={user.id} />
       );

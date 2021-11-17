@@ -9,7 +9,6 @@ export const AdminLayout = ({children, userAgent}) => {
   return (
     <div className={ clsx('bg-gray-100 w-full h-screen flex', isMobile ? 'flex-col' : 'flex-row') }>
       { isMobile ? <SidebarMobile /> : <Sidebar /> }
-
       <div className="flex flex-col flex-1 pt-20">
           {children}
         </div>
