@@ -4,18 +4,20 @@ import { OrderUpdater } from './OrderUpdater';
 import { OrderFinder } from '../find';
 import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended';
 import { OrderMother } from '@frappe/order/test';
+import { EventDispatcher } from '@tshio/event-dispatcher';
 
 describe('OrderUpdater', () => {
   let orderRepository: MockProxy<OrderRepository>;
   let orderFinder: DeepMockProxy<OrderFinder>;
-
+  let eventBus : MockProxy<EventDispatcher>;
   let updater: OrderUpdater;
 
   beforeEach(() => {
     orderRepository = mock<OrderRepository>();
     orderFinder = mockDeep<OrderFinder>(new OrderFinder({ orderRepository }));
+    eventBus = mock<EventDispatcher>();
 
-    updater = new OrderUpdater({ orderRepository, orderFinder });
+    updater = new OrderUpdater({ orderRepository, orderFinder, eventBus });
   });
 
   it('should update an existent Order', async () => {
