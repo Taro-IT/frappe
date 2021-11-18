@@ -324,8 +324,8 @@ const AddProductForm = () => {
       {isCustom && (
         <div>
             <div>{customParts.map((part, index) =>
-              <div>
-                <DisableTextInput key={index} index={index} partName={part} partArr={customParts} setCustomParts={setCustomPart}/>
+              <div key={index}>
+                <DisableTextInput index={index} partName={part} partArr={customParts} setCustomParts={setCustomPart}/>
               </div>
             )}
             </div>

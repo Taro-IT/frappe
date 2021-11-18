@@ -1,4 +1,4 @@
-import { UuidMother, StringMother, NumberMother, DateMother, BooleanMother} from "@frappe/common/test";
+import { UuidMother, StringMother, NumberMother, BooleanMother} from "@frappe/common/test";
 import {
   Product,
   ProductAmount,
@@ -12,7 +12,7 @@ import {
   ProductCustomizableParts,
   ProductSizes,
   ProductIsActive,
-  ProductDeletedAt,
+  //ProductDeletedAt,
   ProductCanBeSold,
   ProductPriceInSale
 } from '@frappe/product/domain';
