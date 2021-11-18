@@ -1,4 +1,4 @@
-// User Story: Frappe 64
+// User Stories: Frappe 64, frappe-505
 
 import {ProductCreator} from './ProductCreator'
 import {ProductAlreadyExists, ProductRepository} from '@frappe/product/domain'
@@ -23,7 +23,23 @@ describe('ProductCreator', () => {
     const product = ProductMother.random();
 
     productRepository.findByName.mockRejectedValueOnce(ProductAlreadyExists);
-    await creator.execute(product.id.value, product.name.value, product.price.value, product.categories.value, product.description.value, product.images.value, product.isCustom.value, product.isInSale.value, product.isLimited.value, product.isOutOfStock.value, product.materials.value, product.sizes.value, product.amount.value);
+    await creator.execute(
+      product.id.value, 
+      product.name.value, 
+      product.price.value, 
+      product.categories.value, 
+      product.description.value, 
+      product.images.value, 
+      product.isCustom.value, 
+      product.isInSale.value, 
+      product.isLimited.value, 
+      product.isOutOfStock.value, 
+      product.customizableParts.value, 
+      product.sizes.value,
+      product.canBeSold.value,
+      product.priceInSale.value,
+      product.amount.value
+    );
 
     expect(productRepository.save).toHaveBeenCalledWith(product);
   });
@@ -32,8 +48,24 @@ describe('ProductCreator', () => {
     const product = ProductMother.random();
 
     productRepository.findByName.mockResolvedValue(product);
-    const response = async () => creator.execute(product.id.value, product.name.value, product.price.value, product.categories.value, product.description.value, product.images.value, product.isCustom.value, product.isInSale.value, product.isLimited.value, product.isOutOfStock.value, product.materials.value, product.sizes.value, product.amount.value);
+    const response = async () => creator.execute(
+      product.id.value, 
+      product.name.value, 
+      product.price.value, 
+      product.categories.value, 
+      product.description.value, 
+      product.images.value, 
+      product.isCustom.value, 
+      product.isInSale.value, 
+      product.isLimited.value,
+      product.isOutOfStock.value, 
+      product.customizableParts.value, 
+      product.sizes.value,
+      product.canBeSold.value,
+      product.priceInSale.value,
+      product.amount.value
+    );
 
-     expect(async () => response()).rejects.toThrow(ProductAlreadyExists);
+    expect(async () => response()).rejects.toThrow(ProductAlreadyExists);
   });
 });
