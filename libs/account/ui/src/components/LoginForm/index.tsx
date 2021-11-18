@@ -26,7 +26,7 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
     }
 
     setGeneralError(null);
-    return router.push('/dashboard');
+    return router.push('/');
   };
 
   return (

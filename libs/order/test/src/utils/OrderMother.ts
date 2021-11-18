@@ -7,10 +7,12 @@ import {
   OrderSubtotal,
   OrderTotal,
   OrderIsDelayed,
-  OrderClientName
+  OrderClientName,
+  OrderStatuses
 } from '@frappe/order/domain';
 import { DateMother, NumberMother, UuidMother, BoolMother, StringMother } from '@frappe/common/test';
 import { OrderStatusMother } from '.';
+import { ShippingMother } from '@frappe/shipping/test'
 import { OrderItemMother } from './OrderItemMother';
 
 export class OrderMother {

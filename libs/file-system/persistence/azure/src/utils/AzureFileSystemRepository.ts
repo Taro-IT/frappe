@@ -22,8 +22,12 @@ export class AzureFileSystemRepository implements FileSystemRepository {
     const client = this.container.getBlockBlobClient(name);
 
     //@ts-ignore: Ignored bc vlad said
-    const options: BlockBlobParallelUploadOptions = { blobHTTPHeaders: { blobContentType: file.content.value.mimetype } };
+    const options: BlockBlobParallelUploadOptions = { blobHTTPHeaders: { blobContentType: this.isFile(content) ? file.content.value.mimetype : undefined } };
     await client.uploadData(content, options);
     
+  }
+
+  private isFile(file: File | Buffer): file is File {
+    return (file as File).name !== undefined
   }
 }

@@ -1,4 +1,4 @@
-//User Stories: frappe-91, frappe-507
+//User Stories: frappe-91, frappe-507, frappe-85
 import { useState } from 'react';
 import clsx from 'clsx';
 import classes from '../OrderList.module.scss';
@@ -8,7 +8,6 @@ import ItemCard from '../ItemCard';
 import * as React from 'react';
 import { OrderStatuses } from '@frappe/order/domain'
 import axios from 'axios';
-
 
 type OrderCardProps = {
   readonly items;
@@ -21,7 +20,6 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   const [status, setStatus] = useState<OrderStatuses>(order.status);
   const [newStatus, setNewStatus] = useState<OrderStatuses>();
   const [displayEditModal, setEditModal] = useState<boolean>(false);
-  
 
   const monthNames = [
     'enero',
@@ -50,8 +48,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   const handleClick = () => {
     console.log("Imprimir guía de envío")
   };
-
-
+  
   const onChangeOrderStatus = (event) => {
     setNewStatus(event.target.value);
     console.log(event.target.value)
@@ -78,9 +75,14 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   }
 
   console.log(order);
+  const generateOrderPDF = async () => {
+    // Sorry
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders/pdf/${order.id}`)
+    window.open(data.url)
+  }
 
   return (
-    <Card className={clsx(classes.orders)}>
+    <Card className={clsx(classes.orders, "w-11/12 ml-auto")}>
       <div className="flex flex-row justify-between py-4 align-middle pr-8">
         <div className="flex">
           {closed ? (
@@ -108,33 +110,38 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
       <hr className={clsx('mb-2', !closed && 'invisible')} />
       {/*Dirección de envío y estado de orden de compra*/}
       {closed && (
-        <div className="flex flex-row justify-evenly">
-          <div>
+        <div className="flex flex-row">
+          <div className="mr-auto ml-4">
             <h5 className="font-bold text-left">Dirección de envío:</h5>
             <p>{order.address?.address1}</p>
             <p>{order.address?.city}, {order.address?.province}, {order.address?.country}</p>
             <p>CP: {order.address?.zip}</p>
             
           </div>
-          <div>
+          <div className="ml-auto mr-4">
             <h5 className="font-bold text-center">Estado de la orden de compra:</h5>
             <ProgressBar status={status}/>
+            
           </div>
           {(status != OrderStatuses.ENTREGADA)  && (  
           <div className="">
             <Button title={'Cambiar estado de la orden'} variant={'cta'} className="flex" onClick={handleChangeModal}/>
           </div>
           )}
+
+          {closed &&
+            <Button title={order.pdfFile ? "Ver PDF" : "Generar PDF"} variant={'cta'} className="flex h-full ml-auto mr-6 " onClick={generateOrderPDF} />
+          }
         </div>
       )}
+      <hr />
       {items.map(
         ({ id, ...item }) =>
           closed && (
             <ItemCard
-              onItemClick={handlePDFOpen}
               id={id}
               item={item}
-              imgSrc="https://cinica.mx/wp-content/uploads/2021/07/PHOTO-2020-07-22-22-35-46-3.jpeg"
+              imgSrc={item.productImages[0]}
             />
           )
       )}
