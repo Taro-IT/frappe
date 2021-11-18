@@ -58,8 +58,6 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     setEditModal(true);
   }
 
-  const handlePDFOpen = pdfFile => window.open(pdfFile, '_blank');
-
   const handleChangeStatus = async event => {
     
     setStatus(newStatus);
@@ -123,7 +121,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
             <ProgressBar status={status}/>
             
           </div>
-          {(status != OrderStatuses.ENTREGADA)  && (  
+          {(status != OrderStatuses.ENTREGADA)  && ( 
           <div className="">
             <Button title={'Cambiar estado de la orden'} variant={'cta'} className="flex" onClick={handleChangeModal}/>
           </div>
@@ -180,14 +178,14 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
               </div>
             </div>
           </div>
-          <Alert 
-            title="¡Advertencia!" 
+          <Alert
+            title="¡Advertencia!"
             body="Al dar clic en 'Guardar y enviar', se le mandará un correo al cliente notificándole el nuevo estado de su orden"
             color="yellow"
             className="w-5/6 self-center"
           />
           <div className="p-3  self-center">
-            <Button title={'Guardar y enviar'} variant={'cta'} className="text-center" onClick={handleChangeStatus}/> 
+            <Button title={'Guardar y enviar'} variant={'cta'} className="text-center" onClick={handleChangeStatus}/>
           </div>
         </Modal>
       )}
