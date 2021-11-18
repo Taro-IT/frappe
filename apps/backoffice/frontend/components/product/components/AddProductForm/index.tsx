@@ -268,7 +268,7 @@ const AddProductForm = () => {
       <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">¿Este producto será visible para clientes?</label>
           <Toggle defaultChecked={canBeSold} icons={false} className="mt-4" onChange={handleCanBeSoldChange}/>
-      </div>  
+      </div>
       <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">¿Este producto está en oferta?</label>
           <Toggle defaultChecked={isOnSale} icons={false} className="mt-4" onChange={handleOnSaleChange}/>
@@ -325,10 +325,10 @@ const AddProductForm = () => {
         <div>
             <div>{customParts.map((part, index) =>
               <div>
-                <DisableTextInput index={index} partName={part} partArr={customParts} setCustomParts={setCustomPart}/>
+                <DisableTextInput key={index} index={index} partName={part} partArr={customParts} setCustomParts={setCustomPart}/>
               </div>
             )}
-            </div>          
+            </div>
               <div>
             <label className='w-1/3 mt-4 mb-2' onClick={handleDeletePart}>Parte personalizable</label>
             <br/>

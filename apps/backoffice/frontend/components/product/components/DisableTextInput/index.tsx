@@ -1,4 +1,4 @@
-import { useState } from "react"
+//UserStory: 508
 import { XCircleIcon } from '@heroicons/react/solid'
 
 type DisableTextInputProps = {

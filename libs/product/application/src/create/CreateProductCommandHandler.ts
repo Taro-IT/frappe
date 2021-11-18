@@ -18,7 +18,7 @@ export class CreateProductCommandHandler implements CommandHandler<CreateProduct
   }
 
   async execute(command: CreateProductCommand) {
-    const { 
+    const {
       id,
       name,
       price,
@@ -43,7 +43,7 @@ export class CreateProductCommandHandler implements CommandHandler<CreateProduct
       categories,
       description,
       images,
-      isCustom, 
+      isCustom,
       isInSale,
       isLimited,
       isOutOfStock,
