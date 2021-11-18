@@ -1,4 +1,5 @@
-import { Button, Modal, Checkbox } from '@frappe/common/design-system';
+// User Story: Frappe 64, Frappe 508
+import { Button, Modal } from '@frappe/common/design-system';
 import Select from 'react-select';
 import React, { FormEvent, useEffect, useState } from 'react';
 import axios from 'axios';
@@ -8,7 +9,6 @@ import Toggle from 'react-toggle';
 import SizeSelector from '../SizeSelector';
 import DisableTextInput from '../DisableTextInput';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
-// User Story: Frappe 64, Frappe 508
 
 const AddProductForm = () => {
   const [, setCategories] = useState();
@@ -100,6 +100,21 @@ const AddProductForm = () => {
     e.preventDefault();
     if (loading === true) {return}
     setLoading(true)
+
+    if(sizes.length < 1){
+      setShowRetroModal(true)
+      setSuccess(false)
+      setMessage("Debes seleccionar al menos una talla para este producto")
+      setLoading(false)
+      return
+    }
+    if(selectedCategories.length < 1){
+      setShowRetroModal(true)
+      setSuccess(false)
+      setMessage("Debes seleccionar al menos una categoría para este producto")
+      setLoading(false)
+      return
+    }
     try {
 
       // Post de imágenes
