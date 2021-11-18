@@ -31,10 +31,10 @@ const AddProductForm = () => {
   const [singlePart, setSinglePart] = useState<string>();
   const [productDescription, setProductDescription] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
+  const [allSizes, setAllSizes] = useState<boolean>(false);
 
-  const defaultSizes = ['22', '22.5', '23', '23.5', '24', '24.5', '25', '25.5', '26', '26.5', '27', '27.5', '28', '28.5', '29', '29.5'];
+  const defaultSizes = [22, 22.5, 23, 23.5, 24, 24.5, 25, 25.5, 26, 26.5, 27, 27.5, 28, 28.5, 29, 29.5];
 
-  const allSizes : boolean = false;
 
   type Category = {
     id: string;
@@ -64,12 +64,20 @@ const AddProductForm = () => {
       color: state.isSelected ? 'rgb(163, 142, 101)' : undefined
     })
   };
-
+  
   const handleSetToAllSizes = () => {
-    
-    setSizes(sizes => defaultSizes);
-  }
 
+    if(allSizes){
+      setSizes([]);
+    } else {
+      setSizes(defaultSizes);
+    }
+
+    setAllSizes(previous => !previous)
+
+  }
+  
+  console.log(sizes);
   const handleStockChange = () => {
     setIsLimited(previous => !previous);
   };
@@ -119,7 +127,7 @@ const AddProductForm = () => {
         sizes: sizes,
         amount: isLimited ? amount : null,
         priceInSale: salePrice,
-        canBeSold: true
+        canBeSold: canBeSold
       })
       setShowRetroModal(true)
       setSuccess(true)
@@ -225,7 +233,7 @@ const AddProductForm = () => {
       <label className="w-1/3 mt-4 mb-3">Tallas disponibles</label>
       <div className="grid sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-2 mb-4">
         {defaultSizes.map(size => (
-          <SizeSelector key={""} setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)}/>
+          <SizeSelector key={""} setSizesArray={setSizes} sizesArray={sizes} size={size} selectAll={allSizes}/>
         ))}
       </div>
 
