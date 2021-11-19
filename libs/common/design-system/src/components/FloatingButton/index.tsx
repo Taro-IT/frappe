@@ -5,8 +5,6 @@ import router from 'next/router';
 
 
 export const FloatingButton = () => {
-  const handleBtnClick = () => router.push('/help')
-  
 
   return <div className={styles.btn}>
     <a href="help">

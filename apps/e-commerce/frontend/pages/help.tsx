@@ -5,7 +5,7 @@ const helpItems = [
     {
         name: "Compras",
         links: [
-            { 
+            {
                 use_case: "Agregar",
                 link: "https://www.facebook.com/TechnovationChallengeQro"
             }
@@ -14,7 +14,7 @@ const helpItems = [
     {
         name: "Personalización",
         links: [
-            { 
+            {
                 use_case: "Agregar",
                 link: "https://www.facebook.com/TechnovationChallengeQro"
             }
@@ -36,7 +36,7 @@ const HelpPage = () => (
                                 return <li className="hover:text-yellow-500"><a href={link.link}>{link.use_case}</a></li>
                             })}
                         </ul>
-                        
+
                     </Card>
                 )
             })
