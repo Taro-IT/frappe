@@ -1,23 +1,21 @@
+import React, { FC } from 'react';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
+import { AuthUserProvider } from "../context/AuthUserContext";
 import './styles.scss';
+import { Noop } from '../layouts/Noop';
+import { NextComponentType } from 'next';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+const CinicaApp = ({ Component, pageProps }: AppProps) => {
+  const Layout = (Component as NextComponentType & {Layout?: FC<{userAgent: string}>}).Layout ?? Noop
+  
   return (
-    <>
-      <Head>
-        <title>Welcome to backoffice/frontend!</title>
-      </Head>
-      <div className="app">
-        <header className="bg-red-400">
-          <h1>Welcome to backoffice/frontend!</h1>
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </>
-  );
-}
+    
+    <AuthUserProvider>
+      <Layout userAgent={pageProps.userAgent}>
+        <Component {...pageProps} />
+      </Layout>
+    </AuthUserProvider>
+  )
+};
 
-export default CustomApp;
+export default CinicaApp;

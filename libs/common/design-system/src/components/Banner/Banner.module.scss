@@ -1,0 +1,12 @@
+.Banner {
+    @apply shadow-xl w-full ;
+    clip-path: inset(-1rem 0 1rem 0);
+    height: 16rem;
+    width: full;
+    &--img{
+        position: absolute;
+        top: -8rem;
+    }
+}
+
+

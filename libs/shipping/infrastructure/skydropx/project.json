@@ -1,0 +1,23 @@
+{
+  "root": "libs/shipping/infrastructure/skydropx",
+  "sourceRoot": "libs/shipping/infrastructure/skydropx/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shipping/infrastructure/skydropx/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shipping/infrastructure/skydropx"],
+      "options": {
+        "jestConfig": "libs/shipping/infrastructure/skydropx/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,1 @@
+export { wrapError } from './wrapError';

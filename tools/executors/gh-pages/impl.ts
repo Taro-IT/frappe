@@ -9,7 +9,7 @@ async function buildProject(project: string) {
 
 async function publishToGHPages(outputPath: string) {
   try {
-    const { stderr, stdout } = await asyncExec(`npm run gh-pages -- -d ${outputPath}`);
+    const { stderr, stdout } = await asyncExec(`npm run gh-pages -- -d ${outputPath} -b frappe-wiki`);
 
     console.log(stderr, stdout);
   } catch (error) {
@@ -23,7 +23,7 @@ const ghPagesExecutor: Executor<Options> = async (options, ctx) => {
   await buildProject(project);
 
   const { outputPath } = options;
-  await touch(`${ outputPath }/.nojekyll`)
+  await touch(`${outputPath}/.nojekyll`);
   await publishToGHPages(outputPath);
 
   return { success: true };

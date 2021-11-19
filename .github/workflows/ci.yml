@@ -42,9 +42,8 @@ jobs:
         env:
           NX_BASE: ${{ steps.nx-base.outputs.base }}
         run: |
-          npm run lint-staged
+          npm run format -- --uncommitted
           npm run affected:lint -- --base=$NX_BASE
-
 
   test:
     runs-on: ubuntu-latest
@@ -119,5 +118,8 @@ jobs:
       - name: Testing
         env:
           NX_BASE: ${{ steps.nx-base.outputs.base }}
+          ENV_TEST_FILE: ${{ secrets.ENV_TEST_FILE }}
         run: |
+          echo $ENV_TEST_FILE | base64 --decode > .env
+
           npm run affected:build -- --base=$NX_BASE

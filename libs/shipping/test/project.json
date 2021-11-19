@@ -1,0 +1,23 @@
+{
+  "root": "libs/shipping/test",
+  "sourceRoot": "libs/shipping/test/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shipping/test/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shipping/test"],
+      "options": {
+        "jestConfig": "libs/shipping/test/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
