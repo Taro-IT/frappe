@@ -1,4 +1,4 @@
-import { Sidebar, SidebarMobile } from '@frappe/common/design-system'
+import { Sidebar, SidebarMobile, FloatingButton } from '@frappe/common/design-system'
 import React from 'react'
 import { getSelectorsByUserAgent } from 'react-device-detect'
 import clsx from 'clsx';
@@ -13,6 +13,7 @@ export const AdminLayout = ({children, userAgent}) => {
       <div className="flex flex-col flex-grow pt-20">
           {children}
         </div>
+      <FloatingButton/>
     </div>
   );
 }

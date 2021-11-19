@@ -11,3 +11,4 @@ export { ProgressBar } from './ProgressBar';
 export { Logo } from './Logo';
 export { Banner } from './Banner';
 export { Footer } from './Footer';
+export {FloatingButton} from './FloatingButton';
