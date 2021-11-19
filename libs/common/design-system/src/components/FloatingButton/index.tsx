@@ -1,7 +1,5 @@
 import styles from './FloatingButton.module.scss';
 import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
-import router from 'next/router';
-
 
 
 export const FloatingButton = () => {
