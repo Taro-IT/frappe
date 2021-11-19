@@ -1,25 +1,26 @@
-//User Story: frappe-91
-//User Story: frappe-85
+//User Stories: frappe-91, frappe-507, frappe-85
 import { useState } from 'react';
 import clsx from 'clsx';
 import classes from '../OrderList.module.scss';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline';
-import { Button, Card, Badge, ProgressBar} from '@frappe/common/design-system';
+import { Button, Card, Badge, Modal, ProgressBar, Alert} from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
 import * as React from 'react';
 import { OrderStatuses } from '@frappe/order/domain'
-import axios from "axios"
+import axios from 'axios';
 
 type OrderCardProps = {
   readonly items;
   readonly order;
   readonly id;
-  readonly status;
 };
 
-const OrderCard = ({ items, order, status }: OrderCardProps) => {
+const OrderCard = ({ items, order }: OrderCardProps) => {
   const [closed, setExpanded] = useState<boolean>(false);
-  
+  const [status, setStatus] = useState<OrderStatuses>(order.status);
+  const [newStatus, setNewStatus] = useState<OrderStatuses>();
+  const [displayEditModal, setEditModal] = useState<boolean>(false);
+
   const monthNames = [
     'enero',
     'febrero',
@@ -47,7 +48,31 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
   const handleClick = () => {
     console.log("Imprimir guía de envío")
   };
+  
+  const onChangeOrderStatus = (event) => {
+    setNewStatus(event.target.value);
+    console.log(event.target.value)
+  }
 
+  const handleChangeModal = () => {
+    setEditModal(true);
+  }
+
+  const handleChangeStatus = async event => {
+    
+    setStatus(newStatus);
+    event.preventDefault();
+    try {
+      await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/orders/${order.id}`, {
+        status: newStatus
+      });
+    } catch (error) {
+      console.error('No se pudo actualizar el estado de la orden.');
+    }
+    setEditModal(false);
+  }
+
+  console.log(order);
   const generateOrderPDF = async () => {
     // Sorry
     const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders/pdf/${order.id}`)
@@ -96,6 +121,12 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
             <ProgressBar status={status}/>
             
           </div>
+          {(status != OrderStatuses.ENTREGADA)  && ( 
+          <div className="">
+            <Button title={'Cambiar estado de la orden'} variant={'cta'} className="flex" onClick={handleChangeModal}/>
+          </div>
+          )}
+
           {closed &&
             <Button title={order.pdfFile ? "Ver PDF" : "Generar PDF"} variant={'cta'} className="flex h-full ml-auto mr-6 " onClick={generateOrderPDF} />
           }
@@ -122,6 +153,41 @@ const OrderCard = ({ items, order, status }: OrderCardProps) => {
             <h5 className="font-bold">Total: ${ order.total } </h5>
           </div>
         </div>
+      )}
+      {displayEditModal && (
+        /*Modal donde viene el radio para cambiar el estatus*/
+        /*TODO: Poner el onClick en el botón para que llame la función del query*/
+        <Modal
+          title={`¿Cómo va la orden?`}
+          showModal={displayEditModal}
+          toggleModal={setEditModal}
+        >
+          <div className="self-center text-center">
+            <div className="pb-4 flex-row text-left" onChange={onChangeOrderStatus}>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.ABIERTO} name="status" /> {OrderStatuses.ABIERTO}
+              </div>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.EN_PROCESO} name="status" /> {OrderStatuses.EN_PROCESO}
+              </div>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.LISTA_PARA_ENVIO} name="status" /> {OrderStatuses.LISTA_PARA_ENVIO}
+              </div>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.ENTREGADA} name="status" /> {OrderStatuses.ENTREGADA}
+              </div>
+            </div>
+          </div>
+          <Alert
+            title="¡Advertencia!"
+            body="Al dar clic en 'Guardar y enviar', se le mandará un correo al cliente notificándole el nuevo estado de su orden"
+            color="yellow"
+            className="w-5/6 self-center"
+          />
+          <div className="p-3  self-center">
+            <Button title={'Guardar y enviar'} variant={'cta'} className="text-center" onClick={handleChangeStatus}/>
+          </div>
+        </Modal>
       )}
     </Card>
   );
