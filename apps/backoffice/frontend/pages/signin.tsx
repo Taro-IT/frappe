@@ -14,10 +14,6 @@ const SigninPage = () => {
 
       <Card className="flex flex-col xl:w-1/4 lg:w-1/3 md:w-5/12 w-2/3 rounded-t-xl" rounded={false}>
         <Card.Header title={'Iniciar Sesión'}>
-          <h2>
-            ¿No tienes una cuenta?
-            <Link href="/register" text={' Crea una ahora'} />
-          </h2>
         </Card.Header>
 
         <LoginForm onSubmit={signInWithCredentials} />
