@@ -24,11 +24,13 @@ export class PasswordResetCodeCreator {
   async execute(email: string): Promise<void> {
     const user = await this.searchUserByEmail(email);
 
-    const link = await this.firebaseAuth.generatePasswordResetLink(user.email);
-    const code = new URLSearchParams(`?${ link.split('?')[1] }`).get('oobCode');
-
+    const link = await this.firebaseAuth.generateEmailVerificationLink(user.email);
+    const params = new URLSearchParams(link.split('?')[1]);
+    const code = params.get('oobCode');
+    
     const event = new PasswordResetCodeCreated({ email, code });
-    return this.eventBus.dispatch(event);
+
+    this.eventBus.dispatch(event);
   }
 
   private async searchUserByEmail(email: string): Promise<UserPrimitives> {

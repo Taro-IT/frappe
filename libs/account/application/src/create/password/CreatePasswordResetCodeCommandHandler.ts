@@ -15,10 +15,9 @@ export class CreatePasswordResetCodeCommandHandler implements CommandHandler<Cre
     this.passwordResetCodeCreator = passwordResetCodeCreator;
   }
 
-  execute(command: CreatePasswordResetCodeCommand): Promise<void> {
+  async execute(command: CreatePasswordResetCodeCommand): Promise<void> {
     const { email } = command.payload;
-
-    return this.passwordResetCodeCreator.execute(email);
+    this.passwordResetCodeCreator.execute(email);
   }
   
 }
