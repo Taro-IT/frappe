@@ -25,8 +25,7 @@ export class OrderMother {
       new OrderStatus(OrderStatusMother.random()),
       new OrderIsDelayed(BooleanMother.random()),
       new OrderClientName(StringMother.random()),
-      ShippingMother.randomAddress(),
-      null
+      ShippingMother.randomAddress()
     );
   }
 }
