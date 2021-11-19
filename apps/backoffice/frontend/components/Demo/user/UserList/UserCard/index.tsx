@@ -29,7 +29,7 @@ const UserCard = ({ id, user }: UserCardProps) => {
   const EditButton = ({ id, name }: buttonprops) => {
         const edit = () => {
             setEditModal(true);
-            setNameErrors(false);            
+            setNameErrors(false);
         };
         return <Button title="Editar"  className="w-24" variant="cta" onClick={edit} />;
       };
@@ -117,7 +117,7 @@ const UserCard = ({ id, user }: UserCardProps) => {
             <div>
               <EditButton id={id} name={user.name}/>
             </div>
-            <div>  
+            <div>
               <DeleteButton id={id} name={user.name} />
             </div>
         </div>
