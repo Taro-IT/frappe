@@ -35,7 +35,7 @@ export class Order {
       new OrderIsDelayed(primitives.isDelayed),
       new OrderClientName(primitives.clientName),
       primitives.address != null ? ShippingAddress.fromPrimitives(primitives.address) : null,
-      new OrderPdfFile(primitives.pdfFile)
+      primitives.pdfFile && new OrderPdfFile(primitives.pdfFile)
     );
   }
 
