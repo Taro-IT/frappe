@@ -22,7 +22,7 @@ const OrderList = () => {
   const useOrders = useMemo(
     () =>
       orders.map(order => {
-        return <OrderCard id={order.id} order={order} items={order.items} key={order.id} status={order.status} />;
+        return <OrderCard id={order.id} order={order} items={order.items} key={order.id} />;
       }),
     [orders]
   );
