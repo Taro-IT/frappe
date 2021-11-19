@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import classes from '../UserList.module.scss';
 import { Button, Card, Modal, SpanError } from '@frappe/common/design-system';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
 
