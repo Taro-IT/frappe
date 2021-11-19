@@ -1,6 +1,6 @@
 // User Story: Frappe 67
 
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsOptional } from 'class-validator';
 
 export class UpdateMaterialDto {
   @IsOptional()
