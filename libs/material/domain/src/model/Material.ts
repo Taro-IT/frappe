@@ -22,7 +22,7 @@ export class Material {
       new MaterialName(primitives.name),
       new MaterialImage(primitives.image),
       new MaterialIsActive(primitives.isActive),
-      new MaterialDeletedAt(primitives.deletedAt)
+      primitives.deletedAt && new MaterialDeletedAt(primitives.deletedAt)
     );
   }
 

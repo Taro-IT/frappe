@@ -22,7 +22,7 @@ export class MaterialDeleter {
     this.materialFinder = materialFinder;
   }
 
-  async execute(id: string) {
+  async execute(id: string, deletedAt = new Date()) {
 
     const material = await this.materialExists(id);
 
@@ -31,7 +31,6 @@ export class MaterialDeleter {
     }
 
     const isActive = false;
-    const deletedAt = new Date();
     const updatedMaterial: MaterialPrimitives = { ...material, isActive, deletedAt };
 
     return this.materialRepository.save(Material.fromPrimitives(updatedMaterial));

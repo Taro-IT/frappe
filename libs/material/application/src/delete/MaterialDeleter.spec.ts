@@ -20,9 +20,9 @@ describe('MaterialDeleter', () => {
   });
 
   it('should delete a Material', async () => {
-    const material = MaterialMother.deleted();
+    const material = MaterialMother.withDeletedDate(new Date());
     materialRepository.find.mockResolvedValueOnce(material);
-    await deleter.execute(material.id.value);
+    await deleter.execute(material.id.value, material.deletedAt?.value);
 
     expect(materialRepository.save).toHaveBeenCalledWith(material);
   });

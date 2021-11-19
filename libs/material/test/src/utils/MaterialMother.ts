@@ -7,17 +7,16 @@ export class MaterialMother {
       new MaterialId(UuidMother.random()),
       new MaterialName(StringMother.random()),
       new MaterialImage(StringMother.random()),
-      new MaterialIsActive(true),
-      new MaterialDeletedAt(undefined)
+      new MaterialIsActive(true)
     );
   }
-  static deleted(): Material {
+  static withDeletedDate(deletedAt: Date): Material {
     return new Material(
       new MaterialId(UuidMother.random()),
       new MaterialName(StringMother.random()),
       new MaterialImage(StringMother.random()),
       new MaterialIsActive(false),
-      new MaterialDeletedAt(new Date())
+      new MaterialDeletedAt(deletedAt)
     );
   }
 }
