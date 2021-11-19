@@ -2,7 +2,7 @@ import { asClass, AwilixContainer } from 'awilix';
 import { asArray } from '@tshio/awilix-resolver';
 import { UpdateCategoryCommandHandler } from '@frappe/category/application';
 import { CreateCategoryCommandHandler } from '@frappe/category/application';
-import { CreateOrderCommandHandler } from '@frappe/order/application';
+import { CreateOrderCommandHandler, GenerateOrderPdfCommandHandler } from '@frappe/order/application';
 import { AccountSignUpCommandHandler, UpdateUserCommandHandler } from '@frappe/account/application';
 import { UploadFileCommandHandler } from "@frappe/file-system/application";
 import { CreateProductCommandHandler } from "@frappe/product/application";
@@ -22,6 +22,7 @@ export const commandHandlers = (container: AwilixContainer) => {
       asClass(CreateMaterialCommandHandler),
       asClass(UpdateMaterialCommandHandler),
       asClass(DeleteMaterialCommandHandler),
+      asClass(GenerateOrderPdfCommandHandler),
       asClass(UpdateUserCommandHandler)
     ])
   });

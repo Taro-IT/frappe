@@ -10,7 +10,7 @@ export class FileSystemFileUploader {
     this.fileSystemRepository = fileSystemRepository;
   }
 
-  async execute(name: string, content: File) {
+  async execute(name: string, content: File | Buffer) {
     const fileSystemFile = new FileSystemFile(new FileSystemFileName(name), new FileSystemFileContent(content))
     return this.fileSystemRepository.upload(fileSystemFile)
   }
