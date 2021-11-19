@@ -28,7 +28,7 @@ export class SendEmailOnPasswordResetCodeCreated implements EventSubscriberInter
       to: email,
       data: {
         name: 'Estimado Usuario',
-        body: '¡Muchas gracias por registrarte en Cínica! Esperamos que nuestros productos sean de tu agrado.',
+        body: link,
         subject: 'Bienvenido a Cínica'
       }
     });
