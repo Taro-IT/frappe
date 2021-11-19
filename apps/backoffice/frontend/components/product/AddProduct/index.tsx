@@ -1,4 +1,4 @@
-// User Story: Frappe 64
+// User Story: Frappe 64/ frappe-508
 
 import {Card} from '@frappe/common/design-system'
 import AddProductForm from "../components/AddProductForm";
