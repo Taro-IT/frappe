@@ -6,15 +6,12 @@ const bootstrap = async () => {
 
   process.on('uncaughtException', error => {
     console.error(`Uncaught: ${error.toString()}`, error);
-    process.exit(1);
   });
 
   process.on('unhandledRejection', error => {
     if (error) {
       console.error(`Unhandled: ${error.toString()}`, error);
     }
-
-    process.exit(1);
   });
 
   const { server } = container.cradle;
