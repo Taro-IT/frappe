@@ -14,6 +14,7 @@ import {
   OrderClientName
 } from '@frappe/order/domain';
 import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
+import { OrderPdfFile } from '@frappe/order/domain';
 import { OrderFinder } from '..';
 
 // SOLID
@@ -39,43 +40,28 @@ export class OrderCreator {
     subtotal: number,
     total: number,
     clientName?: string,
-    address?: ShippingAddressPrimitives
+    address?: ShippingAddressPrimitives,
+    pdfFile?: string
   ) {
+    
     const exists = await this.orderExists(id);
 
     if (exists === null) {
       throw new OrderAlreadyExists(id);
     }
 
-    console.log(address)
-    let order : Order;
-    if(address)
-    {
-      order = new Order(
-        new OrderId(id),
-        items.map(item => OrderItem.fromPrimitives(item)),
-        new OrderSubtotal(subtotal),
-        new OrderTotal(total),
-        new OrderDateCreated(new Date()),
-        new OrderStatus(OrderStatuses.ABIERTO),
-        new OrderIsDelayed(false),
-        new OrderClientName(clientName),
-        ShippingAddress.fromPrimitives(address)
-      );
-    }
-    else
-    {
-      order = new Order(
-        new OrderId(id),
-        items.map(item => OrderItem.fromPrimitives(item)),
-        new OrderSubtotal(subtotal),
-        new OrderTotal(total),
-        new OrderDateCreated(new Date()),
-        new OrderStatus(OrderStatuses.ABIERTO),
-        new OrderIsDelayed(false),
-        new OrderClientName(clientName)
-      );
-    }
+    const order = new Order(
+      new OrderId(id),
+      items.map(item => OrderItem.fromPrimitives(item)),
+      new OrderSubtotal(subtotal),
+      new OrderTotal(total),
+      new OrderDateCreated(new Date()),
+      new OrderStatus(OrderStatuses.ABIERTO),
+      new OrderIsDelayed(false),
+      new OrderClientName(clientName),
+      ShippingAddress.fromPrimitives(address ? address : undefined),
+      new OrderPdfFile(pdfFile ? pdfFile : undefined)
+    );
     
     return this.orderRepository.save(order);
   }
