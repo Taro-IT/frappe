@@ -1,7 +1,6 @@
-import { Criteria, Filter, Order } from '@dinnosc/criteria';
+import { Criteria, Order } from '@dinnosc/criteria';
 import { Nullable } from '@frappe/common/utils';
-import { MaterialNotFound, MaterialName, MaterialRepository, Material, MaterialPrimitives } from '@frappe/material/domain';
-import { FilterPrimitive } from '@dinnosc/criteria';
+import { MaterialNotFound, MaterialRepository, Material, MaterialPrimitives } from '@frappe/material/domain';
 
 interface Props {
   readonly materialRepository: MaterialRepository;
