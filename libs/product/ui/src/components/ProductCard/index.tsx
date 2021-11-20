@@ -9,7 +9,8 @@ export const ProductCard = ({ id, name, price, images }: ProductCardProps) => {
   const router = useRouter();
   
   const handleClick = () => {
-    router.push(`/products/${id}`);
+    router.push(`/product/${id}`);
+    //router.push(`/product`);
   }
 
   return (

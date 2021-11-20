@@ -13,4 +13,6 @@ export { Alert } from './Alert';
 export { Logo } from './Logo';
 export { Banner } from './Banner';
 export { Footer } from './Footer';
-export {FloatingButton} from './FloatingButton';
+export { FloatingButton } from './FloatingButton';
+export { ProductDetailExample } from './ProductDetailExample'
+export { ProductDetail } from './ProductDetail';
