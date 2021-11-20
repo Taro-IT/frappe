@@ -19,11 +19,11 @@ interface ProductListContentProps {
             <p className="text-gray-400 text-center align-middle">Por favor intenta cambiando los filtros en la barra de la izquierda.</p>
         </div>
       }
-      <div className="grid grid-cols-4 gap-4">
-        {products.map(product => (
+        <div className="grid grid-cols-4 gap-4">
+          {products.map(product => (
             <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images}/>
-        ) )}
-      </div>
+            ) )}
+        </div>
     </>
     )
   }
