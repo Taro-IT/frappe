@@ -22,7 +22,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      let aux = localStorage.getItem('items');
+      const aux = localStorage.getItem('items');
       if(aux){
         setCartItems(JSON.parse(aux));
       }
@@ -35,7 +35,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
 
   const addProduct = () => {
     setCartSuccess(false)
-    let newProduct = {
+    const newProduct = {
       id: product.id,
       name: product.name,
       price: product.price,
@@ -43,7 +43,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
       image: product.images[0],
       size: selectedSize
     }
-    let aux = localStorage.getItem('items');
+    const aux = localStorage.getItem('items');
     if(aux !== null && aux !== undefined){
       const auxArray = JSON.parse(aux);
       auxArray[auxArray.length] = newProduct;
