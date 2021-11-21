@@ -1,7 +1,7 @@
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
 import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { ProductSizeSelector } from '..';
 
 type ProductDetailProps = {
@@ -12,10 +12,42 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>) => {
 
+export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>) => {
+  
   const [selectedSize, setSelectedSize] = useState<number>(product.sizes[0])
+  const [cartItems, setCartItems] = useState([]);
   console.log(selectedSize);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      let aux = localStorage.getItem('items');
+      if(aux){
+        setCartItems(JSON.parse(aux));
+      } 
+      if(cartItems === null){
+        localStorage.setItem('items',JSON.stringify([]));
+        setCartItems([]);
+      }
+    }
+  }, []);
+
+  const addProduct = () => {
+    let newProduct = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      amount: product.amount,
+      image: product.images[0],
+      size: selectedSize
+    }
+    console.log(newProduct);
+    let aux = localStorage.getItem('items');
+    if(aux){
+      const auxArray = JSON.parse(aux);
+      console.log((auxArray.length));
+    }
+  }
 
   return (
     <div className="bg-white">
@@ -139,7 +171,11 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
             <div className="mt-10 flex sm:flex-col1">
                 <button
                   type="submit"
-                  className="max-w-xs flex-1 bg-yellow-500 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-500 sm:w-full"
+                  className="max-w-xs flex-1 bg-yellow-500 border border-transparent 
+                  rounded-md py-3 px-8 flex items-center justify-center text-base font-medium 
+                  text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 
+                  focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-500 sm:w-full"
+                  onClick={addProduct}
                 >
                   Agregar al carrito
                 </button>

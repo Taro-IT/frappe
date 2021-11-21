@@ -1,10 +1,10 @@
-import { Button, Card, Modal } from '@frappe/common/design-system';
-import classes from './CartDetails.module.scss';
-import { useState, useMemo, useEffect } from 'react';
-import { BadgeCheckIcon } from '@heroicons/react/solid';
+import React, { useEffect, useMemo, useState } from 'react'
+import styles from '../../styles/cartDetails.module.scss';
+import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
 import clsx from 'clsx';
+import { BadgeCheckIcon } from '@heroicons/react/solid';
 
-const CartView = () => {
+const CartDetailPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   let totalPrice = 0;
@@ -54,10 +54,10 @@ const CartView = () => {
         const { name } = category;
         totalPrice += Number(category.price);
         return (
-          <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
+          <Card className={clsx(styles.categories, 'text-center', 'p-4')} key={index}>
             <div className='grid grid-cols-2 '>
               <div>
-                <img className={clsx(classes.photo)}src={category.image} alt="Logo" />
+                <img className={clsx(styles.photo)}src={category.image} alt="Logo" />
               </div>
               <div className='flex flex-col '>
                 <p className='pl-4  text-left'>Producto: {category.name}</p>
@@ -74,7 +74,6 @@ const CartView = () => {
       }),
     [cartItems]
   );
-
   return (
     <div className=" mt-16">
       <h1 className='self-center text-4xl text-center pb-4'>Mi carrito</h1>
@@ -103,4 +102,6 @@ const CartView = () => {
   );
 };
 
-export default CartView;
+CartDetailPage.Layout = EcommerceLayout;
+
+export default withUserAgent(CartDetailPage);
