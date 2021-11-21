@@ -34,7 +34,7 @@ export const ProgressBar = ({status}: PropsWithChildren<ProgressBarrHeaderProps>
         return -1;
     }
     return (
-      <div className="border-t border-gray-200 py-6 px-4 sm:px-6 lg:p-8">
+      <div className="py-6 px-4 sm:px-6 lg:p-8">
             <h4 className="sr-only">Status</h4>
             <div className="mt-6" aria-hidden="true">
                 <div className="bg-gray-200 rounded-full overflow-hidden">

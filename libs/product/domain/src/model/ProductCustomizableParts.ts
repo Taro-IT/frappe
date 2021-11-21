@@ -1,3 +1,3 @@
 import { StringArrayValue } from '@frappe/common/value-object';
-export class ProductMaterials extends StringArrayValue {}
+export class ProductCustomizableParts extends StringArrayValue {}
   

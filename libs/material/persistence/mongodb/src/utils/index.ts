@@ -1,0 +1,1 @@
+export { MongoMaterialRepository } from './MongoMaterialRepository';

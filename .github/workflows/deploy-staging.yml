@@ -1,9 +1,8 @@
-name: CD
+name: CD Dev
 
 on:
   push:
     branches:
-      - main
       - dev
 
 jobs:

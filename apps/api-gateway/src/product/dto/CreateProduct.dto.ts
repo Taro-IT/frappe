@@ -46,11 +46,12 @@ export class CreateProductDto {
   @IsBoolean()
   readonly isOutOfStock: boolean;
 
-  @IsNotEmpty()
+
+  @IsOptional()
   @IsString({
       each: true
   })
-  readonly materials: string[];
+  readonly customizableParts: string[];
       
   @IsNotEmpty()
   @IsNumber({},{
@@ -60,5 +61,13 @@ export class CreateProductDto {
     each:true
   })
   readonly sizes: number[];
+
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly canBeSold: boolean;
+
+  @IsOptional()
+  @IsPositive()
+  readonly priceInSale: number;
 
 }

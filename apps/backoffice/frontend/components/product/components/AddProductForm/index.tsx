@@ -1,3 +1,4 @@
+// User Story: Frappe 64, Frappe 508
 import { Button, Modal } from '@frappe/common/design-system';
 import Select from 'react-select';
 import React, { FormEvent, useEffect, useState } from 'react';
@@ -6,16 +7,18 @@ import styles from './AddProductForm.module.scss';
 import 'react-toggle/style.css';
 import Toggle from 'react-toggle';
 import SizeSelector from '../SizeSelector';
+import DisableTextInput from '../DisableTextInput';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
-
-// User Story: Frappe 64
 
 const AddProductForm = () => {
   const [, setCategories] = useState();
+  const [ canBeSold, setCanBeSold] = useState<boolean>(false);
   const [options, setOptions] = useState();
   const [isLimited, setIsLimited] = useState<boolean>(false);
+  const [isOnSale, setIsOnSale] = useState<boolean>(false);
   const [isCustom, setIsCustom] = useState<boolean>(false);
   const [amount, setAmount] = useState<number>()
+  const [salePrice, setSalePrice] = useState<number>()
   const [sizes, setSizes] = useState<number[]>([]);
   const [price, setPrice] = useState<number>();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -24,10 +27,14 @@ const AddProductForm = () => {
   const [message, setMessage] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
   const [productName, setProductName] = useState<string>();
+  const [customParts, setCustomPart] = useState<string[]>([]);
+  const [singlePart, setSinglePart] = useState<string>();
   const [productDescription, setProductDescription] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
+  const [allSizes, setAllSizes] = useState<boolean>(false);
 
-  const defaultSizes = ['22.5', '23', '23.5', '24', '24.5', '25', '25.5', '26', '26.5'];
+  const defaultSizes = [22, 22.5, 23, 23.5, 24, 24.5, 25, 25.5, 26, 26.5, 27, 27.5, 28, 28.5, 29, 29.5];
+
 
   type Category = {
     id: string;
@@ -57,10 +64,33 @@ const AddProductForm = () => {
       color: state.isSelected ? 'rgb(163, 142, 101)' : undefined
     })
   };
+  
+  const handleSetToAllSizes = () => {
 
+    if(allSizes){
+      setSizes([]);
+    } else {
+      setSizes(defaultSizes);
+    }
+
+    setAllSizes(previous => !previous)
+
+  }
+  
+  console.log(sizes);
   const handleStockChange = () => {
     setIsLimited(previous => !previous);
   };
+  
+  const handleOnSaleChange = () => {
+    setIsOnSale(previous => !previous);
+  };
+
+  const handleCanBeSoldChange = () => {
+    setCanBeSold(previous => !previous);
+    console.log(canBeSold);
+  };
+
   const handleCustomChange = () => {
     setIsCustom(previous => !previous);
   };
@@ -70,6 +100,21 @@ const AddProductForm = () => {
     e.preventDefault();
     if (loading === true) {return}
     setLoading(true)
+
+    if(sizes.length < 1){
+      setShowRetroModal(true)
+      setSuccess(false)
+      setMessage("Debes seleccionar al menos una talla para este producto")
+      setLoading(false)
+      return
+    }
+    if(selectedCategories.length < 1){
+      setShowRetroModal(true)
+      setSuccess(false)
+      setMessage("Debes seleccionar al menos una categoría para este producto")
+      setLoading(false)
+      return
+    }
     try {
 
       // Post de imágenes
@@ -90,12 +135,14 @@ const AddProductForm = () => {
         description: productDescription,
         images: fileNames,
         isCustom: isCustom,
-        isInSale: false,
+        isInSale: isOnSale,
         isLimited: false,
         isOutOfStock: false,
-        materials: ["piel", "gamuza"],
+        customizableParts: customParts,
         sizes: sizes,
-        amount: isLimited ? amount : null
+        amount: isLimited ? amount : null,
+        priceInSale: salePrice,
+        canBeSold: canBeSold
       })
       setShowRetroModal(true)
       setSuccess(true)
@@ -128,8 +175,29 @@ const AddProductForm = () => {
   const handleProductName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
   };
+
+  const handleSinglePart = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const part = (e.target.value) ? e.target.value : '';
+    setSinglePart(part);
+  };
+
+  const handleCustomPart = () => {
+    const part = singlePart;
+    setCustomPart(customParts => [...customParts, part]);
+    setSinglePart('');
+    console.log(customParts);
+  }
+
+  const handleDeletePart = () => {
+    console.log("hola");
+  }
+
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(parseInt(e.target.value, 10));
+  };
+
+  const handleSalePricehange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSalePrice(parseInt(e.target.value, 10));
   };
 
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -159,7 +227,7 @@ const AddProductForm = () => {
       </div>
 
       {/* Se comenta esta parte hasta que se defina la personalización
-        <TextField label="Materiales disponibles" name="materials" validations={{ required: 'Los materiales son requeridos' }} />
+        <TextField label="Materiales disponibles" name="customizableParts" validations={{ required: 'Los materiales son requeridos' }} />
       */}
 
       <label className={'w-1/3 mt-4 mb-3'}>Categoría(s)</label>
@@ -173,15 +241,20 @@ const AddProductForm = () => {
         onChange={handleSelectCategories}
         placeholder="Selecciona categorías"
       />
+        <div className="flex flex-row">
+          <label className="w-auto mr-4 mt-4 mb-3">Todas las tallas</label>
+          <Toggle defaultChecked={allSizes} icons={false} className="mt-4" onChange={handleSetToAllSizes} />
+        </div>
       <label className="w-1/3 mt-4 mb-3">Tallas disponibles</label>
-      <div className="flex flex-row space-x-4 mb-4">
+      <div className="grid sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-2 mb-4">
         {defaultSizes.map(size => (
-          <SizeSelector key={""} setSizesArray={setSizes} sizesArray={sizes} size={parseFloat(size)}/>
+          <SizeSelector key={""} setSizesArray={setSizes} sizesArray={sizes} size={size} selectAll={allSizes}/>
         ))}
       </div>
 
       <div className="flex flex-col">
-        <label className='w-1/3 mt-4 mb-2'>Precio</label>
+        <div className="flex flex-row">
+        <label className='w-1/3 mb-2'>Precio</label>
         <input
           value={price}
           onChange={changePrice}
@@ -191,6 +264,29 @@ const AddProductForm = () => {
           className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
           required
         />
+      </div>
+      <div className="flex flex-row">
+          <label className="w-auto mr-4 mt-4 mb-3">¿Este producto será visible para clientes?</label>
+          <Toggle defaultChecked={canBeSold} icons={false} className="mt-4" onChange={handleCanBeSoldChange}/>
+      </div>
+      <div className="flex flex-row">
+          <label className="w-auto mr-4 mt-4 mb-3">¿Este producto está en oferta?</label>
+          <Toggle defaultChecked={isOnSale} icons={false} className="mt-4" onChange={handleOnSaleChange}/>
+      </div>
+      {isOnSale && (
+        <div className="flex flex-row">
+        <label className='w-1/3 mb-2'>Precio de rebaja</label>
+        <input
+          value={salePrice}
+          onChange={handleSalePricehange}
+          placeholder="2599.99"
+          type="number"
+          min="1"
+          className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
+          required={isOnSale}
+        />
+      </div>
+      )}
       </div>
       <div className="flex flex-row">
         <label className="w-auto mr-4 mt-4 mb-3">¿Este producto tiene stock?</label>
@@ -226,11 +322,31 @@ const AddProductForm = () => {
         <Toggle defaultChecked={isCustom} icons={false} onChange={handleCustomChange} className="mt-4" />
       </div>
       {isCustom && (
-        <p className='text-center text-gray-400 w-1/3 mt-4 mb-2'>AQUI VAN A IR LOS CAMPOS DE CUSTOMIZACIÓN</p>
+        <div>
+            <div>{customParts.map((part, index) =>
+              <div key={index}>
+                <DisableTextInput index={index} partName={part} partArr={customParts} setCustomParts={setCustomPart}/>
+              </div>
+            )}
+            </div>
+              <div>
+            <label className='w-1/3 mt-4 mb-2' onClick={handleDeletePart}>Parte personalizable</label>
+            <br/>
+            <input
+              id="partName"
+              onChange={handleSinglePart}
+              placeholder="Chinela"
+              className="border-2 border-gray-200 rounded pl-2 w-1/2 h-8"
+              value={singlePart}
+            />
+          </div>
+          {/*TODO: A veces no funciona el botón a la primera*/}
+          <Button title="Agregar parte" type="button" variant="cta" className={'mt-4'} onClick={handleCustomPart} />
+        </div>
       )}
 
       <Button title="Agregar producto" type="submit" variant="cta" className={'mt-4'} />
-    </form>
+      </form>
       {showRetroModal && (
         <Modal showModal={showRetroModal} toggleModal={setShowRetroModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
