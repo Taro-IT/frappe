@@ -1,16 +1,18 @@
-import { Button, Card, Modal } from '@frappe/common/design-system';
-import classes from './CartDetails.module.scss';
-import { useState, useMemo, useEffect } from 'react';
-import { BadgeCheckIcon } from '@heroicons/react/solid';
-import clsx from 'clsx';
+  // User Story: Frappe 80
 
-const CartView = () => {
+import React, { useEffect, useMemo, useState } from 'react'
+import styles from '../../styles/cartDetails.module.scss';
+import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
+import clsx from 'clsx';
+import { BadgeCheckIcon } from '@heroicons/react/solid';
+
+const CartDetailPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   let totalPrice = 0;
 
-  
-  
+
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCartItems(JSON.parse(localStorage.getItem('items')));
@@ -49,19 +51,20 @@ const CartView = () => {
   //Creates the cards for all the items in the cart using localStorage
   const useCartItems = useMemo(
     () =>
-      
-      cartItems.map((category, index) => {
+
+      cartItems?.map((category, index) => {
         const { name } = category;
         totalPrice += Number(category.price);
         return (
-          <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
+          <Card className={clsx(styles.categories, 'text-center', 'p-4')} key={index}>
             <div className='grid grid-cols-2 '>
               <div>
-                <img className={clsx(classes.photo)}src={category.image} alt="Logo" />
+                <img className={clsx(styles.photo)}src={category.image} alt="Logo" />
               </div>
               <div className='flex flex-col '>
                 <p className='pl-4  text-left'>Producto: {category.name}</p>
                 <p className='pl-4 pt-4 text-left'>Talla: {category.size}</p>
+                <p className='pl-4 pt-4 text-left'>Cantidad: {category.amount}</p>
                 <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${category.price}</p>
                 <div className='flex flex-row pt-4'>
                   <ViewDetailButton id={index} productId={category.productId}/>
@@ -74,13 +77,12 @@ const CartView = () => {
       }),
     [cartItems]
   );
-
   return (
     <div className=" mt-16">
       <h1 className='self-center text-4xl text-center pb-4'>Mi carrito</h1>
-      {cartItems.length ? useCartItems : 'No tienes productos en tu carrito.'}
-      {cartItems.length && (
-        
+      {cartItems?.length ? useCartItems : 'No tienes productos en tu carrito.'}
+      {cartItems?.length && (
+
           <div className="flex flex-col w-full px-20 mb-4 py-2 content-center">
             <p className="text-2xl text-center mb-4">
               El precio total es de: ${totalPrice}
@@ -89,7 +91,7 @@ const CartView = () => {
               <PayButton></PayButton>
             </div>
           </div>
-        
+
       )}
       {displayConfirmationModal && (
         <Modal showModal={displayConfirmationModal} toggleModal={setDisplayConfirmationModal} title="">
@@ -103,4 +105,6 @@ const CartView = () => {
   );
 };
 
-export default CartView;
+CartDetailPage.Layout = EcommerceLayout;
+
+export default withUserAgent(CartDetailPage);

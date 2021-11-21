@@ -1,23 +1,64 @@
+  // User Story: Frappe 62
+
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
 import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { ProductSizeSelector } from '..';
+import {Toastr} from '../../Toastr'
 
 type ProductDetailProps = {
   readonly product: ProductPrimitives;
 };
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
+
 
 export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>) => {
 
   const [selectedSize, setSelectedSize] = useState<number>(product.sizes[0])
-  console.log(selectedSize);
+  const [,setCartItems] = useState([]);
+  const [cartSuccess, setCartSuccess] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const aux = localStorage.getItem('items');
+      if(aux){
+        setCartItems(JSON.parse(aux));
+      }
+      if(aux === null){
+        localStorage.setItem('items',JSON.stringify([]));
+        setCartItems([]);
+      }
+    }
+  }, []);
+
+  // User Story: Frappe 80
+  const addProduct = () => {
+    setCartSuccess(false)
+    const newProduct = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      amount: product.amount,
+      image: product.images[0],
+      size: selectedSize
+    }
+    const aux = localStorage.getItem('items');
+    if(aux !== null && aux !== undefined){
+      const auxArray = JSON.parse(aux);
+      auxArray[auxArray.length] = newProduct;
+      console.log(auxArray.length);
+      localStorage.setItem('items',JSON.stringify(auxArray));
+    }
+
+    setCartSuccess(true)
+  }
 
   return (
+    <>
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
@@ -82,7 +123,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
-            
+
             <section aria-labelledby="details-heading" className="mt-12">
               <h2 id="details-heading" className="sr-only">
                 Additional details
@@ -95,7 +136,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                     ))}
                   </div>
               </div>
-              
+
               <div className="border-t divide-y divide-gray-200">
                 {product.customizableParts == undefined ? <></> : product.customizableParts.map((detail, i) => (
                   <Disclosure as="div" key={i}>
@@ -135,19 +176,34 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
               </div>
             </section>
 
-            <form>
+
             <div className="mt-10 flex sm:flex-col1">
                 <button
                   type="submit"
-                  className="max-w-xs flex-1 bg-yellow-500 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-500 sm:w-full"
+                  className="max-w-xs flex-1 bg-yellow-500 border border-transparent
+                  rounded-md py-3 px-8 flex items-center justify-center text-base font-medium
+                  text-white hover:bg-yellow-600 focus:outline-none focus:ring-2
+                  focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-500 sm:w-full"
+                  onClick={addProduct}
                 >
                   Agregar al carrito
                 </button>
               </div>
-            </form>
           </div>
         </div>
       </div>
     </div>
+    {cartSuccess &&
+        <Toastr.Success
+          className="vanilla-fade"
+          bottom="auto"
+          top="1rem"
+          left="auto"
+          right="2rem"
+          content="Producto añadido al carrito con éxito"
+          toggleToastr={setCartSuccess}
+        />
+    }
+    </>
   )
 }
