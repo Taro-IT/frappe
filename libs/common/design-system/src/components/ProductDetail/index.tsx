@@ -8,7 +8,7 @@ type ProductDetailProps = {
   readonly product: ProductPrimitives;
 };
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -25,7 +25,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
       if(aux){
         setCartItems(JSON.parse(aux));
       } 
-      if(cartItems === null){
+      if(aux === null){
         localStorage.setItem('items',JSON.stringify([]));
         setCartItems([]);
       }
@@ -41,12 +41,12 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
       image: product.images[0],
       size: selectedSize
     }
-    console.log(newProduct);
     let aux = localStorage.getItem('items');
-    if(aux){
+    console.log(aux);
+    if(aux !== null && aux !== undefined){
       const auxArray = JSON.parse(aux);
       auxArray[auxArray.length] = newProduct;
-      console.log(auxArray);
+      console.log(auxArray.length);
       localStorage.setItem('items',JSON.stringify(auxArray));
     }
   }

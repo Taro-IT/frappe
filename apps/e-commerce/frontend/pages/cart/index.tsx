@@ -50,7 +50,7 @@ const CartDetailPage = () => {
   const useCartItems = useMemo(
     () =>
       
-      cartItems.map((category, index) => {
+      cartItems?.map((category, index) => {
         const { name } = category;
         totalPrice += Number(category.price);
         return (
@@ -78,8 +78,8 @@ const CartDetailPage = () => {
   return (
     <div className=" mt-16">
       <h1 className='self-center text-4xl text-center pb-4'>Mi carrito</h1>
-      {cartItems.length ? useCartItems : 'No tienes productos en tu carrito.'}
-      {cartItems.length && (
+      {cartItems?.length ? useCartItems : 'No tienes productos en tu carrito.'}
+      {cartItems?.length && (
         
           <div className="flex flex-col w-full px-20 mb-4 py-2 content-center">
             <p className="text-2xl text-center mb-4">
