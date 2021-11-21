@@ -44,7 +44,6 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
       size: selectedSize
     }
     let aux = localStorage.getItem('items');
-    console.log(aux);
     if(aux !== null && aux !== undefined){
       const auxArray = JSON.parse(aux);
       auxArray[auxArray.length] = newProduct;

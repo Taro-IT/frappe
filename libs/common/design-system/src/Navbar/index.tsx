@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
 import { Link } from '..';
 import {  useRouter } from 'next/router';
@@ -11,10 +11,18 @@ const navItems = [
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const [cartItems, setCartItems] = useState<number>(0)
   const router = useRouter();
   const handleOpenUser = () => {
     setOpen(previous => !previous)
   }
+
+  useEffect (()=> {
+    let aux = localStorage.getItem('items');
+    if(aux === null || aux === undefined) return
+    const auxArray = JSON.parse(aux);    
+    setCartItems(auxArray.length)
+  }, [setCartItems])
   const redirectToHome = () => router.push("/");
   return (
     <div className="z-10 flex w-full p-4 bg-black h-20 fixed mb-auto ">
@@ -25,9 +33,9 @@ export const Navbar = () => {
       </nav>
 
       <div className="ml-auto self-center flex">
-        <a className="flex items-center mr-4" href="cart">
+        <a className="flex items-center mr-4" href="/cart">
           <ShoppingCartIcon className="text-yellow-400 h-9 pr-2" />
-          <p className="text-white text-2xl">3</p>
+          <p className="text-white text-2xl">{cartItems}</p>
         </a>
 
         <div className="flex items-center cursor-pointer" onClick={handleOpenUser}>
