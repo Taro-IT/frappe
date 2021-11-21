@@ -1,3 +1,5 @@
+  // User Story: Frappe 62
+
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
 import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
@@ -33,6 +35,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
     }
   }, []);
 
+  // User Story: Frappe 80
   const addProduct = () => {
     setCartSuccess(false)
     const newProduct = {

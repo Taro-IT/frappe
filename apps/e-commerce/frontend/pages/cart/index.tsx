@@ -1,3 +1,5 @@
+  // User Story: Frappe 80
+
 import React, { useEffect, useMemo, useState } from 'react'
 import styles from '../../styles/cartDetails.module.scss';
 import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
@@ -9,8 +11,8 @@ const CartDetailPage = () => {
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   let totalPrice = 0;
 
-  
-  
+
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCartItems(JSON.parse(localStorage.getItem('items')));
@@ -49,7 +51,7 @@ const CartDetailPage = () => {
   //Creates the cards for all the items in the cart using localStorage
   const useCartItems = useMemo(
     () =>
-      
+
       cartItems?.map((category, index) => {
         const { name } = category;
         totalPrice += Number(category.price);
@@ -80,7 +82,7 @@ const CartDetailPage = () => {
       <h1 className='self-center text-4xl text-center pb-4'>Mi carrito</h1>
       {cartItems?.length ? useCartItems : 'No tienes productos en tu carrito.'}
       {cartItems?.length && (
-        
+
           <div className="flex flex-col w-full px-20 mb-4 py-2 content-center">
             <p className="text-2xl text-center mb-4">
               El precio total es de: ${totalPrice}
@@ -89,7 +91,7 @@ const CartDetailPage = () => {
               <PayButton></PayButton>
             </div>
           </div>
-        
+
       )}
       {displayConfirmationModal && (
         <Modal showModal={displayConfirmationModal} toggleModal={setDisplayConfirmationModal} title="">
