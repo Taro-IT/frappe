@@ -1,12 +1,10 @@
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Card } from '@frappe/common/design-system';
-import { useRouter } from 'next/router';
 
 
 type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
 
 export const ProductCard = ({ id, name, price, images }: ProductCardProps) => {
-  const router = useRouter();
   const productLink = "/product/" + id
   
   const handleClick = () => {

@@ -1,6 +1,4 @@
 //User Story: Frappe-62
-import { useState } from "react"
-
 type ProductSizeSelectorProps = {
   size: number
   setSelectedSize: (nv: number) => any
