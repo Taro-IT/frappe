@@ -1,11 +1,20 @@
-import { UuidMother, StringMother, NumberMother, DateMother} from "@frappe/common/test";
+import { UuidMother, StringMother, NumberMother, BooleanMother} from "@frappe/common/test";
 import {
-  Product, ProductAmount,
+  Product,
+  ProductAmount,
   ProductCategories,
   ProductDescription,
   ProductImages,
   ProductIsCustom,
-  ProductIsInSale, ProductIsLimited, ProductIsOutOfStock, ProductMaterials, ProductSizes,ProductIsActive, ProductDeletedAt
+  ProductIsInSale,
+  ProductIsLimited,
+  ProductIsOutOfStock,
+  ProductCustomizableParts,
+  ProductSizes,
+  ProductIsActive,
+  //ProductDeletedAt,
+  ProductCanBeSold,
+  ProductPriceInSale
 } from '@frappe/product/domain';
 import { ProductId, ProductName, ProductPrice } from "@frappe/product/domain";
 
@@ -18,14 +27,16 @@ export class ProductMother {
       new ProductCategories([UuidMother.random()]),
       new ProductDescription(StringMother.randomWord()),
       new ProductImages([StringMother.url()]),
-      new ProductIsCustom(false),
-      new ProductIsInSale(false),
-      new ProductIsLimited(false),
-      new ProductIsOutOfStock(false),
-      new ProductMaterials([StringMother.randomWord()]),
+      new ProductIsCustom(BooleanMother.random()),
+      new ProductIsLimited(BooleanMother.random()),
+      new ProductIsOutOfStock(BooleanMother.random()),
+      new ProductCustomizableParts([StringMother.randomWord()]),
       new ProductSizes([NumberMother.random()]),
       new ProductIsActive(true),
-      new ProductDeletedAt(DateMother.random()),
+      new ProductCanBeSold(BooleanMother.random()),
+      new ProductIsInSale(BooleanMother.random()),
+      new ProductPriceInSale(NumberMother.random()),
+      null,
       new ProductAmount(NumberMother.random()),
     )
   }
