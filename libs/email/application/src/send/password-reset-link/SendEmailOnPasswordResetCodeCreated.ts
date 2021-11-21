@@ -1,3 +1,4 @@
+//User story: frappe-503
 import { EventSubscriberInterface, EventSubscribersMeta } from '@tshio/event-dispatcher';
 import { Email, EmailProvider } from '@frappe/email/domain';
 import { PasswordResetCodeCreated } from '@frappe/account/domain';
