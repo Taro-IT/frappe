@@ -62,6 +62,7 @@ const CartDetailPage = () => {
               <div className='flex flex-col '>
                 <p className='pl-4  text-left'>Producto: {category.name}</p>
                 <p className='pl-4 pt-4 text-left'>Talla: {category.size}</p>
+                <p className='pl-4 pt-4 text-left'>Cantidad: {category.amount}</p>
                 <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${category.price}</p>
                 <div className='flex flex-row pt-4'>
                   <ViewDetailButton id={index} productId={category.productId}/>

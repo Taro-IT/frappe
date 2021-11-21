@@ -45,7 +45,9 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
     let aux = localStorage.getItem('items');
     if(aux){
       const auxArray = JSON.parse(aux);
-      console.log((auxArray.length));
+      auxArray[auxArray.length] = newProduct;
+      console.log(auxArray);
+      localStorage.setItem('items',JSON.stringify(auxArray));
     }
   }
 
@@ -167,7 +169,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
               </div>
             </section>
 
-            <form>
+            
             <div className="mt-10 flex sm:flex-col1">
                 <button
                   type="submit"
@@ -180,7 +182,6 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                   Agregar al carrito
                 </button>
               </div>
-            </form>
           </div>
         </div>
       </div>
