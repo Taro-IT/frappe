@@ -3,6 +3,7 @@ import { Disclosure, Tab } from '@headlessui/react'
 import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { ProductSizeSelector } from '..';
+import {Toastr} from '@frappe/common/design-system'
 
 type ProductDetailProps = {
   readonly product: ProductPrimitives;
@@ -16,8 +17,8 @@ function classNames(...classes: string[]) {
 export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>) => {
   
   const [selectedSize, setSelectedSize] = useState<number>(product.sizes[0])
-  const [cartItems, setCartItems] = useState([]);
-  console.log(selectedSize);
+  const [,setCartItems] = useState([]);
+  const [cartSuccess, setCartSuccess] = useState<boolean>(false)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -33,6 +34,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
   }, []);
 
   const addProduct = () => {
+    setCartSuccess(false)
     let newProduct = {
       id: product.id,
       name: product.name,
@@ -49,9 +51,12 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
       console.log(auxArray.length);
       localStorage.setItem('items',JSON.stringify(auxArray));
     }
+
+    setCartSuccess(true)
   }
 
   return (
+    <>
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
@@ -186,5 +191,17 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
         </div>
       </div>
     </div>
+    {cartSuccess && 
+        <Toastr.Success
+          className="vanilla-fade"
+          bottom="auto"
+          top="1rem"
+          left="auto"
+          right="2rem"
+          content="Producto añadido al carrito con éxito"
+          toggleToastr={setCartSuccess}
+        />
+    }
+    </>
   )
 }

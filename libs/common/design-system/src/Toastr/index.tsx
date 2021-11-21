@@ -1,6 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react'
 import SuccessToastrMessage from './Success'
-import styles from './styles.module.scss'
 
 export type ToastrProps = {
   type: string
@@ -12,7 +11,7 @@ export type ToastrProps = {
   className?: string
   time?: number
   width?: 'w-102' | 'w-80' | 'w-96'
-  toggleToastr?: (newValue: boolean) => any
+  toggleToastr: (newValue: boolean) => any
   onClick?: () => any
 }
 
@@ -31,12 +30,6 @@ export const Toastr = ({
   time,
   ...props
 }: PropsWithChildren<ToastrProps>) => {
-  const Colors = styles
-  const getColor = (colorName: string): string => {
-    const styles = Colors[colorName]
-    if (styles) return styles
-    return ''
-  }
 
   useEffect(() => {
     if (toggleToastr) {
@@ -57,7 +50,7 @@ export const Toastr = ({
   return (
     <div
       id="Toastr"
-      className={'absolute rounded px-3 py-2 ' + (width ? width : 'w-102 ') + ' ' + className + ' ' + getColor(type)}
+      className={'absolute rounded px-3 py-2 ' + (width ? width : 'w-102 ') + ' ' + className + ' bg-green-200 text-black'}
       onClick={() => {
         if (onClick) {
           onClick()
@@ -77,5 +70,3 @@ export const Toastr = ({
 }
 
 Toastr.Success = SuccessToastrMessage
-
-export default Toastr
