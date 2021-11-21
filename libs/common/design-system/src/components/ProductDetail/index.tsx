@@ -3,7 +3,7 @@ import { Disclosure, Tab } from '@headlessui/react'
 import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { ProductSizeSelector } from '..';
-import {Toastr} from '@frappe/common/design-system'
+import {Toastr} from '../../Toastr'
 
 type ProductDetailProps = {
   readonly product: ProductPrimitives;

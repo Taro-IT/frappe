@@ -45,7 +45,7 @@ export const Toastr = ({
     } else {
       return
     }
-  }, [children])
+  }, [children, time, toggleToastr])
 
   return (
     <div

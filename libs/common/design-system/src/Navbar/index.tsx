@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
 import { Link } from '..';
 import {  useRouter } from 'next/router';
@@ -18,7 +18,7 @@ export const Navbar = () => {
   }
 
   useEffect (()=> {
-    let aux = localStorage.getItem('items');
+    const aux = localStorage.getItem('items');
     if(aux === null || aux === undefined) return
     const auxArray = JSON.parse(aux);
     setCartItems(auxArray.length)
