@@ -20,14 +20,14 @@ export const Navbar = () => {
   useEffect (()=> {
     let aux = localStorage.getItem('items');
     if(aux === null || aux === undefined) return
-    const auxArray = JSON.parse(aux);    
+    const auxArray = JSON.parse(aux);
     setCartItems(auxArray.length)
   }, [setCartItems])
   const redirectToHome = () => router.push("/");
   return (
     <div className="z-10 flex w-full p-4 bg-black h-20 fixed mb-auto ">
       <img src="/img/cinica-logo.png" className="cursor-pointer w-24" alt="Cínica Logo" onClick={redirectToHome}/>
-      
+
       <nav className="flex w-full self-center justify-center" aria-label="Navbar">
         {navItems.map((item, index) => <Link key={ index } variant="nav-item" href={item.href} text={item.text} />)}
       </nav>
@@ -54,7 +54,7 @@ export const Navbar = () => {
               <LogoutIcon className="text-white h-6"/>
               <p className="text-white text-2xl px-2">Cerrar Sesión</p>
             </a>
-            
+
         </div>
         }
 

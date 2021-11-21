@@ -15,7 +15,7 @@ function classNames(...classes: string[]) {
 
 
 export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>) => {
-  
+
   const [selectedSize, setSelectedSize] = useState<number>(product.sizes[0])
   const [,setCartItems] = useState([]);
   const [cartSuccess, setCartSuccess] = useState<boolean>(false)
@@ -25,7 +25,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
       let aux = localStorage.getItem('items');
       if(aux){
         setCartItems(JSON.parse(aux));
-      } 
+      }
       if(aux === null){
         localStorage.setItem('items',JSON.stringify([]));
         setCartItems([]);
@@ -120,7 +120,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
-            
+
             <section aria-labelledby="details-heading" className="mt-12">
               <h2 id="details-heading" className="sr-only">
                 Additional details
@@ -133,7 +133,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                     ))}
                   </div>
               </div>
-              
+
               <div className="border-t divide-y divide-gray-200">
                 {product.customizableParts == undefined ? <></> : product.customizableParts.map((detail, i) => (
                   <Disclosure as="div" key={i}>
@@ -173,13 +173,13 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
               </div>
             </section>
 
-            
+
             <div className="mt-10 flex sm:flex-col1">
                 <button
                   type="submit"
-                  className="max-w-xs flex-1 bg-yellow-500 border border-transparent 
-                  rounded-md py-3 px-8 flex items-center justify-center text-base font-medium 
-                  text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 
+                  className="max-w-xs flex-1 bg-yellow-500 border border-transparent
+                  rounded-md py-3 px-8 flex items-center justify-center text-base font-medium
+                  text-white hover:bg-yellow-600 focus:outline-none focus:ring-2
                   focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-500 sm:w-full"
                   onClick={addProduct}
                 >
@@ -190,7 +190,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
         </div>
       </div>
     </div>
-    {cartSuccess && 
+    {cartSuccess &&
         <Toastr.Success
           className="vanilla-fade"
           bottom="auto"
