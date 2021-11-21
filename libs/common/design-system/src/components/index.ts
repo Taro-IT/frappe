@@ -16,3 +16,4 @@ export { Footer } from './Footer';
 export { FloatingButton } from './FloatingButton';
 export { ProductDetailExample } from './ProductDetailExample'
 export { ProductDetail } from './ProductDetail';
+export { ProductSizeSelector } from './ProductSizeSelector'

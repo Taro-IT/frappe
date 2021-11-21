@@ -1,50 +1,12 @@
 import { ProductPrimitives } from '@frappe/product/domain';
-import { Disclosure, RadioGroup, Tab } from '@headlessui/react'
-import { HeartIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
+import { Disclosure, Tab } from '@headlessui/react'
+import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
 import { PropsWithChildren, useState } from 'react';
-import SizeSelector from '../../../../../../apps/backoffice/frontend/components/product/components/SizeSelector';
+import { ProductSizeSelector } from '..';
 
 type ProductDetailProps = {
   readonly product: ProductPrimitives;
 };
-
-// const product = {
-//   id: "0c37ab50-efd4-4181-a4ef-e5fd45417eed",
-//   name: 'Nike Air Force 1',
-//   price: 1,
-//   categories : ["8480de3f-5c80-441a-bb13-c2d109940773"],
-//   images: [
-//     {
-//       id: 1,
-//       name: 'Angled view',
-//       src: 'https://cinicastaticfiles.blob.core.windows.net/uploads/c93b52d0-eabf-4c7d-9f94-e28a16fc62fb.jpeg',
-//       alt: 'Angled front view with bag zipped and handles upright.',
-//     },
-//     {
-//         id: 2,
-//         name: 'Angled view',
-//         src: 'https://cinicastaticfiles.blob.core.windows.net/uploads/e74d446a-db26-4092-b099-a415acf198be.jpeg',
-//         alt: 'Angled front view with bag zipped and handles upright.',
-//       }
-//     // More images...
-//   ],
-//   description: "Los botines Osadía son elaboradas completamente a mano por artesanos zapateros del Estado de México. Las piezas son hechas sobre pedido, por lo que solicitamos consideres que el proceso de producción es de 6 a 8 semanas aproximadamente, adicional al tiempo de envío.",
-//   details: [
-//     {
-//       name: 'Features',
-//       items: [
-//         'Multiple strap configurations',
-//         'Spacious interior with top zip',
-//         'Leather handle and tabs',
-//         'Interior dividers',
-//         'Stainless strap loops',
-//         'Double stitched construction',
-//         'Water-resistant',
-//       ],
-//     },
-//     // More sections...
-//   ],
-// }
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -52,7 +14,8 @@ function classNames(...classes) {
 
 export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>) => {
 
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0])
+  const [selectedSize, setSelectedSize] = useState<number>(product.sizes[0])
+  console.log(selectedSize);
 
   return (
     <div className="bg-white">
@@ -70,13 +33,13 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                   >
                     {({ selected }) => (
                       <>
-                        <span className="sr-only">{product.images[i]}</span>
+                        <span className="sr-only">{image}</span>
                         <span className="absolute inset-0 rounded-md overflow-hidden">
-                          <img src={product.images[i]} alt="" className="w-full h-full object-center object-cover" />
+                          <img src={image} alt="" className="w-full h-full object-center object-cover" />
                         </span>
                         <span
                           className={classNames(
-                            selected ? 'ring-indigo-500' : 'ring-transparent',
+                            selected ? 'ring-yellow-500' : 'ring-transparent',
                             'absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none'
                           )}
                           aria-hidden="true"
@@ -92,8 +55,8 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
               {product.images.map((image, i) => (
                 <Tab.Panel key={i}>
                   <img
-                    src={product.images[i]}
-                    alt={product.images[i]}
+                    src={image}
+                    alt={image}
                     className="w-full h-full object-center object-cover sm:rounded-lg"
                   />
                 </Tab.Panel>
@@ -106,12 +69,13 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
             <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{product.name}</h1>
 
             <div className="mt-3">
-              <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">{product.price}</p>
+              <h2 className="sr-only">Información del producto</h2>
+              {product.priceInSale != undefined ? <p className="text-2xl text-gray-600 line-through">${product.price}</p> : <p className="text-3xl text-gray-900">${product.price}</p>}
+              {product.priceInSale != undefined ? <p className="text-3xl text-gray-900">${product.priceInSale}</p> : <></>}
             </div>
 
             <div className="mt-6">
-              <h3 className="sr-only">Descrición</h3>
+              <h3 className="sr-only">Descripción</h3>
 
               <div
                 className="text-base text-gray-700 space-y-6"
@@ -127,10 +91,8 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                 <h3 className="text-sm text-gray-600">Talla</h3>
                   <div className="flex items-center space-x-3  mb-10 mt-5">
                   {product.sizes.map(size => (
-                    <div key={size} className={`w-20 h-10 cursor-pointer rounded-md justify-content-center border-2`}>
-                    <div className="mt-1 text-center w-full">{size}</div>
-                    </div>
-                  ))}
+                    <ProductSizeSelector size={size} setSelectedSize={setSelectedSize} selectedSize={selectedSize}/>
+                    ))}
                   </div>
               </div>
               
@@ -142,14 +104,14 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                         <h3>
                           <Disclosure.Button className="group relative w-full py-6 flex justify-between items-center text-left">
                             <span
-                              className={classNames(open ? 'text-indigo-600' : 'text-gray-900', 'text-sm font-medium')}
+                              className={classNames(open ? 'text-yellow-600' : 'text-gray-900', 'text-sm font-medium')}
                             >
                               {product.customizableParts[i]}
                             </span>
                             <span className="ml-6 flex items-center">
                               {open ? (
                                 <MinusSmIcon
-                                  className="block h-6 w-6 text-indigo-400 group-hover:text-indigo-500"
+                                  className="block h-6 w-6 text-yellow-400 group-hover:text-yellow-500"
                                   aria-hidden="true"
                                 />
                               ) : (
@@ -177,7 +139,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
             <div className="mt-10 flex sm:flex-col1">
                 <button
                   type="submit"
-                  className="max-w-xs flex-1 bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full"
+                  className="max-w-xs flex-1 bg-yellow-500 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-500 sm:w-full"
                 >
                   Agregar al carrito
                 </button>
