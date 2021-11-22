@@ -70,7 +70,7 @@ const CartDetailPage = () => {
                 <ol>
                 {category.customizableParts?.map(part => {
                   {{console.log(part)}}
-                  return <li className='pl-4 pb-4 pt-4 text-left'>{part.name} - {part.material}</li>
+                  return <li key={""} className='pl-4 pb-4 pt-4 text-left'>{part.name} - {part.material}</li>
                 })}
                 </ol>
                 <div className='flex flex-row pt-4'>

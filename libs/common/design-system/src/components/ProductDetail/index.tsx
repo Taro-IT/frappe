@@ -1,5 +1,5 @@
   // User Story: Frappe 62 / Frappe 80 / Frappe 71
-import { ProductIsCustom, ProductPrimitives } from '@frappe/product/domain';
+import { ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
 import { PlusSmIcon } from '@heroicons/react/outline'
 import { PropsWithChildren, useEffect, useState } from 'react';
@@ -217,9 +217,9 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
 
 
             <div className="mt-10 flex sm:flex-col1">
-              <input 
-                id="cantidad" 
-                type="number" 
+              <input
+                id="cantidad"
+                type="number"
                 className="w-14 rounded-lg border-4 border-yellow-300 mr-5 text-center"
                 placeholder="1"
                 onChange={producrAmountChangeHandler}
