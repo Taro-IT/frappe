@@ -22,7 +22,7 @@ export class SendEmailOnPasswordResetCodeCreated implements EventSubscriberInter
   execute(event: PasswordResetCodeCreated) {
     const { email, code } = event.payload;
 
-    const link = `${ process.env.DOMAIN_URL }/change-password?code=${ code }`;
+    const link = `${ process.env.DOMAIN_URL }/change-password/${ code }`;
 
     const confirmEmail = Email.fromPrimitives({
       id: EmailTemplates.Generic,
