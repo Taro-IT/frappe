@@ -1,4 +1,4 @@
-  // User Story: Frappe 62 / Frappe 80
+  // User Story: Frappe 62 / Frappe 80 / Frappe 71
 import { ProductIsCustom, ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
 import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
