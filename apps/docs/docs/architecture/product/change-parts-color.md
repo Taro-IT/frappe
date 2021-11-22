@@ -6,7 +6,7 @@
 
 ## Acceptance criteria
 
-1. Editar el estado de la orden de compra.
+1. Cambiar el material de una parte customizable
 
 - **Dado** un producto personalizable en la tienda,
 **Cuando** se le da clic en el signo de + en la parte personalizable,
@@ -21,7 +21,7 @@
 
 | Tipo de diagrama      | Artefactos                                                                                                            |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Wireframes frontend   | ![PP-62-1](https://www.figma.com/file/MiuSV67DUVkzMeMKJeAhP0/Backoffice?node-id=27%3A4) |
+| Wireframes frontend   | ![PP-62-1](../../assets/PP-WF69.png) |
 | Diseño de pruebas     | [PP-62](https://taro-depto-ti.atlassian.net/wiki/spaces/FC/pages/21299244/FRAPPE+-+69+Yo+como+usuario+quiero+cambiar+los+colores+de+mi+producto+para+que+quede+como+yo+quiero) |
 
 ## Artefactos generados

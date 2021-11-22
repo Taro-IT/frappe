@@ -72,7 +72,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
     getMaterials();
   }, []);
 
-  const producrAmountChangeHandler = (event : any) => {
+  const productAmountChangeHandler = (event : any) => {
     setProductAmount(event.target.value)
   }
 
@@ -222,7 +222,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                 type="number"
                 className="w-14 rounded-lg border-4 border-yellow-300 mr-5 text-center"
                 placeholder="1"
-                onChange={producrAmountChangeHandler}
+                onChange={productAmountChangeHandler}
                 value={productAmount}
                 min="1"
                 >
