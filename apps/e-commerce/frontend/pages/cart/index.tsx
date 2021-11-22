@@ -1,4 +1,4 @@
-  // User Story: Frappe 80
+  // User Story: Frappe 80 / Frappe 71
 
 import React, { useEffect, useMemo, useState } from 'react'
 import styles from '../../styles/cartDetails.module.scss';
@@ -66,6 +66,13 @@ const CartDetailPage = () => {
                 <p className='pl-4 pt-4 text-left'>Talla: {category.size}</p>
                 <p className='pl-4 pt-4 text-left'>Cantidad: {category.amount}</p>
                 <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${category.price}</p>
+                <p className='pl-4 pb-4 pt-4 text-left'>Personalización: </p>
+                <ol>
+                {category.customizableParts?.map(part => {
+                  {{console.log(part)}}
+                  return <li className='pl-4 pb-4 pt-4 text-left'>{part.name} - {part.material}</li>
+                })}
+                </ol>
                 <div className='flex flex-row pt-4'>
                   <ViewDetailButton id={index} productId={category.productId}/>
                   <DeleteButton id={index} productId={name} />
