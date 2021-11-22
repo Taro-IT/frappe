@@ -1,3 +1,5 @@
+// User Stories: Frappe 64, frappe-505
+
 import { CommandHandler } from '@tshio/command-bus';
 import { CreateProductCommand } from './CreateProductCommand';
 import { ProductCreator } from './ProductCreator';
@@ -16,8 +18,40 @@ export class CreateProductCommandHandler implements CommandHandler<CreateProduct
   }
 
   async execute(command: CreateProductCommand) {
-    const { id, name, price, categories, description, images, isCustom, isInSale, isLimited, isOutOfStock, materials, sizes, amount} = command.payload;
+    const {
+      id,
+      name,
+      price,
+      categories,
+      description,
+      images,
+      isCustom,
+      isInSale,
+      isLimited,
+      isOutOfStock,
+      customizableParts,
+      sizes,
+      canBeSold,
+      priceInSale,
+      amount
+    } = command.payload;
 
-    return this.productCreator.execute(id, name, price, categories, description, images, isCustom, isInSale, isLimited, isOutOfStock, materials, sizes, amount);
+    return this.productCreator.execute(
+      id,
+      name,
+      price,
+      categories,
+      description,
+      images,
+      isCustom,
+      isInSale,
+      isLimited,
+      isOutOfStock,
+      customizableParts,
+      sizes,
+      canBeSold,
+      priceInSale,
+      amount
+    );
   }
 }

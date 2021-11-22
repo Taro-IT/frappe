@@ -10,9 +10,9 @@ const SigninPage = () => {
 
   return (
     <div className={styles.wrapper}>
-      <img className="flex mb-7" src={'/img/cinica-logo.png'} alt={'Cínica logo'} />
+      <img className="flex mb-7 pt-16" src={'/img/cinica-logo.png'} alt={'Cínica logo'} />
 
-      <Card className="flex flex-col xl:w-1/4 lg:w-1/3 md:w-5/12 w-2/3 rounded-t-xl" rounded={false}>
+      <Card className="flex flex-col xl:w-1/4 lg:w-1/3 md:w-5/12 w-2/3 rounded-xl" rounded={false}>
         <Card.Header title={'Iniciar Sesión'}>
         </Card.Header>
 

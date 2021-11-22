@@ -9,9 +9,13 @@ import { ProductDescription } from './ProductDescription';
 import { ProductIsInSale } from './ProductIsInSale';
 import { ProductIsLimited } from './ProductIsLimited';
 import { ProductIsOutOfStock } from './ProductIsOutOfStock';
-import { ProductMaterials } from './ProductMaterials';
+import { ProductCustomizableParts } from './ProductCustomizableParts';
 import { ProductSizes } from './ProductSizes';
 import { ProductAmount } from './ProductAmount';
+import { ProductIsActive} from './ProductIsActive'
+import { ProductDeletedAt} from './ProductDeletedAt'
+import { ProductCanBeSold } from './ProductCanBeSold';
+import {ProductPriceInSale} from './ProductPriceInSale';
 
 export class Product {
   constructor(
@@ -22,12 +26,17 @@ export class Product {
     readonly description: ProductDescription,
     readonly images: ProductImages,
     readonly isCustom: ProductIsCustom,
-    readonly isInSale: ProductIsInSale,
     readonly isLimited: ProductIsLimited,
     readonly isOutOfStock: ProductIsOutOfStock,
-    readonly materials: ProductMaterials,
+    readonly customizableParts: ProductCustomizableParts,
     readonly sizes: ProductSizes,
-    readonly amount?: ProductAmount
+    readonly isActive: ProductIsActive,
+    readonly canBeSold : ProductCanBeSold,
+    readonly isInSale?: ProductIsInSale,
+    readonly priceInSale?: ProductPriceInSale,
+    readonly deletedAt?: ProductDeletedAt,
+    readonly amount?: ProductAmount,
+    
   ) {}
 
   static fromPrimitives(primitives: ProductPrimitives): Product {
@@ -39,11 +48,15 @@ export class Product {
       new ProductDescription(primitives.description),
       new ProductImages(primitives.images),
       new ProductIsCustom(primitives.isCustom),
-      new ProductIsInSale(primitives.isInSale),
       new ProductIsLimited(primitives.isLimited),
       new ProductIsOutOfStock(primitives.isOutOfStock),
-      new ProductMaterials(primitives.materials),
+      new ProductCustomizableParts(primitives.customizableParts),
       new ProductSizes(primitives.sizes),
+      new ProductIsActive(primitives.isActive),
+      new ProductCanBeSold(primitives.canBeSold),
+      new ProductIsInSale(primitives.isInSale),
+      new ProductPriceInSale(primitives.priceInSale),
+      new ProductDeletedAt(primitives.deletedAt),
       new ProductAmount(primitives.amount)
     );
   }
@@ -57,11 +70,15 @@ export class Product {
       description: this.description.value,
       images: this.images.value,
       isCustom: this.isCustom.value,
-      isInSale: this.isInSale.value,
       isLimited: this.isLimited.value,
       isOutOfStock: this.isOutOfStock.value,
-      materials: this.materials.value,
+      customizableParts: this.customizableParts.value,
       sizes: this.sizes.value,
+      isActive: this.isActive.value,
+      canBeSold: this.canBeSold.value,
+      isInSale: this.isInSale?.value,
+      priceInSale: this.priceInSale?.value,
+      deletedAt: this.deletedAt?.value,
       amount: this.amount?.value
     };
   }

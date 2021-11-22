@@ -1,4 +1,4 @@
 export interface FileSystemFilePrimitives {
   readonly name: string;
-  readonly content: File;
+  readonly content: File | Buffer;
 }

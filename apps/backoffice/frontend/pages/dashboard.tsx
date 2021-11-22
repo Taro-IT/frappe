@@ -8,7 +8,6 @@ const DashboardPage = () => {
 
   return (
     <div>
-      Dashboard Page
       <Button title="Signout" onClick={signOut} />
     </div>
   );

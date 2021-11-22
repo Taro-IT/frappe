@@ -1,4 +1,4 @@
-import { ColorSwatchIcon, FolderIcon, ShoppingCartIcon, UsersIcon } from "@heroicons/react/solid";
+import { ColorSwatchIcon, FolderIcon, ShoppingCartIcon, UsersIcon, ClipboardListIcon } from "@heroicons/react/solid";
 import SidebarContentUser from "../SidebarContentUser";
 
 const classNames = (...classes: string[]) => {
@@ -7,8 +7,9 @@ const classNames = (...classes: string[]) => {
 
 const navigation = [
   { name: 'Órdenes', icon: ShoppingCartIcon, href: 'orders' },
-  { name: 'Catálogo', icon: ColorSwatchIcon, href: '' },
+  { name: 'Productos', icon: ColorSwatchIcon, href: 'products' },
   { name: 'Categorías', icon: FolderIcon, href: 'categories' },
+  { name: 'Materiales', icon: ClipboardListIcon, href: 'materials'},
   { name: 'Usuarios', icon: UsersIcon, href: '#' },
 ]
 

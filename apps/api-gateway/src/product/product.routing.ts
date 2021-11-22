@@ -13,8 +13,10 @@ interface ProductRoutingDeps {
 export const productRouting = ({ commandBus, queryBus }: ProductRoutingDeps) => {
   const router = express.Router();
 
+  //User story: frappe-64
   router.post('/', makeValidateBody(dtos.CreateProductDto), handlers.createProductHandler(commandBus));
   router.get('/', handlers.searchProductsHandler(queryBus));
-
+    //User story: frappe-64
+  router.get('/:id', handlers.findByIdProductHandler(queryBus));
   return router;
 };

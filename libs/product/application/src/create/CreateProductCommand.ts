@@ -1,3 +1,5 @@
+// User Stories: Frappe 64, frappe-505
+
 import { Command } from '@tshio/command-bus';
 
 interface CreateProductCommandPayload {
@@ -11,8 +13,10 @@ interface CreateProductCommandPayload {
   readonly isInSale: boolean;
   readonly isOutOfStock: boolean;
   readonly isLimited: boolean;
-  readonly materials: string[];
+  readonly customizableParts: string[];
   readonly sizes: number[];
+  readonly canBeSold: boolean;
+  readonly priceInSale: number;
   readonly amount:number;
 }
 
