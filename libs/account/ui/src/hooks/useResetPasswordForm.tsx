@@ -11,6 +11,7 @@ export const useResetPasswordForm = () => {
 
   const sendRequest: SubmitHandler<ResetPasswordFormType> = async (data: ResetPasswordFormType) => {
     try {
+      console.log(data)
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/accounts/reset-password`, data);
 
       console.log('The password has been reset.');

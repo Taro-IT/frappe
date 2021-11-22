@@ -5,16 +5,17 @@ import { useRouter } from 'next/router';
 import { Nullable } from '@frappe/common/utils';
 import { useResetPasswordForm } from '../../hooks';
 import { SubmitHandler } from 'react-hook-form';
-import { verifyPasswordResetCode } from '@firebase/auth';
+
 
 type ResetPaswordProps = {
-    readonly auth : any
-    readonly code : string
+    readonly mail : any
 }
 
-export const ResetPasswordForm = ({auth, code}: PropsWithChildren<ResetPaswordProps>) => {
+export const ResetPasswordForm = ({mail}: PropsWithChildren<ResetPaswordProps>) => {
+
   const router = useRouter();
   const [generalError, setGeneralError] = useState<Nullable<string>>(null);
+  const [email, setEmail] = useState()
   const { sendRequest } = useResetPasswordForm();
   const onSubmit: SubmitHandler<{ readonly email: string, password: string}> = async (data, event) => {
     event?.preventDefault();
@@ -22,16 +23,14 @@ export const ResetPasswordForm = ({auth, code}: PropsWithChildren<ResetPaswordPr
     setGeneralError('Tu contraseña se ha reestablecido.');
   }
 
-  
-  
   useEffect(() => {
-      const email = verifyPasswordResetCode(auth, code)
-      console.log(email);
-  }, [])
-
+    setEmail(mail)
+  }, [mail])
+  console.log(email)
   return (
     <Form className="flex flex-col w-full p-8" onSubmit={onSubmit}>
       {generalError && <SpanError message={generalError} />}
+      <TextField type="text" name="email" value={email}/>
       <TextField
         label="Nueva contraseña"
         type="password"
