@@ -1,7 +1,7 @@
-  // User Story: Frappe 62 / Frappe 80 / Frappe 69
-import { ProductPrimitives } from '@frappe/product/domain';
+  // User Story: Frappe 62 / Frappe 80 / Frappe 71
+import { ProductIsCustom, ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
-import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
+import { PlusSmIcon } from '@heroicons/react/outline'
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { ProductSizeSelector } from '..';
 import {Toastr} from '../../Toastr';
@@ -77,26 +77,27 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
   }
 
   const addProduct = () => {
-    setCartSuccess(false)
-    const newProduct = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      amount: productAmount,
-      image: product.images[0],
-      size: selectedSize,
-      customizableParts: productMaterials
-
-    }
-    const aux = localStorage.getItem('items');
-    if(aux !== null && aux !== undefined){
-      const auxArray = JSON.parse(aux);
-      auxArray[auxArray.length] = newProduct;
-      console.log(auxArray.length);
-      localStorage.setItem('items',JSON.stringify(auxArray));
-    }
-
-    setCartSuccess(true)
+    
+      setCartSuccess(false)
+      const newProduct = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        amount: productAmount,
+        image: product.images[0],
+        size: selectedSize,
+        customizableParts: productMaterials
+  
+      }
+      const aux = localStorage.getItem('items');
+      if(aux !== null && aux !== undefined){
+        const auxArray = JSON.parse(aux);
+        auxArray[auxArray.length] = newProduct;
+        console.log(auxArray.length);
+        localStorage.setItem('items',JSON.stringify(auxArray));
+      }
+  
+      setCartSuccess(true)
   }
  
 
@@ -194,10 +195,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                             </span>
                             <span className="ml-6 flex items-center">
                               {open ? (
-                                <MinusSmIcon
-                                  className="block h-6 w-6 text-yellow-400 group-hover:text-yellow-500"
-                                  aria-hidden="true"
-                                />
+                                <></>
                               ) : (
                                 <PlusSmIcon
                                   className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"

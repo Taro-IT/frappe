@@ -22,7 +22,7 @@ export const MaterialSelector = ({ options, index, images, setProductMaterial, p
     auxItem.material = selectedOption.label
     auxArr[index] = auxItem
     setProductMaterial(auxArr);
-    productMaterial[index]
+    setSelectedMaterial(selectedOption);
     images.map( image => {
       if (image.name == selectedOption.label){
         setImageSrc(image.image);
