@@ -1,5 +1,5 @@
-//User story: Frappe 71
-import React, { useState } from 'react';
+//User story: Frappe 69
+import { useState } from 'react';
 import Select from 'react-select';
 
 interface MaterialSelectorProps {

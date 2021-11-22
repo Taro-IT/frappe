@@ -1,4 +1,4 @@
-  // User Story: Frappe 80 / Frappe 71
+  // User Story: Frappe 80 / Frappe 69
 
 import React, { useEffect, useMemo, useState } from 'react'
 import styles from '../../styles/cartDetails.module.scss';
