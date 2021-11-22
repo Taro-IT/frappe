@@ -8,7 +8,7 @@ import { BackofficeProductContent } from '../../components/product/components/Ba
 
 const CreateProductPage = () => (
     <div className="bg-gray-100 w-full position-absolute flex flex-col h-screen overflow-auto">
-        <BackofficeProductContent minPrice={10000} maxPrice={100000} categories= {[]} className={styles['wrapper--main--content']}/>
+        <BackofficeProductContent minPrice={0} maxPrice={100000} categories= {[]} className={styles['wrapper--main--content']}/>
     </div>
   )
 
