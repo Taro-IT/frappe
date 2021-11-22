@@ -1,0 +1,23 @@
+{
+  "root": "libs/payment/persistance/stripe",
+  "sourceRoot": "libs/payment/persistance/stripe/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/payment/persistance/stripe/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/payment/persistance/stripe"],
+      "options": {
+        "jestConfig": "libs/payment/persistance/stripe/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

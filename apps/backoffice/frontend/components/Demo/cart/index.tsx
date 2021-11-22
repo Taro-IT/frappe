@@ -13,11 +13,23 @@ const CartView = () => {
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setCartItems(JSON.parse(localStorage.getItem('items')));
+      
+      
+      /* const products = [];
+      products[0] = {
+        id: "some uuid",
+        name: "osadia",
+        price: "2000",
+        size: 28,
+        amount: 1,
+        image: "https://cinicastaticfiles.blob.core.windows.net/uploads/c93b52d0-eabf-4c7d-9f94-e28a16fc62fb.jpeg"
+      }
+      localStorage.setItem("items", JSON.stringify(products)); */
+      setCartItems(JSON.parse(localStorage.getItem('items')) || []);
       if(cartItems === null){
         const cartArray = [];
         localStorage.setItem('items',JSON.stringify(cartArray));
-        setCartItems(JSON.parse(localStorage.getItem('items')));
+        setCartItems(JSON.parse(localStorage.getItem('items')) || [] );
       }
     }
   }, []);
