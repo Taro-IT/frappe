@@ -14,7 +14,8 @@ interface MaterialSelectorProps {
 export const MaterialSelector = ({ options, index, images, setProductMaterial, productMaterial }: MaterialSelectorProps) => {
 
   const [selectedMaterial, setSelectedMaterial] = useState<string>();
-  const [imageSrc, setImageSrc] = useState<string>();
+  const [imageSrc, setImageSrc] = useState<string>(images[0].image);
+  console.log(images[0].image)
 
   const handleSelectMaterials = (selectedOption : any) => {
     const auxArr = [...productMaterial]
@@ -36,6 +37,7 @@ export const MaterialSelector = ({ options, index, images, setProductMaterial, p
       <Select
         name="materials"
         options={options}
+        defaultValue={options[0]}
         className="basic-single w-1/2 h-1/4 self-center"
         classNamePrefix="Selecciona el material"
         value={selectedMaterial}

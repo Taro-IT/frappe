@@ -65,7 +65,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
         );
       }
     };
-    setProductMaterials(product.customizableParts.map( (part, i) => {
+    setProductMaterials(product.customizableParts?.map( (part, i) => {
         return { name: part, material: ''};
       })
     )
