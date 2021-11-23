@@ -1,6 +1,27 @@
-// User Story: Frappe 64
+// User Stories: Frappe 64, frappe-508
 
-import { Product, ProductId, ProductName, ProductPrice, ProductAmount, ProductCategories, ProductDescription, ProductImages, ProductIsCustom, ProductIsInSale, ProductIsLimited, ProductIsOutOfStock,ProductMaterials, ProductSizes,ProductRepository, ProductAlreadyExists, ProductIsActive, ProductCreated } from '@frappe/product/domain';
+import {
+  Product,
+  ProductId,
+  ProductName,
+  ProductPrice,
+  ProductAmount,
+  ProductCategories,
+  ProductDescription,
+  ProductImages,
+  ProductIsCustom,
+  ProductIsInSale,
+  ProductIsLimited,
+  ProductIsOutOfStock,
+  ProductCustomizableParts,
+  ProductSizes,
+  ProductRepository,
+  ProductAlreadyExists,
+  ProductIsActive,
+  ProductCanBeSold,
+  ProductPriceInSale,
+  ProductCreated
+} from '@frappe/product/domain';
 import { ProductNameFinder } from '../find/find-by-name';
 import {wrapError} from '@frappe/common/utils'
 import { EventDispatcher } from '@tshio/event-dispatcher';
@@ -32,8 +53,10 @@ export class ProductCreator {
     isInSale: boolean,
     isLimited: boolean,
     isOutOfStock: boolean,
-    materials: string[],
+    customizableParts: string[],
     sizes: number[],
+    canBeSold: boolean,
+    priceInSale: number,
     amount:number
     ) {
     
@@ -51,12 +74,14 @@ export class ProductCreator {
       new ProductDescription(description),
       new ProductImages(images),
       new ProductIsCustom(isCustom),
-      new ProductIsInSale(isInSale),
       new ProductIsLimited(isLimited),
       new ProductIsOutOfStock(isOutOfStock),
-      new ProductMaterials(materials),
+      new ProductCustomizableParts(customizableParts),
       new ProductSizes(sizes),
       new ProductIsActive(true),
+      new ProductCanBeSold(canBeSold),
+      new ProductIsInSale(isInSale),
+      new ProductPriceInSale(priceInSale),
       null,
       new ProductAmount(amount)
     );

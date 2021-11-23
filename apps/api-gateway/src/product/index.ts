@@ -4,7 +4,8 @@ import { MongoProductRepository } from '@frappe/product/persistance/mongodb';
 import {
   ProductCreator,
   ProductNameFinder,
-  ProductSearcher
+  ProductSearcher,
+  ProductIdFinder
 } from '@frappe/product/application';
 
 export const registerProductModule = (container: AwilixContainer) => {
@@ -13,6 +14,7 @@ export const registerProductModule = (container: AwilixContainer) => {
     productCreator: asClass(ProductCreator),
     productNameFinder: asClass(ProductNameFinder).singleton(),
     productSearcher: asClass(ProductSearcher).singleton(),
-    productRouting: asFunction(productRouting).singleton()
+    productIdFinder: asClass(ProductIdFinder).singleton(),
+    productRouting: asFunction(productRouting).singleton(),
   });
 };

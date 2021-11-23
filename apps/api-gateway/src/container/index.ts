@@ -11,6 +11,7 @@ import { registerShippingModule } from '../shipping';
 import { registerOrderModule } from '../order';
 import {registerFileSystemModule} from "../file-system";
 import {registerProductModule} from "../product"
+import { registerMaterialModule } from '../material';
 import { registerUserModule } from '../user';
 import { registerPaymentModule } from '../payment';
 
@@ -34,6 +35,7 @@ export const configureContainer = (): AwilixContainer<ContainerType> => {
   registerShippingModule(container);
   registerOrderModule(container);
   registerProductModule(container);
+  registerMaterialModule(container);
   registerUserModule(container);
   registerPaymentModule(container);
 

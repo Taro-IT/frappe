@@ -9,3 +9,4 @@ export { Navbar } from './Navbar';
 export { NavbarMobile } from './NavbarMobile';
 export {FloatingButton} from './components'
 export {withUserAgent} from './HOC/withUserAgent'
+export {Toastr} from './Toastr'
