@@ -50,6 +50,8 @@ const CartDetailPage = () => {
   };
 
   const handlePayButton = () => {
+    localStorage.setItem('subtotal', JSON.stringify(totalPrice))
+    localStorage.setItem('total', JSON.stringify(totalPrice))
     router.push("/checkout");
   }
 
@@ -75,29 +77,29 @@ const CartDetailPage = () => {
   const useCartItems = useMemo(
     () =>
 
-      cartItems?.map((category, index) => {
-        const { name } = category;
-        totalPrice += Number(category.price);
+      cartItems?.map((item, index) => {
+        const { name } = item;
+        totalPrice += Number(item.productPrice * item.quantity);
         return (
           <Card className={clsx(styles.categories, 'text-center', 'p-4')} key={index}>
             <div className='grid grid-cols-2 '>
               <div>
-                <img className={clsx(styles.photo)}src={category.image} alt="Logo" />
+                <img className={clsx(styles.photo)}src={item.productImages} alt="Logo" />
               </div>
               <div className='flex flex-col '>
-                <p className='pl-4  text-left'>Producto: {category.name}</p>
-                <p className='pl-4 pt-4 text-left'>Talla: {category.size}</p>
-                <p className='pl-4 pt-4 text-left'>Cantidad: {category.amount}</p>
-                <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${category.price}</p>
+                <p className='pl-4  text-left'>Producto: {item.productName}</p>
+                <p className='pl-4 pt-4 text-left'>Talla: {item.size}</p>
+                <p className='pl-4 pt-4 text-left'>Cantidad: {item.quantity}</p>
+                <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${item.productPrice}</p>
                 <p className='pl-4 pb-4 pt-4 text-left'>Personalización: </p>
                 <ol>
-                {category.customizableParts?.map(part => {
+                {item.customParts?.map(part => {
                   {{console.log(part)}}
                   return <li key={""} className='pl-4 pb-4 pt-4 text-left'>{part.name} - {part.material}</li>
                 })}
                 </ol>
                 <div className='flex flex-row pt-4'>
-                  <ViewDetailButton id={index} productId={category.productId}/>
+                  <ViewDetailButton id={index} productId={item.productId}/>
                   <DeleteButton id={index} productId={name} />
                 </div>
               </div>

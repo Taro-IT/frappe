@@ -80,13 +80,15 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
     
       setCartSuccess(false)
       const newProduct = {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        amount: productAmount,
-        image: product.images[0],
+        productId: product.id,
+        productName: product.name,
+        productPrice: product.price,
+        quantity: productAmount,
+        productImages: [
+          product.images[0]
+        ],
         size: selectedSize,
-        customizableParts: productMaterials
+        customParts: productMaterials
   
       }
       const aux = localStorage.getItem('items');
