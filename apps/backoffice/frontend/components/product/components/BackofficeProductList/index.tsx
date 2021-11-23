@@ -2,6 +2,7 @@ import { ProductPrimitives } from '@frappe/product/domain';
 import {AdjustmentsIcon} from '@heroicons/react/outline'
 import { BackofficeProductCard } from '../BackofficeProductCard';
 import { Modal } from '@frappe/common/design-system';
+import { useState } from 'react';
 
 
 interface ProductListContentProps {
@@ -10,6 +11,8 @@ interface ProductListContentProps {
 
 
   export const BackofficeProductList = ({ products }: ProductListContentProps) => {
+
+    const [displayDeleteModal, setDeleteModal] = useState<boolean>(false);
 
     return (
       <>
@@ -22,10 +25,11 @@ interface ProductListContentProps {
       }
         <div className="grid grid-cols-4 gap-4">
           {products.map(product => (
-            <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images}/>
+            <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images} setDeleteModal={setDeleteModal}/>
             ) )}
         </div>
-        <Modal showModal={true} toggleModal={(nv: boolean) => alert("hi") } title="Eliminar categoría">
+
+        <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title="Eliminar categoría">
           <div className="flex flex-col w-full px-20 mb-4 py-2 justify-center">
             <p className="text-2xl text-center mb-4">
               ¿Estás seguro de querer borrar la categoría currentCategory.name?

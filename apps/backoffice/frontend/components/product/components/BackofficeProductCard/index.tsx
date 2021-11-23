@@ -1,27 +1,28 @@
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Button, Card } from '@frappe/common/design-system';
 import { useRouter } from 'next/router';
+import { Dispatch, SetStateAction } from 'react';
 
 
-type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
+// type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
 
-export const BackofficeProductCard = ({ id, name, price, images }: ProductCardProps) => {
+
+type ProductCardProps = {
+  id: string,
+  name: string,
+  price: number,
+  images: string[],
+  setDeleteModal: Dispatch<SetStateAction<boolean>>,
+}
+
+export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal}: ProductCardProps) => {
   const router = useRouter();
   
   const handleClickEdit = () => {
     router.push(`/productEdit/${id}`);
   }
   const handleClickDelete = () => {
-    const delMessage = `¿Realmente deseas eliminar el producto ${name} con ID ${id}? Esta acción no se podrá desacer. Esta acción no afectara pedidos existentes.`;
-
-    const confirmDelete = confirm(delMessage);
-
-    if (!confirmDelete) {
-      alert("Se ha cancelado la operación. EL producto NO se eliminará.");
-      return;
-    }
-
-    alert(`Eliminando el producto ${name} con ID ${id}.`);
+    setDeleteModal(true);
   }
 
 
