@@ -1,6 +1,6 @@
 //User story: frappe-511
 import { Button, Form, TextField, SpanError } from '@frappe/common/design-system';
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Nullable } from '@frappe/common/utils';
 import { useResetPasswordForm } from '../../hooks';
