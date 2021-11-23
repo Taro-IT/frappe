@@ -1,13 +1,14 @@
 // User Story: Frappe 64 / frappe-508
 
 import React from 'react'
-import AddProduct from '../../components/product/AddProduct'
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
+import styles from '../../styles/store.module.scss'
+import { BackofficeProductContent } from '../../components/product/components/BackofficeProductContent';
 
 const CreateProductPage = () => (
     <div className="bg-gray-100 w-full position-absolute flex flex-col h-screen overflow-auto">
-        <AddProduct />
+        <BackofficeProductContent minPrice={0} maxPrice={100000} categories= {[]} className={styles['wrapper--main--content']}/>
     </div>
   )
 
