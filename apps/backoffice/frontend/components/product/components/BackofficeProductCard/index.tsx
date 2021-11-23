@@ -1,4 +1,3 @@
-import { ProductPrimitives } from '@frappe/product/domain';
 import { Button, Card } from '@frappe/common/design-system';
 import { useRouter } from 'next/router';
 import { Dispatch, SetStateAction } from 'react';
