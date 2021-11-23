@@ -1,5 +1,5 @@
 //User story: Frappe 69
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Select from 'react-select';
 
 interface MaterialSelectorProps {
@@ -15,7 +15,17 @@ export const MaterialSelector = ({ options, index, images, setProductMaterial, p
 
   const [selectedMaterial, setSelectedMaterial] = useState<string>();
   const [imageSrc, setImageSrc] = useState<string>(images[0].image);
-  console.log(images[0].image)
+
+  useEffect(() => {
+    const auxArr = [...productMaterial]
+    const auxItem = {...auxArr[index]}
+    auxItem.material = options[0].label
+    auxArr[index] = auxItem
+    setProductMaterial(auxArr);
+    setSelectedMaterial(options[0]);
+    setImageSrc(images[0].image);
+  },[]);
+
 
   const handleSelectMaterials = (selectedOption : any) => {
     const auxArr = [...productMaterial]
