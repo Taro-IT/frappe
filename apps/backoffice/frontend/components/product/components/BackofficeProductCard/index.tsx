@@ -12,7 +12,16 @@ export const BackofficeProductCard = ({ id, name, price, images }: ProductCardPr
     router.push(`/productEdit/${id}`);
   }
   const handleClickDelete = () => {
-    // no sé qué poner acá ¿Cómo hago un popup?
+    const delMessage = `¿Realmente deseas eliminar el producto ${name} con ID ${id}? Esta acción no se podrá desacer. Esta acción no afectara pedidos existentes.`;
+
+    const confirmDelete = confirm(delMessage);
+
+    if (!confirmDelete) {
+      alert("Se ha cancelado la operación. EL producto NO se eliminará.");
+      return;
+    }
+
+    alert(`Eliminando el producto ${name} con ID ${id}.`)
   }
 
 
