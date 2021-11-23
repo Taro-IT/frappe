@@ -23,15 +23,15 @@ export class MaterialNameFinder {
       // @ts-ignore
       { value: filters },
       Order.none(),
-    );    
-    
-    const materials = await this.materialRepository.search(criteria);    
+    );
+
+    const materials = await this.materialRepository.search(criteria);
     return materials.length !== 0 ? materials[0] : null;
   }
 
   async execute(name: string): Promise<MaterialPrimitives> {
     const material = await this.findMaterialByName(name);
-    
+
     if (material === null) {
       throw new MaterialNotFound(name);
     }
