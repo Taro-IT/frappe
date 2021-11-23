@@ -26,13 +26,13 @@ const CreateMaterial = () => {
       // Post de imágenes
       const bodyFormData = new FormData();
       bodyFormData.append('file', file);
-      console.table(bodyFormData.getAll('file'));
       const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
       
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/materials/`, {
         name: materialName,
         image: name
       });
+      return
       setShowRetroModal(true)
       setSuccess(true)
       setMessage("Material creado correctamente")

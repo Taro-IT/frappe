@@ -1,4 +1,4 @@
-  // User Story: Frappe 80
+  // User Story: Frappe 80 / Frappe 69
 
 import React, { useEffect, useMemo, useState } from 'react'
 import styles from '../../styles/cartDetails.module.scss';
@@ -6,6 +6,7 @@ import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/com
 import clsx from 'clsx';
 import { BadgeCheckIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const CartDetailPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -25,6 +26,22 @@ const CartDetailPage = () => {
       }
     }
   }, []);
+
+  const handlePayment = async () => {
+    const products = JSON.parse(localStorage.getItem('items'))
+    const stripeItems = products.map(product => (
+      {
+        id: product.id,
+        quantity: product.amount
+      }
+    ))
+    console.log(products);
+    
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
+      items: stripeItems
+    });
+    window.location.href = data.session.url
+  }
 
   type buttonprops = { id: number; productId?: string };
 
@@ -72,6 +89,13 @@ const CartDetailPage = () => {
                 <p className='pl-4 pt-4 text-left'>Talla: {category.size}</p>
                 <p className='pl-4 pt-4 text-left'>Cantidad: {category.amount}</p>
                 <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${category.price}</p>
+                <p className='pl-4 pb-4 pt-4 text-left'>Personalización: </p>
+                <ol>
+                {category.customizableParts?.map(part => {
+                  {{console.log(part)}}
+                  return <li key={""} className='pl-4 pb-4 pt-4 text-left'>{part.name} - {part.material}</li>
+                })}
+                </ol>
                 <div className='flex flex-row pt-4'>
                   <ViewDetailButton id={index} productId={category.productId}/>
                   <DeleteButton id={index} productId={name} />
