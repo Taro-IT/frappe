@@ -6,7 +6,7 @@ type ButtonProps = {
   readonly type?: 'button' | 'submit' | 'reset';
   readonly onClick?: MouseEventHandler;
   readonly title: string;
-  readonly variant?: 'purple' | 'cta';
+  readonly variant?: 'purple' | 'cta' | 'red' | 'green';
   readonly className?: string;
 };
 

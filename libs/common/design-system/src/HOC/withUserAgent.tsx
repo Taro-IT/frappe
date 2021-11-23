@@ -11,7 +11,6 @@ export const withUserAgent = WrappedComponent => {
   };
   FunctionalComponent.getInitialProps = async (context) => {
     const props = WrappedComponent.getInitialProps && await WrappedComponent.getInitialProps(context)
-    console.log(context);
     return {
       ...props,
       userAgent: context.req.headers['user-agent']

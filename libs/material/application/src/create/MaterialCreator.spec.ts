@@ -21,7 +21,7 @@ describe('MaterialCreator', () => {
   it('should create a new Material', async () => {
     const material = MaterialMother.random();
 
-    materialRepository.findByName.mockRejectedValueOnce(MaterialAlreadyExists);
+    materialRepository.search.mockRejectedValueOnce(MaterialAlreadyExists);
     await creator.execute(material.id.value, material.name.value, material.image.value);
 
     expect(materialRepository.save).toHaveBeenCalledWith(material);
@@ -30,7 +30,7 @@ describe('MaterialCreator', () => {
   it('should throw a MaterialAlreadyExist error', async () => {
     const material = MaterialMother.random();
 
-    materialRepository.findByName.mockResolvedValue(material);
+    materialRepository.search.mockResolvedValue([material]);
     const response = () => creator.execute(material.id.value, material.name.value, material.image.value);
 
     await expect(async () => response()).rejects.toThrow(MaterialAlreadyExists);

@@ -1,4 +1,6 @@
-import { MaterialNotFound, MaterialName, MaterialRepository } from '@frappe/material/domain';
+import { Criteria, Order } from '@dinnosc/criteria';
+import { Nullable } from '@frappe/common/utils';
+import { MaterialNotFound, MaterialRepository, Material, MaterialPrimitives } from '@frappe/material/domain';
 
 interface Props {
   readonly materialRepository: MaterialRepository;
@@ -11,8 +13,24 @@ export class MaterialNameFinder {
     this.materialRepository = materialRepository;
   }
 
-  async execute(name: string) {
-    const material = await this.materialRepository.findByName(new MaterialName(name));
+  private async findMaterialByName (name: string): Promise<Nullable<Material>> {
+    const filters = [
+      { field : "isActive", operator: "EQUAL", value: true },
+      { field: "name", operator: "EQUAL", value: name }
+    ]
+    const criteria = new Criteria<Material>(
+      /* eslint-disable @typescript-eslint/ban-types */
+      // @ts-ignore
+      { value: filters },
+      Order.none(),
+    );
+
+    const materials = await this.materialRepository.search(criteria);
+    return materials.length !== 0 ? materials[0] : null;
+  }
+
+  async execute(name: string): Promise<MaterialPrimitives> {
+    const material = await this.findMaterialByName(name);
 
     if (material === null) {
       throw new MaterialNotFound(name);
