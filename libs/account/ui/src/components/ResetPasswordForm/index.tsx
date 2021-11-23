@@ -1,7 +1,6 @@
 //User story: frappe-511
 import { Button, Form, TextField, SpanError } from '@frappe/common/design-system';
 import { PropsWithChildren, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { Nullable } from '@frappe/common/utils';
 import { useResetPasswordForm } from '../../hooks';
 import { SubmitHandler } from 'react-hook-form';
@@ -13,7 +12,6 @@ type ResetPaswordProps = {
 
 export const ResetPasswordForm = ({mail}: PropsWithChildren<ResetPaswordProps>) => {
 
-  const router = useRouter();
   const [generalError, setGeneralError] = useState<Nullable<string>>(null);
   const [email, setEmail] = useState<string>(mail)
   const { sendRequest } = useResetPasswordForm();

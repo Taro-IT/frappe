@@ -1,13 +1,11 @@
 //User story: frappe-503
 import { Button, Form, TextField, SpanError } from '@frappe/common/design-system';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { Nullable } from '@frappe/common/utils';
 import { usePasswordRecoveryRequestEmailForm } from '../../hooks';
 import { SubmitHandler } from 'react-hook-form';
 
 export const PasswordRecoveryRequestEmailForm = () => {
-  const router = useRouter();
   const [generalError, setGeneralError] = useState<Nullable<string>>(null);
   const { sendRequest } = usePasswordRecoveryRequestEmailForm();
   const onSubmit: SubmitHandler<{ readonly email: string}> = async (data, event) => {
