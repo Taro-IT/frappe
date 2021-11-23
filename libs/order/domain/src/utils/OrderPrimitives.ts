@@ -14,7 +14,6 @@ export interface OrderItemCustomPartType {
 }
 
 export interface OrderItemType {
-  readonly id: string;
   readonly productId: string;
   readonly productName: string;
   readonly productPrice: number;

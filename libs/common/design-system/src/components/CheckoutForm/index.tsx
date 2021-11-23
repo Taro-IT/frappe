@@ -1,10 +1,9 @@
 //User story: frappe-981
 import { Button, Modal } from '@frappe/common/design-system';
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
-import styles from './CheckoutForm.module.scss';
 
 export function CheckoutForm() {
 
@@ -59,12 +58,15 @@ export function CheckoutForm() {
         address: JSON.parse(localStorage.getItem('address'))
       });
       showModalSuccess();
+      //AQUI HAY UN CLEAR DEL LOCAL STORAGE, SO SE REQUIERE CONSERVAR PARA ALGO, QUITARLO!!!!!!!!
+      localStorage.clear();
       return
     } catch(error) {
       console.log(error);
       showModalError();
       return
     }
+
   }
 
   const storeDataInLocalStorage =() => {

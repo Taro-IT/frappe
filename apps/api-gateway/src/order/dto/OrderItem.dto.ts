@@ -4,9 +4,6 @@ import { OrderItemCustomPartType } from '@frappe/order/domain';
 import { OrderItemCustomPartDto } from "./OrderItemCustomPart.dto";
 
 export class OrderItemDto {
-  @IsNotEmpty()
-  @IsUUID()
-  readonly id: string
   
   @IsNotEmpty()
   @IsUUID()

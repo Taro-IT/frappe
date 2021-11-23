@@ -7,7 +7,6 @@ import { OrderItemSize } from '.';
 import { OrderItemCustomPart } from './custom-part';
 export class OrderItem {
   constructor(
-    readonly id: OrderItemId,
     readonly productId: ProductId,
     readonly productName: ProductName,
     readonly productPrice: ProductPrice,
@@ -19,7 +18,6 @@ export class OrderItem {
 
   static fromPrimitives(primitives: OrderItemType): OrderItem {
     return new OrderItem(
-      new OrderItemId(primitives.id),
       new ProductId(primitives.productId),
       new ProductName(primitives.productName),
       new ProductPrice(primitives.productPrice),
@@ -32,7 +30,6 @@ export class OrderItem {
 
   toPrimitives(): OrderItemType {
     return {
-      id: this.id.value,
       productId: this.productId.value,
       productName: this.productName.value,
       productPrice: this.productPrice.value,
