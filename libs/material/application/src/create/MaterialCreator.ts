@@ -19,7 +19,8 @@ export class MaterialCreator {
 
   async execute(id: string, name: string, image: string) {
     const exists = await this.materialExists(name);
-
+    console.log(exists); return
+    
     if (exists === null) {
       throw new MaterialAlreadyExists(name);
     }

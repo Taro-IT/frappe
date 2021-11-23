@@ -26,7 +26,8 @@ export class MaterialNameFinder {
     );
     
     const materials = await this.materialRepository.search(criteria);
-
+    console.log("MATERIALS",materials); return
+    
     return materials.length !== 0 ? materials[0] : null;
   }
 
