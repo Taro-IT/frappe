@@ -3,28 +3,32 @@ import classes from './CartDetails.module.scss';
 import { useState, useMemo, useEffect } from 'react';
 import { BadgeCheckIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
+import axios from 'axios';
 
 const CartView = () => {
   const [cartItems, setCartItems] = useState([]);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   let totalPrice = 0;
 
-  
+  const handlePayment = async () => {
+    const products = JSON.parse(localStorage.getItem('items'))
+    const stripeItems = products.map(product => (
+      {
+        id: product.id,
+        quantity: product.amount
+      }
+    ))
+    console.log(products);
+    
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
+      items: stripeItems
+    });
+    window.location.href = data.session.url
+    
+  }
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      
-      
-      /* const products = [];
-      products[0] = {
-        id: "some uuid",
-        name: "osadia",
-        price: "2000",
-        size: 28,
-        amount: 1,
-        image: "https://cinicastaticfiles.blob.core.windows.net/uploads/c93b52d0-eabf-4c7d-9f94-e28a16fc62fb.jpeg"
-      }
-      localStorage.setItem("items", JSON.stringify(products)); */
       setCartItems(JSON.parse(localStorage.getItem('items')) || []);
       if(cartItems === null){
         const cartArray = [];
@@ -41,7 +45,7 @@ const CartView = () => {
   };
 
   const PayButton = () => {
-    return <Button title="Ir a Pagar" className="ml-2 w-40 " variant="cta"  />;
+    return <Button title="Ir a Pagar" className="ml-2 w-40 " variant="cta"  onClick={handlePayment}/>;
   };
 
   const DeleteButton = ({ id, productId }: buttonprops) => {

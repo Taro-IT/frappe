@@ -36,7 +36,6 @@
     "payment-application": "libs/payment/application",
     "payment-domain": "libs/payment/domain",
     "payment-persistance-stripe": "libs/payment/persistance/stripe",
-    "payment-test": "libs/payment/test",
     "product-application": "libs/product/application",
     "product-domain": "libs/product/domain",
     "product-persistance-mongodb": "libs/product/persistance/mongodb",
