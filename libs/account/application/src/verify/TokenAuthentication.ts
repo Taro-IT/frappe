@@ -1,7 +1,7 @@
 import admin from 'firebase-admin';
 import { wrapError } from '@frappe/common/utils';
 import { AuthenticationFail, UserPrimitives } from '@frappe/account/domain';
-import { UserFinder } from '@frappe/account/application';
+import { UserFinder } from '../user';
 
 interface TokenAuthenticationDeps {
   readonly firebaseAuth: admin.auth.Auth;
