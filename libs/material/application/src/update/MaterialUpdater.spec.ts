@@ -26,7 +26,7 @@ describe('MaterialUpdater', () => {
     const material = MaterialMother.random();
 
     materialRepository.find.mockResolvedValueOnce(material);
-    materialRepository.findByName.mockRejectedValueOnce(MaterialAlreadyExists);
+    materialRepository.search.mockRejectedValueOnce(MaterialAlreadyExists);
     await updater.execute(material.id.value, material.name.value, material.image.value);
 
     expect(materialRepository.save).toHaveBeenCalledWith(material);
@@ -36,7 +36,7 @@ describe('MaterialUpdater', () => {
     const material = MaterialMother.random();
 
     materialRepository.find.mockResolvedValueOnce(material);
-    materialRepository.findByName.mockResolvedValueOnce(material);
+    materialRepository.search.mockResolvedValueOnce([material]);
 
     const response = () => updater.execute(material.id.value, material.name.value, material.image.value);
 
