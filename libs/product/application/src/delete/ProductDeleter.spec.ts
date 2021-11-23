@@ -18,11 +18,12 @@ describe('ProductDeleter', () => {
   });
 
   it('should delete a Product', async () => {
-    const product = ProductMother.random();
+    const when = new Date();
+    const product = ProductMother.withDeletedDate(when);
     productRepository.find.mockResolvedValueOnce(product);
-    await deleter.execute(product.id.value);
+    await deleter.execute(product.id.value, when);
 
-    expect(productRepository.delete).toHaveBeenCalledWith(product.id);
+    expect(productRepository.save).toHaveBeenCalledWith(product);
   });
 
   it('should throw a ProductNotFound', async () => {
