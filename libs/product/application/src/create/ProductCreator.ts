@@ -20,21 +20,26 @@ import {
   ProductIsActive,
   ProductCanBeSold,
   ProductPriceInSale,
+  ProductCreated
 } from '@frappe/product/domain';
 import { ProductNameFinder } from '../find/find-by-name';
 import {wrapError} from '@frappe/common/utils'
+import { EventDispatcher } from '@tshio/event-dispatcher';
 
 interface Props {
   readonly productRepository: ProductRepository;
   readonly productNameFinder: ProductNameFinder;
+  readonly eventBus: EventDispatcher;
 }
 
 export class ProductCreator {
   private readonly productRepository: ProductRepository;
   private readonly productNameFinder: ProductNameFinder;
-  constructor({ productRepository, productNameFinder }: Props) {
+  private readonly eventBus: EventDispatcher;
+  constructor({ productRepository, productNameFinder, eventBus }: Props) {
     this.productRepository = productRepository;
     this.productNameFinder = productNameFinder;
+    this.eventBus = eventBus;
   }
 
   async execute(
@@ -81,7 +86,10 @@ export class ProductCreator {
       new ProductAmount(amount)
     );
     
-    return this.productRepository.save(product);
+    await this.productRepository.save(product);
+    const event = new ProductCreated(product.toPrimitives())
+
+    this.eventBus.dispatch(event);
   }
 
   private async productExists(name: string) {

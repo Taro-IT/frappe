@@ -12,15 +12,14 @@ const CartDetailPage = () => {
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   let totalPrice = 0;
 
-
-
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setCartItems(JSON.parse(localStorage.getItem('items')));
+      setCartItems(JSON.parse(localStorage.getItem('items')) || []);
       if(cartItems === null){
         const cartArray = [];
         localStorage.setItem('items',JSON.stringify(cartArray));
-        setCartItems(JSON.parse(localStorage.getItem('items')));
+        setCartItems(JSON.parse(localStorage.getItem('items')) || [] );
       }
     }
   }, []);
