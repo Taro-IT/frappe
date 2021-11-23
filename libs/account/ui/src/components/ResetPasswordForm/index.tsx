@@ -15,11 +15,11 @@ export const ResetPasswordForm = ({mail}: PropsWithChildren<ResetPaswordProps>) 
 
   const router = useRouter();
   const [generalError, setGeneralError] = useState<Nullable<string>>(null);
-  const [email, setEmail] = useState()
+  const [email, setEmail] = useState<string>(mail)
   const { sendRequest } = useResetPasswordForm();
-  const onSubmit: SubmitHandler<{ readonly email: string, password: string}> = async (data, event) => {
+  const onSubmit: SubmitHandler<{ password: string }> = async (data, event) => {
     event?.preventDefault();
-    sendRequest(data);
+    sendRequest({...data, email: email});
     setGeneralError('Tu contraseña se ha reestablecido.');
   }
 
@@ -30,7 +30,6 @@ export const ResetPasswordForm = ({mail}: PropsWithChildren<ResetPaswordProps>) 
   return (
     <Form className="flex flex-col w-full p-8" onSubmit={onSubmit}>
       {generalError && <SpanError message={generalError} />}
-      <TextField type="text" name="email" value={email}/>
       <TextField
         label="Nueva contraseña"
         type="password"
