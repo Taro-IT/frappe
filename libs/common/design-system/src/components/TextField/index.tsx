@@ -20,7 +20,7 @@ export function TextField<TFieldValues = unknown>({
   type = 'text',
   label,
   order = 'col',
-  validations, 
+  validations,
   value
 }: TextFieldProps<TFieldValues>) {
   const {

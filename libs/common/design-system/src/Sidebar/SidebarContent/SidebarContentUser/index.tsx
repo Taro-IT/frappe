@@ -1,4 +1,4 @@
-import { CogIcon, LogoutIcon, UserCircleIcon } from "@heroicons/react/solid";
+import { LogoutIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 
 
