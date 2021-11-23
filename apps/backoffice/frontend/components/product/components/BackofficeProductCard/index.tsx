@@ -21,7 +21,7 @@ export const BackofficeProductCard = ({ id, name, price, images }: ProductCardPr
       return;
     }
 
-    alert(`Eliminando el producto ${name} con ID ${id}.`)
+    alert(`Eliminando el producto ${name} con ID ${id}.`);
   }
 
 
