@@ -4,7 +4,6 @@ import React, { useEffect, useMemo, useState } from 'react'
 import styles from '../../styles/cartDetails.module.scss';
 import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
 import clsx from 'clsx';
-import axios from 'axios';
 import { BadgeCheckIcon } from '@heroicons/react/solid';
 import axios from 'axios';
 
@@ -13,22 +12,6 @@ const CartDetailPage = () => {
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   let totalPrice = 0;
 
-  const handlePayment = async () => {
-    const products = JSON.parse(localStorage.getItem('items'))
-    const stripeItems = products.map(product => (
-      {
-        id: product.id,
-        quantity: product.amount
-      }
-    ))
-    console.log(products);
-    
-    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
-      items: stripeItems
-    });
-    window.location.href = data.session.url
-    
-  }
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
