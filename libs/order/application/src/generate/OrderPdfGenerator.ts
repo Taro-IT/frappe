@@ -51,7 +51,7 @@ export class OrderPdfGenerator {
     this.orderRepository.save(Order.fromPrimitives(updatedOrder));
 
     const docBuffer = fs.readFileSync("/tmp/output.pdf");
-    this.fileUploader.execute(fileName, docBuffer);
+    await this.fileUploader.execute(fileName, docBuffer);
     return pdfUrl;
 
   }
