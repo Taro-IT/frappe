@@ -76,7 +76,7 @@ export class MongoMaterialRepository extends MongoRepository implements Material
    *
    * @param criteria Object that represents a Query
    */
-   async search(criteria: Criteria<Material>): Promise<Material[]> {
+   async search(criteria: Criteria<Material>): Promise<Material[]> {          
     const materials = await this.searchByCriteria(criteria);
 
     return materials.map(material => Material.fromPrimitives({ ...material, id: material._id } as MaterialPrimitives));

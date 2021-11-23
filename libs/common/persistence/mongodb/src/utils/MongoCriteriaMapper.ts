@@ -58,7 +58,7 @@ export class MongoCriteriaMapper {
       return query;
     }, {});
 
-    console.log('builded query', auxBuiltQuery);
+    console.log('built query', auxBuiltQuery);
     
     return auxBuiltQuery
     

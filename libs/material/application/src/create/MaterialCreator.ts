@@ -1,5 +1,6 @@
 // User Story: Frappe 71
 
+import { wrapError } from '@frappe/common/utils';
 import { Material, MaterialAlreadyExists, MaterialId, MaterialName, MaterialImage, MaterialRepository, MaterialIsActive } from '@frappe/material/domain';
 import { MaterialNameFinder } from '../find';
 
@@ -19,7 +20,6 @@ export class MaterialCreator {
 
   async execute(id: string, name: string, image: string) {
     const exists = await this.materialExists(name);
-    console.log(exists); return
     
     if (exists === null) {
       throw new MaterialAlreadyExists(name);
@@ -31,11 +31,7 @@ export class MaterialCreator {
   }
 
   private async materialExists(name: string) {
-    try {
-      await this.materialNameFinder.execute(name);
-      return null;
-    } catch (error) {
-      return error;
-    }
+    const [error] = await wrapError(this.materialNameFinder.execute(name))
+    return error
   }
 }

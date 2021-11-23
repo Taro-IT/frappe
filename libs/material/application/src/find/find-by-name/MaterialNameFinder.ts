@@ -22,18 +22,16 @@ export class MaterialNameFinder {
       /* eslint-disable @typescript-eslint/ban-types */
       // @ts-ignore
       { value: filters },
-      Order.fromValue("", "ASC"),
-    );
+      Order.none(),
+    );    
     
-    const materials = await this.materialRepository.search(criteria);
-    console.log("MATERIALS",materials); return
-    
+    const materials = await this.materialRepository.search(criteria);    
     return materials.length !== 0 ? materials[0] : null;
   }
 
   async execute(name: string): Promise<MaterialPrimitives> {
     const material = await this.findMaterialByName(name);
-
+    
     if (material === null) {
       throw new MaterialNotFound(name);
     }
