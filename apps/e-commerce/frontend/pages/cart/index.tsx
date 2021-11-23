@@ -5,10 +5,12 @@ import styles from '../../styles/cartDetails.module.scss';
 import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
 import clsx from 'clsx';
 import { BadgeCheckIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/router';
 
 const CartDetailPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
+  const router = useRouter();
   let totalPrice = 0;
 
 
@@ -30,8 +32,12 @@ const CartDetailPage = () => {
     return <Button title="Ver detalle" className="ml-2 w-24" variant="cta"  />;
   };
 
+  const handlePayButton = () => {
+    router.push("/checkout");
+  }
+
   const PayButton = () => {
-    return <Button title="Ir a Pagar" className="ml-2 w-40 " variant="cta"  />;
+    return <Button title="Ir a Pagar" className="ml-2 w-40 " variant="cta" onClick={handlePayButton} />;
   };
 
   const DeleteButton = ({ id, productId }: buttonprops) => {
