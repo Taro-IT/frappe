@@ -1,4 +1,7 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsUUID } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsUUID, ValidateNested, IsDefined } from "class-validator";
+import { Type } from 'class-transformer'
+import { OrderItemCustomPartType } from '@frappe/order/domain';
+import { OrderItemCustomPartDto } from "./OrderItemCustomPart.dto";
 
 export class OrderItemDto {
   @IsNotEmpty()
@@ -26,6 +29,11 @@ export class OrderItemDto {
   @IsNotEmpty()
   @IsNumber()
   readonly quantity: number
+
+  @IsOptional()
+  @Type(() => OrderItemCustomPartDto)
+  @ValidateNested()
+  readonly customParts: OrderItemCustomPartType[];
 
   @IsOptional()
   readonly pdfFile?: string

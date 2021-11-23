@@ -19,6 +19,8 @@ describe('OrderCreator', () => {
 
   it('should create a new Order', async () => {
     const order = OrderMother.random();
+
+    console.log(order.items[0]);
     
     orderRepository.find.mockRejectedValueOnce(OrderNotFound);
     await creator.execute(
