@@ -1,3 +1,3 @@
-export { ProductFinder as CategoryFinder } from './ProductFinder';
-export { FindProductQuery as FindCategoryQuery } from './FindProductQuery';
+export { ProductFinder } from './ProductFinder';
+export { FindProductQuery } from './FindProductQuery';
 export { FindProductQueryHandler } from './FindProductQueryHandler';
