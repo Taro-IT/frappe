@@ -1,0 +1,27 @@
+.wrapper {
+
+  @apply relative mt-5 ;
+  
+  z-index: 0;
+  
+  &--main{
+    @apply relative grid  h-full;
+    grid-template-areas: "sidebar products";
+    grid-template-rows: 1fr;
+
+    &--sidebar {
+      grid-area: sidebar;
+      @apply fixed ;
+    }
+  
+    &--content {
+      grid-area: products;
+      @apply overflow-y-scroll;  
+      
+
+
+    }
+  }
+  
+  
+}

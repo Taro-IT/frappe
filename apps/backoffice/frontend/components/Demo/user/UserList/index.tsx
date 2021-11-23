@@ -11,9 +11,7 @@ const UserList = () => {
   useEffect(() => {
     const getUsers = async (): Promise<void> => {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users?order=${JSON.stringify({by: '',type: 'NONE'})}`);
-      console.log(response);
       const data = response.data.result;
-      console.log(data);
       if (data.length !== 0) {
         setUsers(data.items);
       }
