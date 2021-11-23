@@ -19,7 +19,7 @@ interface ProductListContentProps {
             <p className="text-gray-400 text-center align-middle">Agrega uno usando el botón de '+', localizado arriba a la derecha.</p>
         </div>
       }
-        <div className="grid grid-cols-4 gap-4">
+        <div className="max-w-screen-2xl grid grid-cols-4 gap-4">
           {products.map(product => (
             <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images}/>
             ) )}
