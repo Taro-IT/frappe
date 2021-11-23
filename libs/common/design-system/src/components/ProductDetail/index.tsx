@@ -1,11 +1,12 @@
-  // User Story: Frappe 62
-
+  // User Story: Frappe 62 / Frappe 80 / Frappe 71
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
-import { MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
+import { PlusSmIcon } from '@heroicons/react/outline'
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { ProductSizeSelector } from '..';
-import {Toastr} from '../../Toastr'
+import {Toastr} from '../../Toastr';
+import axios from 'axios';
+import { MaterialSelector } from '../MaterialSelector';
 
 type ProductDetailProps = {
   readonly product: ProductPrimitives;
@@ -20,7 +21,22 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
 
   const [selectedSize, setSelectedSize] = useState<number>(product.sizes[0])
   const [,setCartItems] = useState([]);
-  const [cartSuccess, setCartSuccess] = useState<boolean>(false)
+  const [cartSuccess, setCartSuccess] = useState<boolean>(false);
+  const [options, setOptions] = useState();
+  const [materials, setMaterials] = useState([]);
+  const [productMaterials, setProductMaterials] = useState<CustomPart[]>([]);
+  const [productAmount, setProductAmount] = useState<number>(1);
+
+  type Material = {
+    id: string;
+    name: string;
+    image: string;
+  };
+
+  type CustomPart = {
+    name: string,
+    material: string
+  }
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -33,29 +49,57 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
         setCartItems([]);
       }
     }
+
+    const getMaterials = async (): Promise<void> => {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/materials`);
+      const data = response.data.result;
+      if (data.length !== 0) {
+        setMaterials(data.map((material: Material) => {
+          return {id: material.id, name: material.name, image: material.image};
+          })
+        );
+        setOptions(
+          data.map((option: Material) => {
+            return { value: option.id, label: option.name };
+          })
+        );
+      }
+    };
+    setProductMaterials(product.customizableParts?.map( (part, i) => {
+        return { name: part, material: ''};
+      })
+    )
+    getMaterials();
   }, []);
 
-  // User Story: Frappe 80
-  const addProduct = () => {
-    setCartSuccess(false)
-    const newProduct = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      amount: product.amount,
-      image: product.images[0],
-      size: selectedSize
-    }
-    const aux = localStorage.getItem('items');
-    if(aux !== null && aux !== undefined){
-      const auxArray = JSON.parse(aux);
-      auxArray[auxArray.length] = newProduct;
-      console.log(auxArray.length);
-      localStorage.setItem('items',JSON.stringify(auxArray));
-    }
-
-    setCartSuccess(true)
+  const productAmountChangeHandler = (event : any) => {
+    setProductAmount(event.target.value)
   }
+
+  const addProduct = () => {
+    
+      setCartSuccess(false)
+      const newProduct = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        amount: productAmount,
+        image: product.images[0],
+        size: selectedSize,
+        customizableParts: productMaterials
+  
+      }
+      const aux = localStorage.getItem('items');
+      if(aux !== null && aux !== undefined){
+        const auxArray = JSON.parse(aux);
+        auxArray[auxArray.length] = newProduct;
+        console.log(auxArray.length);
+        localStorage.setItem('items',JSON.stringify(auxArray));
+      }
+  
+      setCartSuccess(true)
+  }
+ 
 
   return (
     <>
@@ -130,7 +174,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
               </h2>
               <div>
                 <h3 className="text-sm text-gray-600">Talla</h3>
-                  <div className="flex items-center space-x-3  mb-10 mt-5">
+                  <div className="grid sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-2  mb-10 mt-5">
                   {product.sizes.map(size => (
                     <ProductSizeSelector size={size} setSelectedSize={setSelectedSize} selectedSize={selectedSize}/>
                     ))}
@@ -138,7 +182,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
               </div>
 
               <div className="border-t divide-y divide-gray-200">
-                {product.customizableParts == undefined ? <></> : product.customizableParts.map((detail, i) => (
+                {product.customizableParts == undefined ? <></> : product.customizableParts.map((part, i) => (
                   <Disclosure as="div" key={i}>
                     {({ open }) => (
                       <>
@@ -147,14 +191,11 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                             <span
                               className={classNames(open ? 'text-yellow-600' : 'text-gray-900', 'text-sm font-medium')}
                             >
-                              {product.customizableParts[i]}
+                              {part}
                             </span>
                             <span className="ml-6 flex items-center">
                               {open ? (
-                                <MinusSmIcon
-                                  className="block h-6 w-6 text-yellow-400 group-hover:text-yellow-500"
-                                  aria-hidden="true"
-                                />
+                                <></>
                               ) : (
                                 <PlusSmIcon
                                   className="block h-6 w-6 text-gray-400 group-hover:text-gray-500"
@@ -165,9 +206,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
                           </Disclosure.Button>
                         </h3>
                         <Disclosure.Panel as="div" className="pb-6 prose prose-sm">
-                          <p>
-                                Aqui va la parte de los materiales para esta parte
-                          </p>
+                              <MaterialSelector bootPart={part} options={options} index={i} images={materials} productMaterial={productMaterials} setProductMaterial={setProductMaterials}/>
                         </Disclosure.Panel>
                       </>
                     )}
@@ -178,6 +217,16 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
 
 
             <div className="mt-10 flex sm:flex-col1">
+              <input
+                id="cantidad"
+                type="number"
+                className="w-14 rounded-lg border-4 border-yellow-300 mr-5 text-center"
+                placeholder="1"
+                onChange={productAmountChangeHandler}
+                value={productAmount}
+                min="1"
+                >
+              </input>
                 <button
                   type="submit"
                   className="max-w-xs flex-1 bg-yellow-500 border border-transparent
