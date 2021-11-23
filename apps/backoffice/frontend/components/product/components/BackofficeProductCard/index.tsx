@@ -6,6 +6,10 @@ import { Dispatch, SetStateAction } from 'react';
 
 // type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
 
+export type ProductCardData = {
+  id: string,
+  name: string
+}
 
 type ProductCardProps = {
   id: string,
@@ -13,9 +17,10 @@ type ProductCardProps = {
   price: number,
   images: string[],
   setDeleteModal: Dispatch<SetStateAction<boolean>>,
+  setCurrentProd: Dispatch<SetStateAction<ProductCardData>>,
 }
 
-export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal}: ProductCardProps) => {
+export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal, setCurrentProd}: ProductCardProps) => {
   const router = useRouter();
   
   const handleClickEdit = () => {
@@ -23,6 +28,7 @@ export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal}
   }
   const handleClickDelete = () => {
     setDeleteModal(true);
+    setCurrentProd({id: id, name: name})
   }
 
 
