@@ -59,7 +59,7 @@ export function CheckoutForm() {
       });
       showModalSuccess();
       //AQUI HAY UN CLEAR DEL LOCAL STORAGE, SO SE REQUIERE CONSERVAR PARA ALGO, QUITARLO!!!!!!!!
-      localStorage.clear();
+      //localStorage.clear();
       return
     } catch(error) {
       console.log(error);

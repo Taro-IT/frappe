@@ -11,11 +11,14 @@ import {
   OrderTotal,
   OrderSubtotal,
   OrderIsDelayed,
-  OrderClientName
+  OrderClientName,
+  OrderGenerated,
+  OrderPrimitives
 } from '@frappe/order/domain';
 import { ShippingAddress, ShippingAddressPrimitives } from '@frappe/shipping/domain';
 import { OrderPdfFile } from '@frappe/order/domain';
 import { OrderFinder } from '..';
+import { EventDispatcher } from '@tshio/event-dispatcher';
 
 // SOLID
 // Una Clase por lo general solo debe tener un método público
@@ -23,15 +26,18 @@ import { OrderFinder } from '..';
 interface Props {
   readonly orderRepository: OrderRepository;
   readonly orderFinder: OrderFinder;
+  readonly eventBus: EventDispatcher;
 }
 
 export class OrderCreator {
   private readonly orderRepository: OrderRepository;
   private readonly orderFinder: OrderFinder;
+  private readonly eventBus: EventDispatcher;
 
-  constructor({ orderRepository, orderFinder }: Props) {
+  constructor({ orderRepository, orderFinder, eventBus }: Props) {
     this.orderRepository = orderRepository;
     this.orderFinder = orderFinder;
+    this.eventBus = eventBus;
   }
 
   async execute(
@@ -62,7 +68,9 @@ export class OrderCreator {
       ShippingAddress.fromPrimitives(address ? address : undefined),
       new OrderPdfFile(pdfFile ? pdfFile : undefined)
     );
-    
+
+    const newOrder : OrderPrimitives = order.toPrimitives();
+    await this.eventBus.dispatch(new OrderGenerated(newOrder));
     return this.orderRepository.save(order);
   }
 
