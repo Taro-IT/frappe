@@ -4,6 +4,7 @@ import { BackofficeProductCard, ProductCardData } from '../BackofficeProductCard
 import { Button, Modal } from '@frappe/common/design-system';
 import { useState } from 'react';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
+import axios from 'axios';
 
 
 interface ProductListContentProps {
@@ -16,6 +17,7 @@ interface ProductListContentProps {
     const [displayDeleteModal, setDeleteModal] = useState<boolean>(false);
     const [currentProduct, setCurrentProduct] = useState<ProductCardData>();
     const [displayResultModal, setDisplayResultModal] = useState<boolean>(false);
+    console.log(products);
 
     // The message to show when making operations
     const [message, setMessage] = useState<string>('');
@@ -24,9 +26,9 @@ interface ProductListContentProps {
 
     type buttonprops = { id: string; name?: string };
     const ConfirmDeleteProductButton = ({ id, name }: buttonprops) => {
-      /*const confirmDelete = async () => {
+      const confirmDelete = async () => {
         try {
-          await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`);
+          await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
           setMessage('Categoría borrada con éxito.');
           setSuccess(true);
         } catch (error) {
@@ -37,9 +39,9 @@ interface ProductListContentProps {
         setDeleteModal(false);
         setDisplayResultModal(true);
         return;
-      };*/
+      };
 
-      const confirmDelete = () => {
+      /*const confirmDelete = () => {
         // Simulated AXIOS
         // For testing purposes ONLY
         const simulatedAxios = confirm("SOLO PARA PRUEBAS. ¿El resultado de AXIOS fue exitoso?");
@@ -56,7 +58,7 @@ interface ProductListContentProps {
         setDeleteModal(false);
         setDisplayResultModal(true);
         return;
-      }
+      }*/
 
       return <Button title="Eliminar" onClick={confirmDelete} variant="cta" className={'mt-4'} />;
     };
@@ -72,7 +74,8 @@ interface ProductListContentProps {
       }
         <div className="max-w-screen-2xl grid grid-cols-4 gap-4">
           {products.map(product => (
-            <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images} setDeleteModal={setDeleteModal} setCurrentProd={setCurrentProduct}/>
+            product.isActive &&
+            <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images}  setDeleteModal={setDeleteModal} setCurrentProd={setCurrentProduct}/>
             ) )}
         </div>
 
