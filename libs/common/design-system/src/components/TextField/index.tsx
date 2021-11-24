@@ -12,6 +12,7 @@ type TextFieldProps<TFieldValues = unknown> = DetailedHTMLProps<
   readonly label?: string;
   readonly validations?: RegisterOptions<TFieldValues>;
   readonly order?: 'col' | 'row';
+  readonly value? : string;
 };
 
 export function TextField<TFieldValues = unknown>({
@@ -19,7 +20,8 @@ export function TextField<TFieldValues = unknown>({
   type = 'text',
   label,
   order = 'col',
-  validations
+  validations,
+  value
 }: TextFieldProps<TFieldValues>) {
   const {
     register,
@@ -35,7 +37,7 @@ export function TextField<TFieldValues = unknown>({
             {label}{' '}
           </label>
         )}
-        <input className={clsx(styles.text__field__input, 'w-2/3')} type={type} {...register(name, validations)} />
+        <input className={clsx(styles.text__field__input, 'w-2/3')} type={type} {...register(name, validations)} value={value}/>
       </div>
       {errors[name] && <SpanError message={errors[name].message} />}
     </>

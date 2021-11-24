@@ -22,17 +22,13 @@ const OrderList = () => {
   const useOrders = useMemo(
     () =>
       orders.map(order => {
-        return <OrderCard id={order.id} order={order} items={order.items} key={order.id} status={order.status} />;
+        return <OrderCard id={order.id} order={order} items={order.items} key={order.id} />;
       }),
     [orders]
   );
 
   return (
-    <div className=" w-full h-full overflow-y-scroll ">
-      {/*Quitar badge atrasado fuera de lugar
-      <Badge content="Atrasado" color="red" />*/}
-      <div className="w-full h-full ">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
-    </div>
+      <div className="w-full h-full overflow-y-scroll">{useOrders.length ? useOrders : 'No tienes órdenes registradas.'}</div>
   );
 };
 

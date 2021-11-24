@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import styles from './StoreProductContent.module.scss';
 import { useProducts } from '../../../../hooks';
 import { BackofficeProductList } from '../BackofficeProductList';
-import { useRouter } from 'next/router';
 import { PlusCircleIcon } from '@heroicons/react/solid';
 
 
@@ -16,13 +15,7 @@ interface StoreProductContentProps {
 
 export const BackofficeProductContent = ({ className, minPrice, maxPrice, categories }: StoreProductContentProps) => {
   const { products} = useProducts({minPrice,maxPrice, categories});
-  const router = useRouter();
 
-
-  const handleClickNewProduct = () => {
-    router.push('/addProduct');
-  }
-  
 
   return (
     <div className={ clsx(className, styles.wrapper )}>

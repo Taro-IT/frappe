@@ -3,18 +3,23 @@ import { Criteria, Operator } from '@dinnosc/criteria';
 //User Stories: frappe-62
 
 export class MongoCriteriaMapper {
+  /**
+   * Function to transform the given criteria into a MongoDB Query
+   *
+   * @param criteria
+   */
   transformQuery<T>(criteria: Criteria<T>) {
-    
+
     if (criteria.filters.value.length === 0) {
       return {};
     }
 
     const betweenCache: Record<string, boolean> = {};
 
-    const auxBuiltQuery = criteria.filters.value.reduce((query, { field, operator, value }) => {
+    return criteria.filters.value.reduce((query, { field, operator, value }) => {
       //@ts-ignore
-      const key = field  === 'id' ? '_id' : field ;
-      const fieldValue: unknown = value ;
+      const key = field === 'id' ? '_id' : field;
+      const fieldValue: unknown = value;
 
       const auxGt = query[key as string] ?? {};
       const auxLt = query[key as string] ?? {};
@@ -31,18 +36,18 @@ export class MongoCriteriaMapper {
 
 
           query[key as string] = (betweenCache[key as string] !== undefined) ?
-          { ...auxGt, $gte: Number(fieldValue) } :
-          { $gte: Number(fieldValue) };
+            { ...auxGt, $gte: Number(fieldValue) } :
+            { $gte: Number(fieldValue) };
 
           betweenCache[key as string] = true;
           break;
         case Operator.LT:
           // TODO refactor to remove const creation
-          
+
 
           query[key as string] = (betweenCache[key as string] !== undefined) ?
-          { ...auxLt, $lte: Number(fieldValue) } :
-          { $lte: Number(fieldValue) };
+            { ...auxLt, $lte: Number(fieldValue) } :
+            { $lte: Number(fieldValue) };
 
           betweenCache[key as string] = true;
           break;
@@ -53,14 +58,9 @@ export class MongoCriteriaMapper {
           query[key as string] = { $not: { $regex: new RegExp(fieldValue as string, 'ig') } };
           break;
       }
-      
-      
-      return query;
-    }, {});
 
-    console.log('builded query', auxBuiltQuery);
-    
-    return auxBuiltQuery
-    
+
+      return query;
+    }, {})
   }
 }

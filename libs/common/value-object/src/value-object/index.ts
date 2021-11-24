@@ -5,3 +5,4 @@ export { NumberValue } from './NumberValue';
 export { StringArrayValue } from './StringArrayValue';
 export { BooleanValue } from './BooleanValue';
 export { NumberArrayValue } from './NumberArrayValue';
+export {DateValue} from './DateValue'

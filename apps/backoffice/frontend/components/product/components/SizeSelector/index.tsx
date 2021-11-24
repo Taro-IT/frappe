@@ -5,7 +5,7 @@ type SizeSelectorProps = {
   size: number
   setSizesArray: (nv: number[]) => any
   sizesArray: number[]
-  selectAll : boolean
+  selectAll: boolean
 }
 
 const SizeSelector = ({size, setSizesArray, sizesArray, selectAll}: SizeSelectorProps) => {

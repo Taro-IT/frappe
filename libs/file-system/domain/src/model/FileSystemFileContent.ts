@@ -1,3 +1,3 @@
 export class FileSystemFileContent {
-  constructor(readonly value: File) {}
+  constructor(readonly value: File | Buffer) {}
 }

@@ -34,18 +34,22 @@ export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal,
   return (
     <Card className="h-auto ">
         <div className="p-3 h-full flex flex-col justify-between">
-            <div className="flex h-full items-center mb-3">{(images && images[0]) ? <img src={images[0]} />:
+            <div className="items-center mb-3">{(images && images[0]) ? <img className="" src={images[0]} />:
               <img src="/img/notFound.jpg"/>}
             </div>
-          <div className="flex justify-between">
+          <div className="flex flex-col justify-between">
+            <div>
             <p className="font-bold text-sm">
-              {name}
+              Nombre: {name}
             </p>
             <p className="font-semibold text-sm">
-              ${price}
+              Precio: ${price}
             </p>
+            </div>
+            <div className="flex flex-row justify-between ">
             <Button type={'button'} title={'Editar'} variant={'cta'} onClick={handleClickEdit} />
             <Button type={'button'} title={'Borrar'} variant={'red'} onClick={handleClickDelete}/>
+            </div>
           </div>
         </div>
     </Card>

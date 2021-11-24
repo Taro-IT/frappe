@@ -20,5 +20,7 @@ export const productRouting = ({ commandBus, queryBus }: ProductRoutingDeps) => 
   // User Story: frappe-58
   router.delete('/:id', handlers.deleteProductHandler(commandBus));
 
+    //User story: frappe-64
+  router.get('/:id', handlers.findByIdProductHandler(queryBus));
   return router;
 };
