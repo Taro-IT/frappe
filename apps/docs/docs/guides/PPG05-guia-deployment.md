@@ -10,7 +10,7 @@ Verificar que la línea a desplegar este lista para ello
 
 - Los test pasaron satisfactoriamente
 - Puede realizarse un build de la línea
-- Cumple con la revisión de calidad (Checklist de código, Lint y Statis Testing)
+- Cumple con la revisión de calidad (Checklist de código, Lint y Statics Testing)
 
 ## Pasos a seguir
 
