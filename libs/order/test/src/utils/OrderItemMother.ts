@@ -1,11 +1,10 @@
 import { NumberMother, StringMother, UuidMother } from '@frappe/common/test';
-import { OrderItemCustomPart, OrderItemCustomPartType, OrderItemType } from '@frappe/order/domain';
+import { OrderItemCustomPartType, OrderItemType } from '@frappe/order/domain';
 import { OrderItemCustomPartMother } from './OrderItemCustomPartMother';
 
 export class OrderItemMother {
   static random(): OrderItemType {
     return {
-      id: UuidMother.random(),
       productId: UuidMother.random(),
       productName: StringMother.randomWord(),
       productPrice: NumberMother.randomPositive(),
