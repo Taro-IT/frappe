@@ -1,4 +1,4 @@
-export class CategoryDeletedAt 
+export class CategoryDeletedAt
 {
   readonly value: Date;
 

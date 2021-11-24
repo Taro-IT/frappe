@@ -1,4 +1,4 @@
-export class CategoryIsActive 
+export class CategoryIsActive
 {
   readonly value: boolean;
 
