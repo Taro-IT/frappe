@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
 import { Link } from '..';
-import {  useRouter } from 'next/router';
 const navItems = [
   {href: "store", text: "Tienda"},
   {href: "about", text: "Nosotros"},
@@ -12,7 +11,6 @@ const navItems = [
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems] = useState<number>(0)
-  const router = useRouter();
   const handleOpenUser = () => {
     setOpen(previous => !previous)
   }

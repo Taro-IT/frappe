@@ -1,5 +1,5 @@
 //User story: frappe-981
-import { Button, Modal } from '@frappe/common/design-system';
+import { Button, Modal } from '../../index';
 import React, { FormEvent, useState } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
@@ -152,14 +152,6 @@ export function CheckoutForm() {
     setCountry(selected.value);
   };
 
-  const customStyles = {
-    option: (provided: any, state: { isSelected: any }) => ({
-      ...provided,
-      backgroundColor: state.isSelected ? 'rgb(163, 142, 101)' : undefined,
-      color: state.isSelected ? 'rgb(163, 142, 101)' : undefined
-    })
-  };
-
   const options = [{value: 'México' , label: "México"}]
   
   return (
@@ -181,6 +173,7 @@ export function CheckoutForm() {
                   type="text"
                   required
                   id="clientName"
+                  placeholder="Juan Pérez"
                   name="clientName"
                   autoComplete="given-name"
                   className= "w-1/4 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
@@ -197,6 +190,7 @@ export function CheckoutForm() {
                   required
                   type="email"
                   id="email"
+                  placeholder="ejemplo@hotmail.com"
                   name="email"
                   autoComplete="email"
                   className="w-1/4 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -213,6 +207,7 @@ export function CheckoutForm() {
                 <input
                   required
                   type="text"
+                  placeholder="222 2 22 22 22"
                   name="phone"
                   id="phone"
                   autoComplete="tel"
@@ -236,6 +231,7 @@ export function CheckoutForm() {
                     type="text"
                     name="company"
                     id="company"
+                    placeholder="Cínica"
                     className=" w-1/4 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     value={company}
                     onChange={handleCompanyChange}
@@ -251,6 +247,7 @@ export function CheckoutForm() {
                   <input
                     required
                     type="text"
+                    placeholder="Colonia, Calle, número exterior, número interior"
                     name="address1"
                     id="address1"
                     autoComplete="street-address"
@@ -269,6 +266,7 @@ export function CheckoutForm() {
                   <input
                     type="text"
                     name="address2"
+                    placeholder="Colonia, Calle, número exterior, número interior"
                     id="address2"
                     autoComplete="street-address"
                     className=" w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -286,6 +284,7 @@ export function CheckoutForm() {
                   <input
                     type="text"
                     name="reference"
+                    placeholder="Cerca de la autopista"
                     id="reference"
                     className="w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     value={reference}
@@ -294,22 +293,7 @@ export function CheckoutForm() {
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                  Ciudad*
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    autoComplete="address-level2"
-                    className="w-1/4 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    value={city}
-                    onChange={handleCityChange}
-                  />
-                </div>
-              </div>
+              
 
               <div>
                 <label htmlFor="country" className="block text-sm font-medium text-gray-700">
@@ -337,10 +321,29 @@ export function CheckoutForm() {
                     type="text"
                     name="province"
                     id="province"
+                    placeholder="Querétaro"
                     value={province}
                     autoComplete="address-level1"
                     className="w-1/4 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     onChange={handleProvinceChange}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                  Ciudad*
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="Santiago de Querétaro"
+                    id="city"
+                    autoComplete="address-level2"
+                    className="w-1/4 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    value={city}
+                    onChange={handleCityChange}
                   />
                 </div>
               </div>
@@ -354,6 +357,7 @@ export function CheckoutForm() {
                     required
                     type="text"
                     name="zip"
+                    placeholder="76200"
                     id="zip"
                     autoComplete="postal-code"
                     value={zip}

@@ -1,6 +1,5 @@
 //User Stories: frappe-91, frappe-981
 import { OrderItemType } from '../../utils';
-import { OrderItemId } from './OrderItemId';
 import { OrderItemQuantity } from './OrderItemQuantity';
 import { ProductId, ProductImages, ProductName, ProductPrice } from '@frappe/product/domain';
 import { OrderItemSize } from '.';

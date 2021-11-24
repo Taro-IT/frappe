@@ -5,7 +5,6 @@ import styles from '../../styles/cartDetails.module.scss';
 import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
 import clsx from 'clsx';
 import { BadgeCheckIcon } from '@heroicons/react/solid';
-import axios from 'axios';
 
 const CartDetailPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -25,21 +24,21 @@ const CartDetailPage = () => {
     }
   }, []);
 
-  const handlePayment = async () => {
-    const products = JSON.parse(localStorage.getItem('items'))
-    const stripeItems = products.map(product => (
-      {
-        id: product.id,
-        quantity: product.amount
-      }
-    ))
-    console.log(products);
+  // const handlePayment = async () => {
+  //   const products = JSON.parse(localStorage.getItem('items'))
+  //   const stripeItems = products.map(product => (
+  //     {
+  //       id: product.id,
+  //       quantity: product.amount
+  //     }
+  //   ))
+  //   console.log(products);
     
-    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
-      items: stripeItems
-    });
-    window.location.href = data.session.url
-  }
+  //   const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
+  //     items: stripeItems
+  //   });
+  //   window.location.href = data.session.url
+  // }
 
   type buttonprops = { id: number; productId?: string };
 

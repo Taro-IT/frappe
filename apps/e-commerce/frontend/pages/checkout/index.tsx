@@ -1,9 +1,6 @@
   // User Story: Frappe 981
-  import React, { useEffect, useMemo, useState } from 'react'
-  import styles from '../../styles/cartDetails.module.scss';
-  import { Button, Card, CheckoutForm, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
-  import clsx from 'clsx';
-  import { BadgeCheckIcon } from '@heroicons/react/solid';
+  import React from 'react'
+  import {  CheckoutForm, EcommerceLayout, withUserAgent } from '@frappe/common/design-system';
 const CheckoutPage = () => {
   return(
     <div>

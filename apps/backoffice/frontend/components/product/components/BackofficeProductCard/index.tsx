@@ -1,13 +1,9 @@
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Button, Card } from '@frappe/common/design-system';
-import { useRouter } from 'next/router';
-
 
 type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
 
 export const BackofficeProductCard = ({ id, name, price, images }: ProductCardProps) => {
-  const router = useRouter();
-  
   const handleClickDelete = () => {
     // no sé qué poner acá ¿Cómo hago un popup?
   }

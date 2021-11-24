@@ -1,3 +1,4 @@
+ // User Story: Frappe 981
 import {EventSubscriberInterface, EventSubscribersMeta} from "@tshio/event-dispatcher";
 import {EmailProvider, Email} from "@frappe/email/domain";
 import {OrderGenerated} from "@frappe/order/domain";
@@ -26,6 +27,7 @@ export class SendEmailOnOrderGenerated implements EventSubscriberInterface {
       id: EmailTemplates.Generic,
       to: address.email,
       data: {
+        name: clientName,
         body: `¡Muchas gracias por tu compra! Tu ${items[0].productName} llegará muy pronto`,
         subject: '¡Gracias por comprar en Cínica!'
       }

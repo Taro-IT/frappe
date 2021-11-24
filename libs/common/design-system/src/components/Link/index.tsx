@@ -1,5 +1,3 @@
-import React from 'react';
-import NextLink from 'next/link';
 import styles from './Link.module.scss';
 import clsx from 'clsx';
 
