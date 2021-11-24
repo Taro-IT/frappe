@@ -1,3 +1,4 @@
+// User story: frappe-503
 import { EventDispatcher } from '@tshio/event-dispatcher';
 import { UserSearcher } from '../../user';
 import { OrderTypes } from '@dinnosc/criteria';
@@ -27,7 +28,7 @@ export class PasswordResetCodeCreator {
     const link = await this.firebaseAuth.generateEmailVerificationLink(user.email);
     const params = new URLSearchParams(link.split('?')[1]);
     const code = params.get('oobCode');
-    
+
     const event = new PasswordResetCodeCreated({ email, code });
 
     this.eventBus.dispatch(event);

@@ -1,3 +1,4 @@
+// Use story: frappe-503
 import { CommandHandler } from '@tshio/command-bus';
 import { CreatePasswordResetCodeCommand } from './CreatePasswordResetCodeCommand';
 import { PasswordResetCodeCreator } from './PasswordResetCodeCreator';
@@ -17,7 +18,6 @@ export class CreatePasswordResetCodeCommandHandler implements CommandHandler<Cre
 
   async execute(command: CreatePasswordResetCodeCommand): Promise<void> {
     const { email } = command.payload;
-    this.passwordResetCodeCreator.execute(email);
+    await this.passwordResetCodeCreator.execute(email);
   }
-  
 }
