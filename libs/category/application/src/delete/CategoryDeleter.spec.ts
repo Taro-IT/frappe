@@ -18,11 +18,11 @@ describe('CategoryDeleter', () => {
   });
 
   it('should delete a Category', async () => {
-    const category = CategoryMother.random();
+    const category = CategoryMother.withDeletedDate(new Date());
     categoryRepository.find.mockResolvedValueOnce(category);
-    await deleter.execute(category.id.value);
+    await deleter.execute(category.id.value, category.deletedAt?.value);
 
-    expect(categoryRepository.delete).toHaveBeenCalledWith(category.id);
+    expect(categoryRepository.save).toHaveBeenCalledWith(category);
   });
 
   it('should throw a CategoryNotFound', async () => {

@@ -2,6 +2,7 @@
 
 ## Objetivo(s)
 
+
 - Orientar en la manera en la que se desarrolla un daily meeting dentro del equipo de Frappé.
 
 ## Pre-requisitos
