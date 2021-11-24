@@ -1,5 +1,5 @@
 //User story: frappe-981
-import { Button, Modal } from '../../index';
+import { Button, Card, Modal } from '../../index';
 import React, { FormEvent, useState } from 'react';
 import Select from 'react-select';
 import axios from 'axios';
@@ -148,208 +148,200 @@ export function CheckoutForm() {
   };
 
   return (
-    <div className=" bg-gray-100 ">
-      <div className="w-auto pt-16 pb-42  ">
-        <h2 className="sr-only">Checkout</h2>
-
-        <form className="w-2/3 ml-48 " onSubmit={handleSubmit}>
-          <h2 className="text-lg font-medium text-gray-900">Información de contacto</h2>
-
+    <>
+      <form className="w-full inline-block text-center" onSubmit={handleSubmit}>
+        <h2 className="text-lg font-medium text-gray-900">Información de contacto</h2>
+        <div className="mt-4">
+          <label htmlFor="clientName" className="block text-sm font-medium text-gray-700">
+            Nombre del recipiente*
+          </label>
+          <div className="mt-1">
+            <input
+              type="text"
+              required
+              id="clientName"
+              placeholder="Juan Pérez"
+              name="clientName"
+              autoComplete="given-name"
+              className="p-2 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
+              onChange={handleNameChange}
+            />
+          </div>
+        </div>
+        <div className="mt-4">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Correo electrónico*
+          </label>
           <div className="mt-4">
-            <label htmlFor="clientName" className="block text-sm font-medium text-gray-700">
-              Nombre del recipiente*
-            </label>
-            <div className="mt-1">
-              <input
-                type="text"
-                required
-                id="clientName"
-                placeholder="Juan Pérez"
-                name="clientName"
-                autoComplete="given-name"
-                className="p-2 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
-                onChange={handleNameChange}
-              />
-            </div>
+            <input
+              required
+              type="email"
+              id="email"
+              placeholder="ejemplo@hotmail.com"
+              name="email"
+              autoComplete="email"
+              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={email}
+              onChange={handleEmailChange}
+            />
           </div>
+        </div>
+        <div className="sm:col-span-2">
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+            Número telefónico*
+          </label>
           <div className="mt-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Correo electrónico*
-            </label>
-            <div className="mt-4">
-              <input
-                required
-                type="email"
-                id="email"
-                placeholder="ejemplo@hotmail.com"
-                name="email"
-                autoComplete="email"
-                className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </div>
+            <input
+              required
+              type="text"
+              placeholder="222 2 22 22 22"
+              name="phone"
+              id="phone"
+              autoComplete="tel"
+              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={phone}
+              onChange={handlePhoneChange}
+            />
           </div>
-          <div className="sm:col-span-2">
-            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-              Número telefónico*
-            </label>
-            <div className="mt-4">
-              <input
-                required
-                type="text"
-                placeholder="222 2 22 22 22"
-                name="phone"
-                id="phone"
-                autoComplete="tel"
-                className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                value={phone}
-                onChange={handlePhoneChange}
-              />
-            </div>
+        </div>
+        <hr className="mt-4 mx-12" />
+        <h2 className="text-lg font-medium mt-4 mb-4 text-gray-900">Información de envío</h2>
+
+        <div className="sm:col-span-2">
+          <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+            Compañía
+          </label>
+          <div className="mt-4">
+            <input
+              type="text"
+              name="company"
+              id="company"
+              placeholder="Cínica"
+              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={company}
+              onChange={handleCompanyChange}
+            />
           </div>
-          <hr className="mt-4 w-1/2" 
-    />
-            <h2 className="text-lg font-medium mt-10 text-gray-900">Información de envío</h2>
+        </div>
+        <div className="sm:col-span-2">
+          <label htmlFor="address1" className="block text-sm font-medium text-gray-700">
+            Dirección de envío principal*
+          </label>
+          <div className="mt-4">
+            <input
+              required
+              type="text"
+              placeholder="Colonia, Calle, número exterior, número interior"
+              name="address1"
+              id="address1"
+              autoComplete="street-address"
+              className="mb-4 p-2 w-1/2  border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={address1}
+              onChange={handleAddress1Change}
+            />
+          </div>
+        </div>
+        <div className="sm:col-span-2">
+          <label htmlFor="address2" className="block text-sm font-medium text-gray-700">
+            Dirección de envío secundaria
+          </label>
+          <div className="mt-4">
+            <input
+              type="text"
+              name="address2"
+              placeholder="Colonia, Calle, número exterior, número interior"
+              id="address2"
+              autoComplete="street-address"
+              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={address2}
+              onChange={handleAddress2Change}
+            />
+          </div>
+        </div>
+        <div className="sm:col-span-2">
+          <label htmlFor="reference" className=" text-sm font-medium text-gray-700">
+            Referencia
+          </label>
+          <div className="mt-4">
+            <input
+              type="text"
+              name="reference"
+              placeholder="Cerca de la autopista"
+              id="reference"
+              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={reference}
+              onChange={handleReferenceChange}
+            />
+          </div>
+        </div>
 
-            <div className="sm:col-span-2">
-              <label htmlFor="company" className="block text-sm font-medium text-gray-700">
-                Compañía
-              </label>
-              <div className="mt-4">
-                <input
-                  type="text"
-                  name="company"
-                  id="company"
-                  placeholder="Cínica"
-                  className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={company}
-                  onChange={handleCompanyChange}
-                />
-              </div>
-            </div>
+        <div>
+          <label htmlFor="province" className="block text-sm font-medium text-gray-700">
+            Estado*
+          </label>
+          <div className="mt-4">
+            <input
+              required
+              type="text"
+              name="province"
+              id="province"
+              placeholder="Querétaro"
+              value={province}
+              autoComplete="address-level1"
+              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              onChange={handleProvinceChange}
+            />
+          </div>
+        </div>
 
-            <div className="sm:col-span-2">
-              <label htmlFor="address1" className="block text-sm font-medium text-gray-700">
-                Dirección de envío principal*
-              </label>
-              <div className="mt-4">
-                <input
-                  required
-                  type="text"
-                  placeholder="Colonia, Calle, número exterior, número interior"
-                  name="address1"
-                  id="address1"
-                  autoComplete="street-address"
-                  className="mb-4 p-2 w-1/2  border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={address1}
-                  onChange={handleAddress1Change}
-                />
-              </div>
-            </div>
+        <div>
+          <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+            Ciudad*
+          </label>
+          <div className="mt-4">
+            <input
+              type="text"
+              name="city"
+              placeholder="Santiago de Querétaro"
+              id="city"
+              autoComplete="address-level2"
+              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={city}
+              onChange={handleCityChange}
+            />
+          </div>
+        </div>
 
-            <div className="sm:col-span-2">
-              <label htmlFor="address2" className="block text-sm font-medium text-gray-700">
-                Dirección de envío secundaria
-              </label>
-              <div className="mt-4">
-                <input
-                  type="text"
-                  name="address2"
-                  placeholder="Colonia, Calle, número exterior, número interior"
-                  id="address2"
-                  autoComplete="street-address"
-                  className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={address2}
-                  onChange={handleAddress2Change}
-                />
-              </div>
-            </div>
+        <div>
+          <label htmlFor="zip" className="block text-sm font-medium text-gray-700">
+            Código Postal*
+          </label>
+          <div className="mt-4">
+            <input
+              required
+              type="text"
+              name="zip"
+              placeholder="76200"
+              id="zip"
+              autoComplete="postal-code"
+              value={zip}
+              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              onChange={handleZipChange}
+            />
+          </div>
+        </div>
+        <Button title="Ir a Pagar" type="submit" variant="cta" className={'mt-4 mb-8 justify-self-center w-2/3'} />
+      </form>
 
-            <div className="sm:col-span-2">
-              <label htmlFor="reference" className=" text-sm font-medium text-gray-700">
-                Referencia
-              </label>
-              <div className="mt-4">
-                <input
-                  type="text"
-                  name="reference"
-                  placeholder="Cerca de la autopista"
-                  id="reference"
-                  className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={reference}
-                  onChange={handleReferenceChange}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="province" className="block text-sm font-medium text-gray-700">
-                Estado*
-              </label>
-              <div className="mt-4">
-                <input
-                  required
-                  type="text"
-                  name="province"
-                  id="province"
-                  placeholder="Querétaro"
-                  value={province}
-                  autoComplete="address-level1"
-                  className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  onChange={handleProvinceChange}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                Ciudad*
-              </label>
-              <div className="mt-4">
-                <input
-                  type="text"
-                  name="city"
-                  placeholder="Santiago de Querétaro"
-                  id="city"
-                  autoComplete="address-level2"
-                  className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={city}
-                  onChange={handleCityChange}
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="zip" className="block text-sm font-medium text-gray-700">
-                Código Postal*
-              </label>
-              <div className="mt-4">
-                <input
-                  required
-                  type="text"
-                  name="zip"
-                  placeholder="76200"
-                  id="zip"
-                  autoComplete="postal-code"
-                  value={zip}
-                  className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  onChange={handleZipChange}
-                />
-              </div>
-            </div>
-          <Button title="Ir a Pagar" type="submit" variant="cta" className={'mt-4 mb-8 justify-self-center '} />
-        </form>
-        {showRetroModal && (
-          <Modal showModal={showRetroModal} toggleModal={setShowRetroModal} title="">
-            <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
-              {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
-              {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
-              <p className="text-2xl text-center mb-4">{message}</p>
-            </div>
-          </Modal>
-        )}
-      </div>
-    </div>
+      {showRetroModal && (
+        <Modal showModal={showRetroModal} toggleModal={setShowRetroModal} title="">
+          <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
+            {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
+            {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
+            <p className="text-2xl text-center mb-4">{message}</p>
+          </div>
+        </Modal>
+      )}
+    </>
   );
 }
