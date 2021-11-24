@@ -29,7 +29,7 @@ export function CheckoutForm() {
     if (loading === true) {
       return;
     }
-    setLoading(true); 
+    setLoading(true);
     storeDataInLocalStorage();
     handlePayment();
   };
@@ -39,11 +39,11 @@ export function CheckoutForm() {
     const stripeItems = products.map((product : any) => (
       {
         id: product.productId,
-        quantity: parseInt(product.quantity)
+        quantity: parseInt(product.quantity,0)
       }
     ))
     console.log(products);
-    
+
     const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
       items: stripeItems
     });
