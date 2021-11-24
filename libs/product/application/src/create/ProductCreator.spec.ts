@@ -5,10 +5,12 @@ import {ProductAlreadyExists, ProductRepository} from '@frappe/product/domain'
 import {ProductNameFinder} from '../find/find-by-name'
 import {mock, MockProxy, DeepMockProxy, mockDeep} from 'jest-mock-extended'
 import { ProductMother } from '@frappe/product/test'
+import { EventDispatcher } from '@tshio/event-dispatcher'
 
 describe('ProductCreator', () => {
   let productRepository: MockProxy<ProductRepository>;
   let productNameFinder: DeepMockProxy<ProductNameFinder>;
+  let eventBus : MockProxy<EventDispatcher>;
 
   let creator: ProductCreator;
 
@@ -16,7 +18,10 @@ describe('ProductCreator', () => {
     productRepository = mock<ProductRepository>();
     productNameFinder = mockDeep<ProductNameFinder>(new ProductNameFinder({ productRepository }));
 
-    creator = new ProductCreator({ productRepository, productNameFinder });
+    eventBus = mock<EventDispatcher>();
+
+
+    creator = new ProductCreator({ productRepository, productNameFinder, eventBus });
   });
 
   it('should create a new Product', async () => {
