@@ -4,7 +4,6 @@
 const CheckoutPage = () => {
   return(
     <div>
-      <h1>Gracias por comprar </h1>
       <CheckoutSuccess />
     </div>
   );

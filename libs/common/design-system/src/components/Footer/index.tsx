@@ -9,7 +9,7 @@ export const Footer = ( ) => {
   return (
     <div className={styles['footer']}>
       <a href="/">
-      <img src="/img/cinica-logo.png" className="cursor-pointer w-auto self-center pl-8" alt="Cínica Logo"/>
+      <img src="/img/cinica-logo.png" className="cursor-pointer w-auto self-center pl-8"  alt="Cínica Logo"/>
       </a>
       <div>
         <h2 className={styles['footer--title']}>NOSOTROS</h2>
