@@ -14,7 +14,7 @@ export function CheckoutForm() {
   const [reference, setReference] = useState<string>();
   const [city, setCity] = useState<string>();
   const [province, setProvince] = useState<string>();
-  const [country] = useState<string>();
+  const [country] = useState<string>("Mexico");
   const [zip, setZip] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
   const [showRetroModal, setShowRetroModal] = useState<boolean>(false);
