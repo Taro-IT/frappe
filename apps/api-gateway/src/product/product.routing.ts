@@ -17,5 +17,8 @@ export const productRouting = ({ commandBus, queryBus }: ProductRoutingDeps) => 
   router.post('/', makeValidateBody(dtos.CreateProductDto), handlers.createProductHandler(commandBus));
   router.get('/', handlers.searchProductsHandler(queryBus));
 
+  // User Story: frappe-58
+  router.delete('/:id', handlers.deleteProductHandler(commandBus));
+
   return router;
 };
