@@ -22,13 +22,16 @@ export class SendEmailOnOrderGenerated implements EventSubscriberInterface {
   execute(event: OrderGenerated) {
     const { items, clientName, address } = event.payload;
 
-
+    const itemsList = items.map(item => {
+      item.productName
+    })
+    
     const orderEmail = Email.fromPrimitives({
       id: EmailTemplates.Generic,
       to: address.email,
       data: {
         name: clientName,
-        body: `¡Muchas gracias por tu compra! Tu ${items[0].productName} llegará muy pronto`,
+        body: `Muchas gracias por realizar tu compra. Tu pedido con los productos:\n`,
         subject: '¡Gracias por comprar en Cínica!'
       }
     });
