@@ -20,7 +20,7 @@ export class SendEmailOnOrderGenerated implements EventSubscriberInterface {
   }
 
   execute(event: OrderGenerated) {
-    const { items, clientName, address } = event.payload;
+    const { clientName, address } = event.payload;
 
     // const itemsList = items.map(item => {
     //   item.productName
