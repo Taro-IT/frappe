@@ -17,4 +17,5 @@ export { FloatingButton } from './FloatingButton';
 export { ProductDetail } from './ProductDetail';
 export { ProductSizeSelector } from './ProductSizeSelector';
 export { CheckoutForm } from './CheckoutForm';
+export { CheckoutSuccess } from './CheckoutSuccess';
 export { MaterialSelector } from './MaterialSelector'

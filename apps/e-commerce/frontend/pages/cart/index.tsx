@@ -51,7 +51,7 @@ const CartDetailPage = () => {
   }
 
   const PayButton = () => {
-    return<a href="/checkout"><Button title="Ir a Pagar" className="ml-2 w-40 " variant="cta" onClick={handlePayButton} /> </a>;
+    return<a href="/checkout"><Button title="Proceder al pago" className="ml-2 w-40 " variant="cta" onClick={handlePayButton} /> </a>;
   };
 
   const DeleteButton = ({ id, productId }: buttonprops) => {

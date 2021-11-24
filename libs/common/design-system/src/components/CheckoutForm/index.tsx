@@ -21,51 +21,68 @@ export function CheckoutForm() {
   const [success, setSuccess] = useState<boolean>();
   const [message, setMessage] = useState<string>();
 
+
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.stopPropagation();
     e.preventDefault();
     if (loading === true) {
       return;
     }
-    setLoading(true);
+    setLoading(true); 
     storeDataInLocalStorage();
-    generateOrder();
+    handlePayment();
   };
 
-  const generateOrder = async () => {
-    const items = JSON.parse(localStorage.getItem('items'));
-    items.map((item: any) => {
-      item.quantity = parseInt(item.quantity, 10);
-      //item.productImages = JSON.parse(item.productImages)
+  const handlePayment = async () => {
+    const products = JSON.parse(localStorage.getItem('items')||"[]")
+    const stripeItems = products.map((product : any) => (
+      {
+        id: product.productId,
+        quantity: parseInt(product.quantity)
+      }
+    ))
+    console.log(products);
+    
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
+      items: stripeItems
     });
+    window.location.href = data.session.url
+  }
 
-    const orderData = {
-      items: items,
-      subtotal: parseFloat(localStorage.getItem('subtotal')),
-      total: parseFloat(localStorage.getItem('total')),
-      clientName: localStorage.getItem('clientName'),
-      address: JSON.parse(localStorage.getItem('address'))
-    };
-    console.log(orderData);
 
-    try {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders/`, {
-        items: items,
-        subtotal: parseFloat(localStorage.getItem('subtotal')),
-        total: parseFloat(localStorage.getItem('total')),
-        clientName: localStorage.getItem('clientName'),
-        address: JSON.parse(localStorage.getItem('address'))
-      });
-      showModalSuccess();
-      //AQUI HAY UN CLEAR DEL LOCAL STORAGE, SO SE REQUIERE CONSERVAR PARA ALGO, QUITARLO!!!!!!!!
-      //localStorage.clear();
-      return;
-    } catch (error) {
-      console.log(error);
-      showModalError();
-      return;
-    }
-  };
+  // const generateOrder = async () => {
+  //   const items = JSON.parse(localStorage.getItem('items')||"[]");
+  //   items.map((item: any) => {
+  //     item.quantity = parseInt(item.quantity, 10);
+  //     //item.productImages = JSON.parse(item.productImages)
+  //   });
+
+  //   const orderData = {
+  //     items: items,
+  //     subtotal: parseFloat(localStorage.getItem('subtotal')||"[]"),
+  //     total: parseFloat(localStorage.getItem('total')||"[]"),
+  //     clientName: localStorage.getItem('clientName'),
+  //     address: JSON.parse(localStorage.getItem('address')||"[]")
+  //   };
+  //   console.log(orderData);
+
+  //   try {
+  //     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders/`, {
+  //       items: items,
+  //       subtotal: parseFloat(localStorage.getItem('subtotal')||"[]"),
+  //       total: parseFloat(localStorage.getItem('total')||"[]"),
+  //       clientName: localStorage.getItem('clientName'),
+  //       address: JSON.parse(localStorage.getItem('address')||"[]")
+  //     });
+  //     //AQUI HAY UN CLEAR DEL LOCAL STORAGE, SO SE REQUIERE CONSERVAR PARA ALGO, QUITARLO!!!!!!!!
+  //     //localStorage.clear();
+  //     return;
+  //   } catch (error) {
+  //     console.log(error);
+  //     return;
+  //   }
+  // };
 
   const storeDataInLocalStorage = () => {
     console.log(country);
@@ -83,28 +100,28 @@ export function CheckoutForm() {
       reference: reference ? reference : null
     };
 
-    localStorage.setItem('clientName', clientName);
+    localStorage.setItem('clientName', clientName || "");
     localStorage.setItem('address', JSON.stringify(address));
 
-    console.log(JSON.parse(localStorage.getItem('items')));
+    console.log(JSON.parse(localStorage.getItem('items')||"[]"));
     console.log(localStorage.getItem('clientName'));
-    console.log(JSON.parse(localStorage.getItem('address')));
+    console.log(JSON.parse(localStorage.getItem('address')||"[]"));
   };
 
-  const showModalSuccess = () => {
-    setShowRetroModal(true);
-    setSuccess(true);
-    setMessage('Tu orden fue creada con éxito.');
-    setLoading(false);
-  };
+  // const showModalSuccess = () => {
+  //   setShowRetroModal(true);
+  //   setSuccess(true);
+  //   setMessage('Tu orden fue creada con éxito.');
+  //   setLoading(false);
+  // };
 
-  const showModalError = () => {
-    setShowRetroModal(true);
-    setSuccess(false);
-    setMessage('No se pudo crear tu orden.');
-    console.error('No se pudo crear tu orden.');
-    setLoading(false);
-  };
+  // const showModalError = () => {
+  //   setShowRetroModal(true);
+  //   setSuccess(false);
+  //   setMessage('No se pudo crear tu orden.');
+  //   console.error('No se pudo crear tu orden.');
+  //   setLoading(false);
+  // };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setClientName(e.target.value);
@@ -329,7 +346,7 @@ export function CheckoutForm() {
             />
           </div>
         </div>
-        <Button title="Ir a Pagar" type="submit" variant="cta" className={'mt-4 mb-8 justify-self-center w-2/3'} />
+        <Button title="Proceder al pago" type="submit" variant="cta" className={'mt-4 mb-8 justify-self-center w-2/3'} />
       </form>
 
       {showRetroModal && (
