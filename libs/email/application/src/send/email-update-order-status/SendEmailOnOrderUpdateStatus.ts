@@ -45,7 +45,7 @@ export class SendEmailOnOrderUpdateStatus implements EventSubscriberInterface {
     const emailText = `Tu orden del ${day} de ${monthNames[month]} del ${year} ahora se encuentra ${status}.`;
 
     const confirmEmail = Email.fromPrimitives({
-      id: EmailTemplates.Generic,
+      id: EmailTemplates.UpdateOrderStatus,
       to: address.email,
       data: {
         name: clientName,
