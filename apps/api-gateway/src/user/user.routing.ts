@@ -15,6 +15,7 @@ export const userRouting = ({ commandBus, queryBus }: UserRoutingDeps) => {
 
   router.get('/', handlers.searchUsersHandler(queryBus));
   router.put('/:id', makeValidateBody(dtos.UpdateUserDto), handlers.updateUserHandler(commandBus))
+  router.post('/password-recovery', makeValidateBody(dtos.CreatePasswordResetCodeDto), handlers.createPasswordResetCodeHandler(commandBus));
 
   return router;
 }

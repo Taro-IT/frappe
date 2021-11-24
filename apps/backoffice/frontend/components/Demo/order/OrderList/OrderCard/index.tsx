@@ -121,7 +121,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
             <ProgressBar status={status}/>
             
           </div>
-          {(status != OrderStatuses.ENTREGADA)  && ( 
+          {(status != OrderStatuses.ENTREGADA)  && (
           <div className="">
             <Button title={'Cambiar estado de la orden'} variant={'cta'} className="flex" onClick={handleChangeModal}/>
           </div>

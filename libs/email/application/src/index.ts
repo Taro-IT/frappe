@@ -1,5 +1,4 @@
-export { SendEmailOnUserRegistered } from './send/email-confirmation/SendEmailOnUserRegistered';
-export { SendEmailOnOrderUpdateStatus } from './send/email-update-order-status/SendEmailOnOrderUpdateStatus';
+export * from './send';
 
 export const EmailTemplates = {
     Generic: process.env.SENDGRID_GENERIC_TEMPLATE_ID,
