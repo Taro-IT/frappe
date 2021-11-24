@@ -53,7 +53,8 @@ interface ProductListContentProps {
         </div>
       }
         <div className="max-w-screen-2xl grid grid-cols-4 gap-4">
-          {products.map(product => (
+          {/*Only show ACTIVE products */}
+          {products.map(product => product.isActive && (
             <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images} setDeleteModal={setDeleteModal} setCurrentProd={setCurrentProduct}/>
             ) )}
         </div>
