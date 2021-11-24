@@ -16,8 +16,8 @@ export class CreateOrderCommandHandler implements CommandHandler<CreateOrderComm
   }
 
   async execute(command: CreateOrderCommand) {
-    const { id, items, subtotal, total, clientName, address } = command.payload;
+    const { id, items, subtotal, total, clientName, address, pdfFile } = command.payload;
 
-    return this.orderCreator.execute(id, items, subtotal, total, clientName, address);
+    return this.orderCreator.execute(id, items, subtotal, total, clientName, address, pdfFile);
   }
 }

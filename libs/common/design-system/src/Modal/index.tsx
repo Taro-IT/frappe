@@ -6,6 +6,7 @@ type ModalProps = {
   showModal: boolean;
   toggleModal: (nv: boolean) => unknown;
   title: string;
+  size?: string;
 };
 export const Modal = ({ showModal, toggleModal, title, children }: PropsWithChildren<ModalProps>) => {
   const handleClickOut = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -17,7 +18,7 @@ export const Modal = ({ showModal, toggleModal, title, children }: PropsWithChil
   const closeModal = () => {
     toggleModal(false);
   };
-
+  
   return (
     <div
       className={

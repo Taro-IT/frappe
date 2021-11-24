@@ -1,4 +1,5 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsPositive, IsString } from 'class-validator';
+//User story: frappe-64
+import { IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString } from 'class-validator';
 
 export class CreateProductDto {
   @IsNotEmpty()
@@ -9,7 +10,7 @@ export class CreateProductDto {
   @IsPositive()
   readonly price: number;
 
-
+  @IsOptional()
   @IsPositive()
   readonly amount: number;
 
@@ -45,11 +46,12 @@ export class CreateProductDto {
   @IsBoolean()
   readonly isOutOfStock: boolean;
 
-  @IsNotEmpty()
+
+  @IsOptional()
   @IsString({
       each: true
   })
-  readonly materials: string[];
+  readonly customizableParts: string[];
       
   @IsNotEmpty()
   @IsNumber({},{
@@ -59,5 +61,13 @@ export class CreateProductDto {
     each:true
   })
   readonly sizes: number[];
+
+  @IsNotEmpty()
+  @IsBoolean()
+  readonly canBeSold: boolean;
+
+  @IsOptional()
+  @IsPositive()
+  readonly priceInSale: number;
 
 }

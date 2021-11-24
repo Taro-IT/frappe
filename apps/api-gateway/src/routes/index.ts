@@ -6,6 +6,9 @@ interface RoutesDeps {
   readonly fileSystemRouting: express.Router;
   readonly orderRouting: express.Router;
   readonly productRouting: express.Router;
+  readonly materialRouting: express.Router;
+  readonly userRouting: express.Router
+  readonly paymentRouting: express.Router
 }
 
 export const configureRouter = (routes: RoutesDeps): express.Router => {
@@ -16,6 +19,9 @@ export const configureRouter = (routes: RoutesDeps): express.Router => {
   router.use('/file-system', routes.fileSystemRouting);
   router.use('/orders', routes.orderRouting);
   router.use('/products', routes.productRouting);
+  router.use('/materials', routes.materialRouting);
+  router.use('/users', routes.userRouting);
+  router.use('/payments', routes.paymentRouting);
 
   return router;
 };

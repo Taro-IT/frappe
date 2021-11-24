@@ -6,10 +6,14 @@ export interface ProductPrimitives {
   readonly description: string;
   readonly images: string[];
   readonly isCustom: boolean;
-  readonly isInSale: boolean;
   readonly isLimited: boolean;
   readonly isOutOfStock: boolean;
-  readonly materials: string[];
+  readonly customizableParts: string[];
   readonly sizes: number[];
+  readonly isActive: boolean;
+  readonly canBeSold: boolean;
+  readonly isInSale?: boolean;
+  readonly priceInSale?: number;
+  readonly deletedAt?: Date;
   readonly amount?: number;
 }

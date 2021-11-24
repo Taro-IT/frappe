@@ -61,10 +61,10 @@ export class ShippingMother {
       new ShippingZip(faker.address.zipCode()),
       new ShippingCountry(faker.address.country()),
       new AddressLine(faker.address.streetAddress()),
-      new ShippingCompany(faker.company.companyName()),
-      new AddressLine(faker.address.secondaryAddress()),
       new ShippingPhone(faker.phone.phoneNumber()),
       new ShippingEmail(faker.internet.email()),
+      new ShippingCompany(faker.company.companyName()),
+      new AddressLine(faker.address.secondaryAddress()),
       new ShippingReference(faker.lorem.word())
     );
   }

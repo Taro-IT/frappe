@@ -9,6 +9,7 @@ interface CreateOrderCommandPayload {
   readonly total: number;
   readonly address?: ShippingAddressPrimitives;
   readonly clientName?: string;
+  readonly pdfFile?: string;
 }
 
 export class CreateOrderCommand implements Command<CreateOrderCommandPayload> {

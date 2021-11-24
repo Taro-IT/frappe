@@ -1,5 +1,5 @@
 import { getSelectorsByUserAgent } from 'react-device-detect'
-import { Navbar, NavbarMobile } from '../..';
+import { FloatingButton, Footer, Navbar, NavbarMobile } from '../..';
 
 export const EcommerceLayout = ({ children, userAgent }: any) => {
   const { isMobile } = getSelectorsByUserAgent(userAgent)
@@ -10,6 +10,8 @@ export const EcommerceLayout = ({ children, userAgent }: any) => {
   <div className="flex flex-col flex-grow pt-20">
     { children }
   </div>
+  <FloatingButton />
+  <Footer/>
   </div>
   )
 };
