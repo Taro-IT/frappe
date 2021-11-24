@@ -18,8 +18,8 @@ export function CheckoutForm() {
   const [zip, setZip] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
   const [showRetroModal, setShowRetroModal] = useState<boolean>(false);
-  const [success, setSuccess] = useState<boolean>();
-  const [message, setMessage] = useState<string>();
+  const [success,] = useState<boolean>();
+  const [message,] = useState<string>();
 
 
 
