@@ -1,5 +1,5 @@
 import { Criteria, Order } from '@dinnosc/criteria';
-import { CategoryNotFound, CategoryName, CategoryRepository, Category } from '@frappe/category/domain';
+import { CategoryNotFound, CategoryRepository, Category } from '@frappe/category/domain';
 import { Nullable } from '@frappe/common/utils';
 
 interface Props {

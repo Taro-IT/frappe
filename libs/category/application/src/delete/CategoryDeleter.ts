@@ -1,6 +1,6 @@
-import { 
+import {
   Category,
-  CategoryNotFound, 
+  CategoryNotFound,
   CategoryRepository,
   CategoryPrimitives
 } from '@frappe/category/domain';

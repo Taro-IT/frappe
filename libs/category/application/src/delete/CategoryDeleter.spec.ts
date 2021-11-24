@@ -18,7 +18,7 @@ describe('CategoryDeleter', () => {
   });
 
   it('should delete a Category', async () => {
-    const category = CategoryMother.withDeletedDate(new Date);
+    const category = CategoryMother.withDeletedDate(new Date());
     categoryRepository.find.mockResolvedValueOnce(category);
     await deleter.execute(category.id.value, category.deletedAt?.value);
 

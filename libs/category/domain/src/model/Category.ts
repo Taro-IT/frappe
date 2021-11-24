@@ -6,7 +6,7 @@ import { CategoryDeletedAt } from './CategoryDeletedAt'
 
 export class Category {
   constructor(
-    readonly id: CategoryId, 
+    readonly id: CategoryId,
     readonly name: CategoryName,
     readonly isActive: CategoryIsActive,
     readonly deletedAt?: CategoryDeletedAt
@@ -14,7 +14,7 @@ export class Category {
 
   static fromPrimitives(primitives: CategoryPrimitives): Category {
     return new Category(
-      new CategoryId(primitives.id), 
+      new CategoryId(primitives.id),
       new CategoryName(primitives.name),
       new CategoryIsActive(primitives.isActive),
       primitives.deletedAt && new CategoryDeletedAt(primitives.deletedAt)
