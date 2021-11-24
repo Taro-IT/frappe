@@ -33,6 +33,9 @@ Una vez que se aprueba el merge de la rama, se llama el Workflow de GitHub Actio
     - Front - Vercel - frappe-backoffice | frappe-ecommerce
 - Se inicia la creación y despliegue de los artefactos de release
 
+Una vez finalizada la acción, [En el area de releases](https://github.com/Taro-IT/frappe/releases) aparecerá un release con los últimos commits
+realizados desde el último release.
+
 ### Consideraciones
 - Existe un api gateway y dos front ends para cada etapa. 
 - Las etapas estan asociadas a las ramas de github. La etapa de staging esta asociada a la rama dev, mientras que la etapa de producción esta asociada a la rama main, 
@@ -42,6 +45,7 @@ por tanto primero se hacen los merges a la rama dev, y ya despues eso se pasa a 
 ## Salidas
 
 - Una solución consumible en el ambiente seleccionado (prod/staging)
+- Un tag con un release. El release contiene una lista de commits realizados desde el último release. [Los releases salen aquí](https://github.com/Taro-IT/frappe/releases)
 
 ## Autores
 
