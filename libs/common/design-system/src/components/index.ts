@@ -15,4 +15,5 @@ export { Banner } from './Banner';
 export { Footer } from './Footer';
 export { FloatingButton } from './FloatingButton';
 export { ProductDetail } from './ProductDetail';
-export { ProductSizeSelector } from './ProductSizeSelector'
+export { ProductSizeSelector } from './ProductSizeSelector';
+export { MaterialSelector } from './MaterialSelector'
