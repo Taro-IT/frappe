@@ -24,7 +24,7 @@ describe('CategoryUpdater', () => {
     const category = CategoryMother.random();
 
     categoryRepository.find.mockResolvedValueOnce(category);
-    categoryRepository.findByName.mockRejectedValueOnce(CategoryAlreadyExists);
+    categoryRepository.search.mockRejectedValueOnce(CategoryAlreadyExists);
     await updater.execute(category.id.value, category.name.value);
 
     expect(categoryRepository.save).toHaveBeenCalledWith(category);
@@ -34,7 +34,7 @@ describe('CategoryUpdater', () => {
     const category = CategoryMother.random();
 
     categoryRepository.find.mockResolvedValueOnce(category);
-    categoryRepository.findByName.mockResolvedValueOnce(category);
+    categoryRepository.search.mockResolvedValueOnce([category]);
 
     const response = () => updater.execute(category.id.value, category.name.value);
 
@@ -45,7 +45,7 @@ describe('CategoryUpdater', () => {
     const category = CategoryMother.random();
 
     categoryRepository.find.mockRejectedValueOnce(CategoryIdNotFound);
-    categoryRepository.findByName.mockRejectedValueOnce(CategoryAlreadyExists);
+    categoryRepository.search.mockRejectedValueOnce(CategoryAlreadyExists);
 
     const response = () => updater.execute(category.id.value, category.name.value);
 

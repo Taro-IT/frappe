@@ -1,4 +1,5 @@
 import { Category, CategoryAlreadyExists, CategoryId, CategoryIsActive, CategoryName, CategoryRepository } from '@frappe/category/domain';
+import { wrapError } from '@frappe/common/utils';
 import { CategoryNameFinder } from '../find';
 
 // SOLID
@@ -34,11 +35,7 @@ export class CategoryCreator {
   }
 
   private async categoryExists(name: string) {
-    try {
-      await this.categoryNameFinder.execute(name);
-      return null;
-    } catch (error) {
-      return error;
-    }
+    const [error] = await wrapError(this.categoryNameFinder.execute(name))
+    return error
   }
 }

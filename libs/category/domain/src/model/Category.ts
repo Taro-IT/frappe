@@ -17,7 +17,7 @@ export class Category {
       new CategoryId(primitives.id), 
       new CategoryName(primitives.name),
       new CategoryIsActive(primitives.isActive),
-      new CategoryDeletedAt(primitives.deletedAt)
+      primitives.deletedAt && new CategoryDeletedAt(primitives.deletedAt)
       );
   }
 

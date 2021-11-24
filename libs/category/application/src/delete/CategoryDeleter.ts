@@ -20,7 +20,7 @@ export class CategoryDeleter {
     this.categoryFinder = categoryFinder;
   }
 
-  async execute(id: string) {
+  async execute(id: string, deletedAt = new Date()) {
 
     const category = await this.categoryExists(id);
 
@@ -29,7 +29,6 @@ export class CategoryDeleter {
     }
 
     const isActive = false;
-    const deletedAt = new Date();
     const updatedCategory: CategoryPrimitives = { ...category, isActive, deletedAt };
 
     return this.categoryRepository.save(Category.fromPrimitives(updatedCategory));
