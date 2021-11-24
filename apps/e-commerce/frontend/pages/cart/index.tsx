@@ -11,7 +11,7 @@ const CartDetailPage = () => {
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   let totalPrice = 0;
 
-  
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCartItems(JSON.parse(localStorage.getItem('items')) || []);
@@ -32,7 +32,7 @@ const CartDetailPage = () => {
   //     }
   //   ))
   //   console.log(products);
-    
+
   //   const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
   //     items: stripeItems
   //   });
@@ -51,6 +51,7 @@ const CartDetailPage = () => {
   }
 
   const PayButton = () => {
+    /* eslint-disable @next/next/no-html-link-for-pages */
     return<a href="/checkout"><Button title="Proceder al pago" className="ml-2 w-40 " variant="cta" onClick={handlePayButton} /> </a>;
   };
 
