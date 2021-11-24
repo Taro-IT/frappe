@@ -32,33 +32,14 @@ interface ProductListContentProps {
           setMessage('Categoría borrada con éxito.');
           setSuccess(true);
         } catch (error) {
-          console.error('La categoría no se pudo borar', error);
-          setMessage('La categoría no se pudo borar.');
+          console.error('La categoría no se pudo borrar', error);
+          setMessage('La categoría no se pudo borrar.');
           setSuccess(false);
         }
         setDeleteModal(false);
         setDisplayResultModal(true);
         return;
       };
-
-      /*const confirmDelete = () => {
-        // Simulated AXIOS
-        // For testing purposes ONLY
-        const simulatedAxios = confirm("SOLO PARA PRUEBAS. ¿El resultado de AXIOS fue exitoso?");
-
-        // TODO: Replace with a try catch
-        if (simulatedAxios) {
-          setMessage('Producto borrado con éxito.');
-          setSuccess(true);
-        } else {
-          setMessage('El producto no se pudo borar.');
-          setSuccess(false);
-        }
-
-        setDeleteModal(false);
-        setDisplayResultModal(true);
-        return;
-      }*/
 
       return <Button title="Eliminar" onClick={confirmDelete} variant="cta" className={'mt-4'} />;
     };
@@ -73,9 +54,9 @@ interface ProductListContentProps {
         </div>
       }
         <div className="max-w-screen-2xl grid grid-cols-4 gap-4">
-          {products.map(product => (
-            product.isActive &&
-            <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images}  setDeleteModal={setDeleteModal} setCurrentProd={setCurrentProduct}/>
+          {/*Only show ACTIVE products */}
+          {products.map(product => product.isActive && (
+            <BackofficeProductCard id={product.id} key={product.id} name={product.name} price={product.price} images={product.images} setDeleteModal={setDeleteModal} setCurrentProd={setCurrentProduct}/>
             ) )}
         </div>
 
