@@ -1,5 +1,5 @@
 import { EnumValueObject } from '@dinnosc/value-object';
-import { InvalidRole } from '@frappe/account/domain';
+import { InvalidRole } from '../../error';
 import { Role } from '../../utils';
 
 export class UserRole extends EnumValueObject<Role> {
