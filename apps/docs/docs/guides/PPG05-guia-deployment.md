@@ -13,9 +13,7 @@ Verificar que la línea a desplegar este lista para ello
 - Cumple con la revisión de calidad (Checklist de código, Lint y Statics Testing)
 
 :::note
-
 Para ver si la línea cumple con estos requisitos, el [flujo de CI](https://github.com/Taro-IT/frappe/actions/workflows/ci.yml) debe mostrar un check verde
-
 :::
 
 ## Pasos a seguir
