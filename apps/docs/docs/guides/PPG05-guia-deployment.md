@@ -33,6 +33,12 @@ Una vez que se aprueba el merge de la rama, se llama el Workflow de GitHub Actio
     - Front - Vercel - frappe-backoffice | frappe-ecommerce
 - Se inicia la creación y despliegue de los artefactos de release
 
+### Consideraciones
+- Existe un api gateway y dos front ends para cada etapa. 
+- Las etapas estan asociadas a las ramas de github. La etapa de staging esta asociada a la rama dev, mientras que la etapa de producción esta asociada a la rama main, 
+por tanto primero se hacen los merges a la rama dev, y ya despues eso se pasa a la rama main.
+- Aunque los merges son instantaneos, el procedimiento para generar una solución y subirla a los servicios correspondientes puede tardar alrededor de 10 minutos.
+
 ## Salidas
 
 - Una solución consumible en el ambiente seleccionado (prod/staging)
@@ -41,6 +47,7 @@ Una vez que se aprueba el merge de la rama, se llama el Workflow de GitHub Actio
 
 - Mauricio Alvarez 
 - Vladimir Salvador
+- Eduardo Castillo
 
 ## Auditoría
 
