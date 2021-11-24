@@ -30,8 +30,8 @@ export class StripePaymentProvider implements PaymentProvider {
 
     console.log(items);
     const session = await this.stripeClient.checkout.sessions.create({
-      success_url: "http://localhost:4200/",
-      cancel_url: "http://localhost:4200/cart",
+      success_url: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
+      cancel_url: process.env.STRIPE_CHECKOUT_CANCELLED_URL,
       line_items: items,
       mode: "payment"
     });

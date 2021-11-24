@@ -1,4 +1,4 @@
-//User Stories: frappe-91
+//User Stories: frappe-91, frappe-981
 import { ShippingAddressPrimitives } from "@frappe/shipping/domain";
 
 export enum OrderStatuses {
@@ -8,14 +8,19 @@ export enum OrderStatuses {
   ENTREGADA = 'Entregada'
 }
 
+export interface OrderItemCustomPartType {
+  readonly section: string;
+  readonly material: string;
+}
+
 export interface OrderItemType {
-  readonly id: string;
   readonly productId: string;
   readonly productName: string;
   readonly productPrice: number;
   readonly productImages: string[];
   readonly size: number;
   readonly quantity: number;
+  readonly customParts?: OrderItemCustomPartType[];
 }
 
 export interface OrderPrimitives {
