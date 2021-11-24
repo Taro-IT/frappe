@@ -1,17 +1,16 @@
 
 import styles from './Footer.module.scss';
-import {  useRouter } from 'next/router';
 import { BsFacebook, BsInstagram, BsPinterest } from 'react-icons/bs';
 import {FaCcVisa, FaCcPaypal, FaCcMastercard} from 'react-icons/fa';
 import {SiAmericanexpress} from 'react-icons/si';
 
 export const Footer = ( ) => {
-  const router = useRouter();
-  const redirectToHome = () => router.push("/");
 
   return (
     <div className={styles['footer']}>
-      <img src="/img/cinica-logo.png" className="cursor-pointer w-auto self-center pl-8" alt="Cínica Logo" onClick={redirectToHome}/>
+      <a href="/">
+      <img src="/img/cinica-logo.png" className="cursor-pointer w-auto self-center pl-8" alt="Cínica Logo"/>
+      </a>
       <div>
         <h2 className={styles['footer--title']}>NOSOTROS</h2>
         <ul>

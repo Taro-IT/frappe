@@ -5,13 +5,11 @@ import styles from '../../styles/cartDetails.module.scss';
 import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
 import clsx from 'clsx';
 import { BadgeCheckIcon } from '@heroicons/react/solid';
-import { useRouter } from 'next/router';
 import axios from 'axios';
 
 const CartDetailPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
-  const router = useRouter();
   let totalPrice = 0;
 
 
@@ -52,11 +50,10 @@ const CartDetailPage = () => {
   const handlePayButton = () => {
     localStorage.setItem('subtotal', JSON.stringify(totalPrice))
     localStorage.setItem('total', JSON.stringify(totalPrice))
-    router.push("/checkout");
   }
 
   const PayButton = () => {
-    return <Button title="Ir a Pagar" className="ml-2 w-40 " variant="cta" onClick={handlePayButton} />;
+    return<a href="/checkout"><Button title="Ir a Pagar" className="ml-2 w-40 " variant="cta" onClick={handlePayButton} /> </a>;
   };
 
   const DeleteButton = ({ id, productId }: buttonprops) => {

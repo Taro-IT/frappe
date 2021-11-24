@@ -10,10 +10,9 @@ type LinkProps = {
 };
 
 export const Link = ({ text, href, variant = 'cta' }: LinkProps) => (
-  <NextLink href={href}>
+
     <a href={href} className={clsx(styles.link, styles[variant])}>
       {' '}
       {text}{' '}
     </a>
-  </NextLink>
 );
