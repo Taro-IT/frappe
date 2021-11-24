@@ -1,7 +1,7 @@
 import admin, { FirebaseError } from 'firebase-admin';
 import { wrapError } from '@frappe/common/utils';
 import { EventDispatcher } from '@tshio/event-dispatcher';
-import { EmailAlreadyExist, InvalidPasword, UserRegistered } from '@frappe/account/domain';
+import { EmailAlreadyExist, InvalidPasword, Role, UserRegistered } from '@frappe/account/domain';
 
 type AuthError = FirebaseError & Error;
 
@@ -19,7 +19,7 @@ export class AccountSignUpper {
     this.eventBus = eventBus;
   }
 
-  async execute(email: string, password: string, name = ''): Promise<void> {
+  async execute(email: string, password: string, role: Role, name = ''): Promise<void> {
     const [authError, user] = await wrapError<AuthError, admin.auth.UserRecord>(
       this.firebaseAuth.createUser({ email, password, displayName: name })
     );
@@ -30,7 +30,7 @@ export class AccountSignUpper {
 
     const { uid, displayName } = user;
 
-    await this.eventBus.dispatch(new UserRegistered({ id: uid, name: displayName, email }));
+    await this.eventBus.dispatch(new UserRegistered({ id: uid, name: displayName, email, role, }));
   }
 
   private throwAuthError({ code, message }: AuthError) {
