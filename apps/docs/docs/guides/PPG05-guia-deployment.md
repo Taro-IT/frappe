@@ -12,21 +12,39 @@ Verificar que la línea a desplegar este lista para ello
 - Puede realizarse un build de la línea
 - Cumple con la revisión de calidad (Checklist de código, Lint y Statics Testing)
 
+:::note
+
+Para ver si la línea cumple con estos requisitos, el [flujo de CI](https://github.com/Taro-IT/frappe/actions/workflows/ci.yml) debe mostrar un check verde
+
+:::
+
 ## Pasos a seguir
 
 ### Staging
   - Realizar el merge de una Feature branch a la rama dev
 
+:::note
+
+Para monitorear el despliegue a `staging`, se puede acceder al [flujo de CD Dev](https://github.com/Taro-IT/frappe/actions/workflows/deploy-staging.yml) y ver el estatus actual. Si todo se ejecutó correctamente, deberá mostrar un check verde.
+
+:::
 
 ### Production
   - Realizar el merge de la rama dev a la main 
+
+
+:::note
+
+Para monitorear el despliegue a `prod`, se puede acceder al [flujo de CD](https://github.com/Taro-IT/frappe/actions/workflows/deploy-prod.yml) y ver el estatus actual. Si todo se ejecutó correctamente, deberá mostrar un check verde.
+
+:::
 
 Una vez que se aprueba el merge de la rama, se llama el Workflow de GitHub Actions el cual hace lo siguiente:
 
 - Se genera un release en github (label en base a los commits generados)
 - Se selecciona el nombre del proyecto a desplegar  
   - **prod** 
-    - API - Azure App Service - cinica-mx
+    - API - Azure App Service - cinica-mx-node-express-api-prod
     - Front - Vercel - cinica-backoffice | cinica-ecommerce
   - **staging** (pruebas-cinica-mx-node)
     - API - Azure App Service - pruebas-cinica-mx-node
