@@ -29,7 +29,7 @@ describe('CategoryCreator', () => {
   it('should throw a CategoryAlreadyExist error', async () => {
     const category = CategoryMother.random();
 
-    categoryRepository.findByName.mockResolvedValue(category);
+    categoryRepository.search.mockResolvedValue([category]);
     const response = () => creator.execute(category.id.value, category.name.value);
 
     await expect(async () => response()).rejects.toThrow(CategoryAlreadyExists);
