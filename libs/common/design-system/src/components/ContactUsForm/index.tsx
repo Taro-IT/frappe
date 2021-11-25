@@ -3,7 +3,7 @@ import { BadgeCheckIcon, ExclamationIcon, MailIcon, PhoneIcon } from '@heroicons
 import { EventDispatcher } from '@tshio/event-dispatcher';
 import { useState } from 'react';
 import { Modal } from '../..';
-import { CommentSent } from '@frappe/email/domain'
+import axios from 'axios'
 
 
 
@@ -46,10 +46,20 @@ export function ContactUsForm() {
 
     
     const handleSubmit = async (event : any) => {
+
+      const data = {
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
+        lastName: lastName,
+        phone: phone,
+      }
         event.preventDefault()
         setFeedbackMessage('¡Gracias por tus comentarios!');
         setSuccess(true);
         setDisplayResultModal(true);
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/comment`, data)
         setName('');
         setLastName('');
         setSubject('');

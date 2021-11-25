@@ -20,6 +20,8 @@ export class SendEmailOnCommentSent implements EventSubscriberInterface {
   execute(event: CommentSent) {
     const { name ,  email,  subject, message, lastName, phone  } = event.payload;
 
+    console.log("llegó")
+    
     const confirmEmail = Email.fromPrimitives({
       id: EmailTemplates.Generic,
       to: email,
@@ -30,6 +32,7 @@ export class SendEmailOnCommentSent implements EventSubscriberInterface {
       }
     });
 
+    
     return this.emailProvider.send(confirmEmail)
   }
 }
