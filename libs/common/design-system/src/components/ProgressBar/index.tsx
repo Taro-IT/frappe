@@ -2,7 +2,6 @@
 import { PropsWithChildren, useState } from 'react';
 import {OrderStatuses} from '@frappe/order/domain'
 import clsx from 'clsx';
-import { Order } from '@dinnosc/criteria';
 
 type ProgressBarrHeaderProps = {
   readonly status: OrderStatuses;
@@ -28,6 +27,9 @@ export const ProgressBar = ({status}: PropsWithChildren<ProgressBarrHeaderProps>
                 return 2;
                 break;
             case OrderStatuses.ENTREGADA:
+                return 3;
+                break;
+            case OrderStatuses.COMPLETADA:
                 return 3;
                 break;
             case OrderStatuses.CANCELADA:
@@ -75,7 +77,21 @@ export const ProgressBar = ({status}: PropsWithChildren<ProgressBarrHeaderProps>
                     </div>
                     </>
                 )}
-                {isSuccessful && (
+                {status == OrderStatuses.COMPLETADA && isSuccessful && (
+                    <>
+                    <div className="bg-gray-200 rounded-full overflow-hidden">
+                        <div
+                            className="h-2 bg-blue-400 rounded-full"
+                            style={{ width: `calc((${3}* 2 + 2) / 8 * 100%)` }} />
+                    </div>
+                    <div className=" sm:grid grid-cols-4 text-xs font-xs text-gray-600 mt-6 flex justify-evenly">
+                            <div className= 'text-blue-600'>
+                                {OrderStatuses.COMPLETADA}
+                            </div>
+                    </div>
+                    </>
+                )}
+                {isSuccessful && status!== OrderStatuses.COMPLETADA && (
                     <>
                     <div className="bg-gray-200 rounded-full overflow-hidden">
                         <div
