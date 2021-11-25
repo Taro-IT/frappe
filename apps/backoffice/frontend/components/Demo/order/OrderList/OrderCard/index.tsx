@@ -48,7 +48,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   const handleClick = () => {
     console.log("Imprimir guía de envío")
   };
-  
+
   const onChangeOrderStatus = (event) => {
     setNewStatus(event.target.value);
     console.log(event.target.value)
@@ -59,7 +59,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   }
 
   const handleChangeStatus = async event => {
-    
+
     setStatus(newStatus);
     event.preventDefault();
     try {
@@ -104,7 +104,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
         <Button title={'Imprimir Guía'} variant={'cta'} className="flex" onClick={handleClick} />
         )}
         </div>
-      
+
       <hr className={clsx('mb-2', !closed && 'invisible')} />
       {/*Dirección de envío y estado de orden de compra*/}
       {closed && (
@@ -114,12 +114,12 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
             <p>{order.address?.address1}</p>
             <p>{order.address?.city}, {order.address?.province}, {order.address?.country}</p>
             <p>CP: {order.address?.zip}</p>
-            
+
           </div>
           <div className="ml-auto mr-4">
             <h5 className="font-bold text-center">Estado de la orden de compra:</h5>
             <ProgressBar status={status}/>
-            
+
           </div>
           {(status != OrderStatuses.ENTREGADA)  && (
           <div className="">

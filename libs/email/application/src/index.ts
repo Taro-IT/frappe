@@ -1,3 +1,6 @@
+export { SendEmailOnUserRegistered } from './send/email-confirmation/SendEmailOnUserRegistered';
+export { SendEmailOnOrderUpdateStatus } from './send/email-update-order-status/SendEmailOnOrderUpdateStatus';
+export { SendEmailOnOrderGenerated } from './send/email-generate-order/SendEmailOnOrderGenerated';
 export * from './send';
 
 export const EmailTemplates = {

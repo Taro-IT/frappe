@@ -1,6 +1,7 @@
 import { MongoRepository } from '@frappe/common/persistence/mongodb';
 import { Category, CategoryId, CategoryName, CategoryPrimitives, CategoryRepository } from '@frappe/category/domain';
 import { Nullable } from '@frappe/common/utils';
+import { Criteria } from '@dinnosc/criteria';
 
 export class MongoCategoryRepository extends MongoRepository implements CategoryRepository {
   protected moduleName(): string {
@@ -47,5 +48,16 @@ export class MongoCategoryRepository extends MongoRepository implements Category
   async delete(id: CategoryId): Promise<Nullable<boolean>> {
     const collection = await this.collection();
     return (await collection.deleteOne({ _id: id.value })).acknowledged;
+  }
+
+  /**
+   * Search database categorys that matches the provided criteria
+   *
+   * @param criteria Object that represents a Query
+   */
+   async search(criteria: Criteria<Category>): Promise<Category[]> {
+    const categories = await this.searchByCriteria(criteria);
+
+    return categories.map(category => Category.fromPrimitives({ ...category, id: category._id } as CategoryPrimitives));
   }
 }

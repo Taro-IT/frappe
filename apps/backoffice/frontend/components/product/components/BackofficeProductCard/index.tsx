@@ -5,6 +5,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 // type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
 
+
 export type ProductCardData = {
   id: string,
   name: string
@@ -25,6 +26,7 @@ export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal,
   const handleClickEdit = () => {
     router.push(`/productEdit/${id}`);
   }
+
   const handleClickDelete = () => {
     setDeleteModal(true);
     setCurrentProd({id: id, name: name})
@@ -47,7 +49,9 @@ export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal,
             </p>
             </div>
             <div className="flex flex-row justify-between ">
-            <Button type={'button'} title={'Editar'} variant={'cta'} onClick={handleClickEdit} />
+            <a href={`/productEdit/${id}`}>
+            <Button type={'button'} title={'Editar'} variant={'cta'} />
+            </a>
             <Button type={'button'} title={'Borrar'} variant={'red'} onClick={handleClickDelete}/>
             </div>
           </div>

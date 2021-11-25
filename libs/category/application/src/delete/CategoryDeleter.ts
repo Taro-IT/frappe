@@ -1,4 +1,9 @@
-import { CategoryId, CategoryNotFound, CategoryRepository } from '@frappe/category/domain';
+import {
+  Category,
+  CategoryNotFound,
+  CategoryRepository,
+  CategoryPrimitives
+} from '@frappe/category/domain';
 import { CategoryFinder } from '../find';
 
 interface Props {
@@ -15,22 +20,27 @@ export class CategoryDeleter {
     this.categoryFinder = categoryFinder;
   }
 
-  async execute(id: string) {
-    const exists = await this.categoryExists(id);
+  async execute(id: string, deletedAt = new Date()) {
 
-    if (exists !== null) {
+    const category = await this.categoryExists(id);
+
+    if (category === null) {
       throw new CategoryNotFound(id);
     }
 
-    return this.categoryRepository.delete(new CategoryId(id));
+    const isActive = false;
+    const updatedCategory: CategoryPrimitives = { ...category, isActive, deletedAt };
+
+    return this.categoryRepository.save(Category.fromPrimitives(updatedCategory));
   }
 
   private async categoryExists(id: string) {
     try {
-      await this.categoryFinder.execute(id);
-      return null;
+      const category = await this.categoryFinder.execute(id);
+      return category as CategoryPrimitives;
     } catch (error) {
-      return error;
+      console.log(error);
+      return null;
     }
   }
 }
