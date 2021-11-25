@@ -3,22 +3,26 @@ import { OrderCreator } from './OrderCreator';
 import { OrderFinder } from '../find';
 import { mock, MockProxy, DeepMockProxy, mockDeep } from 'jest-mock-extended';
 import { OrderMother } from '@frappe/order/test';
+import { EventDispatcher } from '@tshio/event-dispatcher';
 
 describe('OrderCreator', () => {
   let orderRepository: MockProxy<OrderRepository>;
   let orderFinder: DeepMockProxy<OrderFinder>;
-
+  let eventBus : MockProxy<EventDispatcher>;
   let creator: OrderCreator;
 
   beforeEach(() => {
     orderRepository = mock<OrderRepository>();
     orderFinder = mockDeep<OrderFinder>(new OrderFinder({ orderRepository }));
+    eventBus = mock<EventDispatcher>();
 
-    creator = new OrderCreator({ orderRepository, orderFinder });
+    creator = new OrderCreator({ orderRepository, orderFinder, eventBus });
   });
 
   it('should create a new Order', async () => {
     const order = OrderMother.random();
+
+    console.log(order.items[0]);
     
     orderRepository.find.mockRejectedValueOnce(OrderNotFound);
     await creator.execute(
