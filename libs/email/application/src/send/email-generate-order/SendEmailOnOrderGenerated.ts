@@ -20,19 +20,33 @@ export class SendEmailOnOrderGenerated implements EventSubscriberInterface {
   }
 
   execute(event: OrderGenerated) {
-    const { clientName, address } = event.payload;
+    const { clientName, address, items, dateCreated, subtotal, total } = event.payload;
 
-    // const itemsList = items.map(item => {
-    //   item.productName
-    // })
+    const itemsList = []
+
+    items.forEach(item => {
+      const newItem = {
+        productName: item.productName,
+        size: item.size,
+        quantity: item.quantity,
+        productPrice: item.productPrice * item.quantity,
+        productImage: item.productImages[0]
+      }
+
+      itemsList.push(newItem)
+    });
     
     const orderEmail = Email.fromPrimitives({
-      id: EmailTemplates.Generic,
+      id: EmailTemplates.NewOrder,
       to: address.email,
       data: {
-        name: clientName,
-        body: `Muchas gracias por realizar tu compra. Tu pedido con los productos:\n`,
-        subject: '¡Gracias por comprar en Cínica!'
+        subject: '¡Gracias por comprar en Cínica!',
+        clientName,
+        orderDate: dateCreated,
+        address: address,
+        items: itemsList,
+        subtotal,
+        total
       }
     });
     console.log(orderEmail)
