@@ -5,7 +5,9 @@ export enum OrderStatuses {
   ABIERTO = 'Abierto',
   EN_PROCESO = 'En proceso',
   LISTA_PARA_ENVIO = 'Lista para envío',
-  ENTREGADA = 'Entregada'
+  ENTREGADA = 'Entregada',
+  CANCELADA = 'Cancelada',
+  ERRONEA = 'Orden Erronea'
 }
 
 export interface OrderItemCustomPartType {

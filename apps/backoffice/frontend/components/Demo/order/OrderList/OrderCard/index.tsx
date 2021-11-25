@@ -176,6 +176,12 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
               <div className="pb-4 ">
                 <input type="radio" value={OrderStatuses.ENTREGADA} name="status" /> {OrderStatuses.ENTREGADA}
               </div>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.CANCELADA} name="status" /> {OrderStatuses.CANCELADA}
+              </div>
+              <div className="pb-4 ">
+                <input type="radio" value={OrderStatuses.ERRONEA} name="status" /> {OrderStatuses.ERRONEA}
+              </div>
             </div>
           </div>
           <Alert
