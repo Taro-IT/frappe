@@ -10,6 +10,7 @@ export const commentCreatedHandler =
     try {
       eventBus.dispatch(new CommentSent( {name : req.body.name ,  email : req.body.email,  subject : req.body.subject, message : req.body.message, lastName : req.body.lastName, phone : req.body.phone}));
       res.status(201).json({ id });
+      console.log(eventBus)
     } catch (error) {
       next(error);
     }

@@ -20,19 +20,19 @@ export class SendEmailOnCommentSent implements EventSubscriberInterface {
   execute(event: CommentSent) {
     const { name ,  email,  subject, message, lastName, phone  } = event.payload;
 
-    console.log("llegó")
+   
     
     const confirmEmail = Email.fromPrimitives({
       id: EmailTemplates.Generic,
-      to: email,
+      to: process.env.SENDGRID_EMAIL_TO,
       data: {
         name: name + " " + lastName,
-        body: `Ha comentado: \n ${message} \m Y ha dejado su número telefónico: ${phone}`,
+        body: `Ha comentado: \n ${message} \m Y ha dejado su número telefónico: ${phone} y su correo electónico: ${email}`,
         subject: subject
       }
     });
 
     
-    return this.emailProvider.send(confirmEmail)
+    return this.emailProvider.receive(confirmEmail)
   }
 }

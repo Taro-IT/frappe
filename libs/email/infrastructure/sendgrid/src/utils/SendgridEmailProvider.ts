@@ -28,12 +28,12 @@ export class SendgridEmailProvider implements EmailProvider {
    * @param mail the Email to us from the received email.
    */
   async receive(mail: Email): Promise<void> {
-    const { to, id, data } = mail.toPrimitives();
+    const { id, data } = mail.toPrimitives();
 
     await this.client.send({
-      to: process.env.SENDGRID_EMAIL_FROM,
+      to: process.env.SENDGRID_EMAIL_TO,
       templateId: id,
-      from:to,
+      from:process.env.SENDGRID_EMAIL_FROM,
       dynamicTemplateData: data
     });
   }
