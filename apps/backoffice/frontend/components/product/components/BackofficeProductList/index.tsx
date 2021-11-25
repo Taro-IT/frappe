@@ -9,7 +9,7 @@ interface ProductListContentProps {
 
 
   export const BackofficeProductList = ({ products }: ProductListContentProps) => {
-
+    console.log(products);
     return (
       <>
       {products.length === 0 &&
