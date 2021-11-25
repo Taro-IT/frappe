@@ -23,9 +23,9 @@ type ProductCardProps = {
 export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal, setCurrentProd}: ProductCardProps) => {
   const router = useRouter();
   
-  const handleClickEdit = () => {
+  /*const handleClickEdit = () => {
     router.push(`/productEdit/${id}`);
-  }
+  }*/
 
   const handleClickDelete = () => {
     setDeleteModal(true);
