@@ -20,3 +20,4 @@ export { CheckoutForm } from './CheckoutForm';
 export { CheckoutSuccess } from './CheckoutSuccess';
 export { MaterialSelector } from './MaterialSelector'
 export { ThankYouComponent } from './ThankYouComponent'
+export { ContactUsForm } from './ContactUsForm'

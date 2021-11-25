@@ -36,10 +36,6 @@ export const Navbar = () => {
           <p className="text-white text-2xl">{cartItems}</p>
         </a>
 
-        <div className="flex items-center cursor-pointer" onClick={handleOpenUser}>
-          <UserIcon className="text-white h-9 pr-2 " />
-        </div>
-
         {open &&
           <div className="bg-primary ml-auto mt-auto absolute top-32 right-0">
 
