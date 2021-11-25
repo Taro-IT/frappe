@@ -22,4 +22,19 @@ export class SendgridEmailProvider implements EmailProvider {
       dynamicTemplateData: data
     });
   }
+
+  /**
+   * Sends an email through SendGrid using templates.
+   * @param mail the Email to us from the received email.
+   */
+  async receive(mail: Email): Promise<void> {
+    const { to, id, data } = mail.toPrimitives();
+
+    await this.client.send({
+      to: process.env.SENDGRID_EMAIL_FROM,
+      templateId: id,
+      from:to,
+      dynamicTemplateData: data
+    });
+  }
 }

@@ -1,6 +1,11 @@
+//User Story: e-commerce contact
 import { BadgeCheckIcon, ExclamationIcon, MailIcon, PhoneIcon } from '@heroicons/react/outline'
+import { EventDispatcher } from '@tshio/event-dispatcher';
 import { useState } from 'react';
 import { Modal } from '../..';
+import { CommentSent } from '@frappe/email/domain'
+
+
 
 export function ContactUsForm() {
 
@@ -10,8 +15,7 @@ export function ContactUsForm() {
     const [email, setEmail] = useState<string>();
     const [phone, setPhone] = useState<string>();
     const [message, setMessage] = useState<string>();
-
-    
+    //Modal Result
     const [feedbackMessage, setFeedbackMessage] = useState<string>('');
     const [displayResultModal, setDisplayResultModal] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>();
@@ -40,6 +44,7 @@ export function ContactUsForm() {
         setMessage(e.target.value);
     }
 
+    
     const handleSubmit = async (event : any) => {
         event.preventDefault()
         setFeedbackMessage('¡Gracias por tus comentarios!');
