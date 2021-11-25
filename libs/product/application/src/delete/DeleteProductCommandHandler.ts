@@ -1,3 +1,4 @@
+// User Story: Frappe-58
 import { CommandHandler } from '@tshio/command-bus';
 import { DeleteProductCommand } from './DeleteProductCommand';
 import { ProductDeleter } from './ProductDeleter';
