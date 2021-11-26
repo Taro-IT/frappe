@@ -74,7 +74,7 @@ export class SendEmailOnOrderGenerated implements EventSubscriberInterface {
     const day = prettyDate.getUTCDate();
 
     const orderDate = `${day} de ${monthNames[month]} del ${year}`
-    const orderAddress = `${address.address1}, ` + (address.address2 ? `${address.address2}, ` : ' ') + 
+    const orderAddress = `${address.address1}, ` + (address.address2 ? `${address.address2}, ` : ' ') +
       `\n${address.province}, ${address.city}, ${address.country}\n${address.zip}\n` + (address.company ? address.company : ' ');
     
     const orderEmail = Email.fromPrimitives({
