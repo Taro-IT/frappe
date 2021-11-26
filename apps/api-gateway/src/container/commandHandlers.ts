@@ -34,7 +34,7 @@ export const commandHandlers = (container: AwilixContainer) => {
       asClass(UpdateUserCommandHandler),
       asClass(UpdateUserPasswordCommandHandler),
       asClass(CreatePaymentSessionCommandHandler),
-      asClass(DeleteProductCommandHandler)
+      asClass(DeleteProductCommandHandler),
     ])
   });
 };
