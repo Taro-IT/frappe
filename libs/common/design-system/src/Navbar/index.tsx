@@ -9,7 +9,7 @@ const navItems = [
 ]
 
 export const Navbar = () => {
-  const [open, setOpen] = useState(false)
+  const [open,] = useState(false)
   const [cartItems, setCartItems] = useState<number>(0)
 
   useEffect (()=> {
