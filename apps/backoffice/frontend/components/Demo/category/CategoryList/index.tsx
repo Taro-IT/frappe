@@ -70,8 +70,8 @@ const CategoryList = () => {
         setMessage('Categoría borrada con éxito.');
         setSuccess(true);
       } catch (error) {
-        console.error('La categoría no se pudo borar', error);
-        setMessage('La categoría no se pudo borar.');
+        console.error('La categoría no se pudo borrar', error);
+        setMessage('La categoría no se pudo borrar.');
         setSuccess(false);
       }
       setDeleteModal(false);
