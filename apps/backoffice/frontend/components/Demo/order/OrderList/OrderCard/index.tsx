@@ -20,7 +20,6 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   const [status, setStatus] = useState<OrderStatuses>(order.status);
   const [newStatus, setNewStatus] = useState<OrderStatuses>();
   const [displayEditModal, setEditModal] = useState<boolean>(false);
-
   const monthNames = [
     'enero',
     'febrero',
@@ -45,8 +44,85 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     setExpanded(previous => !previous);
   };
 
-  const handleClick = () => {
-    console.log("Imprimir guía de envío")
+  const handleClick = async ()  => {
+
+
+   const  order : any  = await axios.post('https://api-demo.skydropx.com/v1/shipments', 
+    { "address_from": {
+        "province": "Ciudad de México", 
+        "city": "Azcapotzalco", 
+        "name": "Jose Fernando", 
+        "zip": "02900", 
+        "country": "MX", 
+        "address1": "Av. Principal #234", 
+        "company": "skydropx", 
+        "address2": "Centro", 
+        "phone": "5555555555", 
+        "email": "skydropx@email.com"
+      }, 
+      "parcels": [{ 
+        "weight": 3, 
+        "distance_unit": "CM", 
+        "mass_unit": "KG", 
+        "height": 10, 
+        "width": 10, 
+        "length": 10 
+      }],
+      "address_to": { 
+        "province": "Jalisco", 
+        "city": "Guadalajara", 
+        "name": "Jorge Fernández", 
+        "zip": "44100", 
+        "country": "MX",  
+        "address1": " Av. Lázaro Cárdenas #234", 
+        "company": "-", 
+        "address2": "Americana",
+        "phone": "5555555555", 
+        "email": "ejemplo@skydropx.com", 
+        "reference": "Frente a tienda de",
+        "contents": "asd" }
+        },{
+      headers : {
+        Authorization: "Token token=" + process.env.NEXT_PUBLIC_SKYDROPX,
+        "Content-Type": "application/json"
+      }
+    })
+
+    let days : number = 100;
+    let rateId : string
+    order.data.included?.map( (rate) => {
+      if(rate.type == "rates"){
+        if(rate.attributes?.days < days){
+          days = rate.attributes?.days 
+          rateId = rate.id
+          console.log(rateId)
+        }
+      } 
+    });
+
+    const label = await axios.post('https://api-demo.skydropx.com/v1/labels', 
+    { 
+      "rate_id": parseInt(rateId, 10),
+       "label_format": "pdf" 
+    },
+    {
+      headers: {
+      Authorization: "Token token=" + process.env.NEXT_PUBLIC_SKYDROPX,
+      "Content-Type": "application/json",
+    }
+    })
+
+    let labelId = label.data.data?.id
+
+    const specificLabel = await axios.get('https://api-demo.skydropx.com/v1/labels/'+labelId,
+    {
+      headers: {
+        Authorization: "Token token=" + process.env.NEXT_PUBLIC_SKYDROPX,
+        "Content-Type": "application/json",
+      }
+    })
+    
+    window.open(specificLabel.data.data.attributes.label_url);
   };
 
   const onChangeOrderStatus = (event) => {
@@ -71,8 +147,6 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     }
     setEditModal(false);
   }
-
-  console.log(order);
   const generateOrderPDF = async () => {
     // Sorry
     const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders/pdf/${order.id}`)
