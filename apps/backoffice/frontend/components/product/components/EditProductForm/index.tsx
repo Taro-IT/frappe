@@ -20,9 +20,9 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
   const [, setCategories] = useState<string[]>();
   const [ canBeSold, setCanBeSold] = useState<boolean>(false);
   const [options, setOptions] = useState();
-  const [isLimited, setIsLimited] = useState<boolean>(false);
-  const [isOnSale, setIsOnSale] = useState<boolean>(false);
-  const [isCustom, setIsCustom] = useState<boolean>(false);
+  const [isLimited, setIsLimited] = useState<boolean>();
+  const [isOnSale, setIsOnSale] = useState<boolean>();
+  const [isCustom, setIsCustom] = useState<boolean>();
   const [amount, setAmount] = useState<number>()
   const [salePrice, setSalePrice] = useState<number>()
   const [sizes, setSizes] = useState<number[]>([]);
@@ -67,10 +67,8 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
   }, []);
 
   useEffect(() => {
-    console.log("ID",id)
     const getProductInfo = async (): Promise<void> => {
       const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
-      console.log(data, "DATA");
       const productInfo: ProductPrimitives = data.product.result;
       console.log(productInfo);
       
@@ -152,25 +150,31 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
         const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
         return name;
       })
-      
       const fileNames = await Promise.all(promises);
-      //Post de productos
-          await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, {
-        name: productName ? productName : null,
-        price: price,
-        categories: selectedCategories,
-        description: productDescription,
-        images: fileNames,
-        isCustom: isCustom,
-        isInSale: isOnSale,
-        isLimited: isLimited,
+      console.log(productName, "PNM");
+      
+      const payload = {
+        name: (productName !== undefined && productName !== null && productName !== "") ? productName : null,
+        price: (price !== undefined  && price !== null) ? price : null,
+        categories: (selectedCategories !== selectedCategories  && productName !== null  && selectedCategories !== []) ? selectedCategories : null,
+        description: (productDescription !== undefined  && productDescription !== null  && productDescription !== "") ? productDescription : null,
+        images: (fileNames !== selectedCategories  && fileNames !== null  && fileNames !== []) ? fileNames : null,
+        isCustom: (isCustom !== undefined  && isCustom !== null) ? isCustom : null,
+        isInSale: (isOnSale !== undefined  && isOnSale !== null) ? isOnSale : null,
+        isLimited: (isLimited !== undefined  && isLimited !== null) ? isLimited : null,
         isOutOfStock: false,
-        customizableParts: customParts,
-        sizes: sizes,
-        amount: isLimited ? amount : null,
+        customizableParts: (customParts !== undefined  && customParts !== null  && customParts !== []) ? customParts : null,
+        sizes: (sizes !== undefined  && sizes !== null  && sizes !== []) ? sizes : null,
+        amount: (amount !== undefined  && amount !== null) ? amount : null,
         priceInSale: salePrice,
-        canBeSold: canBeSold
-      })
+        canBeSold: (canBeSold !== undefined  && canBeSold !== null) ? canBeSold : null,
+      }
+
+      console.log(payload, "PAYLOAD")
+      
+     
+      // Patch de productos
+        await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, payload)
       setShowRetroModal(true)
       setSuccess(true)
       setMessage("Producto actualizado correctamente")
@@ -249,13 +253,13 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
           value={productName}
           onChange={handleProductName}
           className="border-2 border-gray-200 rounded pl-2 w-full h-8"
-          required
+           
           placeholder={prevInfo ? prevInfo.name : "Cargando..."}
         />
       </div>
 
       {/* Se comenta esta parte hasta que se defina la personalización
-        <TextField label="Materiales disponibles" name="customizableParts" validations={{ required: 'Los materiales son requeridos' }} />
+        <TextField label="Materiales disponibles" name="customizableParts" validations={{  : 'Los materiales son requeridos' }} />
       */}
 
       <label className={'w-1/3 mt-4 mb-3'}>Categoría(s)</label>
@@ -287,20 +291,20 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
         <input
           value={price}
           onChange={changePrice}
-          placeholder="3999.00"
           type="number"
           min="0"
           className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
-          required
+          placeholder={prevInfo ? prevInfo.price.toFixed(2) : "Cargando..."}
+           
         />
       </div>
       <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">¿Este producto será visible para clientes?</label>
-          <Toggle defaultChecked={canBeSold} icons={false} className="mt-4" onChange={handleCanBeSoldChange}/>
+          <Toggle defaultChecked={prevInfo ? prevInfo.canBeSold : false } icons={false} className="mt-4" onChange={handleCanBeSoldChange}/>
       </div>
       <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">¿Este producto está en oferta?</label>
-          <Toggle defaultChecked={isOnSale} icons={false} className="mt-4" onChange={handleOnSaleChange}/>
+          <Toggle defaultChecked={prevInfo ? prevInfo.isInSale : false} icons={false} className="mt-4" onChange={handleOnSaleChange}/>
       </div>
       {isOnSale && (
         <div className="flex flex-row">
@@ -319,7 +323,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
       </div>
       <div className="flex flex-row">
         <label className="w-auto mr-4 mt-4 mb-3">¿Este producto tiene stock?</label>
-        <Toggle defaultChecked={isLimited} icons={false} className="mt-4" onChange={handleStockChange}/>
+        <Toggle defaultChecked={prevInfo ? prevInfo.isLimited : false} icons={false} className="mt-4" onChange={handleStockChange}/>
       </div>
       {isLimited && (
         <div className="flex flex-col">
@@ -327,7 +331,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
         <input
           value={amount}
           onChange={handleAmountChange}
-          placeholder="5"
+          placeholder={prevInfo.amount.toFixed(0)}
           type="number"
           min="1"
           className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
@@ -337,11 +341,10 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
       )}
       <label className="w-1/3 mt-4 mb-3">Descripción</label>
       <textarea
-        placeholder="Escribe una descripción"
+        placeholder={prevInfo ? prevInfo.description : "Cargando..."}
         value={productDescription}
         className="border-2 border-gray-200 rounded w-full pl-2 pt-2"
         onChange={changeProductDescription}
-        required
       />
       <label className="w-1/3 mt-4 mb-3">Imágenes</label>
       <input className={styles['input-file']} type="file"  id="files" name="files" multiple onChange={onChangeFile} required/>
