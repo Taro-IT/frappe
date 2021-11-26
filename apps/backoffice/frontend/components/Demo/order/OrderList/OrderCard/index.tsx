@@ -82,7 +82,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   const handleShippingClick = async event  => {
     event.preventDefault();
   console.log(parcelWeight)
-   const  orderShipping : any  = await axios.post('https://api-demo.skydropx.com/v1/shipments', 
+   const  orderShipping : any  = await axios.post('https://api-demo.skydropx.com/v1/shipments',
     { "address_from": {
         "province": "Ciudad de México",
         "city": "Azcapotzalco",
@@ -123,7 +123,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
       }
     })
 
-    let days : number = 100;
+    let days = 100;
     let rateId : string
     orderShipping.data.included?.map( (rate) => {
       if(rate.type == "rates"){
@@ -147,7 +147,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     }
     })
 
-    let labelId = label.data.data?.id
+    const labelId = label.data.data?.id
 
     const specificLabel = await axios.get('https://api-demo.skydropx.com/v1/labels/'+labelId,
     {
