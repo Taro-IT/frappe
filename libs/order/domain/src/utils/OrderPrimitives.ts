@@ -2,10 +2,10 @@
 import { ShippingAddressPrimitives } from "@frappe/shipping/domain";
 
 export enum OrderStatuses {
-  ABIERTO = 'Abierto',
+  ABIERTO = 'Abierta',
   EN_PROCESO = 'En proceso',
   LISTA_PARA_ENVIO = 'Lista para envío',
-  ENTREGADA = 'Entregada',
+  ENTREGADA = 'Enviada',
   CANCELADA = 'Cancelada',
   ERRONEA = 'Orden Erronea',
   COMPLETADA = 'Completada'
