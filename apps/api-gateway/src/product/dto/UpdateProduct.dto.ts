@@ -4,54 +4,54 @@ import { IsBoolean, IsNumber, IsOptional, IsPositive, IsString, Min } from "clas
 export class UpdateProductDto {
 
   @IsOptional()
-  readonly name: string;
+  readonly name?: string;
 
   @IsOptional()
   @IsNumber()
   @Min(0)
-  readonly price: number;
+  readonly price?: number;
 
   @IsOptional()
   @IsPositive()
-  readonly amount: number;
+  readonly amount?: number;
 
   @IsOptional()
   @IsString({
       each: true
   })
-  readonly categories: string[];
+  readonly categories?: string[];
 
   @IsOptional()
   @IsString()
-  readonly description: string;
+  readonly description?: string;
 
   @IsOptional()
   @IsString({
       each: true
   })
-  readonly images: string[];
+  readonly images?: string[];
 
   @IsOptional()
   @IsBoolean()
-  readonly isCustom: boolean;
+  readonly isCustom?: boolean;
 
   @IsOptional()
   @IsBoolean()
-  readonly isInSale: boolean;
+  readonly isInSale?: boolean;
 
   @IsOptional()
   @IsBoolean()
-  readonly isLimited: boolean;
+  readonly isLimited?: boolean;
 
   @IsOptional()
   @IsBoolean()
-  readonly isOutOfStock: boolean;
+  readonly isOutOfStock?: boolean;
 
   @IsOptional()
   @IsString({
       each: true
   })
-  readonly customizableParts: string[];
+  readonly customizableParts?: string[];
       
   @IsOptional()
   @IsNumber({},{
@@ -60,13 +60,13 @@ export class UpdateProductDto {
   @IsPositive({
     each:true
   })
-  readonly sizes: number[];
+  readonly sizes?: number[];
 
   @IsOptional()
   @IsBoolean()
-  readonly canBeSold: boolean;
+  readonly canBeSold?: boolean;
 
   @IsOptional()
   @IsPositive()
-  readonly priceInSale: number;
+  readonly priceInSale?: number;
 }

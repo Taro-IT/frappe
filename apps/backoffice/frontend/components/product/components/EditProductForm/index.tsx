@@ -10,13 +10,14 @@ import SizeSelector from '../SizeSelector';
 import DisableTextInput from '../DisableTextInput';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
 import { ProductPrimitives } from '@frappe/product/domain';
+import { useRouter } from 'next/router';
 
 interface EditProductContentProps {
   readonly product : ProductPrimitives;
 }
 
 const EditProductForm = ({ product }: EditProductContentProps) => {
-  const [, setCategories] = useState();
+  const [, setCategories] = useState<string[]>();
   const [ canBeSold, setCanBeSold] = useState<boolean>(false);
   const [options, setOptions] = useState();
   const [isLimited, setIsLimited] = useState<boolean>(false);
@@ -37,7 +38,7 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
   const [productDescription, setProductDescription] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
   const [allSizes, setAllSizes] = useState<boolean>(false);
-
+const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
   const defaultSizes = [22, 22.5, 23, 23.5, 24, 24.5, 25, 25.5, 26, 26.5, 27, 27.5, 28, 28.5, 29, 29.5];
 
 
@@ -45,6 +46,9 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     id: string;
     name: string;
   };
+
+  const router = useRouter()
+  const {id} = router.query
 
   useEffect(() => {
     const getCategories = async (): Promise<void> => {
@@ -61,6 +65,24 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     };
     getCategories();
   }, []);
+
+  useEffect(() => {
+    console.log("ID",id)
+    const getProductInfo = async (): Promise<void> => {
+      const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
+      console.log(data, "DATA");
+      const productInfo: ProductPrimitives = data.product.result;
+      console.log(productInfo);
+      
+      if(data.length !== 0) {
+        setPrevInfo(productInfo);
+      }
+    }
+
+    getProductInfo();
+    
+  }, []);
+  
 
   const customStyles = {
     option: (provided: any, state: { isSelected: any }) => ({
@@ -100,7 +122,7 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     setIsCustom(previous => !previous);
   };
 
-  const submitProduct = async (e: FormEvent<HTMLFormElement>) => {
+  const updateProduct = async (e: FormEvent<HTMLFormElement>) => {
     e.stopPropagation();
     e.preventDefault();
     if (loading === true) {return}
@@ -133,15 +155,15 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
       
       const fileNames = await Promise.all(promises);
       //Post de productos
-          await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products/`, {
-        name: productName,
+          await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, {
+        name: productName ? productName : null,
         price: price,
         categories: selectedCategories,
         description: productDescription,
         images: fileNames,
         isCustom: isCustom,
         isInSale: isOnSale,
-        isLimited: false,
+        isLimited: isLimited,
         isOutOfStock: false,
         customizableParts: customParts,
         sizes: sizes,
@@ -151,13 +173,13 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
       })
       setShowRetroModal(true)
       setSuccess(true)
-      setMessage("Producto creado correctamente")
+      setMessage("Producto actualizado correctamente")
       setLoading(false)
       return
     } catch (error) {
       setShowRetroModal(true)
       setSuccess(false)
-      setMessage("Este producto ya existe en la base de datos, intenta crear un nuevo producto")
+      setMessage("Este producto ya existe en la base de datos, intenta cambiar el nombre")
       console.error("El producto ya existe");
       setLoading(false)
       return
@@ -220,15 +242,15 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
   
   return (
     <>
-    <form className="flex flex-col w-full p-8" onSubmit={submitProduct}>
+    <form className="flex flex-col w-full p-8" onSubmit={updateProduct}>
       <div className="flex flex-col">
         <label className='w-1/3 mt-4 mb-2'>Nombre del producto</label>
         <input
           value={productName}
           onChange={handleProductName}
-          placeholder="Bandolera"
           className="border-2 border-gray-200 rounded pl-2 w-full h-8"
           required
+          placeholder={prevInfo ? prevInfo.name : "Cargando..."}
         />
       </div>
 
@@ -246,6 +268,7 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
         styles={customStyles}
         onChange={handleSelectCategories}
         placeholder="Selecciona categorías"
+        defaultValue={prevInfo ? prevInfo.categories : "asadsf"}
       />
         <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">Todas las tallas</label>
@@ -351,7 +374,7 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
         </div>
       )}
 
-      <Button title="Agregar producto" type="submit" variant="cta" className={'mt-4'} />
+      <Button title="Guardar cambio" type="submit" variant="cta" className={'mt-4'} />
       </form>
       {showRetroModal && (
         <Modal showModal={showRetroModal} toggleModal={setShowRetroModal} title="">

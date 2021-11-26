@@ -1,5 +1,6 @@
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Button, Card } from '@frappe/common/design-system';
+import router from 'next/router';
 
 type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
 
@@ -8,6 +9,9 @@ export const BackofficeProductCard = ({ id, name, price, images }: ProductCardPr
     // no sé qué poner acá ¿Cómo hago un popup?
   }
 
+  const handleEditProduct = () => {
+    router.push(`products/${id}`);
+  }
 
   return (
     <Card className="h-auto ">
@@ -26,7 +30,7 @@ export const BackofficeProductCard = ({ id, name, price, images }: ProductCardPr
             </div>
             <div className="flex flex-row justify-between ">
             <a href={`/editProduct/${id}`}>
-            <Button type={'button'} title={'Editar'} variant={'cta'} />
+            <Button type={'button'} title={'Editar'} variant={'cta'} onClick={handleEditProduct}/>
             </a>
             <Button type={'button'} title={'Borrar'} variant={'red'} onClick={handleClickDelete}/>
             </div>
