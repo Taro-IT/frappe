@@ -30,7 +30,7 @@ export class SendEmailOnUserRegistered implements EventSubscriberInterface {
         subject: 'Bienvenido a Cínica'
       }
     });
-
+    console.log(confirmEmail)
     return this.emailProvider.send(confirmEmail)
   }
 }

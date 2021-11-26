@@ -13,6 +13,6 @@ export const createPasswordResetCodeHandler = (commandBus: CommandBus): RequestH
 
     const [error] = await wrapError(commandBus.execute(command));
 
-    console.log(error.message);
+    console.log(error ?? error);
     res.status(200).json();
   }
