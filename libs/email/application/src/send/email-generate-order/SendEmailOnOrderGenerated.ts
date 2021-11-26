@@ -20,21 +20,62 @@ export class SendEmailOnOrderGenerated implements EventSubscriberInterface {
   }
 
   execute(event: OrderGenerated) {
+    console.log("mandar correo");
     const { clientName, address, items, dateCreated, subtotal, total } = event.payload;
 
     const itemsList = []
 
     items.forEach(item => {
+
+      const itemCustomParts = []
+      
+      item.customParts?.forEach(customPart => {
+        const newCustomPart = {
+          section: customPart.section,
+          material: customPart.material
+        }
+        itemCustomParts.push(newCustomPart);
+      });
+
+      console.log(itemCustomParts)
+
       const newItem = {
         productName: item.productName,
         size: item.size,
         quantity: item.quantity,
         productPrice: item.productPrice * item.quantity,
-        productImage: item.productImages[0]
+        productImage: item.productImages[0],
+        customParts: itemCustomParts
       }
 
       itemsList.push(newItem)
     });
+
+    console.log(itemsList)
+
+    const monthNames = [
+      'enero',
+      'febrero',
+      'marzo',
+      'abril',
+      'mayo',
+      'junio',
+      'julio',
+      'agosto',
+      'septiembre',
+      'octubre',
+      'noviembre',
+      'diciembre'
+    ];
+  
+    const prettyDate = new Date(dateCreated);
+    const year = prettyDate.getUTCFullYear();
+    const month = prettyDate.getUTCMonth();
+    const day = prettyDate.getUTCDate();
+
+    const orderDate = `${day} de ${monthNames[month]} del ${year}`
+    const orderAddress = `${address.address1}, ` + (address.address2 ? `${address.address2}, ` : ' ') + 
+      `\n${address.province}, ${address.city}, ${address.country}\n${address.zip}\n` + (address.company ? address.company : ' ');
     
     const orderEmail = Email.fromPrimitives({
       id: EmailTemplates.NewOrder,
@@ -42,8 +83,8 @@ export class SendEmailOnOrderGenerated implements EventSubscriberInterface {
       data: {
         subject: '¡Gracias por comprar en Cínica!',
         clientName,
-        orderDate: dateCreated,
-        address: address,
+        orderDate: orderDate,
+        address: orderAddress,
         items: itemsList,
         subtotal,
         total
