@@ -15,10 +15,10 @@ export function AboutUsComponent() {
             <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
              Detrás cada producto, está el hermoso trabajo de artesanos de la tercera edad, quienes elaboran el calzado completamente a mano, utilizando técnicas ancestrales.
             </p>
-            <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">  
+            <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
                 La razón de Cínica, es ir en “contra del sistema de la moda”, enfocándonos en la moda ética. Utilizamos pieles, casi en su totalidad, reutilizadas, creando piezas únicas en su singular al ser material limitado. Además, todo es hecho sobre pedido para reducir el desperdicio.
             </p>
-            <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">  
+            <p className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
                 Agradecemos tu confianza al adquirir nuestros productos y sumarte al movimiento de moda ética.
             </p>
           </div>

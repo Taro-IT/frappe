@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
+import { CogIcon, LogoutIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import { Link } from '..';
 const navItems = [
   {href: "store", text: "Tienda"},
@@ -11,9 +11,6 @@ const navItems = [
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems] = useState<number>(0)
-  const handleOpenUser = () => {
-    setOpen(previous => !previous)
-  }
 
   useEffect (()=> {
     const aux = localStorage.getItem('items');

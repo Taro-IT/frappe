@@ -27,7 +27,7 @@ export class SendEmailOnCommentSent implements EventSubscriberInterface {
       to: process.env.SENDGRID_EMAIL_TO,
       data: {
         name: name + " " + lastName,
-        body: `Ha comentado: \n ${message} \m Y ha dejado su número telefónico: ${phone} y su correo electónico: ${email}`,
+        body: `Ha comentado: \n ${message} \n Y ha dejado su número telefónico: ${phone} y su correo electónico: ${email}`,
         subject: subject
       }
     });
