@@ -16,6 +16,10 @@ export const productRouting = ({ commandBus, queryBus }: ProductRoutingDeps) => 
   //User story: frappe-64
   router.post('/', makeValidateBody(dtos.CreateProductDto), handlers.createProductHandler(commandBus));
   router.get('/', handlers.searchProductsHandler(queryBus));
+
+  // User Story: frappe-58
+  router.delete('/:id', handlers.deleteProductHandler(commandBus));
+
     //User story: frappe-64
   router.get('/:id', handlers.findByIdProductHandler(queryBus));
 

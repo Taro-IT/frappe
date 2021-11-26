@@ -166,7 +166,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
         customizableParts: (customParts !== undefined  && customParts !== null  && customParts !== []) ? customParts : null,
         sizes: (sizes !== undefined  && sizes !== null  && sizes !== []) ? sizes : null,
         amount: (amount !== undefined  && amount !== null) ? amount : null,
-        priceInSale: salePrice,
+        priceInSale: (salePrice !== undefined && salePrice !== null) ?  salePrice : null,
         canBeSold: (canBeSold !== undefined  && canBeSold !== null) ? canBeSold : null,
       }
 

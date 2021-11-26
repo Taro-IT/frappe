@@ -74,8 +74,8 @@ export interface Material {
           setMessage('Material borrado con éxito.');
           setSuccess(true);
         } catch (error) {
-          console.error('El material no se pudo borar', error);
-          setMessage('Hubo un error, el material no se pudo borar.');
+          console.error('El material no se pudo borrar', error);
+          setMessage('Hubo un error, el material no se pudo borrar.');
           setSuccess(false);
         }
         setDeleteModal(false);

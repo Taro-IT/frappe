@@ -6,7 +6,9 @@ import {
   ProductNameFinder,
   ProductSearcher,
   ProductIdFinder,
-  ProductUpdater
+  ProductUpdater,
+  ProductDeleter,
+  ProductFinder
 } from '@frappe/product/application';
 
 export const registerProductModule = (container: AwilixContainer) => {
@@ -18,5 +20,7 @@ export const registerProductModule = (container: AwilixContainer) => {
     productSearcher: asClass(ProductSearcher).singleton(),
     productIdFinder: asClass(ProductIdFinder).singleton(),
     productRouting: asFunction(productRouting).singleton(),
+    productDeleter: asClass(ProductDeleter).singleton(),
+    productFinder: asClass(ProductFinder).singleton()
   });
 };

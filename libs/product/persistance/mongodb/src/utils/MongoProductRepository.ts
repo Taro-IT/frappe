@@ -70,4 +70,9 @@ export class MongoProductRepository extends MongoRepository implements ProductRe
 
     return collection.countDocuments();
   }
+
+  async delete(id: ProductId): Promise<Nullable<boolean>> {
+    const collection = await this.collection();
+    return (await collection.deleteOne({ _id: id.value })).acknowledged;
+  }
 }

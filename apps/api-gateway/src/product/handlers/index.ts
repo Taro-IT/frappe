@@ -1,4 +1,5 @@
 export { createProductHandler } from './createProductHandler';
 export { searchProductsHandler } from './searchProductsHandler';
-export { findByIdProductHandler } from './findByIdProductHandler';
 export { updateProductHandler } from './updateProductHandler';
+export { deleteProductHandler } from './deleteProductHandler';
+export { findByIdProductHandler } from './findByIdProductHandler';

@@ -1,12 +1,35 @@
-import { ProductPrimitives } from '@frappe/product/domain';
 import { Button, Card } from '@frappe/common/design-system';
 import router from 'next/router';
+import { Dispatch, SetStateAction } from 'react';
 
-type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
 
-export const BackofficeProductCard = ({ id, name, price, images }: ProductCardProps) => {
+// type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
+
+
+export type ProductCardData = {
+  id: string,
+  name: string
+}
+
+type ProductCardProps = {
+  id: string,
+  name: string,
+  price: number,
+  images: string[],
+  setDeleteModal: Dispatch<SetStateAction<boolean>>,
+  setCurrentProd: Dispatch<SetStateAction<ProductCardData>>,
+}
+
+export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal, setCurrentProd}: ProductCardProps) => {
+  /*const router = useRouter();
+  
+  const handleClickEdit = () => {
+    router.push(`/productEdit/${id}`);
+  }*/
+
   const handleClickDelete = () => {
-    // no sé qué poner acá ¿Cómo hago un popup?
+    setDeleteModal(true);
+    setCurrentProd({id: id, name: name})
   }
 
   const handleEditProduct = () => {
