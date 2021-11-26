@@ -1,4 +1,4 @@
-# PP-HA-911 Generar ordenes de envío
+# PP-HA-911 Generar órdenes de envío
 
 ## Requisito
 
@@ -9,7 +9,7 @@
 
 - **Dado** una orden valida.
 **Cuando** el administrador de clic en generar orden,
-**Entonces**  aparecera un modal para llenar los datos necesarios.
+**Entonces**  aparecerá un modal para llenar los datos necesarios.
 
 - **Dados** los datos necesarios para generar la orden de envío.
 **Cuando** el administrador de clic en guardar y continuar,
