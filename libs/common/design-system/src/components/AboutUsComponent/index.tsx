@@ -1,7 +1,4 @@
 /* This example requires Tailwind CSS v2.0+ */
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export function AboutUsComponent() {
   return (
