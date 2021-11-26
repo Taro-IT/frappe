@@ -38,7 +38,8 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
   const [productDescription, setProductDescription] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
   const [allSizes, setAllSizes] = useState<boolean>(false);
-const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
+  const [prevCategories, setPrevCategories] = useState()
+  const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
   const defaultSizes = [22, 22.5, 23, 23.5, 24, 24.5, 25, 25.5, 26, 26.5, 27, 27.5, 28, 28.5, 29, 29.5];
 
 
@@ -61,9 +62,14 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
             return { value: option.id, label: option.name };
           })
         );
+        setPrevCategories(data.map((option: Category) => {
+          return { value: option.id, label: option.name };
+        }))
       }
     };
     getCategories();
+
+
   }, []);
 
   useEffect(() => {
@@ -71,16 +77,21 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
       const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
       const productInfo: ProductPrimitives = data.product.result;
       console.log(productInfo);
-      
+
       if(data.length !== 0) {
         setPrevInfo(productInfo);
       }
     }
 
     getProductInfo();
-    
+    console.log("OPTIONS", options);
   }, []);
-  
+
+  useEffect(() => {
+    console.log("PREVCAT", prevCategories);
+
+  }, [prevCategories])
+
 
   const customStyles = {
     option: (provided: any, state: { isSelected: any }) => ({
@@ -89,7 +100,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
       color: state.isSelected ? 'rgb(163, 142, 101)' : undefined
     })
   };
-  
+
   const handleSetToAllSizes = () => {
 
     if(allSizes){
@@ -101,12 +112,12 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
     setAllSizes(previous => !previous)
 
   }
-  
+
   console.log(sizes);
   const handleStockChange = () => {
     setIsLimited(previous => !previous);
   };
-  
+
   const handleOnSaleChange = () => {
     setIsOnSale(previous => !previous);
   };
@@ -125,21 +136,6 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
     e.preventDefault();
     if (loading === true) {return}
     setLoading(true)
-
-    if(sizes.length < 1){
-      setShowRetroModal(true)
-      setSuccess(false)
-      setMessage("Debes seleccionar al menos una talla para este producto")
-      setLoading(false)
-      return
-    }
-    if(selectedCategories.length < 1){
-      setShowRetroModal(true)
-      setSuccess(false)
-      setMessage("Debes seleccionar al menos una categoría para este producto")
-      setLoading(false)
-      return
-    }
     try {
 
       // Post de imágenes
@@ -151,8 +147,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
         return name;
       })
       const fileNames = await Promise.all(promises);
-      console.log(productName, "PNM");
-      
+
       const payload = {
         name: (productName !== undefined && productName !== null && productName !== "") ? productName : null,
         price: (price !== undefined  && price !== null) ? price : null,
@@ -171,8 +166,8 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
       }
 
       console.log(payload, "PAYLOAD")
-      
-     
+
+
       // Patch de productos
         await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, payload)
       setShowRetroModal(true)
@@ -242,8 +237,8 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
     }
     setFiles(fileArray);
   }
-  
-  
+
+
   return (
     <>
     <form className="flex flex-col w-full p-8" onSubmit={updateProduct}>
@@ -253,7 +248,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
           value={productName}
           onChange={handleProductName}
           className="border-2 border-gray-200 rounded pl-2 w-full h-8"
-           
+
           placeholder={prevInfo ? prevInfo.name : "Cargando..."}
         />
       </div>
@@ -272,7 +267,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
         styles={customStyles}
         onChange={handleSelectCategories}
         placeholder="Selecciona categorías"
-        defaultValue={prevInfo ? prevInfo.categories : "asadsf"}
+        defaultValue={prevCategories}
       />
         <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">Todas las tallas</label>
@@ -295,7 +290,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
           min="0"
           className="border-2 border-gray-200 h-8 rounded pl-2 w-full"
           placeholder={prevInfo ? prevInfo.price.toFixed(2) : "Cargando..."}
-           
+
         />
       </div>
       <div className="flex flex-row">
@@ -347,7 +342,7 @@ const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
         onChange={changeProductDescription}
       />
       <label className="w-1/3 mt-4 mb-3">Imágenes</label>
-      <input className={styles['input-file']} type="file"  id="files" name="files" multiple onChange={onChangeFile} required/>
+      <input className={styles['input-file']} type="file"  id="files" name="files" multiple onChange={onChangeFile}/>
       <p className="text-xs text-red-500 mt-2">Puedes subir varias imágenes haciendo click en Ctrl (Cmd en Mac) mientras seleccionas.</p>
       <div className="flex flex-row">
         <label className={'w-auto mt-4 mb-3 mr-4'}>¿Este producto es personalizable?</label>
