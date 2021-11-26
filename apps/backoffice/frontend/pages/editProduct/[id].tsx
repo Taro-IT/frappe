@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { withUserAgent } from '@frappe/common/design-system';
 import { AdminLayout } from '../../layouts/AdminLayout';
-import styles from '../../styles/store.module.scss';
 import axios from 'axios';
 import { ProductPrimitives } from '@frappe/product/domain';
 import { useRouter } from "next/router"

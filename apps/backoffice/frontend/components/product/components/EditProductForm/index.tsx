@@ -142,7 +142,6 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
       const promises = files.map( async file => {
         const bodyFormData = new FormData();
         bodyFormData.append('file', file);
-        console.log(bodyFormData.getAll('file'));
         const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
         return name;
       })
@@ -165,25 +164,30 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
         canBeSold: (canBeSold !== undefined  && canBeSold !== null) ? canBeSold : null,
       }
 
-      console.log(payload, "PAYLOAD")
-
-
       // Patch de productos
         await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, payload)
-      setShowRetroModal(true)
-      setSuccess(true)
-      setMessage("Producto actualizado correctamente")
-      setLoading(false)
-      return
+      showSuccess()
     } catch (error) {
-      setShowRetroModal(true)
-      setSuccess(false)
-      setMessage("Este producto ya existe en la base de datos, intenta cambiar el nombre")
-      console.error("El producto ya existe");
-      setLoading(false)
-      return
+      showError()
     }
   };
+
+  const showSuccess = () => {
+    setShowRetroModal(true)
+    setSuccess(true)
+    setMessage("Producto actualizado correctamente")
+    setLoading(false)
+    return
+  }
+
+  const showError = () => {
+    setShowRetroModal(true)
+    setSuccess(false)
+    setMessage("Este producto ya existe en la base de datos, intenta cambiar el nombre")
+    console.error("El producto ya existe");
+    setLoading(false)
+    return
+  }
 
   const changePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(parseInt(event.target.value, 10));

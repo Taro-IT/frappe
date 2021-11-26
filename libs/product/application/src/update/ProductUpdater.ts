@@ -72,11 +72,8 @@ export class ProductUpdater {
       sizes: sizes ? sizes : product.sizes ,
       canBeSold: canBeSold ? canBeSold : product.canBeSold ,
       priceInSale: priceInSale ? priceInSale : product.priceInSale ,
-      amount: amount ? amount : product.amount 
+      amount: amount ? amount : product.amount
     };
-
-    console.log(updatedProduct);
-    
 
     return this.productRepository.save(Product.fromPrimitives(updatedProduct));
   }
