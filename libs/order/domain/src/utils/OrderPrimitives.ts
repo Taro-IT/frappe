@@ -7,7 +7,7 @@ export enum OrderStatuses {
   LISTA_PARA_ENVIO = 'Lista para envío',
   ENTREGADA = 'Enviada',
   CANCELADA = 'Cancelada',
-  ERRONEA = 'Orden Erronea',
+  ERRONEA = 'Orden Errónea',
   COMPLETADA = 'Completada'
 }
 
