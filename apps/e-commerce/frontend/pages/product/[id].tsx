@@ -15,7 +15,6 @@ const StorePage = () => {
   useEffect(() => {
       const getProduct = async (): Promise<void> => {
           const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${query.id}`);
-          //console.log(response.data.product.result);
           const data = response.data.product.result;
           if (data.length !== 0) {
               setProductInfo(data);

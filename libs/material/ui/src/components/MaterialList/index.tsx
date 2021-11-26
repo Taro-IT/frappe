@@ -41,7 +41,6 @@ export interface Material {
           // Post de imágenes
           const bodyFormData = new FormData();
           bodyFormData.append('file', file);
-          console.table(bodyFormData.getAll('file'));
           const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
           fileURL = name
         }
@@ -75,8 +74,8 @@ export interface Material {
           setMessage('Material borrado con éxito.');
           setSuccess(true);
         } catch (error) {
-          console.error('El material no se pudo borar', error);
-          setMessage('Hubo un error, el material no se pudo borar.');
+          console.error('El material no se pudo borrar', error);
+          setMessage('Hubo un error, el material no se pudo borrar.');
           setSuccess(false);
         }
         setDeleteModal(false);

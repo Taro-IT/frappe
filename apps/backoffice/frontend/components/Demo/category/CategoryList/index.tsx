@@ -70,8 +70,8 @@ const CategoryList = () => {
         setMessage('Categoría borrada con éxito.');
         setSuccess(true);
       } catch (error) {
-        console.error('La categoría no se pudo borar', error);
-        setMessage('La categoría no se pudo borar.');
+        console.error('La categoría no se pudo borrar', error);
+        setMessage('La categoría no se pudo borrar.');
         setSuccess(false);
       }
       setDeleteModal(false);
@@ -100,14 +100,18 @@ const CategoryList = () => {
     () =>
       categories.map((category, index) => {
         const { id, name } = category;
-        return (
-          <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
-            <h1 className='text-2xl'>{category.name}</h1>
-            <p className='text-lg mb-12'>Productos en esta categoría: 4</p>
-            <EditButton id={id} name={name} />
-            <DeleteButton id={id} name={name} />
-          </Card>
-        );
+        if(category.isActive !== false){
+          return (
+            <>
+              <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
+                <h1 className={clsx('text-2xl')}>{category.name}</h1>
+                <p className={clsx('text-lg', 'mb-12')}>Productos en esta categoría: 4</p>
+                <EditButton id={id} name={name} />
+                <DeleteButton id={id} name={name} />
+              </Card>
+            </>
+          );
+        };
       }),
     [categories]
   );

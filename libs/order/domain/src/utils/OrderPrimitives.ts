@@ -1,21 +1,29 @@
-//User Stories: frappe-91
+//User Stories: frappe-91, frappe-981
 import { ShippingAddressPrimitives } from "@frappe/shipping/domain";
 
 export enum OrderStatuses {
-  ABIERTO = 'Abierto',
+  ABIERTO = 'Abierta',
   EN_PROCESO = 'En proceso',
   LISTA_PARA_ENVIO = 'Lista para envío',
-  ENTREGADA = 'Entregada'
+  ENTREGADA = 'Enviada',
+  CANCELADA = 'Cancelada',
+  ERRONEA = 'Orden Errónea',
+  COMPLETADA = 'Completada'
+}
+
+export interface OrderItemCustomPartType {
+  readonly section: string;
+  readonly material: string;
 }
 
 export interface OrderItemType {
-  readonly id: string;
   readonly productId: string;
   readonly productName: string;
   readonly productPrice: number;
   readonly productImages: string[];
   readonly size: number;
   readonly quantity: number;
+  readonly customParts?: OrderItemCustomPartType[];
 }
 
 export interface OrderPrimitives {

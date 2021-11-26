@@ -5,16 +5,22 @@ import {
   ProductCreator,
   ProductNameFinder,
   ProductSearcher,
-  ProductIdFinder
+  ProductIdFinder,
+  ProductUpdater,
+  ProductDeleter,
+  ProductFinder
 } from '@frappe/product/application';
 
 export const registerProductModule = (container: AwilixContainer) => {
   container.register({
     productRepository: asClass(MongoProductRepository).singleton(),
     productCreator: asClass(ProductCreator),
+    productUpdater: asClass(ProductUpdater),
     productNameFinder: asClass(ProductNameFinder).singleton(),
     productSearcher: asClass(ProductSearcher).singleton(),
     productIdFinder: asClass(ProductIdFinder).singleton(),
     productRouting: asFunction(productRouting).singleton(),
+    productDeleter: asClass(ProductDeleter).singleton(),
+    productFinder: asClass(ProductFinder).singleton()
   });
 };

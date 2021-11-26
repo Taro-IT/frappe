@@ -1,6 +1,7 @@
 import { MongoRepository } from '@frappe/common/persistence/mongodb';
 import { Material, MaterialId, MaterialName, MaterialPrimitives, MaterialRepository } from '@frappe/material/domain';
 import { Nullable } from '@frappe/common/utils';
+import { Criteria } from '@dinnosc/criteria';
 
 export class MongoMaterialRepository extends MongoRepository implements MaterialRepository {
 
@@ -18,7 +19,7 @@ export class MongoMaterialRepository extends MongoRepository implements Material
   async save(material: Material): Promise<void> {
     return this.persist(material.id.value, material);
   }
-  
+
   /**
    * Finds a material by name @see {@link Material}
    * @param name - The name of the material that will be searched.
@@ -69,4 +70,16 @@ export class MongoMaterialRepository extends MongoRepository implements Material
 
     return documents?.map(doc => Material.fromPrimitives({ ...doc, id: doc._id } as MaterialPrimitives)) || [];
   }
+
+  /**
+   * Search database materials that matches the provided criteria
+   *
+   * @param criteria Object that represents a Query
+   */
+   async search(criteria: Criteria<Material>): Promise<Material[]> {
+    const materials = await this.searchByCriteria(criteria);
+
+    return materials.map(material => Material.fromPrimitives({ ...material, id: material._id } as MaterialPrimitives));
+  }
+
 }
