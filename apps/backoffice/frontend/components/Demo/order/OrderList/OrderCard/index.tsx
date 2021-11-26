@@ -1,13 +1,14 @@
 //User Stories: frappe-91, frappe-507, frappe-85
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import clsx from 'clsx';
 import classes from '../OrderList.module.scss';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline';
-import { Button, Card, Badge, Modal, ProgressBar, Alert} from '@frappe/common/design-system';
+import { Button, Card, Badge, Modal, ProgressBar, Alert, TextField, Form} from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
 import * as React from 'react';
 import { OrderStatuses } from '@frappe/order/domain'
 import axios from 'axios';
+import orders from 'apps/backoffice/frontend/pages/orders';
 
 type OrderCardProps = {
   readonly items;
@@ -20,6 +21,15 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   const [status, setStatus] = useState<OrderStatuses>(order.status);
   const [newStatus, setNewStatus] = useState<OrderStatuses>();
   const [displayEditModal, setEditModal] = useState<boolean>(false);
+
+  const [parcelclosed, setParcelExpanded] = useState<boolean>(false);
+  const [displayParcelModal, setParcelModal] = useState<boolean>(false);
+
+  const [parcelLength, setParcelLength] = useState<string>();
+  const [parcelHeight, setParcelHeight] = useState<string>();
+  const [parcelWidth, setParcelWidth] = useState<string>();
+  const [parcelWeight, setParcelWeight] = useState<string>();
+
   const monthNames = [
     'enero',
     'febrero',
@@ -44,10 +54,37 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     setExpanded(previous => !previous);
   };
 
-  const handleClick = async ()  => {
+  const handleLenghtChange = (e : ChangeEvent<HTMLInputElement>) => {
+    setParcelLength(e.target.value);
+  };
+
+  const handleHeightChange = (e : ChangeEvent<HTMLInputElement>) => {
+    setParcelHeight(e.target.value);
+    console.log(e.target.value)
+  };
 
 
-   const  order : any  = await axios.post('https://api-demo.skydropx.com/v1/shipments', 
+  const handleWidthChange = (e : ChangeEvent<HTMLInputElement>) => {
+    setParcelWidth(e.target.value);
+  };
+
+
+  const handleWeightChange = (e : ChangeEvent<HTMLInputElement>) => {
+    setParcelWeight(e.target.value);
+  };
+
+
+  
+
+  const handleShippingModal = () => {
+    setParcelModal(previous => !previous)
+  }
+
+
+  const handleShippingClick = async event  => {
+    event.preventDefault();
+  console.log(parcelWeight)
+   const  orderShipping : any  = await axios.post('https://api-demo.skydropx.com/v1/shipments', 
     { "address_from": {
         "province": "Ciudad de México", 
         "city": "Azcapotzalco", 
@@ -61,26 +98,26 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
         "email": "skydropx@email.com"
       }, 
       "parcels": [{ 
-        "weight": 3, 
+        "weight": parseInt(parcelWeight,10), 
         "distance_unit": "CM", 
         "mass_unit": "KG", 
-        "height": 10, 
-        "width": 10, 
-        "length": 10 
+        "height":  parseInt(parcelHeight,10), 
+        "width":  parseInt(parcelWidth,10), 
+        "length":  parseInt(parcelLength,10) 
       }],
       "address_to": { 
-        "province": "Jalisco", 
-        "city": "Guadalajara", 
-        "name": "Jorge Fernández", 
-        "zip": "44100", 
+        "province": order.address.province, 
+        "city":  order.address.city, 
+        "name":  order.clientName, 
+        "zip":  order.address.zip, 
         "country": "MX",  
-        "address1": " Av. Lázaro Cárdenas #234", 
-        "company": "-", 
-        "address2": "Americana",
-        "phone": "5555555555", 
-        "email": "ejemplo@skydropx.com", 
-        "reference": "Frente a tienda de",
-        "contents": "asd" }
+        "address1":  order.address.address1, 
+        "company":  order.address.company, 
+        "address2":  order.address.address2,
+        "phone":  order.address.phone, 
+        "email":  order.address.email, 
+        "reference":  order.address.reference,
+        "contents": ' ' }
         },{
       headers : {
         Authorization: "Token token=" + process.env.NEXT_PUBLIC_SKYDROPX,
@@ -90,7 +127,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
 
     let days : number = 100;
     let rateId : string
-    order.data.included?.map( (rate) => {
+    orderShipping.data.included?.map( (rate) => {
       if(rate.type == "rates"){
         if(rate.attributes?.days < days){
           days = rate.attributes?.days 
@@ -175,7 +212,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
             <Badge content="Atrasada" color="red"/>
         )}
         {status === OrderStatuses.LISTA_PARA_ENVIO  && (
-        <Button title={'Imprimir Guía'} variant={'cta'} className="flex" onClick={handleClick} />
+        <Button title={'Imprimir Guía'} variant={'cta'} className="flex" onClick={handleShippingModal} />
         )}
         </div>
 
@@ -262,6 +299,47 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
             <Button title={'Guardar y enviar'} variant={'cta'} className="text-center" onClick={handleChangeStatus}/>
           </div>
         </Modal>
+        
+      )}
+       {displayParcelModal && (
+        /*Modal donde viene el radio para cambiar el estatus*/
+        /*TODO: Poner el onClick en el botón para que llame la función del query*/
+        <Modal
+          title={`¿Cuáles son las caracterísiticas de la parcela a enviar?`}
+          showModal={displayParcelModal}
+          toggleModal={setParcelModal}
+        >
+          <div className="self-center text-center">
+            <form onSubmit={handleShippingClick}>
+              <div  className="p-2">
+              <label>Largo (cm): </label>
+              <input  placeholder="10.0"  required onChange={handleLenghtChange}/>
+              </div>
+              <div  className="p-2">
+              <label>Alto (cm): </label>
+              <input  placeholder="10.0"  required onChange={handleHeightChange}/>
+              </div >
+              <div className="p-2">
+              <label>Ancho (cm): </label>
+              <input  placeholder="10.0" required onChange={handleWidthChange}/>
+              </div>
+              <div className="p-2">
+              <label>Peso (KG): </label>
+              <input  placeholder="3.0"   required onChange={handleWeightChange}/>
+              </div>
+              <Alert
+                title="¡Advertencia!"
+                body="Al dar clic en 'Guardar y enviar', se generará la guía de envío para esta orden"
+                color="yellow"
+                className="self-center mt-4 mb-4"
+              />
+              <Button type="submit" title="Guardar y enviar"  variant={'cta'} className="text-center"/>
+            </form>
+          </div>
+          <div className="p-3  self-center">
+          </div>
+        </Modal>
+        
       )}
     </Card>
   );
