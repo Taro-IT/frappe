@@ -25,7 +25,7 @@
 
 | Diagrama | Artefactos |
 | ------------------------|-------------------------- |
-| [Diagrama de actividad](https://lucid.app/lucidchart/35410831-fe06-4746-a71c-5751351b3e8d/edit?invitationId=inv_4aaccdab-d542-49dd-828b-261c9b4a43ae&page=98TTJ~8Bs_WK#) | ![Diagrama](../../assets/PP-HA-98.png ) |
+| [Diagrama de actividad](https://lucid.app/lucidchart/35410831-fe06-4746-a71c-5751351b3e8d/edit?invitationId=inv_4aaccdab-d542-49dd-828b-261c9b4a43ae&page=98TTJ~8Bs_WK#) | ![Diagrama](../../assets/PP-HA-981.png) |
 | [Mockup](https://www.figma.com/file/MiuSV67DUVkzMeMKJeAhP0/Backoffice?node-id=27%3A4) | ![Mockup](../../assets/PP-WF-98.png) |
 
 ## Architecture Spike
