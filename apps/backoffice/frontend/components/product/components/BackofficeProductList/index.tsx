@@ -13,6 +13,7 @@ interface ProductListContentProps {
 
 
   export const BackofficeProductList = ({ products }: ProductListContentProps) => {
+    console.log(products);
 
     const [displayDeleteModal, setDeleteModal] = useState<boolean>(false);
     const [currentProduct, setCurrentProduct] = useState<ProductCardData>();
@@ -29,11 +30,11 @@ interface ProductListContentProps {
       const confirmDelete = async () => {
         try {
           await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
-          setMessage('Categoría borrada con éxito.');
+          setMessage('Producto borrado con éxito.');
           setSuccess(true);
         } catch (error) {
-          console.error('La categoría no se pudo borrar', error);
-          setMessage('La categoría no se pudo borrar.');
+          console.error('El producto no se pudo borrar', error);
+          setMessage('El producto no se pudo borrar.');
           setSuccess(false);
         }
         setDeleteModal(false);

@@ -6,6 +6,7 @@ import {
   ProductNameFinder,
   ProductSearcher,
   ProductIdFinder,
+  ProductUpdater,
   ProductDeleter,
   ProductFinder
 } from '@frappe/product/application';
@@ -14,6 +15,7 @@ export const registerProductModule = (container: AwilixContainer) => {
   container.register({
     productRepository: asClass(MongoProductRepository).singleton(),
     productCreator: asClass(ProductCreator),
+    productUpdater: asClass(ProductUpdater),
     productNameFinder: asClass(ProductNameFinder).singleton(),
     productSearcher: asClass(ProductSearcher).singleton(),
     productIdFinder: asClass(ProductIdFinder).singleton(),

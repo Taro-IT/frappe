@@ -1,4 +1,5 @@
 import { Button, Card } from '@frappe/common/design-system';
+import router from 'next/router';
 import { Dispatch, SetStateAction } from 'react';
 
 
@@ -31,6 +32,9 @@ export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal,
     setCurrentProd({id: id, name: name})
   }
 
+  const handleEditProduct = () => {
+    router.push(`products/${id}`);
+  }
 
   return (
     <Card className="h-auto ">
@@ -48,8 +52,8 @@ export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal,
             </p>
             </div>
             <div className="flex flex-row justify-between ">
-            <a href={`/productEdit/${id}`}>
-            <Button type={'button'} title={'Editar'} variant={'cta'} />
+            <a href={`/editProduct/${id}`}>
+            <Button type={'button'} title={'Editar'} variant={'cta'} onClick={handleEditProduct}/>
             </a>
             <Button type={'button'} title={'Borrar'} variant={'red'} onClick={handleClickDelete}/>
             </div>
