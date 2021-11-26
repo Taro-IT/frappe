@@ -1,6 +1,5 @@
 //User Story: e-commerce contact
 import { BadgeCheckIcon, ExclamationIcon, MailIcon, PhoneIcon } from '@heroicons/react/outline'
-import { EventDispatcher } from '@tshio/event-dispatcher';
 import { useState } from 'react';
 import { Modal } from '../..';
 import axios from 'axios'
@@ -56,7 +55,7 @@ export function ContactUsForm() {
         phone: phone,
       }
         event.preventDefault()
-        setFeedbackMessage('¡Gracias por tus comentarios!');
+        setFeedbackMessage('¡Gracias por hacernos llegar tus comentarios!');
         setSuccess(true);
         setDisplayResultModal(true);
         await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/comment`, data)
