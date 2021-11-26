@@ -84,16 +84,16 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   console.log(parcelWeight)
    const  orderShipping : any  = await axios.post('https://api-demo.skydropx.com/v1/shipments',
     { "address_from": {
-        "province": "Ciudad de México",
-        "city": "Azcapotzalco",
-        "name": "Jose Fernando",
-        "zip": "02900",
-        "country": "MX",
-        "address1": "Av. Principal #234",
-        "company": "skydropx",
-        "address2": "Centro",
-        "phone": "5555555555",
-        "email": "skydropx@email.com"
+      "province": "Querétaro",
+      "city": "Corregidora",
+      "name": "Doris Gómez",
+      "zip": "76910",
+      "country": "MX",
+      "address1": "Av. Andmaxei #62",
+      "company": "Cínica",
+      "address2": "Fraccionamiento Petirrojo",
+      "phone": "5521944332",
+      "email": "doris@cinica.mx"
       },
       "parcels": [{
         "weight": parseInt(parcelWeight,10),
