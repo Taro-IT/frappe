@@ -1,14 +1,13 @@
 //User Stories: frappe-91, frappe-507, frappe-85
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import clsx from 'clsx';
 import classes from '../OrderList.module.scss';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/outline';
-import { Button, Card, Badge, Modal, ProgressBar, Alert, TextField, Form} from '@frappe/common/design-system';
+import { Button, Card, Badge, Modal, ProgressBar, Alert} from '@frappe/common/design-system';
 import ItemCard from '../ItemCard';
 import * as React from 'react';
 import { OrderStatuses } from '@frappe/order/domain'
 import axios from 'axios';
-import orders from 'apps/backoffice/frontend/pages/orders';
 
 type OrderCardProps = {
   readonly items;
@@ -22,7 +21,6 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   const [newStatus, setNewStatus] = useState<OrderStatuses>();
   const [displayEditModal, setEditModal] = useState<boolean>(false);
 
-  const [parcelclosed, setParcelExpanded] = useState<boolean>(false);
   const [displayParcelModal, setParcelModal] = useState<boolean>(false);
 
   const [parcelLength, setParcelLength] = useState<string>();
@@ -86,36 +84,36 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   console.log(parcelWeight)
    const  orderShipping : any  = await axios.post('https://api-demo.skydropx.com/v1/shipments', 
     { "address_from": {
-        "province": "Ciudad de México", 
-        "city": "Azcapotzalco", 
-        "name": "Jose Fernando", 
-        "zip": "02900", 
-        "country": "MX", 
-        "address1": "Av. Principal #234", 
-        "company": "skydropx", 
-        "address2": "Centro", 
-        "phone": "5555555555", 
+        "province": "Ciudad de México",
+        "city": "Azcapotzalco",
+        "name": "Jose Fernando",
+        "zip": "02900",
+        "country": "MX",
+        "address1": "Av. Principal #234",
+        "company": "skydropx",
+        "address2": "Centro",
+        "phone": "5555555555",
         "email": "skydropx@email.com"
-      }, 
-      "parcels": [{ 
-        "weight": parseInt(parcelWeight,10), 
-        "distance_unit": "CM", 
-        "mass_unit": "KG", 
-        "height":  parseInt(parcelHeight,10), 
-        "width":  parseInt(parcelWidth,10), 
-        "length":  parseInt(parcelLength,10) 
+      },
+      "parcels": [{
+        "weight": parseInt(parcelWeight,10),
+        "distance_unit": "CM",
+        "mass_unit": "KG",
+        "height":  parseInt(parcelHeight,10),
+        "width":  parseInt(parcelWidth,10),
+        "length":  parseInt(parcelLength,10)
       }],
-      "address_to": { 
-        "province": order.address.province, 
-        "city":  order.address.city, 
-        "name":  order.clientName, 
-        "zip":  order.address.zip, 
-        "country": "MX",  
-        "address1":  order.address.address1, 
-        "company":  order.address.company, 
+      "address_to": {
+        "province": order.address.province,
+        "city":  order.address.city,
+        "name":  order.clientName,
+        "zip":  order.address.zip,
+        "country": "MX",
+        "address1":  order.address.address1,
+        "company":  order.address.company,
         "address2":  order.address.address2,
-        "phone":  order.address.phone, 
-        "email":  order.address.email, 
+        "phone":  order.address.phone,
+        "email":  order.address.email,
         "reference":  order.address.reference,
         "contents": ' ' }
         },{
@@ -130,17 +128,17 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     orderShipping.data.included?.map( (rate) => {
       if(rate.type == "rates"){
         if(rate.attributes?.days < days){
-          days = rate.attributes?.days 
+          days = rate.attributes?.days
           rateId = rate.id
           console.log(rateId)
         }
-      } 
+      }
     });
 
-    const label = await axios.post('https://api-demo.skydropx.com/v1/labels', 
-    { 
+    const label = await axios.post('https://api-demo.skydropx.com/v1/labels',
+    {
       "rate_id": parseInt(rateId, 10),
-       "label_format": "pdf" 
+       "label_format": "pdf"
     },
     {
       headers: {
