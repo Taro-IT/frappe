@@ -3,11 +3,11 @@ import React from 'react'
 
 const helpItems = [
     {
-        name: "Compras",
+        name: "Productos",
         links: [
             {
-                use_case: "Agregar",
-                link: "https://www.facebook.com/TechnovationChallengeQro"
+                use_case: "Filtrar",
+                link: "https://www.iorad.com/player/1880218/C-nica-mx---C-mo-filtrar-productos-"
             }
         ]
     },
@@ -15,8 +15,8 @@ const helpItems = [
         name: "Personalización",
         links: [
             {
-                use_case: "Agregar",
-                link: "https://www.facebook.com/TechnovationChallengeQro"
+                use_case: "Personalizar",
+                link: ""
             }
         ]
     }
