@@ -31,7 +31,6 @@ export class SendEmailOnCommentSent implements EventSubscriberInterface {
         subject: subject
       }
     });
-
     
     return this.emailProvider.receive(confirmEmail)
   }
