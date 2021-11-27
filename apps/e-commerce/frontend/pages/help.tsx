@@ -15,8 +15,8 @@ const helpItems = [
         name: "Personalización",
         links: [
             {
-                use_case: "Personalizar",
-                link: ""
+                use_case: "Personalizar un zapato",
+                link: "https://www.iorad.com/player/1886677/Crear-un-producto-personalizable?#trysteps-1"
             }
         ]
     }
