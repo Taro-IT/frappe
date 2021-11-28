@@ -31,7 +31,7 @@ export class SendEmailOnCommentSent implements EventSubscriberInterface {
         subject: subject
       }
     });
-
+//force-depoly comment
     
     return this.emailProvider.receive(confirmEmail)
   }
