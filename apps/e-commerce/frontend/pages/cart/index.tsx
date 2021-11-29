@@ -75,18 +75,19 @@ const CartDetailPage = () => {
 
       cartItems?.map((item, index) => {
         const { name } = item;
-        totalPrice += Number(item.productPrice * item.quantity);
+
+        item.productInSalePrice ? totalPrice += Number(item.productInSalePrice * item.quantity) : totalPrice += Number(item.productPrice * item.quantity);
         return (
-          <Card className={clsx(styles.categories, 'text-center', 'p-4')} key={index}>
+          <Card className={clsx(styles.categories, 'text-center', 'p-4', 'h-full')} key={index}>
             <div className='grid grid-cols-2 '>
               <div>
-                <img className={clsx(styles.photo)}src={item.productImages} alt="Logo" />
+                <img className={clsx(styles.photo, 'rounded-lg')}src={item.productImages} alt="Logo" />
               </div>
-              <div className='flex flex-col '>
+              <div className='flex flex-col pl-5'>
                 <p className='pl-4  text-left'>Producto: {item.productName}</p>
                 <p className='pl-4 pt-4 text-left'>Talla: {item.size}</p>
                 <p className='pl-4 pt-4 text-left'>Cantidad: {item.quantity}</p>
-                <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${item.productPrice}</p>
+                {item.productInSalePrice ? <div> <p className='pl-4 pb-4 pt-4 text-left line-through'>Precio regular: ${item.productPrice}</p>  <p className='pl-4 pb-4 pt-4 text-left'>Precio en oferta: ${item.productInSalePrice}</p> </div>: <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${item.productPrice}</p>}
                 <p className='pl-4 pb-4 pt-4 text-left'>Personalización: </p>
                 <ol>
                 {item.customParts?.map(part => {

@@ -83,6 +83,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
         productId: product.id,
         productName: product.name,
         productPrice: product.price,
+        productInSalePrice: product.priceInSale,
         quantity: productAmount,
         productImages: [
           product.images[0]
