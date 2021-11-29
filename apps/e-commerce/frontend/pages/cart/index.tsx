@@ -5,14 +5,13 @@ import styles from '../../styles/cartDetails.module.scss';
 import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
 import clsx from 'clsx';
 import { BadgeCheckIcon } from '@heroicons/react/solid';
-import axios from 'axios';
 
 const CartDetailPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
   let totalPrice = 0;
 
-  
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCartItems(JSON.parse(localStorage.getItem('items')) || []);
@@ -24,21 +23,21 @@ const CartDetailPage = () => {
     }
   }, []);
 
-  const handlePayment = async () => {
-    const products = JSON.parse(localStorage.getItem('items'))
-    const stripeItems = products.map(product => (
-      {
-        id: product.id,
-        quantity: product.amount
-      }
-    ))
-    console.log(products);
-    
-    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
-      items: stripeItems
-    });
-    window.location.href = data.session.url
-  }
+  // const handlePayment = async () => {
+  //   const products = JSON.parse(localStorage.getItem('items'))
+  //   const stripeItems = products.map(product => (
+  //     {
+  //       id: product.id,
+  //       quantity: product.amount
+  //     }
+  //   ))
+  //   console.log(products);
+
+  //   const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
+  //     items: stripeItems
+  //   });
+  //   window.location.href = data.session.url
+  // }
 
   type buttonprops = { id: number; productId?: string };
 
@@ -46,8 +45,14 @@ const CartDetailPage = () => {
     return <Button title="Ver detalle" className="ml-2 w-24" variant="cta"  />;
   };
 
+  const handlePayButton = () => {
+    localStorage.setItem('subtotal', JSON.stringify(totalPrice))
+    localStorage.setItem('total', JSON.stringify(totalPrice))
+  }
+
   const PayButton = () => {
-    return <Button title="Ir a Pagar" className="ml-2 w-40 " variant="cta" onClick={handlePayment}  />;
+    /* eslint-disable @next/next/no-html-link-for-pages */
+    return<a href="/checkout"><Button title="Proceder al pago" className="ml-2 w-40 " variant="cta" onClick={handlePayButton} /> </a>;
   };
 
   const DeleteButton = ({ id, productId }: buttonprops) => {
@@ -68,29 +73,30 @@ const CartDetailPage = () => {
   const useCartItems = useMemo(
     () =>
 
-      cartItems?.map((category, index) => {
-        const { name } = category;
-        totalPrice += Number(category.price);
+      cartItems?.map((item, index) => {
+        const { name } = item;
+
+        item.productInSalePrice ? totalPrice += Number(item.productInSalePrice * item.quantity) : totalPrice += Number(item.productPrice * item.quantity);
         return (
-          <Card className={clsx(styles.categories, 'text-center', 'p-4')} key={index}>
+          <Card className={clsx(styles.categories, 'text-center', 'p-4', 'h-full')} key={index}>
             <div className='grid grid-cols-2 '>
               <div>
-                <img className={clsx(styles.photo)}src={category.image} alt="Logo" />
+                <img className={clsx(styles.photo, 'rounded-lg')}src={item.productImages} alt="Logo" />
               </div>
-              <div className='flex flex-col '>
-                <p className='pl-4  text-left'>Producto: {category.name}</p>
-                <p className='pl-4 pt-4 text-left'>Talla: {category.size}</p>
-                <p className='pl-4 pt-4 text-left'>Cantidad: {category.amount}</p>
-                <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${category.price}</p>
+              <div className='flex flex-col pl-5'>
+                <p className='pl-4  text-left'>Producto: {item.productName}</p>
+                <p className='pl-4 pt-4 text-left'>Talla: {item.size}</p>
+                <p className='pl-4 pt-4 text-left'>Cantidad: {item.quantity}</p>
+                {item.productInSalePrice ? <div> <p className='pl-4 pb-4 pt-4 text-left line-through'>Precio regular: ${item.productPrice}</p>  <p className='pl-4 pb-4 pt-4 text-left'>Precio en oferta: ${item.productInSalePrice}</p> </div>: <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${item.productPrice}</p>}
                 <p className='pl-4 pb-4 pt-4 text-left'>Personalización: </p>
                 <ol>
-                {category.customizableParts?.map(part => {
+                {item.customParts?.map(part => {
                   {{console.log(part)}}
-                  return <li key={""} className='pl-4 pb-4 pt-4 text-left'>{part.name} - {part.material}</li>
+                  return <li key={""} className='pl-4 pb-4 pt-4 text-left'>{part.section} - {part.material}</li>
                 })}
                 </ol>
                 <div className='flex flex-row pt-4'>
-                  <ViewDetailButton id={index} productId={category.productId}/>
+                  <ViewDetailButton id={index} productId={item.productId}/>
                   <DeleteButton id={index} productId={name} />
                 </div>
               </div>

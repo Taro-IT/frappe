@@ -34,7 +34,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
   };
 
   type CustomPart = {
-    name: string,
+    section: string,
     material: string
   }
 
@@ -66,7 +66,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
       }
     };
     setProductMaterials(product.customizableParts?.map( (part, i) => {
-        return { name: part, material: ''};
+        return { section: part, material: ''};
       })
     )
     getMaterials();
@@ -80,13 +80,16 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
     
       setCartSuccess(false)
       const newProduct = {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        amount: productAmount,
-        image: product.images[0],
+        productId: product.id,
+        productName: product.name,
+        productPrice: product.price,
+        productInSalePrice: product.priceInSale,
+        quantity: productAmount,
+        productImages: [
+          product.images[0]
+        ],
         size: selectedSize,
-        customizableParts: productMaterials
+        customParts: productMaterials
   
       }
       const aux = localStorage.getItem('items');
