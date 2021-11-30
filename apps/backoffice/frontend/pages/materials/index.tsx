@@ -4,17 +4,15 @@ import {MaterialList, useMaterials} from '@frappe/material/ui'
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
 import classes from './Materials.module.scss'
+
 const ListMaterialsPage = () => {
   const {materials} = useMaterials()
-
+//clsx(classes.categories, 'text-center', 'p-4')
   return (
    <>
       <AddMaterial />
-      <div className={classes.cards}>
         {/* // User Story: Frappe 501 */}
         <MaterialList ecommerce={false} materials={materials} />
-
-      </div>
    </>
   )
 }
