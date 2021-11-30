@@ -23,26 +23,10 @@ const CartDetailPage = () => {
     }
   }, []);
 
-  // const handlePayment = async () => {
-  //   const products = JSON.parse(localStorage.getItem('items'))
-  //   const stripeItems = products.map(product => (
-  //     {
-  //       id: product.id,
-  //       quantity: product.amount
-  //     }
-  //   ))
-  //   console.log(products);
-
-  //   const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
-  //     items: stripeItems
-  //   });
-  //   window.location.href = data.session.url
-  // }
-
   type buttonprops = { id: number; productId?: string };
 
   const ViewDetailButton = ({ id, productId }: buttonprops) => {
-    return <Button title="Ver detalle" className="ml-2 w-24" variant="cta"  />;
+    return <a href={`/products/${productId}`}><Button title="Ver detalle" className="ml-2 w-24" variant="cta"  /></a>;
   };
 
   const handlePayButton = () => {
@@ -68,6 +52,10 @@ const CartDetailPage = () => {
     return <Button title="Quitar" className="ml-2 w-24 pl-32" variant="cta"  onClick={deleteItem}/>;
   };
 
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  })
 
   //Creates the cards for all the items in the cart using localStorage
   const useCartItems = useMemo(
@@ -87,7 +75,14 @@ const CartDetailPage = () => {
                 <p className='pl-4  text-left'>Producto: {item.productName}</p>
                 <p className='pl-4 pt-4 text-left'>Talla: {item.size}</p>
                 <p className='pl-4 pt-4 text-left'>Cantidad: {item.quantity}</p>
-                {item.productInSalePrice ? <div> <p className='pl-4 pb-4 pt-4 text-left line-through'>Precio regular: ${item.productPrice}</p>  <p className='pl-4 pb-4 pt-4 text-left'>Precio en oferta: ${item.productInSalePrice}</p> </div>: <p className='pl-4 pb-4 pt-4 text-left'>Precio: ${item.productPrice}</p>}
+                {item.productInSalePrice ? 
+                  <div> 
+                    <p className='pl-4 pb-4 pt-4 text-left line-through'>Precio regular: {formatter.format(item.productPrice)}</p>  
+                    <p className='pl-4 pb-4 pt-4 text-left'>Precio en oferta: {formatter.format(item.productInSalePrice)}</p>
+                  </div>
+                  :
+                  <p className='pl-4 pb-4 pt-4 text-left'>Precio: {formatter.format(item.productPrice)}</p>
+                }
                 <p className='pl-4 pb-4 pt-4 text-left'>Personalización: </p>
                 <ol>
                 {item.customParts?.map(part => {
@@ -109,19 +104,19 @@ const CartDetailPage = () => {
   return (
     <div className=" mt-16">
       <h1 className='self-center text-4xl text-center pb-4'>Mi carrito</h1>
-      {cartItems?.length ? useCartItems : 'No tienes productos en tu carrito.'}
-      {cartItems?.length && (
+      {cartItems?.length ? useCartItems : <p className="text-center">No tienes productos en tu carrito.</p>}
+      {cartItems?.length ? (
 
           <div className="flex flex-col w-full px-20 mb-4 py-2 content-center">
             <p className="text-2xl text-center mb-4">
-              El precio total es de: ${totalPrice}
+              El precio total es de: {formatter.format(totalPrice)}
             </p>
             <div className='self-center'>
               <PayButton></PayButton>
             </div>
           </div>
 
-      )}
+      ) : <></>}
       {displayConfirmationModal && (
         <Modal showModal={displayConfirmationModal} toggleModal={setDisplayConfirmationModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">

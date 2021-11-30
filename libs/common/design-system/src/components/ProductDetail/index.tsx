@@ -102,7 +102,11 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
   
       setCartSuccess(true)
   }
- 
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  })
 
   return (
     <>
@@ -158,8 +162,8 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
 
             <div className="mt-3">
               <h2 className="sr-only">Información del producto</h2>
-              {product.priceInSale != undefined ? <p className="text-2xl text-gray-600 line-through">${product.price}</p> : <p className="text-3xl text-gray-900">${product.price}</p>}
-              {product.priceInSale != undefined ? <p className="text-3xl text-gray-900">${product.priceInSale}</p> : <></>}
+              {product.priceInSale != undefined ? <p className="text-2xl text-gray-600 line-through">{formatter.format(product.price)}</p> : <p className="text-3xl text-gray-900">{formatter.format(product.price)}</p>}
+              {product.priceInSale != undefined ? <p className="text-3xl text-gray-900">{formatter.format(product.priceInSale)}</p> : <></>}
             </div>
 
             <div className="mt-6">
@@ -218,8 +222,9 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
               </div>
             </section>
 
-
+            <label>Cantidad</label>
             <div className="mt-10 flex sm:flex-col1">
+              
               <input
                 id="cantidad"
                 type="number"

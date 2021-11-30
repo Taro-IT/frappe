@@ -6,7 +6,12 @@ type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'price
 
 export const ProductCard = ({ id, name, price, priceInSale, images } : ProductCardProps) => {
   const productLink = "/product/" + id
-console.log('Product Name: ' + name + 'Price In Sale' + priceInSale)
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  })
+
   return (
     <a href={productLink}>
       <Card className="h-full">
@@ -18,7 +23,14 @@ console.log('Product Name: ' + name + 'Price In Sale' + priceInSale)
             <p className="font-bold text-sm">
               {name}
             </p>
-              {priceInSale ? <div> <p className="font-semibold text-sm line-through">  ${price}</p> <p className="font-semibold text-sm">  ${priceInSale}  </p> </div>: <p className="font-semibold text-sm"> ${price} </p>}
+              {priceInSale ? 
+                <div> 
+                  <p className="font-semibold text-sm line-through">  {formatter.format(price)}</p>
+                  <p className="font-semibold text-sm">  {formatter.format(priceInSale)}  </p>
+                </div>
+                :
+                <p className="font-semibold text-sm"> {formatter.format(price)} </p>
+              }
           </div>
         </div>
     </Card>

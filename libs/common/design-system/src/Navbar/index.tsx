@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import { Link } from '..';
 const navItems = [
-  {href: "store", text: "Tienda"},
-  {href: "about", text: "Nosotros"},
-  {href: "outlet", text: "Outlet"},
-  {href: "contact", text: "Contacto"}
+  {href: "/store", text: "Tienda"},
+  {href: "/about", text: "Nosotros"},
+  {href: "/outlet", text: "Outlet"},
+  {href: "/contact", text: "Contacto"}
 ]
 
 export const Navbar = () => {
