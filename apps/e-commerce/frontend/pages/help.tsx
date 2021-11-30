@@ -19,6 +19,15 @@ const helpItems = [
                 link: "https://www.iorad.com/player/1886677/Crear-un-producto-personalizable?#trysteps-1"
             }
         ]
+    },
+    {
+        name: "Compras",
+        links: [
+            {
+                use_case: "Realizar unn pedido",
+                link: "https://ior.ad/7V1q?iframeHash=trysteps-1"
+            }
+        ]
     }
 ]
 
