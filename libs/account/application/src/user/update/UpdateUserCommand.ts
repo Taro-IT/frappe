@@ -1,10 +1,11 @@
 //User Story: Frappe-510
-import { UserPrimitives } from '@frappe/account/domain';
+import { Role } from '@frappe/account/domain';
 import { Command } from '@tshio/command-bus';
 
 type UpdateUserCommandPayload = {
   readonly id: string;
-  readonly changes: Partial<Pick<UserPrimitives, 'name'>>;
+  readonly name: string;
+  readonly role: Role;
 }
 
 export class UpdateUserCommand implements Command<UpdateUserCommandPayload> {

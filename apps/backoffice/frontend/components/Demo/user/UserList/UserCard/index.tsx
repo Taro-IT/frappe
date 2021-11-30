@@ -6,6 +6,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
+import Select from 'react-select';
+import { Role } from '@frappe/account/domain'
 
 type UserCardProps = {
   readonly id;
@@ -21,8 +23,7 @@ const UserCard = ({ id, user }: UserCardProps) => {
   const [nameErrors, setNameErrors] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>();
   const [displayResultModal, setDisplayResultModal] = useState<boolean>(false);
-  
-  
+  const [selectedRole, setSelectedRole] = useState<Role>(user.role as Role);
 
   type buttonprops = { id: string; name?: string };
 
@@ -42,14 +43,16 @@ const UserCard = ({ id, user }: UserCardProps) => {
     return <Button title="Eliminar" className="w-24" variant="cta" onClick={deleteCategory} />;
   };
 
-  const updateUser = async (id: string, name: string) => {
+  const updateUser = async (id: string, name: string, role: Role) => {
     if (name === '' || name === currentName) {
       setNameErrors(true);
       return;
     }
     try {
+      console.log("role:", role)
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
-        name: name
+        name: name,
+        role: role
       },
       {
         headers: {
@@ -76,11 +79,25 @@ const UserCard = ({ id, user }: UserCardProps) => {
 
   const SaveChangesButton = props => {
     const saveChanges = () => {
-      updateUser(props.id, props.name);
+      updateUser(props.id, props.name, props.role);
     };
     return <Button title="Guardar cambios" onClick={saveChanges} variant="cta" className={'mt-4'} />;
   };
 
+  const roleOptions = [
+    {
+      value: Role.ADMIN,
+      label: "Admin"
+    },
+    {
+      value: Role.WARESTORE,
+      label: "Taller"
+    }
+  ]
+
+  const handleSelectRole = selectedOption => {
+    setSelectedRole(selectedOption.value);
+  };
   
   return (
     <div>
@@ -100,7 +117,17 @@ const UserCard = ({ id, user }: UserCardProps) => {
               name="categoryName"
             />
             {nameErrors && <SpanError message="El nombre no puede ser vacío ni igual al anterior" />}
-            <SaveChangesButton id={id} name={newName} />
+            <label className={'w-1/3 mt-4 mb-3'}>Rol</label>
+            <Select
+              name="role"
+              options={roleOptions}
+              className="basic-multi-select"
+              classNamePrefix="Selecciona el rol"
+              onChange={handleSelectRole}
+              placeholder="Selecciona el rol"
+              defaultValue={user.role === Role.ADMIN ? roleOptions[0] : roleOptions[1]}
+            />
+            <SaveChangesButton id={id} name={newName} role={selectedRole} />
           </form>
         </Modal>
       )}
@@ -117,7 +144,7 @@ const UserCard = ({ id, user }: UserCardProps) => {
         <h1 className='text-2xl'>{currentName}</h1>
         <hr className="mb-2"/>
         <p className='text-lg'>Correo: {user.email}</p>
-        <p className='text-lg mb-8'>Rol: Jefe de taller</p>
+        <p className='text-lg mb-8'>Rol: {user.role}</p>
         <div className="flex justify-evenly">
             <div>
               <EditButton id={id} name={user.name}/>

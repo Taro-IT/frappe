@@ -1,15 +1,18 @@
 import { RequestHandler } from 'express';
 import { CommandBus } from '@tshio/command-bus';
-import { UpdateUserDto } from '../dto';
 import { UpdateUserCommand } from '@frappe/account/application';
 import { wrapError } from '@frappe/common/utils';
+import { Role } from '@frappe/account/domain';
 
 export const updateUserHandler = (commandBus: CommandBus): RequestHandler =>
   async (req, res, next) => {
     const id = req.params.id;
-    const changes = req.body as UpdateUserDto;
+    const name = req.params.name
+    const role = req.params.role as Role;
 
-    const command = new UpdateUserCommand({ id, changes });
+    console.log(req.params)
+
+    const command = new UpdateUserCommand({ id, name, role });
     const [error] = await wrapError(commandBus.execute(command));
 
     if (error !== null) {
