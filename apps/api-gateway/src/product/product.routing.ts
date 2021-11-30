@@ -35,6 +35,12 @@ export const productRouting = ({ commandBus, queryBus, tokenAuthentication }: Pr
   router.get('/:id', handlers.findByIdProductHandler(queryBus));
 
   // User story: frappe-59
-  router.patch('/:id', makeValidateBody(dtos.UpdateProductDto), handlers.updateProductHandler(commandBus));
+  router.patch(
+    '/:id',
+    authenticationMiddleware(tokenAuthentication),
+    authorizationMiddleware([Role.ADMIN]),
+    makeValidateBody(dtos.UpdateProductDto),
+    handlers.updateProductHandler(commandBus)
+  );
   return router;
 };

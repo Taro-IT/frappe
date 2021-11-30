@@ -23,22 +23,6 @@ const CartDetailPage = () => {
     }
   }, []);
 
-  // const handlePayment = async () => {
-  //   const products = JSON.parse(localStorage.getItem('items'))
-  //   const stripeItems = products.map(product => (
-  //     {
-  //       id: product.id,
-  //       quantity: product.amount
-  //     }
-  //   ))
-  //   console.log(products);
-
-  //   const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments`, {
-  //     items: stripeItems
-  //   });
-  //   window.location.href = data.session.url
-  // }
-
   type buttonprops = { id: number; productId?: string };
 
   const ViewDetailButton = ({ id, productId }: buttonprops) => {

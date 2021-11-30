@@ -9,7 +9,14 @@ const OrderList = () => {
   // TODO: centralize to state management -> refactor to custom hook
   useEffect(() => {
     const getOrders = async (): Promise<void> => {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/orders`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("authToken")
+          }
+        }
+      );
       const data = response.data.result;
       console.log(data);
       if (data.length !== 0) {

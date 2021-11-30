@@ -49,7 +49,15 @@ export interface Material {
           name: newName ? newName : null,
           image: fileURL !== "" ? fileURL : null
         }
-        await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`, payload);
+        await axios.patch(
+          `${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`,
+          payload,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+        );
         setDisplayResultModal(true)
         setMessage('El material se editó correctamente.');
         setSuccess(true);
@@ -70,7 +78,14 @@ export interface Material {
     const ConfirmDeleteMaterial = ({ id }: Material) => {
       const confirmDelete = async () => {
         try {
-          await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`);
+          await axios.delete(
+            `${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("authToken")
+              }
+            }
+          );
           setMessage('Material borrado con éxito.');
           setSuccess(true);
         } catch (error) {

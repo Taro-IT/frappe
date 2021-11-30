@@ -24,6 +24,11 @@ export const userRouting = ({ commandBus, queryBus, tokenAuthentication }: UserR
     authorizationMiddleware([Role.ADMIN]),
     handlers.searchUsersHandler(queryBus)
   );
+  router.get(
+    '/:id',
+    //authenticationMiddleware(tokenAuthentication),
+    handlers.findUserHandler(queryBus)
+  );
   router.put('/:id', makeValidateBody(dtos.UpdateUserDto), handlers.updateUserHandler(commandBus))
   router.post('/password-recovery', makeValidateBody(dtos.CreatePasswordResetCodeDto), handlers.createPasswordResetCodeHandler(commandBus));
 

@@ -4,6 +4,7 @@ import React from 'react';
 import OrderList from '../../components/Demo/order/OrderList';
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
+import { ProtectedRoute } from '../../HOC/ProtectedRoute';
 
 const ListOrdersPage = () => {
   return (
@@ -15,4 +16,4 @@ const ListOrdersPage = () => {
 };
 ListOrdersPage.Layout = AdminLayout;
 
-export default withUserAgent (ListOrdersPage);
+export default ProtectedRoute(withUserAgent (ListOrdersPage));

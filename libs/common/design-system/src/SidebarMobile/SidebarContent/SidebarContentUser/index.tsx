@@ -1,9 +1,8 @@
-import { CogIcon, LogoutIcon, UserCircleIcon } from "@heroicons/react/solid";
+import { LogoutIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 
 
 const navigation = [
-  { name: 'Ajustes', icon: CogIcon, href: 'settings' },
   { name: 'Cerrar Sesión', icon: LogoutIcon, href: 'logout' },
 ]
 

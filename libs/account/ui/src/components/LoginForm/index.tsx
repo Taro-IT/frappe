@@ -2,7 +2,6 @@ import { Button, Form, SpanError, TextField } from '@frappe/common/design-system
 import React, { useState } from 'react';
 import { UserCredential } from 'firebase/auth';
 import { Nullable, wrapError } from '@frappe/common/utils';
-import { useRouter } from 'next/router';
 import { SubmitHandler } from 'react-hook-form';
 
 type LoginFormProps = {
@@ -10,7 +9,6 @@ type LoginFormProps = {
 };
 
 export const LoginForm = ({ onSubmit }: LoginFormProps) => {
-  const router = useRouter();
   const [generalError, setGeneralError] = useState<Nullable<string>>(null);
 
   const handleSubmit: SubmitHandler<{ readonly email: string; password: string }> = async (data, event) => {
@@ -26,7 +24,7 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
     }
 
     setGeneralError(null);
-    return router.push('/');
+    return window.location.replace("/");
   };
 
   return (

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { AdminLayout } from '../layouts/AdminLayout';
 import { Logo, withUserAgent } from '@frappe/common/design-system';
 import { useAuth } from '../context/AuthUserContext';
+import axios from 'axios'
+import { ProtectedRoute } from '../HOC/ProtectedRoute';
 
 
 const Home = () => {
@@ -9,8 +11,34 @@ const Home = () => {
   const user = useAuth();
   useEffect(() => {
     if(user.user)
-      user.user.getIdToken().then(res => console.log(res));
+    {
+      user.user.getIdToken().then(res => {
+        console.log(res)
+        localStorage.setItem('authToken', res);
+      });
+      console.log(user.user)
+      searchUser(user.user.uid);
+    }
   }, [user])
+
+  const searchUser = async (id) => {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/users/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
+      }
+    );
+      const data = response.data.user.result;
+      if (data) {
+        console.log(data)
+        console.log("name: ", data.name);
+        console.log("role", data.role)
+        localStorage.setItem('accountName', data.name)
+        localStorage.setItem('accountRole', data.role)
+      }
+  }
   
   return(
   <>
@@ -24,4 +52,4 @@ const Home = () => {
 
 Home.Layout = AdminLayout;
 
-export default withUserAgent (Home);
+export default ProtectedRoute (withUserAgent (Home));

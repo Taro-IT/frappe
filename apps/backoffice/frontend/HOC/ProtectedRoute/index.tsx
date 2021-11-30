@@ -12,7 +12,7 @@ export const ProtectedRoute = BasePageComponent => props => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/signin');
+      window.location.replace("/sign")
     }
   }, [loading, router, user]);
 

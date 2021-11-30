@@ -29,7 +29,14 @@ interface ProductListContentProps {
     const ConfirmDeleteProductButton = ({ id, name }: buttonprops) => {
       const confirmDelete = async () => {
         try {
-          await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
+          await axios.delete(
+            `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("authToken")
+              }
+            }
+          );
           setMessage('Producto borrado con éxito.');
           setSuccess(true);
         } catch (error) {

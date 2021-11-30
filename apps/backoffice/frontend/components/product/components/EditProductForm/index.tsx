@@ -165,7 +165,15 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
       }
 
       // Patch de productos
-        await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, payload)
+        await axios.patch(
+          `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
+          payload,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+        )
       showSuccess()
     } catch (error) {
       showError()

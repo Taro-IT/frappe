@@ -50,40 +50,6 @@ export function CheckoutForm() {
     window.location.href = data.session.url
   }
 
-
-  // const generateOrder = async () => {
-  //   const items = JSON.parse(localStorage.getItem('items')||"[]");
-  //   items.map((item: any) => {
-  //     item.quantity = parseInt(item.quantity, 10);
-  //     //item.productImages = JSON.parse(item.productImages)
-  //   });
-
-  //   const orderData = {
-  //     items: items,
-  //     subtotal: parseFloat(localStorage.getItem('subtotal')||"[]"),
-  //     total: parseFloat(localStorage.getItem('total')||"[]"),
-  //     clientName: localStorage.getItem('clientName'),
-  //     address: JSON.parse(localStorage.getItem('address')||"[]")
-  //   };
-  //   console.log(orderData);
-
-  //   try {
-  //     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders/`, {
-  //       items: items,
-  //       subtotal: parseFloat(localStorage.getItem('subtotal')||"[]"),
-  //       total: parseFloat(localStorage.getItem('total')||"[]"),
-  //       clientName: localStorage.getItem('clientName'),
-  //       address: JSON.parse(localStorage.getItem('address')||"[]")
-  //     });
-  //     //AQUI HAY UN CLEAR DEL LOCAL STORAGE, SO SE REQUIERE CONSERVAR PARA ALGO, QUITARLO!!!!!!!!
-  //     //localStorage.clear();
-  //     return;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return;
-  //   }
-  // };
-
   const storeDataInLocalStorage = () => {
     console.log(country);
     const address = {
@@ -107,21 +73,6 @@ export function CheckoutForm() {
     console.log(localStorage.getItem('clientName'));
     console.log(JSON.parse(localStorage.getItem('address')||"[]"));
   };
-
-  // const showModalSuccess = () => {
-  //   setShowRetroModal(true);
-  //   setSuccess(true);
-  //   setMessage('Tu orden fue creada con éxito.');
-  //   setLoading(false);
-  // };
-
-  // const showModalError = () => {
-  //   setShowRetroModal(true);
-  //   setSuccess(false);
-  //   setMessage('No se pudo crear tu orden.');
-  //   console.error('No se pudo crear tu orden.');
-  //   setLoading(false);
-  // };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setClientName(e.target.value);

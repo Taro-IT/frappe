@@ -143,6 +143,11 @@ const AddProductForm = () => {
         amount: isLimited ? amount : null,
         priceInSale: salePrice,
         canBeSold: canBeSold
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       })
       setShowRetroModal(true)
       setSuccess(true)

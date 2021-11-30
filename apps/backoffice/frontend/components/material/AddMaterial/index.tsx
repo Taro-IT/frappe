@@ -31,6 +31,11 @@ const CreateMaterial = () => {
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/materials/`, {
         name: materialName,
         image: name
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       });
       return
       setShowRetroModal(true)
