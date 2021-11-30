@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 const navigation = [
-  { name: 'Cerrar Sesión', icon: LogoutIcon, href: 'logout' }
+  { name: 'Cerrar Sesión', icon: LogoutIcon, href: '/logout' }
 ]
 
 const classNames = (...classes: string[]) => {

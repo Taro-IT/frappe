@@ -38,7 +38,7 @@ export const categoryRouting = ({ commandBus, queryBus, tokenAuthentication }: C
   router.delete(
     '/:id',
     authenticationMiddleware(tokenAuthentication),
-    authorizationMiddleware([Role.ADMIN]), 
+    authorizationMiddleware([Role.ADMIN]),
     handlers.deleteCategoryHandler(commandBus)
   );
 

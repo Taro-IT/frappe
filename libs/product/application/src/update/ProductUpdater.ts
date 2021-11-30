@@ -46,7 +46,32 @@ export class ProductUpdater {
     ) {
       
     const product = await this.productExists(id);
-    
+
+    this.checkForErrors(product, id, name);
+
+    const updatedProduct: ProductPrimitives = {
+      ...product,
+      name: name ?? product.name,
+      price: price ?? product.price ,
+      categories: categories ?? product.categories ,
+      description: description ?? product.description ,
+      images: images ?? product.images ,
+      isCustom: isCustom ?? product.isCustom ,
+      isInSale: isInSale ?? product.isInSale ,
+      isLimited: isLimited ?? product.isLimited ,
+      isOutOfStock: isOutOfStock ?? product.isOutOfStock ,
+      customizableParts: customizableParts ?? product.customizableParts ,
+      sizes: sizes ?? product.sizes ,
+      canBeSold: canBeSold ?? product.canBeSold ,
+      priceInSale: priceInSale ?? product.priceInSale ,
+      amount: amount ?? product.amount
+    };
+
+    return this.productRepository.save(Product.fromPrimitives(updatedProduct));
+  }
+
+  private async checkForErrors(product, id, name)
+  {
     if (product === null) {
       throw new ProductNotFound(id);
     }
@@ -56,26 +81,6 @@ export class ProductUpdater {
     if (exists === null) {
       throw new ProductAlreadyExists(name);
     }
-
-    const updatedProduct: ProductPrimitives = {
-      ...product,
-      name: name ? name : product.name,
-      price: price ? price : product.price ,
-      categories: categories ? categories : product.categories ,
-      description: description ? description : product.description ,
-      images: images ? images : product.images ,
-      isCustom: isCustom ? isCustom : product.isCustom ,
-      isInSale: isInSale ? isInSale : product.isInSale ,
-      isLimited: isLimited ? isLimited : product.isLimited ,
-      isOutOfStock: isOutOfStock ? isOutOfStock : product.isOutOfStock ,
-      customizableParts: customizableParts ? customizableParts : product.customizableParts ,
-      sizes: sizes ? sizes : product.sizes ,
-      canBeSold: canBeSold ? canBeSold : product.canBeSold ,
-      priceInSale: priceInSale ? priceInSale : product.priceInSale ,
-      amount: amount ? amount : product.amount
-    };
-
-    return this.productRepository.save(Product.fromPrimitives(updatedProduct));
   }
 
   private async productNameExists(name: string) {

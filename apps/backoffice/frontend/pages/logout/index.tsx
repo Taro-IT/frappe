@@ -10,7 +10,7 @@ const LogoutPage = () => {
     window.location.replace("/signin");
   }, [])
 
-  return ( 
+  return (
     <></>
   )
 };

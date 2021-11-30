@@ -13,7 +13,7 @@ const RegisterPage = () => {
       window.location.replace("/")
   }, [])
 
-  return ( 
+  return (
     <div className={styles.wrapper}>
       <img className="flex mb-7" src={'/img/cinica-logo.png'} alt={'Cínica logo'} />
 
