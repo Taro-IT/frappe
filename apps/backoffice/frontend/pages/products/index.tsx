@@ -5,7 +5,7 @@ import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
 import styles from '../../styles/store.module.scss'
 import { BackofficeProductContent } from '../../components/product/components/BackofficeProductContent';
-import { ProtectedRoute } from '../../HOC/ProtectedRoute';
+import { withProtectedRoute } from '../../HOC/withProtectedRoute';
 
 const CreateProductPage = () => {
   useEffect(() => {
@@ -22,4 +22,4 @@ const CreateProductPage = () => {
 
   CreateProductPage.Layout = AdminLayout;
 
-  export default ProtectedRoute(withUserAgent(CreateProductPage));
+  export default withProtectedRoute(withUserAgent(CreateProductPage));

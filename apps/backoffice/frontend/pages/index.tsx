@@ -3,7 +3,7 @@ import { AdminLayout } from '../layouts/AdminLayout';
 import { Logo, withUserAgent } from '@frappe/common/design-system';
 import { useAuth } from '../context/AuthUserContext';
 import axios from 'axios'
-import { ProtectedRoute } from '../HOC/ProtectedRoute';
+import { withProtectedRoute } from '../HOC/withProtectedRoute';
 
 
 const Home = () => {
@@ -52,4 +52,4 @@ const Home = () => {
 
 Home.Layout = AdminLayout;
 
-export default ProtectedRoute (withUserAgent (Home));
+export default withProtectedRoute(withUserAgent(Home))

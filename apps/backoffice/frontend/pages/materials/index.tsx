@@ -4,7 +4,7 @@ import {MaterialList, useMaterials} from '@frappe/material/ui'
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
 import classes from './Materials.module.scss'
-import { ProtectedRoute } from '../../HOC/ProtectedRoute';
+import { withProtectedRoute } from '../../HOC/withProtectedRoute';
 const ListMaterialsPage = () => {
   const {materials} = useMaterials()
 
@@ -19,7 +19,6 @@ const ListMaterialsPage = () => {
       <div className={classes.cards}>
         {/* // User Story: Frappe 501 */}
         <MaterialList ecommerce={false} materials={materials} />
-
       </div>
    </>
   )
@@ -27,4 +26,4 @@ const ListMaterialsPage = () => {
 
 ListMaterialsPage.Layout = AdminLayout;
 
-export default ProtectedRoute(withUserAgent(ListMaterialsPage));
+export default withProtectedRoute (withUserAgent(ListMaterialsPage));

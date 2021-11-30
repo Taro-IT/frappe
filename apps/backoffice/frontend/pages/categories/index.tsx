@@ -3,7 +3,7 @@ import AddCategory from '../../components/Demo/category/AddCategory'
 import CategoryList from '../../components/Demo/category/CategoryList'
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
-import { ProtectedRoute } from '../../HOC/ProtectedRoute';
+import { withProtectedRoute } from '../../HOC/withProtectedRoute';
 
 const ListCategoriesPage = () => {
   useEffect(() => {
@@ -21,4 +21,4 @@ const ListCategoriesPage = () => {
 
 ListCategoriesPage.Layout = AdminLayout;
 
-export default ProtectedRoute(withUserAgent(ListCategoriesPage));
+export default withProtectedRoute(withUserAgent(ListCategoriesPage));

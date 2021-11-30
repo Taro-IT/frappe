@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { ProtectedRoute } from '../../HOC/ProtectedRoute';
+import { withProtectedRoute } from '../../HOC/withProtectedRoute';
 
 const CategoryDetailPage = () => {
   const router = useRouter();
@@ -8,4 +8,4 @@ const CategoryDetailPage = () => {
   return <div>{router.query.id}</div>;
 };
 
-export default ProtectedRoute(CategoryDetailPage);
+export default withProtectedRoute(CategoryDetailPage);

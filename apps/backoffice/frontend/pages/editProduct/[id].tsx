@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ProductPrimitives } from '@frappe/product/domain';
 import { useRouter } from "next/router"
 import {EditProduct} from '../../components/product/EditProduct';
-import { ProtectedRoute } from '../../HOC/ProtectedRoute';
+import { withProtectedRoute } from '../../HOC/withProtectedRoute';
 //User Stories: frappe-59
 
 const ProductEdit = () => {
@@ -35,4 +35,4 @@ const ProductEdit = () => {
 
 ProductEdit.Layout = AdminLayout;
 
-export default ProtectedRoute(withUserAgent(ProductEdit));
+export default withProtectedRoute(withUserAgent(ProductEdit));

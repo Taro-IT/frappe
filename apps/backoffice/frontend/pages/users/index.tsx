@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
 import UserList from "../../components/Demo/user/UserList";
-import { ProtectedRoute } from '../../HOC/ProtectedRoute';
+import { withProtectedRoute } from '../../HOC/withProtectedRoute';
 
 const ListUsersPage = () => {
   useEffect(() => {
@@ -22,4 +22,4 @@ const ListUsersPage = () => {
 
   ListUsersPage.Layout = AdminLayout;
 
-  export default ProtectedRoute(withUserAgent(ListUsersPage));
+  export default withProtectedRoute(withUserAgent(ListUsersPage));

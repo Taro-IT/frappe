@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { RegisterForm } from '@frappe/account/ui';
 import { Card, Link } from '@frappe/common/design-system';
 import styles from '../styles/register.module.scss';
-import { ProtectedRoute } from '../HOC/ProtectedRoute';
+import  { withProtectedRoute }  from '../HOC/withProtectedRoute';
 
 
 const RegisterPage = () => {
@@ -37,4 +37,4 @@ const RegisterPage = () => {
   )
 };
 
-export default ProtectedRoute(RegisterPage);
+export default withProtectedRoute(RegisterPage);
