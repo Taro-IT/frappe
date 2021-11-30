@@ -30,7 +30,7 @@ export const withProtectedRoute = WrappedComponent => {
   const router = useRouter();
   useEffect(() => {
         if (!loading && !user) {
-          window.location.replace("/sign")
+          window.location.replace("/signin")
         }
       }, [loading, router, user]);
       if (loading) {
