@@ -69,7 +69,7 @@ interface ProductListContentProps {
         </div>
 
         {displayDeleteModal && (
-          <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title="Eliminar categoría">
+          <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title="Eliminar producto">
           <div className="flex flex-col w-full px-20 mb-4 py-2 justify-center">
             <p className="text-2xl text-center mb-4">
               ¿Estás seguro de querer borrar el producto <i>{currentProduct.name}</i> con el id {currentProduct.id}?

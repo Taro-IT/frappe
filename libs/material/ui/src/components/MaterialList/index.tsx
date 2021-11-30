@@ -41,7 +41,15 @@ export interface Material {
           // Post de imágenes
           const bodyFormData = new FormData();
           bodyFormData.append('file', file);
-          const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
+          const { data: { name } } = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_URL}/file-system/`,
+            bodyFormData,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("authToken")
+              }
+            }
+          );
           fileURL = name
         }
 

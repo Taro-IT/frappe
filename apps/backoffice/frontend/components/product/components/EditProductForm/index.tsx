@@ -142,7 +142,15 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
       const promises = files.map( async file => {
         const bodyFormData = new FormData();
         bodyFormData.append('file', file);
-        const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
+        const { data: { name } } = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/file-system/`,
+          bodyFormData,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+          );
         return name;
       })
       const fileNames = await Promise.all(promises);

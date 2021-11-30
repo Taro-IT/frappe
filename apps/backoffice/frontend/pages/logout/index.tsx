@@ -6,6 +6,7 @@ const LogoutPage = () => {
   const user = useAuth();
   useEffect(() => {
     user.signOut();
+    localStorage.clear();
     window.location.replace("/signin");
   }, [])
 
