@@ -31,9 +31,9 @@ export const Footer = ( ) => {
         <div>
             <h3 className={styles['footer--title']}>SÍGUENOS EN:</h3>
             <div className="flex justify-evenly w-1/4 pt-2">
-              <a target="_blank" href="https://www.facebook.com/cinicamx/"><BsFacebook size={20}/></a>
-              <a target="_blank" href="https://www.instagram.com/cinicamx/"><BsInstagram size={20}/></a>
-              <a target="_blank" href="https://www.pinterest.com.mx/cinicamx/_saved/"><BsPinterest size={20}/></a>
+              <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/cinicamx/"><BsFacebook size={20}/></a>
+              <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/cinicamx/"><BsInstagram size={20}/></a>
+              <a target="_blank" rel="noopener noreferrer" href="https://www.pinterest.com.mx/cinicamx/_saved/"><BsPinterest size={20}/></a>
             </div>
         </div>
       </div>

@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { CogIcon, LogoutIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import { Link } from '..';
 const navItems = [
-  {href: "store", text: "Tienda"},
-  {href: "about", text: "Nosotros"},
-  {href: "outlet", text: "Outlet"},
-  {href: "contact", text: "Contacto"}
+  {href: "/store", text: "Tienda"},
+  {href: "/about", text: "Nosotros"},
+  {href: "/outlet", text: "Outlet"},
+  {href: "/contact", text: "Contacto"}
 ]
 
 export const Navbar = () => {
@@ -14,10 +14,19 @@ export const Navbar = () => {
 
   useEffect (()=> {
     const aux = localStorage.getItem('items');
-    if(aux === null || aux === undefined) return
-    const auxArray = JSON.parse(aux);
-    setCartItems(auxArray.length)
-  }, [setCartItems])
+    if(aux)
+    {
+      const auxArray = JSON.parse(aux);
+      setCartItems(auxArray.length)
+    }
+
+    function storageEventHandler(event : any) {
+        setCartItems(event.detail.cartItemsCount);
+    }
+    window.addEventListener("updateCart", storageEventHandler);
+
+    return () => {window.removeEventListener("updateCart", storageEventHandler)}
+  }, [])
   return (
     <div className="z-10 flex w-full p-4 bg-black h-20 fixed mb-auto ">
       <a href="/">
