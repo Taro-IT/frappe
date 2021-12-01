@@ -224,7 +224,7 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
 
   const redirectToList = () => {
     window.location.replace('/products');
-  } 
+  }
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(parseInt(e.target.value, 10));
   };

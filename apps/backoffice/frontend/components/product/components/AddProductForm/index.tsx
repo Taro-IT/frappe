@@ -161,7 +161,7 @@ const AddProductForm = () => {
 
   const redirectToList = () => {
     window.location.replace('/products');
-  } 
+  }
 
   const changePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(parseInt(event.target.value, 10));
