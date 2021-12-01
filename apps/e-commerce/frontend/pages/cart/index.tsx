@@ -1,17 +1,18 @@
-  // User Story: Frappe 80 / Frappe 69
+// User Story: Frappe 80 / Frappe 69
 
 import React, { useEffect, useMemo, useState } from 'react'
 import styles from '../../styles/cartDetails.module.scss';
 import { Button, Card, EcommerceLayout, Modal, withUserAgent } from '@frappe/common/design-system';
 import clsx from 'clsx';
-import { BadgeCheckIcon } from '@heroicons/react/solid';
 
 const CartDetailPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [displayConfirmationModal, setDisplayConfirmationModal] = useState<boolean>(false)
-  let totalPrice = 0;
-
-
+  const [index, setIndex] = useState<number>();
+  
+  let totalPrice = 0
+  
+  
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCartItems(JSON.parse(localStorage.getItem('items')) || []);
@@ -26,7 +27,7 @@ const CartDetailPage = () => {
   type buttonprops = { id: number; productId?: string };
 
   const ViewDetailButton = ({ id, productId }: buttonprops) => {
-    return <a href={`/products/${productId}`}><Button title="Ver detalle" className="ml-2 w-24" variant="cta"  /></a>;
+    return <a href={`/product/${productId}`}><Button title="Ver detalle" className="ml-2 w-24" variant="cta"  /></a>;
   };
 
   const handlePayButton = () => {
@@ -40,17 +41,29 @@ const CartDetailPage = () => {
   };
 
   const DeleteButton = ({ id, productId }: buttonprops) => {
-    const deleteItem = () => {
+
+    const setStates =() => {
+      setDisplayConfirmationModal(true);
+      setIndex(id);
+    }
+
+    return <Button title="Quitar" className="ml-2 w-24 pl-32" variant="cta"  onClick={setStates}/>;
+  };
+
+  const closeModal = () => {
+    setDisplayConfirmationModal(false);
+    window.location.reload();
+  }
+
+  const removeFromCart = () => {
       let i = 0;
-      while(i != id){
+      while(i != index){
         i++;
       }
       cartItems.splice(i, 1);
       localStorage.setItem('items',JSON.stringify(cartItems));
-      setDisplayConfirmationModal(true);
-    };
-    return <Button title="Quitar" className="ml-2 w-24 pl-32" variant="cta"  onClick={deleteItem}/>;
-  };
+      window.location.reload();
+  }
 
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -60,8 +73,7 @@ const CartDetailPage = () => {
   //Creates the cards for all the items in the cart using localStorage
   const useCartItems = useMemo(
     () =>
-
-      cartItems?.map((item, index) => {
+    cartItems?.map((item, index) => {
         const { name } = item;
 
         item.productInSalePrice ? totalPrice += Number(item.productInSalePrice * item.quantity) : totalPrice += Number(item.productPrice * item.quantity);
@@ -120,8 +132,12 @@ const CartDetailPage = () => {
       {displayConfirmationModal && (
         <Modal showModal={displayConfirmationModal} toggleModal={setDisplayConfirmationModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
-            <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />
-            <p className="text-2xl text-center mb-4">Se ha eliminado el producto de tu carrito</p>
+            {/*<BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />*/}
+            <p className="text-2xl text-center mb-4">¿Quieres eliminar este artículo de tu carrito?</p>
+            <div className="justify-between">
+              <Button title="Si" className="mr-10 w-24 pl-32" variant="cta"  onClick={removeFromCart}/>
+              <Button title="No" className="ml-10 w-24 pl-32" variant="cta" onClick={closeModal}/>
+            </div>
           </div>
         </Modal>
       )}
