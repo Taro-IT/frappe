@@ -1,4 +1,4 @@
-  // User Story: Frappe 62 / Frappe 80 / Frappe 71
+// User Story: Frappe 62 / Frappe 80 / Frappe 71
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
 import { PlusSmIcon } from '@heroicons/react/outline'
@@ -98,6 +98,11 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
         auxArray[auxArray.length] = newProduct;
         console.log(auxArray.length);
         localStorage.setItem('items',JSON.stringify(auxArray));
+        window.dispatchEvent(new CustomEvent("updateCart", {
+          detail: {
+            cartItemsCount: auxArray.length
+          }
+        }));
       }
   
       setCartSuccess(true)

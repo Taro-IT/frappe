@@ -14,10 +14,19 @@ export const Navbar = () => {
 
   useEffect (()=> {
     const aux = localStorage.getItem('items');
-    if(aux === null || aux === undefined) return
-    const auxArray = JSON.parse(aux);
-    setCartItems(auxArray.length)
-  }, [setCartItems])
+    if(aux) 
+    {
+      const auxArray = JSON.parse(aux);
+      setCartItems(auxArray.length)
+    }
+
+    function storageEventHandler(event : any) {
+        setCartItems(event.detail.cartItemsCount);
+    }
+    window.addEventListener("updateCart", storageEventHandler);
+
+    return () => {window.removeEventListener("updateCart", storageEventHandler)}
+  }, [])
   return (
     <div className="z-10 flex w-full p-4 bg-black h-20 fixed mb-auto ">
       <a href="/">
