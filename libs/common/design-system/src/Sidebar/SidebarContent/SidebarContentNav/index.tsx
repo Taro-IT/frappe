@@ -6,11 +6,11 @@ const classNames = (...classes: string[]) => {
 }
 
 const navigation = [
-  { name: 'Órdenes', icon: ShoppingCartIcon, href: 'orders' },
-  { name: 'Productos', icon: ColorSwatchIcon, href: 'products' },
-  { name: 'Categorías', icon: FolderIcon, href: 'categories' },
-  { name: 'Materiales', icon: ClipboardListIcon, href: 'materials'},
-  { name: 'Usuarios', icon: UsersIcon, href: '#' },
+  { name: 'Órdenes', icon: ShoppingCartIcon, href: '/orders' },
+  { name: 'Productos', icon: ColorSwatchIcon, href: '/products' },
+  { name: 'Categorías', icon: FolderIcon, href: '/categories' },
+  { name: 'Materiales', icon: ClipboardListIcon, href: '/materials'},
+  { name: 'Usuarios', icon: UsersIcon, href: '/users' },
 ]
 
 const SidebarContentNav = () => {

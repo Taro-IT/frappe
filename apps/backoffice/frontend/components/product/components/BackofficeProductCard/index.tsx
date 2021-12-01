@@ -33,7 +33,7 @@ export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal,
   }
 
   const handleEditProduct = () => {
-    router.push(`products/${id}`);
+    router.push(`editProduct/${id}`);
   }
 
   return (

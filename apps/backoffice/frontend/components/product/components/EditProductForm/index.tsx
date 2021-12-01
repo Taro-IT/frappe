@@ -222,6 +222,9 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     console.log("hola");
   }
 
+  const redirectToList = () => {
+    window.location.replace('/products');
+  } 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(parseInt(e.target.value, 10));
   };
@@ -381,9 +384,8 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
       {showRetroModal && (
         <Modal showModal={showRetroModal} toggleModal={setShowRetroModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
-            {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
-            {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
-            <p className="text-2xl text-center mb-4">{message}</p>
+            {success && <><BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" /> <p className="text-2xl text-center mb-4">{message}</p> <Button title="Aceptar" type="button" variant="cta" className={'mt-4'} onClick={redirectToList}/> </>}
+            {!success && <><ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" /> <p className="text-2xl text-center mb-4">{message}</p> </>}
           </div>
         </Modal>
       )}

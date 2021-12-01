@@ -59,6 +59,7 @@ const CategoryList = () => {
   const SaveChangesButton = props => {
     const saveChanges = () => {
       updateCategory(props.id, props.name);
+      window.location.reload();
     };
     return <Button title="Guardar cambios" onClick={saveChanges} variant="cta" className={'mt-4'} />;
   };
@@ -69,6 +70,7 @@ const CategoryList = () => {
         await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`);
         setMessage('Categoría borrada con éxito.');
         setSuccess(true);
+        window.location.reload();
       } catch (error) {
         console.error('La categoría no se pudo borrar', error);
         setMessage('La categoría no se pudo borrar.');

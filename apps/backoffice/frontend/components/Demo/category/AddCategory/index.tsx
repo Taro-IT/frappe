@@ -14,6 +14,7 @@ const CreateCategory = () => {
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
         name: categoryName
       });
+      window.location.reload();
     } catch (error) {
       console.error('La categoría ya existe.');
     }
