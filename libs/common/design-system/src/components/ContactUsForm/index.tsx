@@ -190,12 +190,12 @@ export function ContactUsForm() {
                 </dt>
                 <dd className="flex text-base text-indigo-50">
                   <MailIcon className="flex-shrink-0 w-6 h-6 text-black" aria-hidden="true" />
-                  <span className="ml-3 text-black">hola@cinica.com</span>
+                  <span className="ml-3 text-black">hola@cinica.mx</span>
                 </dd>
               </dl>
               <ul role="list" className="mt-8 flex space-x-12">
                 <li>
-                  <a className="text-black hover:text-gray-500" href="https://www.facebook.com/cinicamx">
+                  <a className="text-black hover:text-gray-500" href="https://www.facebook.com/cinicamx" target="_blank">
                     <span className="sr-only">Facebook</span>
                     <svg
                       width={24}
@@ -214,7 +214,7 @@ export function ContactUsForm() {
                   </a>
                 </li>
                 <li>
-                  <a className="text-black hover:text-gray-500" href="https://www.pinterest.com.mx/cinicamx/_saved/">
+                  <a className="text-black hover:text-gray-500" href="https://www.pinterest.com.mx/cinicamx/_saved/" target="_blank">
                     <span className="sr-only">Pintrest</span>
                     <svg
                       width={24}
@@ -230,7 +230,7 @@ export function ContactUsForm() {
                   </a>
                 </li>
                 <li>
-                  <a className="text-black hover:text-gray-500" href="https://www.instagram.com/cinicamx">
+                  <a className="text-black hover:text-gray-500" href="https://www.instagram.com/cinicamx/" target="_blank">
                     <span className="sr-only">Instagram</span>
                     <svg
                       width={24}
@@ -246,7 +246,7 @@ export function ContactUsForm() {
                   </a>
                 </li>
                 <li>
-                  <a className="text-black hover:text-gray-500" href="https://www.tiktok.com/@cinicamx">
+                  <a className="text-black hover:text-gray-500" href="https://www.tiktok.com/@cinicamx" target="_blank">
                     <span className="sr-only">Tik Tok</span>
                     <svg
                       width={24}

@@ -42,7 +42,7 @@ const HelpPage = () => (
                         <h1 className='text-2xl text-center font-medium'>{item.name}</h1>
                         <ul className="list-disc p-4">
                             {item.links.map((link, index) => {
-                                return <li key={index} className="hover:text-yellow-500"><a href={link.link}>{link.use_case}</a></li>
+                                return <li key={index} className="hover:text-yellow-500"><a href={link.link}>{link.use_case} target="_blank"</a></li>
                             })}
                         </ul>
 
