@@ -195,7 +195,7 @@ export function ContactUsForm() {
               </dl>
               <ul role="list" className="mt-8 flex space-x-12">
                 <li>
-                  <a className="text-black hover:text-gray-500" href="https://www.facebook.com/cinicamx" target="_blank">
+                  <a className="text-black hover:text-gray-500" href="https://www.facebook.com/cinicamx" target="_blank" rel="noopener noreferrer">
                     <span className="sr-only">Facebook</span>
                     <svg
                       width={24}
@@ -214,7 +214,7 @@ export function ContactUsForm() {
                   </a>
                 </li>
                 <li>
-                  <a className="text-black hover:text-gray-500" href="https://www.pinterest.com.mx/cinicamx/_saved/" target="_blank">
+                  <a className="text-black hover:text-gray-500" href="https://www.pinterest.com.mx/cinicamx/_saved/" target="_blank" rel="noopener noreferrer">
                     <span className="sr-only">Pintrest</span>
                     <svg
                       width={24}
@@ -230,7 +230,7 @@ export function ContactUsForm() {
                   </a>
                 </li>
                 <li>
-                  <a className="text-black hover:text-gray-500" href="https://www.instagram.com/cinicamx/" target="_blank">
+                  <a className="text-black hover:text-gray-500" href="https://www.instagram.com/cinicamx/" target="_blank" rel="noopener noreferrer">
                     <span className="sr-only">Instagram</span>
                     <svg
                       width={24}
@@ -246,7 +246,7 @@ export function ContactUsForm() {
                   </a>
                 </li>
                 <li>
-                  <a className="text-black hover:text-gray-500" href="https://www.tiktok.com/@cinicamx" target="_blank">
+                  <a className="text-black hover:text-gray-500" href="https://www.tiktok.com/@cinicamx" target="_blank" rel="noopener noreferrer">
                     <span className="sr-only">Tik Tok</span>
                     <svg
                       width={24}
