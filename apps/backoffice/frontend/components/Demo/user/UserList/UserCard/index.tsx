@@ -23,7 +23,7 @@ const UserCard = ({ id, user }: UserCardProps) => {
   const [nameErrors, setNameErrors] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>();
   const [displayResultModal, setDisplayResultModal] = useState<boolean>(false);
-  const [selectedRole, setSelectedRole] = useState<Role>(user.role as Role);
+  const [selectedRole, setSelectedRole] = useState<Role>(user.role);
 
   type buttonprops = { id: string; name?: string };
 

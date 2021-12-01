@@ -1,9 +1,27 @@
 import { Button, Form, TextField } from '@frappe/common/design-system';
-import React from 'react';
+import React, {useState} from 'react';
 import { useRegisterForm } from '../../hooks';
+import Select from 'react-select';
+import { Role } from '@frappe/account/domain'
 
 export const RegisterForm = () => {
-  const { onSubmit } = useRegisterForm();
+  const [selectedRole, setSelectedRole] = useState<Role>(Role.WARESTORE);
+  const { onSubmit } = useRegisterForm(selectedRole);
+
+  const roleOptions = [
+    {
+      value: Role.ADMIN,
+      label: "Admin"
+    },
+    {
+      value: Role.WARESTORE,
+      label: "Taller"
+    }
+  ]
+
+  const handleSelectRole = (selectedOption : any) => {
+    setSelectedRole(selectedOption.value);
+  };
 
   return (
     <Form className="flex flex-col w-full p-8" onSubmit={onSubmit}>
@@ -26,6 +44,17 @@ export const RegisterForm = () => {
         type="password"
         name="confirm-password"
         validations={{ required: 'La contraseña es requerida' }}
+      />
+
+      <label className={'w-1/3 mt-4 mb-3'}>Rol</label>
+      <Select
+        name="userRole"
+        options={roleOptions}
+        className="basic-multi-select"
+        classNamePrefix="Selecciona el rol"
+        onChange={handleSelectRole}
+        placeholder="Selecciona el rol"
+        defaultValue={roleOptions[1]}
       />
 
       <Button title="Crear cuenta" type="submit" variant="cta" className={'mt-4'} />
