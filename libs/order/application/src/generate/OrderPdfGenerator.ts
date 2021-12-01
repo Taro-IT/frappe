@@ -7,7 +7,7 @@ import {
 } from '@frappe/order/domain';
 import {FileSystemFileUploader} from '@frappe/file-system/application'
 import { OrderFinder } from '..';
-import PDFDocument from "pdfkit-table";
+import PDFTable from "pdfkit-table";
 import fs from "fs"
 import { Uuid } from '@frappe/common/value-object';
 import axios from "axios"
@@ -85,9 +85,10 @@ export class OrderPdfGenerator {
     const year = prettyDate.getUTCFullYear();
     const month = prettyDate.getUTCMonth();
     const day = prettyDate.getUTCDate();
-
+    
     // Create a document
-    const doc = new PDFDocument();
+    const doc = new PDFTable()
+    //const doc = new PDFDocument();
     
     // Add another page
     doc
@@ -96,18 +97,21 @@ export class OrderPdfGenerator {
       .fontSize(12)
       .text(`\nid: ${order.id}`)
       .text(`\nFecha: ${day} de ${monthNames[month]} del ${year}`, {})
-
-    await Promise.all(order.items.map(async item => {
-      const { data } = await axios.get(item.productImages[0], { responseType: "arraybuffer" })
-      const tableArray = {
-        headers: [{label: "Parte", headerColor: "#fcb900"}, {label: "Material", headerColor: "#fcb900"}, {label: "Color", headerColor: "#fcb900"}],
-        rows: [
-          ["Punta", "Gamuza", "Verde"],
-          ["Chinela", "Piel", "Rojo"],
-          ["Tubo", "Tela", "Transparente"],
-        ],
-      };
-      doc
+      await Promise.all(order.items.map(async item => {
+        
+        const { data } = await axios.get(item.productImages[0], { responseType: "arraybuffer" })
+        const tableRows = item.customParts?.map(part => (
+          [part.section, part.material]
+        ))
+        const tableArray = {
+          headers: [
+            {label: "Parte", headerColor: "#fcb900"},
+            {label: "Material", headerColor: "#fcb900"},
+          ],
+          rows: tableRows,
+        };
+        
+        doc
         .fontSize(16)
         .text(`\n\n${item.productName}\n\n`, {underline: true})
         .fontSize(12)
@@ -115,11 +119,15 @@ export class OrderPdfGenerator {
         .text(`Talla: ${item.size}\n\n`)
         .image(data, {width: 175 })
         .moveDown()
+        .moveDown()
+
+        item.customParts ?? doc.fontSize(16)
+        .text("Personalización", {underline: true})
+        .moveDown()
         .table(tableArray)
-        .addPage()
-        
-    }))
-    
+      }))
+      
+      
     // Finalize PDF file
     doc.end();
     const docPipePromise = new Promise<void>((resolve, reject) => {
