@@ -43,7 +43,7 @@ const UserCard = ({ id, user }: UserCardProps) => {
     return <Button title="Eliminar" className="w-24" variant="cta" onClick={deleteCategory} />;
   };
 
-  const updateUser = async (id: string, name: string, role: Role) => {
+  const updateUser = async (id: string, name: string, role: string) => {
     if (name === '' || name === currentName) {
       setNameErrors(true);
       return;

@@ -21,10 +21,11 @@ export class UserUpdater {
     this.userFinder = userFinder;
   }
 
-  async execute(id: string, name: string, role: Role): Promise<void> {
+  async execute(id: string, name: string, role: string): Promise<void> {
 
     const userPrimitives = await this.userFinder.execute(id);
-    const changed = User.fromPrimitives({ ...userPrimitives, name, role });
+    const newRole : Role  = Role[role]
+    const changed = User.fromPrimitives({ ...userPrimitives, name, role: newRole });
 
     console.log("changed", changed)
 

@@ -2,13 +2,12 @@ import { RequestHandler } from 'express';
 import { CommandBus } from '@tshio/command-bus';
 import { UpdateUserCommand } from '@frappe/account/application';
 import { wrapError } from '@frappe/common/utils';
-import { Role } from '@frappe/account/domain';
 
 export const updateUserHandler = (commandBus: CommandBus): RequestHandler =>
   async (req, res, next) => {
     const id = req.params.id;
-    const name = req.params.name
-    const role = req.params.role as Role;
+    const name = req.params.name;
+    const role = req.params.role;
 
     console.log(req.params)
 
