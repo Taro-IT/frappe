@@ -23,8 +23,8 @@ export const ProductCard = ({ id, name, price, priceInSale, images } : ProductCa
             <p className="font-bold text-sm">
               {name}
             </p>
-              {priceInSale ? 
-                <div> 
+              {priceInSale ?
+                <div>
                   <p className="font-semibold text-sm line-through">  {formatter.format(price)}</p>
                   <p className="font-semibold text-sm">  {formatter.format(priceInSale)}  </p>
                 </div>

@@ -87,9 +87,9 @@ const CartDetailPage = () => {
                 <p className='pl-4  text-left'>Producto: {item.productName}</p>
                 <p className='pl-4 pt-4 text-left'>Talla: {item.size}</p>
                 <p className='pl-4 pt-4 text-left'>Cantidad: {item.quantity}</p>
-                {item.productInSalePrice ? 
-                  <div> 
-                    <p className='pl-4 pb-4 pt-4 text-left line-through'>Precio regular: {formatter.format(item.productPrice)}</p>  
+                {item.productInSalePrice ?
+                  <div>
+                    <p className='pl-4 pb-4 pt-4 text-left line-through'>Precio regular: {formatter.format(item.productPrice)}</p> 
                     <p className='pl-4 pb-4 pt-4 text-left'>Precio en oferta: {formatter.format(item.productInSalePrice)}</p>
                   </div>
                   :

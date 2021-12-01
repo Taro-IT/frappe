@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   useEffect (()=> {
     const aux = localStorage.getItem('items');
-    if(aux) 
+    if(aux)
     {
       const auxArray = JSON.parse(aux);
       setCartItems(auxArray.length)
