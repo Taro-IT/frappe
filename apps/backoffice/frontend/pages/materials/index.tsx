@@ -3,7 +3,6 @@ import AddMaterial from '../../components/material/AddMaterial'
 import {MaterialList, useMaterials} from '@frappe/material/ui'
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
-import classes from './Materials.module.scss'
 
 const ListMaterialsPage = () => {
   const {materials} = useMaterials()
