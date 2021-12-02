@@ -122,7 +122,15 @@ const AddProductForm = () => {
         const bodyFormData = new FormData();
         bodyFormData.append('file', file);
         console.log(bodyFormData.getAll('file'));
-        const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
+        const { data: { name } } = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/file-system/`,
+          bodyFormData,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+        );
         return name;
       })
       
@@ -143,6 +151,11 @@ const AddProductForm = () => {
         amount: isLimited ? amount : null,
         priceInSale: salePrice,
         canBeSold: canBeSold
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       })
       setShowRetroModal(true)
       setSuccess(true)

@@ -41,6 +41,11 @@ const CategoryList = () => {
     try {
       await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`, {
         name: name
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       });
       setMessage('La categoría se editó con éxito.');
       setSuccess(true);
@@ -67,7 +72,14 @@ const CategoryList = () => {
   const ConfirmDeleteCategory = ({ id }: buttonprops) => {
     const confirmDelete = async () => {
       try {
-        await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`);
+        await axios.delete(
+          `${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+        );
         setMessage('Categoría borrada con éxito.');
         setSuccess(true);
         window.location.reload();

@@ -3,6 +3,7 @@ import { Button, Modal } from '../../index';
 import React, { FormEvent, useState } from 'react';
 import axios from 'axios';
 import { BadgeCheckIcon, ExclamationIcon } from '@heroicons/react/solid';
+import Select from 'react-select';
 
 export function CheckoutForm() {
   const [clientName, setClientName] = useState<string>();
@@ -21,6 +22,140 @@ export function CheckoutForm() {
   const [success,] = useState<boolean>();
   const [message,] = useState<string>();
 
+
+
+  const provinceOptions = [
+    {
+      value: 'Aguascalientes',
+      label: 'Aguascalientes'
+    },
+    {
+      value: 'Baja California',
+      label: 'Baja California'
+    }
+    ,
+    {
+      value: 'Baja California Sur',
+      label: 'Baja California Sur'
+    }
+    ,
+    {
+      value: 'Campeche',
+      label: 'Campeche'
+    },
+    {
+      value: 'Chiapas',
+      label: 'Chiapas'
+    },
+    {
+      value: 'Chihuahua',
+      label: 'Chihuahua'
+    },
+    {
+      value: 'Ciudad de México',
+      label: 'Ciudad de México'
+    },
+    {
+      value: 'Coahuila',
+      label: 'Coahuila'
+    },
+    {
+      value: 'Colima',
+      label: 'Colima',
+    },
+    {
+      value: 'Durango',
+      label: 'Durango'
+    },
+    {
+      value: 'Guanajuato',
+      label: 'Guanajuato'
+    },
+    {
+      value: 'Guerrero',
+      label: 'Guerrero'
+    },
+    {
+      value: 'Hidalgo',
+      label: 'Hidalgo'
+    },
+    {
+      value: 'Jalisco',
+      label: 'Jalisco'
+    },
+    {
+      value: 'Estado de México',
+      label: 'Estado de México'
+    },
+    {
+      value: 'Michoacán',
+      label: 'Michoacán'
+    },
+    {
+      value: 'Morelos',
+      label: 'Morelos'
+    },
+    {
+      value: 'Nayarit',
+      label: 'Nayarit'
+    },
+    {
+      value: 'Nuevo León',
+      label: 'Nuevo León'
+    },
+    {
+      value: 'Oaxaca',
+      label: 'Oaxaca'
+    },
+    {
+      value: 'Puebla',
+      label: 'Puebla'
+    },
+    {
+      value: 'Querétaro',
+      label: 'Querétaro'
+    },
+    {
+      value: 'Quintana Roo',
+      label: 'Quintana Roo'
+    },
+    {
+      value: 'San Luis Potosí',
+      label: 'San Luis Potosí'
+    },
+    {
+      value: 'Sinaloa',
+      label: 'Sinaloa'
+    },
+    {
+      value: 'Sonora',
+      label: 'Sonora'
+    },
+    {
+      value: 'Tabasco',
+      label: 'Tabasco'
+    },
+    {
+      value: 'Tamaulipas',
+      label: 'Tamaulipas'
+    },
+    {
+      value: 'Tlaxcala',
+      label: 'Tlaxcala'
+    },
+    {
+      value: 'Veracruz',
+      label: 'Veracruz'
+    },
+    {
+      value: 'Yucatán',
+      label: 'Yucatán'
+    },
+    {
+      value: 'Zacatecas',
+      label: 'Zacatecas'
+    }
+  ]
 
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -50,40 +185,6 @@ export function CheckoutForm() {
     window.location.href = data.session.url
   }
 
-
-  // const generateOrder = async () => {
-  //   const items = JSON.parse(localStorage.getItem('items')||"[]");
-  //   items.map((item: any) => {
-  //     item.quantity = parseInt(item.quantity, 10);
-  //     //item.productImages = JSON.parse(item.productImages)
-  //   });
-
-  //   const orderData = {
-  //     items: items,
-  //     subtotal: parseFloat(localStorage.getItem('subtotal')||"[]"),
-  //     total: parseFloat(localStorage.getItem('total')||"[]"),
-  //     clientName: localStorage.getItem('clientName'),
-  //     address: JSON.parse(localStorage.getItem('address')||"[]")
-  //   };
-  //   console.log(orderData);
-
-  //   try {
-  //     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders/`, {
-  //       items: items,
-  //       subtotal: parseFloat(localStorage.getItem('subtotal')||"[]"),
-  //       total: parseFloat(localStorage.getItem('total')||"[]"),
-  //       clientName: localStorage.getItem('clientName'),
-  //       address: JSON.parse(localStorage.getItem('address')||"[]")
-  //     });
-  //     //AQUI HAY UN CLEAR DEL LOCAL STORAGE, SO SE REQUIERE CONSERVAR PARA ALGO, QUITARLO!!!!!!!!
-  //     //localStorage.clear();
-  //     return;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return;
-  //   }
-  // };
-
   const storeDataInLocalStorage = () => {
     console.log(country);
     const address = {
@@ -107,21 +208,6 @@ export function CheckoutForm() {
     console.log(localStorage.getItem('clientName'));
     console.log(JSON.parse(localStorage.getItem('address')||"[]"));
   };
-
-  // const showModalSuccess = () => {
-  //   setShowRetroModal(true);
-  //   setSuccess(true);
-  //   setMessage('Tu orden fue creada con éxito.');
-  //   setLoading(false);
-  // };
-
-  // const showModalError = () => {
-  //   setShowRetroModal(true);
-  //   setSuccess(false);
-  //   setMessage('No se pudo crear tu orden.');
-  //   console.error('No se pudo crear tu orden.');
-  //   setLoading(false);
-  // };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setClientName(e.target.value);
@@ -155,8 +241,8 @@ export function CheckoutForm() {
     setCity(e.target.value);
   };
 
-  const handleProvinceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProvince(e.target.value);
+  const handleProvinceChange = (selectedOption : any) => {
+    setProvince(selectedOption.value);
   };
 
   const handleZipChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -295,17 +381,15 @@ export function CheckoutForm() {
           <label htmlFor="province" className="block text-sm font-medium text-gray-700">
             Estado*
           </label>
-          <div className="mt-4">
-            <input
-              required
-              type="text"
+          <div className="mt-4 mx-auto">
+            <Select
               name="province"
-              id="province"
-              placeholder="Querétaro"
-              value={province}
-              autoComplete="address-level1"
-              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              options={provinceOptions}
+              defaultValue={provinceOptions[0]}
+              className="basic-single w-1/2 h-1/4 self-center mx-auto pb-4"
+              classNamePrefix="Selecciona el material"
               onChange={handleProvinceChange}
+              placeholder="Selecciona un estado"
             />
           </div>
         </div>

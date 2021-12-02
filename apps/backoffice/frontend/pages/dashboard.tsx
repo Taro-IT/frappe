@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProtectedRoute } from '../HOC/ProtectedRoute';
+import { withProtectedRoute } from '../HOC/withProtectedRoute';
 import { useAuth } from '../context/AuthUserContext';
 import { Button } from '@frappe/common/design-system';
 
@@ -13,4 +13,4 @@ const DashboardPage = () => {
   );
 };
 
-export default ProtectedRoute(DashboardPage);
+export default withProtectedRoute(DashboardPage);

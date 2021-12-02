@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AddMaterial from '../../components/material/AddMaterial'
 import {MaterialList, useMaterials} from '@frappe/material/ui'
 import { AdminLayout } from '../../layouts/AdminLayout';
 import { withUserAgent } from '@frappe/common/design-system';
+import { withProtectedRoute } from '../../HOC/withProtectedRoute';
 
 const ListMaterialsPage = () => {
   const {materials} = useMaterials()
-//clsx(classes.categories, 'text-center', 'p-4')
+
+  useEffect(() => {
+    if(localStorage.getItem("accountRole") != "ADMIN")
+      window.location.replace("/")
+  }, [])
+
   return (
    <>
       <AddMaterial />
@@ -18,4 +24,4 @@ const ListMaterialsPage = () => {
 
 ListMaterialsPage.Layout = AdminLayout;
 
-export default withUserAgent(ListMaterialsPage);
+export default withProtectedRoute (withUserAgent(ListMaterialsPage));

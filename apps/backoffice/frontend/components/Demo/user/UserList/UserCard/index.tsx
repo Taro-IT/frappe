@@ -50,6 +50,11 @@ const UserCard = ({ id, user }: UserCardProps) => {
     try {
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/users/${id}`, {
         name: name
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       });
       setMessage('La cuenta se actualizó con éxito.');
       setDisplayResultModal(true);

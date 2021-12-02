@@ -1,10 +1,9 @@
-import { CogIcon, LogoutIcon, UserCircleIcon } from "@heroicons/react/solid";
+import { LogoutIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 
 
 const navigation = [
-  { name: 'Ajustes', icon: CogIcon, href: 'settings' },
-  { name: 'Cerrar Sesión', icon: LogoutIcon, href: 'logout' },
+  { name: 'Cerrar Sesión', icon: LogoutIcon, href: '/logout' },
 ]
 
 const classNames = (...classes: string[]) => {
@@ -25,7 +24,9 @@ const SidebarContentUser = () => {
         <div className="flex items-center flex-row px-2">
           <UserCircleIcon className="text-white w-12 h-12 rounded-full" />
           <div className="align-content-between">
-            <p className=" text-xl text-white text-center mb-4 mt-3 ml-2">¡Hola, Doris!</p>
+            <p className=" text-xl text-white text-center mb-4 mt-3 ml-2">
+            ¡Hola, {typeof window !== 'undefined' ? localStorage.getItem("accountName") : ""}!
+            </p>
           </div>
         </div>
       </div>

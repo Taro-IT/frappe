@@ -26,11 +26,24 @@ const CreateMaterial = () => {
       // Post de imágenes
       const bodyFormData = new FormData();
       bodyFormData.append('file', file);
-      const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
+      const { data: { name } } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/file-system/`,
+        bodyFormData,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("authToken")
+          }
+        }
+      );
       
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/materials/`, {
         name: materialName,
         image: name
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       });
       setShowRetroModal(true)
       setSuccess(true)

@@ -13,6 +13,11 @@ const CreateCategory = () => {
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
         name: categoryName
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       });
       window.location.reload();
     } catch (error) {

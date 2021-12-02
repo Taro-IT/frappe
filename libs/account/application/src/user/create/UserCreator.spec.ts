@@ -15,7 +15,7 @@ describe('UserCreator', () => {
   it('should create a new User', async () => {
     const user = UserMother.random();
 
-    await service.execute(user.id.value, user.email.value, user.name.value);
+    await service.execute(user.id.value, user.email.value, user.role.value, user.name.value);
 
     expect(repository.save).toHaveBeenCalledWith(user);
   });

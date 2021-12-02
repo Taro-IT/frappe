@@ -23,7 +23,7 @@ interface ProductListContentProps {
       }
       <div className="grid grid-cols-4 gap-4">
         {products.map(product => (
-            product.price ? <ProductCard id={product.id} key={product.id} name={product.name} price={product.price} priceInSale={product.priceInSale} images={product.images}/> : <></>
+            product.isActive ? <ProductCard id={product.id} key={product.id} name={product.name} price={product.price} priceInSale={product.priceInSale} images={product.images}/> : <></>
         ) )}
       </div>
     </>

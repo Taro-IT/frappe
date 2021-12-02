@@ -4,7 +4,7 @@ import { FindCategoryNameQueryHandler, ListCategoryQueryHandler } from '@frappe/
 import { ListOrderQueryHandler } from '@frappe/order/application';
 import { SearchProductsQueryHandler, FindProductIdQueryHandler } from '@frappe/product/application';
 import { FindMaterialNameQueryHandler, ListMaterialQueryHandler } from '@frappe/material/application';
-import { SearchUsersQueryHandler } from '@frappe/account/application';
+import { FindUserQueryHandler, SearchUsersQueryHandler } from '@frappe/account/application';
 
 export const queryHandlers = (container: AwilixContainer) => {
   container.register({
@@ -17,6 +17,7 @@ export const queryHandlers = (container: AwilixContainer) => {
       asClass(ListMaterialQueryHandler),
       asClass(SearchUsersQueryHandler),
       asClass(FindProductIdQueryHandler),
+      asClass(FindUserQueryHandler)
     ])
   });
 };

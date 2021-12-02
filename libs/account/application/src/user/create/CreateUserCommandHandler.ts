@@ -16,8 +16,8 @@ export class CreateUserCommandHandler implements CommandHandler<CreateUserComman
   }
 
   async execute(command: CreateUserCommand): Promise<void> {
-    const { name, id, email } = command.payload;
+    const { name, id, email, role } = command.payload;
 
-    return this.userCreator.execute(id, email, name);
+    return this.userCreator.execute(id, email, role, name);
   }
 }

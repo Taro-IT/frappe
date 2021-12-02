@@ -10,7 +10,14 @@ const UserList = () => {
   // TODO: centralize to state management -> refactor to custom hook
   useEffect(() => {
     const getUsers = async (): Promise<void> => {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users?order=${JSON.stringify({by: '',type: 'NONE'})}`);
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/users?order=${JSON.stringify({by: '',type: 'NONE'})}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("authToken")
+          }
+        }
+      );
       const data = response.data.result;
       if (data.length !== 0) {
         setUsers(data.items);
