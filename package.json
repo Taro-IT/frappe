@@ -66,6 +66,7 @@
     "react-icons": "^4.3.1",
     "react-select": "^5.1.0",
     "react-toggle": "^4.1.2",
+    "recompose": "^0.30.0",
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "stripe": "^8.190.0",

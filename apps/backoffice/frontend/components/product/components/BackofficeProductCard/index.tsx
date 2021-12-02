@@ -1,5 +1,4 @@
 import { Button, Card } from '@frappe/common/design-system';
-import router from 'next/router';
 import { Dispatch, SetStateAction } from 'react';
 
 
@@ -21,11 +20,6 @@ type ProductCardProps = {
 }
 
 export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal, setCurrentProd}: ProductCardProps) => {
-  /*const router = useRouter();
-  
-  const handleClickEdit = () => {
-    router.push(`/productEdit/${id}`);
-  }*/
 
   const handleClickDelete = () => {
     setDeleteModal(true);
@@ -33,7 +27,7 @@ export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal,
   }
 
   const handleEditProduct = () => {
-    router.push(`products/${id}`);
+    window.location.replace(`/productEdit/${id}`)
   }
 
   return (

@@ -135,6 +135,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
       }
     });
 
+    //TODO: cambiar a producción en variable de entorno:
     const label = await axios.post('https://api-demo.skydropx.com/v1/labels',
     {
       "rate_id": parseInt(rateId, 10),
@@ -176,6 +177,11 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     try {
       await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/orders/${order.id}`, {
         status: newStatus
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       });
     } catch (error) {
       console.error('No se pudo actualizar el estado de la orden.');
@@ -184,7 +190,14 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   }
   const generateOrderPDF = async () => {
     // Sorry
-    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders/pdf/${order.id}`)
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/orders/pdf/${order.id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
+      }
+    )
     window.open(data.url)
   }
 
@@ -209,7 +222,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
         {order.isDelayed && (
             <Badge content="Atrasada" color="red"/>
         )}
-        {status === OrderStatuses.LISTA_PARA_ENVIO  && (
+        {status === OrderStatuses.LISTA_PARA_ENVIO  && localStorage.getItem("accountRole") === "ADMIN" && (
         <Button title={'Imprimir Guía'} variant={'cta'} className="flex" onClick={handleShippingModal} />
         )}
         </div>

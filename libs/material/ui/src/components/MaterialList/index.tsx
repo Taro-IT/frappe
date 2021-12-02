@@ -41,7 +41,15 @@ export interface Material {
           // Post de imágenes
           const bodyFormData = new FormData();
           bodyFormData.append('file', file);
-          const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
+          const { data: { name } } = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_URL}/file-system/`,
+            bodyFormData,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("authToken")
+              }
+            }
+          );
           fileURL = name
         }
 
@@ -49,7 +57,15 @@ export interface Material {
           name: newName ? newName : null,
           image: fileURL !== "" ? fileURL : null
         }
-        await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`, payload);
+        await axios.patch(
+          `${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`,
+          payload,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+        );
         setDisplayResultModal(true)
         setMessage('El material se editó correctamente.');
         setSuccess(true);
@@ -70,7 +86,14 @@ export interface Material {
     const ConfirmDeleteMaterial = ({ id }: Material) => {
       const confirmDelete = async () => {
         try {
-          await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`);
+          await axios.delete(
+            `${process.env.NEXT_PUBLIC_API_URL}/materials/${id}`,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("authToken")
+              }
+            }
+          );
           setMessage('Material borrado con éxito.');
           setSuccess(true);
         } catch (error) {

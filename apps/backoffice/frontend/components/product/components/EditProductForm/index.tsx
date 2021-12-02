@@ -131,6 +131,23 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     setIsCustom(previous => !previous);
   };
 
+  const getImagePromises = () => {
+    return files.map( async file => {
+        const bodyFormData = new FormData();
+        bodyFormData.append('file', file);
+        const { data: { name } } = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/file-system/`,
+          bodyFormData,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+          );
+        return name;
+    })
+  }
+
   const updateProduct = async (e: FormEvent<HTMLFormElement>) => {
     e.stopPropagation();
     e.preventDefault();
@@ -139,12 +156,7 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     try {
 
       // Post de imágenes
-      const promises = files.map( async file => {
-        const bodyFormData = new FormData();
-        bodyFormData.append('file', file);
-        const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
-        return name;
-      })
+      const promises = getImagePromises();
       const fileNames = await Promise.all(promises);
 
       const payload = {
@@ -165,12 +177,25 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
       }
 
       // Patch de productos
-        await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`, payload)
+      
+      patchProducts(payload)
       showSuccess()
     } catch (error) {
       showError()
     }
   };
+
+  const  patchProducts = async (payload) => {
+    await axios.patch(
+      `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
+      payload,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
+      }
+    )
+  }
 
   const showSuccess = () => {
     setShowRetroModal(true)
