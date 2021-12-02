@@ -19,6 +19,15 @@ const helpItems = [
                 link: "https://www.iorad.com/player/1886677/Crear-un-producto-personalizable?#trysteps-1"
             }
         ]
+    },
+    {
+        name: "Compras",
+        links: [
+            {
+                use_case: "Realizar un pedido",
+                link: "https://ior.ad/7V1q?iframeHash=trysteps-1"
+            }
+        ]
     }
 ]
 
@@ -33,7 +42,7 @@ const HelpPage = () => (
                         <h1 className='text-2xl text-center font-medium'>{item.name}</h1>
                         <ul className="list-disc p-4">
                             {item.links.map((link, index) => {
-                                return <li key={index} className="hover:text-yellow-500"><a href={link.link}>{link.use_case}</a></li>
+                                return <li key={index} className="hover:text-yellow-500"><a href={link.link} target={"_blank"} rel={"noopener noreferrer"}>{link.use_case} </a></li>
                             })}
                         </ul>
 
