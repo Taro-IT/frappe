@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { Role } from '@frappe/account/domain';
+import { IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class UpdateUserDto {
 
@@ -7,5 +8,6 @@ export class UpdateUserDto {
   readonly name?: string;
 
   @IsOptional()
-  readonly role?: string;
+  @IsEnum(Role)
+  readonly role: Role;
 }

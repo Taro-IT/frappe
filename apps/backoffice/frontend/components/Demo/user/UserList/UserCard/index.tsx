@@ -18,11 +18,12 @@ const UserCard = ({ id, user }: UserCardProps) => {
 
   const [displayEditModal, setEditModal] = useState<boolean>(false);
   const [currentName, setCurrentName] = useState<string>(user.name);
-  const [newName, setNewName] = useState<string>('');
+  const [newName, setNewName] = useState<string>(user.name);
   const [message, setMessage] = useState<string>('');
   const [nameErrors, setNameErrors] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>();
   const [displayResultModal, setDisplayResultModal] = useState<boolean>(false);
+  const [currentRole, setCurrentRole] = useState(user.role)
   const [selectedRole, setSelectedRole] = useState<Role>(user.role);
 
   type buttonprops = { id: string; name?: string };
@@ -44,8 +45,13 @@ const UserCard = ({ id, user }: UserCardProps) => {
   };
 
   const updateUser = async (id: string, name: string, role: string) => {
-    if (name === '' || name === currentName) {
+    if (name === '') {
       setNameErrors(true);
+      return;
+    }
+    if (name === currentName && role === currentRole)
+    {
+      setEditModal(false);
       return;
     }
     try {
@@ -63,13 +69,14 @@ const UserCard = ({ id, user }: UserCardProps) => {
       setDisplayResultModal(true);
       setSuccess(true);
     } catch (error) {
-      console.error('La cuenta ya existe.', error);
+      console.error('Error: ', error);
       setMessage('La cuenta no se pudo editar');
       setSuccess(false);
     }
     setEditModal(false);
     setNameErrors(false);
     setCurrentName(newName);
+    setCurrentRole(selectedRole);
     return;
   };
 
@@ -108,15 +115,16 @@ const UserCard = ({ id, user }: UserCardProps) => {
           toggleModal={setEditModal}
         >
           <form className="flex flex-col w-full px-20 mb-4 py-2">
-            <label className="text-base w-full my-1">Nuevo nombre</label>
+            <label className="text-base w-full my-1">Nombre</label>
             <input
               className="border-2 border-gray-500 rounded w-full placeholder-gray-500"
               placeholder={currentName}
               onChange={handleNameChange}
+              defaultValue={currentName}
               type="name"
               name="categoryName"
             />
-            {nameErrors && <SpanError message="El nombre no puede ser vacío ni igual al anterior" />}
+            {nameErrors && <SpanError message="El nombre no puede estar vacío" />}
             <label className={'w-1/3 mt-4 mb-3'}>Rol</label>
             <Select
               name="role"
@@ -144,7 +152,7 @@ const UserCard = ({ id, user }: UserCardProps) => {
         <h1 className='text-2xl'>{currentName}</h1>
         <hr className="mb-2"/>
         <p className='text-lg'>Correo: {user.email}</p>
-        <p className='text-lg mb-8'>Rol: {user.role}</p>
+        <p className='text-lg mb-8'>Rol: {currentRole}</p>
         <div className="flex justify-evenly">
             <div>
               <EditButton id={id} name={user.name}/>
