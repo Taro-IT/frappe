@@ -26,7 +26,8 @@ const ProductEdit = () => {
       };
       getProduct();
     }, []);
-  return (
+    console.log(productInfo);
+    return (
     <div className="bg-gray-100 w-full position-absolute flex flex-col h-screen overflow-auto">
       <EditProduct product={productInfo}/>
     </div>  

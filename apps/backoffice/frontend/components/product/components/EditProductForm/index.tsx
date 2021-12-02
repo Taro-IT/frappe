@@ -18,29 +18,30 @@ interface EditProductContentProps {
 
 const EditProductForm = ({ product }: EditProductContentProps) => {
   const [, setCategories] = useState<string[]>();
-  const [ canBeSold, setCanBeSold] = useState<boolean>(false);
+  const [ canBeSold, setCanBeSold] = useState<boolean>(product.canBeSold);
   const [options, setOptions] = useState();
-  const [isLimited, setIsLimited] = useState<boolean>();
-  const [isOnSale, setIsOnSale] = useState<boolean>();
-  const [isCustom, setIsCustom] = useState<boolean>();
-  const [amount, setAmount] = useState<number>()
-  const [salePrice, setSalePrice] = useState<number>()
-  const [sizes, setSizes] = useState<number[]>([]);
-  const [price, setPrice] = useState<number>();
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [isLimited, setIsLimited] = useState<boolean>(product.isLimited);
+  const [isOnSale, setIsOnSale] = useState<boolean>(product.isInSale);
+  const [isCustom, setIsCustom] = useState<boolean>(product.isCustom);
+  const [amount, setAmount] = useState<number>(product.amount)
+  const [salePrice, setSalePrice] = useState<number>(product.priceInSale)
+  const [sizes, setSizes] = useState<number[]>(product.sizes);
+  const [price, setPrice] = useState<number>(product.price);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(product.categories);
   const [showRetroModal, setShowRetroModal] = useState<boolean>(false)
   const [success, setSuccess] = useState<boolean>();
   const [message, setMessage] = useState<string>()
   const [loading, setLoading] = useState<boolean>(false)
-  const [productName, setProductName] = useState<string>();
+  const [productName, setProductName] = useState<string>(product.name);
   const [customParts, setCustomPart] = useState<string[]>([]);
   const [singlePart, setSinglePart] = useState<string>();
-  const [productDescription, setProductDescription] = useState<string>('');
+  const [productDescription, setProductDescription] = useState<string>(product.description);
   const [files, setFiles] = useState<File[]>([]);
   const [allSizes, setAllSizes] = useState<boolean>(false);
   const [prevCategories, setPrevCategories] = useState()
   const [prevInfo, setPrevInfo] = useState<ProductPrimitives>()
   const defaultSizes = [22, 22.5, 23, 23.5, 24, 24.5, 25, 25.5, 26, 26.5, 27, 27.5, 28, 28.5, 29, 29.5];
+
 
 
   type Category = {
@@ -62,8 +63,12 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
             return { value: option.id, label: option.name };
           })
         );
-        setPrevCategories(data.map((option: Category) => {
-          return { value: option.id, label: option.name };
+        setPrevCategories(data.map((option) => {
+          selectedCategories.map( cat => {
+            if (cat === option.id){
+              return {option};
+            }
+          })
         }))
       }
     };
@@ -71,12 +76,12 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
 
 
   }, []);
+console.log(prevCategories);
 
   useEffect(() => {
     const getProductInfo = async (): Promise<void> => {
       const { data } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
       const productInfo: ProductPrimitives = data.product.result;
-      console.log(productInfo);
 
       if(data.length !== 0) {
         setPrevInfo(productInfo);
@@ -84,11 +89,9 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     }
 
     getProductInfo();
-    console.log("OPTIONS", options);
   }, []);
 
   useEffect(() => {
-    console.log("PREVCAT", prevCategories);
 
   }, [prevCategories])
 
@@ -112,8 +115,6 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     setAllSizes(previous => !previous)
 
   }
-
-  console.log(sizes);
   const handleStockChange = () => {
     setIsLimited(previous => !previous);
   };
@@ -124,7 +125,6 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
 
   const handleCanBeSoldChange = () => {
     setCanBeSold(previous => !previous);
-    console.log(canBeSold);
   };
 
   const handleCustomChange = () => {
@@ -209,7 +209,6 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     setShowRetroModal(true)
     setSuccess(false)
     setMessage("Este producto ya existe en la base de datos, intenta cambiar el nombre")
-    console.error("El producto ya existe");
     setLoading(false)
     return
   }
@@ -240,7 +239,6 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
     const part = singlePart;
     setCustomPart(customParts => [...customParts, part]);
     setSinglePart('');
-    console.log(customParts);
   }
 
   const handleDeletePart = () => {
@@ -299,7 +297,7 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
         styles={customStyles}
         onChange={handleSelectCategories}
         placeholder="Selecciona categorías"
-        defaultValue={prevCategories}
+        defaultValue={selectedCategories}
       />
         <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">Todas las tallas</label>
@@ -327,7 +325,7 @@ const EditProductForm = ({ product }: EditProductContentProps) => {
       </div>
       <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">¿Este producto será visible para clientes?</label>
-          <Toggle defaultChecked={prevInfo ? prevInfo.canBeSold : false } icons={false} className="mt-4" onChange={handleCanBeSoldChange}/>
+          <Toggle defaultChecked={product.canBeSold} icons={false} className="mt-4" onChange={handleCanBeSoldChange}/>
       </div>
       <div className="flex flex-row">
           <label className="w-auto mr-4 mt-4 mb-3">¿Este producto está en oferta?</label>
