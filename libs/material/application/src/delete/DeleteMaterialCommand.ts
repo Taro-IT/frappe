@@ -1,11 +1,11 @@
 import { Command } from '@tshio/command-bus';
 
-interface DeleteUserCommandPayload {
+interface DeleteMaterialCommandPayload {
   readonly id: string;
 }
 
-export class DeleteUserCommand implements Command<DeleteUserCommandPayload> {
-  readonly type = DeleteUserCommand.name;
+export class DeleteMaterialCommand implements Command<DeleteMaterialCommandPayload> {
+  readonly type = DeleteMaterialCommand.name;
 
-  constructor(readonly payload: DeleteUserCommandPayload) {}
+  constructor(readonly payload: DeleteMaterialCommandPayload) {}
 }
