@@ -121,10 +121,13 @@ export class OrderPdfGenerator {
         .moveDown()
         .moveDown()
 
-        item.customParts ?? doc.fontSize(16)
-        .text("Personalización", {underline: true})
-        .moveDown()
-        .table(tableArray)
+        if(item.customParts !== undefined) {
+          doc.fontSize(16)
+          .text("Personalización", {underline: true})
+          .moveDown()
+          .table(tableArray)
+
+        }
       }))
       
       
