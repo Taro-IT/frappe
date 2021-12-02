@@ -14,6 +14,11 @@ type UserCardProps = {
   readonly user;
 };
 
+export interface User {
+  readonly id: string,
+  readonly name?:string
+}
+
 const UserCard = ({ id, user }: UserCardProps) => {
 
   const [displayEditModal, setEditModal] = useState<boolean>(false);
@@ -25,20 +30,49 @@ const UserCard = ({ id, user }: UserCardProps) => {
   const [displayResultModal, setDisplayResultModal] = useState<boolean>(false);
   const [currentRole, setCurrentRole] = useState(user.role)
   const [selectedRole, setSelectedRole] = useState<Role>(user.role);
+  const [displayDeleteModal, setDeleteModal] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<User>()
 
   type buttonprops = { id: string; name?: string };
 
   const EditButton = ({ id, name }: buttonprops) => {
-        const edit = () => {
-            setEditModal(true);
-            setNameErrors(false);
-        };
-        return <Button title="Editar"  className="w-24" variant="cta" onClick={edit} />;
-      };
+    const edit = () => {
+        setEditModal(true);
+        setNameErrors(false);
+    };
+    return <Button title="Editar"  className="w-24" variant="cta" onClick={edit} />;
+  };
+
+  const ConfirmDeleteUser = ({ id }: User) => {
+    const confirmDelete = async () => {
+      try {
+        await axios.delete(
+          `${process.env.NEXT_PUBLIC_API_URL}/users/${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+        );
+        setMessage('Usuario borrado exitosamente.');
+        setSuccess(true);
+      } catch (error) {
+        console.error('El usuario no se pudo borrar', error);
+        setMessage('Hubo un error, el usuario no se pudo borrar.');
+        setSuccess(false);
+      }
+      setDeleteModal(false);
+      setDisplayResultModal(true);
+      window.location.reload();
+      return;
+    };
+    return <Button title="Eliminar" onClick={confirmDelete} variant="cta" className={'mt-4'} />;
+  };
 
   const DeleteButton = ({ id, name }: buttonprops) => {
   const deleteCategory = () => {
-      //TODO: lógica del caso de borrar cuenta
+      setDeleteModal(true);
+      setCurrentUser({ id, name });
       console.log("Eliminano cuenta");
     };
     return <Button title="Eliminar" className="w-24" variant="cta" onClick={deleteCategory} />;
@@ -139,6 +173,19 @@ const UserCard = ({ id, user }: UserCardProps) => {
           </form>
         </Modal>
       )}
+      {displayDeleteModal && (
+        <Modal showModal={displayDeleteModal} toggleModal={setDeleteModal} title="Eliminar usuario">
+          <div className="flex flex-col w-full px-20 mb-4 py-2 justify-center">
+            <p className="text-2xl text-center mb-4">
+              ¿Estás seguro de querer borrar el usuario {currentUser.name}?
+            </p>
+            <p className="text-sm text-red-500 text-center">
+              Esta acción es irreversible.
+            </p>
+            <ConfirmDeleteUser id={currentUser.id} />
+          </div>
+        </Modal>
+      )}
       {displayResultModal && (
         <Modal showModal={displayResultModal} toggleModal={setDisplayResultModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
@@ -158,7 +205,7 @@ const UserCard = ({ id, user }: UserCardProps) => {
               <EditButton id={id} name={user.name}/>
             </div>
             <div>
-              <DeleteButton id={id} name={user.name} />
+              <DeleteButton id={user.id} name={user.name} />
             </div>
         </div>
       </Card>
