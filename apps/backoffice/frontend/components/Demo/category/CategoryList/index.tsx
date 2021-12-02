@@ -44,6 +44,7 @@ const CategoryList = () => {
       });
       setMessage('La categoría se editó con éxito.');
       setSuccess(true);
+      window.location.reload();
     } catch (error) {
       console.error('La categoría ya existe.', error);
       setMessage('La categoría no se pudo editar');
@@ -59,7 +60,6 @@ const CategoryList = () => {
   const SaveChangesButton = props => {
     const saveChanges = () => {
       updateCategory(props.id, props.name);
-      window.location.reload();
     };
     return <Button title="Guardar cambios" onClick={saveChanges} variant="cta" className={'mt-4'} />;
   };
