@@ -30,7 +30,17 @@ export const userRouting = ({ commandBus, queryBus, tokenAuthentication }: UserR
     handlers.findUserHandler(queryBus)
   );
   router.put('/:id', makeValidateBody(dtos.UpdateUserDto), handlers.updateUserHandler(commandBus))
-  router.post('/password-recovery', makeValidateBody(dtos.CreatePasswordResetCodeDto), handlers.createPasswordResetCodeHandler(commandBus));
+  router.post(
+    '/password-recovery',
+    makeValidateBody(dtos.CreatePasswordResetCodeDto),
+    handlers.createPasswordResetCodeHandler(commandBus)
+  );
+  router.delete(
+    '/:id',
+    authenticationMiddleware(tokenAuthentication),
+    authorizationMiddleware([Role.ADMIN]),
+    handlers.deleteUserHandler(commandBus)
+  );
 
   return router;
 }
