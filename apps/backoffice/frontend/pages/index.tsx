@@ -30,14 +30,20 @@ const Home = () => {
         }
       }
     );
-      const data = response.data.user.result;
-      if (data) {
-        console.log(data)
-        console.log("name: ", data.name);
-        console.log("role", data.role)
-        localStorage.setItem('accountName', data.name)
-        localStorage.setItem('accountRole', data.role)
-      }
+    const data = response.data.user.result;
+    if (data) {
+      console.log(data)
+      console.log("name: ", data.name);
+      console.log("role", data.role)
+      localStorage.setItem('accountName', data.name)
+      localStorage.setItem('accountRole', data.role)
+      window.dispatchEvent(new CustomEvent("updateUser", {
+        detail: {
+          userName: data.name,
+          role: data.role
+        }
+      }));
+    }
   }
   
   return(

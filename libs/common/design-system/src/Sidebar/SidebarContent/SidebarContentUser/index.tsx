@@ -1,9 +1,9 @@
 import { LogoutIcon, UserCircleIcon } from "@heroicons/react/solid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const navigation = [
-  { name: 'Cerrar Sesión', icon: LogoutIcon, href: 'logout' }
+  { name: 'Cerrar Sesión', icon: LogoutIcon, href: '/logout' }
 ]
 
 const classNames = (...classes: string[]) => {
@@ -13,6 +13,17 @@ const classNames = (...classes: string[]) => {
 const SidebarContentUser = () => {
 
   const [open, setOpen] = useState(false)
+  const [userName, setUserName] = useState(typeof window !== 'undefined' ? localStorage.getItem("accountName") : "")
+
+  useEffect(() => {
+    function userEventHandler(event : any) {
+      setUserName(event.detail.userName);
+    }
+    window.addEventListener("updateUser", userEventHandler);
+    return () => {
+      window.removeEventListener("updateUser", userEventHandler)
+    }
+  }, [])
 
   const handleOpenSettings = () => {
     setOpen(previous => !previous)
@@ -26,7 +37,7 @@ const SidebarContentUser = () => {
           <UserCircleIcon className="text-white w-12 h-12 rounded-full" />
           <div className="align-content-between">
             <p className=" text-xl text-white text-center mb-4 mt-3 ml-2">
-              ¡Hola, {typeof window !== 'undefined' ? localStorage.getItem("accountName") : ""}!
+              ¡Hola, {userName}!
             </p>
           </div>
         </div>
