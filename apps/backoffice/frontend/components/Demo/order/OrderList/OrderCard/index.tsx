@@ -136,7 +136,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
     });
 
     //TODO: cambiar a producción en variable de entorno:
-    const label = await axios.post('https://api-demo.skydropx.com/v1/labels',
+    const label = await axios.post(`${process.env.SKYDROPX_BASE_URL}/v1/labels`,
     {
       "rate_id": parseInt(rateId, 10),
        "label_format": "pdf"
@@ -150,7 +150,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
 
     const labelId = label.data.data?.id
 
-    const specificLabel = await axios.get('https://api-demo.skydropx.com/v1/labels/'+labelId,
+    const specificLabel = await axios.get(`${process.env.SKYDROPX_BASE_URL}/v1/labels/`+labelId,
     {
       headers: {
         Authorization: "Token token=" + process.env.NEXT_PUBLIC_SKYDROPX,
