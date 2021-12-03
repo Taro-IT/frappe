@@ -28,7 +28,9 @@ export class CreateProductOnStripe implements EventSubscriberInterface {
       return;
     }
 
-    const [priceError] = await wrapError(this.paymentProvider.createPrice(product.id.value, product.price.value));
+    const finalProductPrice = product.priceInSale.value ?? product.price.value
+
+    const [priceError] = await wrapError(this.paymentProvider.createPrice(product.id.value, finalProductPrice));
 
     if (priceError !== null) {
       console.log(priceError.message);
