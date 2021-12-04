@@ -57,6 +57,7 @@ const CategoryList = () => {
     }
     setEditModal(false);
     setNameErrors(false);
+    setDisplayResultModal(true);
     return;
   };
   const handleNameChange = event => {
@@ -114,7 +115,7 @@ const CategoryList = () => {
     () =>
       categories.map((category, index) => {
         const { id, name } = category;
-        if(category.isActive !== false){
+        if(category.isActive != false){
           return (
             <>
               <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>
