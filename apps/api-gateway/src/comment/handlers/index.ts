@@ -1,0 +1,1 @@
+export { commentCreatedHandler } from './commentCreateHandler';
