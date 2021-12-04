@@ -25,11 +25,24 @@ export class UpdateProductOnStripe implements EventSubscriberInterface {
     const product = Product.fromPrimitives(event.payload)
 
     const [archiveError] = await wrapError(this.paymentProvider.archivePrice(product.id))
+    if(archiveError != null){
+      console.log(archiveError.message)
+      return
+    }
 
     if(product.isInSale.value){
       const [priceError] = await wrapError(this.paymentProvider.createPrice(product.id.value, product.priceInSale.value));
+      if(priceError != null){
+        console.log(priceError.message)
+        return
+      }
     } else {
       const [priceError] = await wrapError(this.paymentProvider.createPrice(product.id.value, product.price.value));
+
+      if(priceError != null){
+        console.log(priceError.message)
+        return
+      }
     }
 
   }
