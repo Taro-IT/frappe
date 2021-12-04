@@ -82,7 +82,7 @@ const OrderCard = ({ items, order }: OrderCardProps) => {
   const handleShippingClick = async event  => {
     event.preventDefault();
   console.log(parcelWeight)
-   const  orderShipping : any  = await axios.post('https://api-demo.skydropx.com/v1/shipments',
+   const  orderShipping : any  = await axios.post(`${process.env.SKYDROPX_BASE_URL}/v1/shipments`,
     { "address_from": {
       "province": "Querétaro",
       "city": "Corregidora",

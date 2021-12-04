@@ -16,14 +16,17 @@ export class CreateProductOnStripe implements EventSubscriberInterface {
   }
 
   getSubscribedEvents(): EventSubscribersMeta[] {
-    return [{ name: ProductCreated.name, method: 'execute' }];
+    return [
+      { name: ProductCreated.name, method: 'execute' },
+    ];
   }
 
   async execute(event: ProductCreated) {
     const product = Product.fromPrimitives(event.payload)
+
     const [error] = await wrapError(this.paymentProvider.createProduct(product))
     
-    if(error !== null) {
+    if(error != null) {
       console.log(error);
       return;
     }
