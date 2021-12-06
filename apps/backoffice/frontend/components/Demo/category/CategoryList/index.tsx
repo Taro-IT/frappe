@@ -41,9 +41,15 @@ const CategoryList = () => {
     try {
       await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`, {
         name: name
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       });
       setMessage('La categoría se editó con éxito.');
       setSuccess(true);
+      window.location.reload();
     } catch (error) {
       console.error('La categoría ya existe.', error);
       setMessage('La categoría no se pudo editar');
@@ -51,6 +57,7 @@ const CategoryList = () => {
     }
     setEditModal(false);
     setNameErrors(false);
+    setDisplayResultModal(true);
     return;
   };
   const handleNameChange = event => {
@@ -66,9 +73,17 @@ const CategoryList = () => {
   const ConfirmDeleteCategory = ({ id }: buttonprops) => {
     const confirmDelete = async () => {
       try {
-        await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`);
+        await axios.delete(
+          `${process.env.NEXT_PUBLIC_API_URL}/categories/${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+        );
         setMessage('Categoría borrada con éxito.');
         setSuccess(true);
+        window.location.reload();
       } catch (error) {
         console.error('La categoría no se pudo borrar', error);
         setMessage('La categoría no se pudo borrar.');
@@ -100,7 +115,7 @@ const CategoryList = () => {
     () =>
       categories.map((category, index) => {
         const { id, name } = category;
-        if(category.isActive !== false){
+        if(category.isActive != false){
           return (
             <>
               <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>

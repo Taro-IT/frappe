@@ -7,7 +7,8 @@ import {
   AccountSignUpCommandHandler,
   UpdateUserCommandHandler,
   CreatePasswordResetCodeCommandHandler,
-  UpdateUserPasswordCommandHandler
+  UpdateUserPasswordCommandHandler,
+  DeleteUserCommandHandler
 } from '@frappe/account/application';
 import { UploadFileCommandHandler } from "@frappe/file-system/application";
 import { CreateProductCommandHandler, DeleteProductCommandHandler, UpdateProductCommandHandler } from "@frappe/product/application";
@@ -36,6 +37,7 @@ export const commandHandlers = (container: AwilixContainer) => {
       asClass(UpdateUserPasswordCommandHandler),
       asClass(CreatePaymentSessionCommandHandler),
       asClass(DeleteProductCommandHandler),
+      asClass(DeleteUserCommandHandler)
     ])
   });
 };

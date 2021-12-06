@@ -26,13 +26,25 @@ const CreateMaterial = () => {
       // Post de imágenes
       const bodyFormData = new FormData();
       bodyFormData.append('file', file);
-      const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
+      const { data: { name } } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/file-system/`,
+        bodyFormData,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("authToken")
+          }
+        }
+      );
       
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/materials/`, {
         name: materialName,
         image: name
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       });
-      return
       setShowRetroModal(true)
       setSuccess(true)
       setMessage("Material creado correctamente")
@@ -55,6 +67,10 @@ const CreateMaterial = () => {
     setMaterialName(event.target.value);
   };
 
+  const reloadPage = () => {
+    window.location.reload();
+  }
+
   return (
     <>
     <Card className={classes.input}>
@@ -72,6 +88,7 @@ const CreateMaterial = () => {
           {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
           {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
           <p className="text-2xl text-center mb-4">{message}</p>
+          <Button title="Aceptar" onClick={reloadPage} variant="cta" className={'mt-4'} />
         </div>
       </Modal>
     )}

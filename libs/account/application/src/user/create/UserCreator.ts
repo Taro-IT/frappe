@@ -1,4 +1,4 @@
-import { User, UserDisplayName, UserEmail, UserId, UserRepository } from '@frappe/account/domain';
+import { Role, User, UserDisplayName, UserEmail, UserId, UserRepository, UserRole } from '@frappe/account/domain';
 
 interface UserCreatorDeps {
   readonly userRepository: UserRepository;
@@ -11,8 +11,8 @@ export class UserCreator {
     this.userRepository = userRepository;
   }
 
-  async execute(id: string, email: string, name: string) {
-    const user = new User(new UserId(id), new UserEmail(email), new UserDisplayName(name));
+  async execute(id: string, email: string, role: Role, name: string) {
+    const user = new User(new UserId(id), new UserEmail(email), new UserDisplayName(name), new UserRole(role));
     return this.userRepository.save(user);
   }
 }

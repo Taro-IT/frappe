@@ -1,4 +1,4 @@
-import { User, UserDisplayName, UserEmail, UserId } from '@frappe/account/domain';
+import { Role, User, UserDisplayName, UserEmail, UserId, UserRole } from '@frappe/account/domain';
 import { StringMother, UuidMother } from '@frappe/common/test';
 
 export class UserMother {
@@ -6,7 +6,8 @@ export class UserMother {
     return new User(
       new UserId(UuidMother.random()),
       new UserEmail(StringMother.email()),
-      new UserDisplayName(StringMother.randomWord())
+      new UserDisplayName(StringMother.randomWord()),
+      new UserRole(Role.ADMIN)
     );
   }
 }

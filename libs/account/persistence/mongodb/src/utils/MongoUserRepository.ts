@@ -49,4 +49,13 @@ export class MongoUserRepository extends MongoRepository implements UserReposito
 
     return collection.countDocuments();
   }
+
+  /**
+   * Deletes a user
+   * @param id the uid of the user to be deleted
+   */
+  async delete(id: UserId): Promise<boolean | null> {
+    const collection = await this.collection();
+    return (await collection.deleteOne({ _id: id.value })).acknowledged;
+  }
 }

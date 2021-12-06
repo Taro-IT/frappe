@@ -7,4 +7,5 @@ export interface UserRepository {
   find(id: UserId): Promise<Nullable<User>>;
   search(criteria: Criteria<User>): Promise<User[]>;
   total(): Promise<number>;
+  delete(id: UserId): Promise<boolean | null>;
 }
