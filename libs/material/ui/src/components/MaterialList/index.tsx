@@ -2,7 +2,7 @@ import { MaterialPrimitives } from '@frappe/material/domain';
 import { MaterialCard } from '../MaterialCard';
 import {EmojiSadIcon, BadgeCheckIcon, ExclamationIcon} from '@heroicons/react/solid'
 import {Button, Modal, SpanError, FileInput } from '@frappe/common/design-system';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 
 
@@ -80,6 +80,9 @@ export interface Material {
       return;
     };
 
+    const reloadPage = () => {
+      window.location.reload();
+    }
 
   
     {/* // User Story: Frappe 68 */}
@@ -121,8 +124,7 @@ export interface Material {
 
     const activeMaterials = useMemo(()=>(materials.filter(material=> material.isActive===true).length), [materials])
     return (
-      <>
-      
+      <div className=" grid grid-cols-3 gap-4 overflow-y-scroll h-2/3 w-4/6 mt-10 mx-auto">
       {materials.length === 0 || activeMaterials === 0 &&
         <div className="flex flex-col space-y-4 justify-items-center w-full h-full mt-24">
           <EmojiSadIcon className="text-center h-24 text-gray-400"/>
@@ -131,7 +133,6 @@ export interface Material {
         </div>
       }
       {/* // User Story: Frappe 501 */}
-      <div className="grid grid-cols-3 gap-4">
         {materials.map(material => {
           if(material.isActive){
             return (
@@ -147,7 +148,6 @@ export interface Material {
             )
           }
         })}
-      </div>
       {/* // User Story: Frappe 67 */}
       {displayEditModal && !ecommerce && (
         <Modal
@@ -182,6 +182,7 @@ export interface Material {
             {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
             {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
             <p className="text-2xl text-center mb-4">{message}</p>
+            <Button title="Aceptar" onClick={reloadPage} variant="cta" className={'mt-4'} />
           </div>
         </Modal>
       )}
@@ -199,6 +200,6 @@ export interface Material {
           </div>
         </Modal>
       )}
-    </>
+    </div>
     )
   }

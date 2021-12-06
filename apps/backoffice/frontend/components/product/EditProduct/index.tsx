@@ -14,7 +14,7 @@ export const EditProduct = ({ product }: EditProductContentProps) =>  {
     <div className="w-full h-screen flex flex-col items-center">
         <Card className="flex flex-col xl:w-3/4 lg:w-2/3 md:w-5/12 rounded-xl">
             <Card.Header title="Edita el producto"/>
-                <EditProductForm product={product}/>
+               { product ? <EditProductForm product={product}/> : <></>}
             <Card.Footer>
             </Card.Footer>
         </Card>
