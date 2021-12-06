@@ -20,15 +20,17 @@ const OrderList = () => {
       const data = response.data.result;
       console.log(data);
       if (data.length !== 0) {
-        setOrders(data);
+        const arr = data.reverse();
+        console.log("arr", arr);
+        setOrders(arr);
       }
     };
     getOrders();
   }, []);
-
+  
   const useOrders = useMemo(
     () =>
-      orders.map(order => {
+    orders.map(order => {
         return <OrderCard id={order.id} order={order} items={order.items} key={order.id} />;
       }),
     [orders]
