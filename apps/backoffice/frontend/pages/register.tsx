@@ -2,7 +2,7 @@ import React/*, {useEffect} */ from 'react';
 import { RegisterForm } from '@frappe/account/ui';
 import { AdminLayout } from '../layouts/AdminLayout';
 import { Card, withUserAgent } from '@frappe/common/design-system';
-// import  { withProtectedRoute }  from '../HOC/withProtectedRoute';
+// import  { withProtectedRoute }  from '../HOC/withProtectedRoute'; 
 
 
 const RegisterPage = () => {
