@@ -91,11 +91,6 @@ console.log(prevCategories);
     getProductInfo();
   }, []);
 
-  useEffect(() => {
-
-  }, [prevCategories])
-
-
   const customStyles = {
     option: (provided: any, state: { isSelected: any }) => ({
       ...provided,
