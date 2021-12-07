@@ -14,9 +14,9 @@ export const Footer = ( ) => {
       <div>
         <h2 className={styles['footer--title']}>NOSOTROS</h2>
         <ul>
-          <li><a>Atención al cliente</a></li>
-          <li><a>Términos y condiciones</a></li>
-          <li><a>Políticas de Privacidad</a></li>
+          <li><a href="/contact">Atención al cliente</a></li>
+          <li><a href="/terms-and-conditions">Términos y condiciones</a></li>
+          <li><a href="/privacy-policy">Políticas de Privacidad</a></li>
         </ul>
       </div>
       <div className="flex flex-col justify-evenly">

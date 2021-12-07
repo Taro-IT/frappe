@@ -1,17 +1,17 @@
-import React/*, {useEffect} */ from 'react';
+import React, {useEffect} from 'react';
 import { RegisterForm } from '@frappe/account/ui';
 import { AdminLayout } from '../layouts/AdminLayout';
 import { Card, withUserAgent } from '@frappe/common/design-system';
-// import  { withProtectedRoute }  from '../HOC/withProtectedRoute';
+import  { withProtectedRoute }  from '../HOC/withProtectedRoute';
 
 
 const RegisterPage = () => {
 
   
-  // useEffect(() => {
-  //   if(localStorage.getItem("accountRole") != "ADMIN")
-  //     window.location.replace("/")
-  // }, [])
+  useEffect(() => {
+    if(localStorage.getItem("accountRole") != "ADMIN")
+      window.location.replace("/")
+  }, [])
 
   return (
     <div>
@@ -28,5 +28,4 @@ const RegisterPage = () => {
 
 RegisterPage.Layout = AdminLayout;
 
-//export default withProtectedRoute(withUserAgent(RegisterPage));
-export default withUserAgent(RegisterPage);
+export default withProtectedRoute(withUserAgent(RegisterPage));
