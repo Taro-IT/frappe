@@ -130,7 +130,7 @@ const TermsAndConditions = () => {
       <br/>
       <p>
         Política de Cambios y Devoluciones. La Política de Cambios y Devoluciones que &quot;LA EMPRESA&quot; pone a disposición de sus
-        clientes podrá ser consultada en la siguiente página de Internet: <a href="/contact">https://store.cinica.mx/contact</a>
+        clientes podrá ser consultada en la siguiente página de Internet: <a href={'/contact'}>https://store.cinica.mx/contact</a>
       </p>
       <br/>
       <h3 className="font-bold">Formatos</h3>
@@ -207,7 +207,7 @@ const TermsAndConditions = () => {
       <br/>
       <p>
         Para cualquier reclamación de violación de derechos de autor, por favor póngase en contacto por medio de
-        <a href="/contact"> https://store.cinica.mx/contact</a>
+        <a href={'/contact'}> https://store.cinica.mx/contact</a>
       </p>
       <br/>
       <h3 className="font-bold">Material Publicitario</h3>
