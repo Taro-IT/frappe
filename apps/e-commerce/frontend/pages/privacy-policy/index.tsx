@@ -7,8 +7,8 @@ const PrivacyPolicy = () => {
     <div className="self-center w-2/3 pt-8 pb-8">
       <h1 className="text-center text-xl font-bold">POLÍTICAS DE PRIVACIDAD</h1>
       <p>
-      [Nombre  o  razón  o  denominación  social  y  comercial  del  responsable],  con  domicilio  en 
-      [señalar  calle,  número,  colonia,  ciudad,  municipio  o  delegación  y  entidad  federativa],  es  responsable  
+      Dora Elena Gómez Sánchez,  con  domicilio  en 
+      Segunda Cerrada de Romero de Terreros 52, casa 4, Del Valle, Benito Juárez, 03100, Ciudad de México,  es  responsable  
       de  recabar sus datos personales, del uso que se le dé a los mismos y de su protección.     
         </p>
         <br/>
@@ -28,7 +28,7 @@ const PrivacyPolicy = () => {
         al  tratamiento  de  los  mismos  o  revocar  el  consentimiento  que  para  tal  fin  nos  haya  
         otorgado,  a  través de los procedimientos que hemos implementado. Para conocer dichos procedimientos, 
         los  requisitos y plazos, se puede poner en contacto con nuestro departamento de datos personales en 
-         [datos  de  contacto,  domicilio,  teléfono,  correo  electrónico]  o  visitar  nuestra  página  de 
+        el número telefónico <b>5521944332</b> o  visitar  nuestra  página  de 
           Internet <a href="store.cinica.mx/contact" >store.cinica.mx/contact.</a>
         </p>
         <br/>
@@ -36,8 +36,8 @@ const PrivacyPolicy = () => {
         Asimismo,  le  informamos  que  sus  datos  personales  pueden  ser  transferidos  y  tratados  
         dentro  y  fuera  del  país,  por  personas  distintas  a  esta  empresa.  En  ese  sentido,  
         su  información  puede  ser  compartida con empresas de envíos de paquetes nacionales. Si usted no
-         manifiesta su oposición para que sus datos personales sean transferidos,  
-         se entenderá que ha otorgado su consentimiento para ello. 
+        manifiesta su oposición para que sus datos personales sean transferidos,  
+        se entenderá que ha otorgado su consentimiento para ello. 
         </p>
         <br/>
         <p>

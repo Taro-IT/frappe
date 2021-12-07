@@ -8,7 +8,7 @@ const TermsAndConditions = () => {
       <h1 className="text-center text-xl font-bold">TÉRMINOS Y CONDICIONES DE USO</h1>
       <h3 className="font-bold">Proemio</h3>
       <p>
-        AL INGRESAR Y UTILIZAR ESTE PORTAL DE INTERNET, CUYO NOMBRE DE DOMINIO ES: store.cinica.mx PROPIEDAD DE [RAZON SOCIAL], 
+        AL INGRESAR Y UTILIZAR ESTE PORTAL DE INTERNET, CUYO NOMBRE DE DOMINIO ES: store.cinica.mx PROPIEDAD DE Dora Elena Gómez Sánchez, 
         EN LO SUCESIVO “store.cinica.mx” USTED (EL USUARIO) ESTÁ ACEPTANDO LOS TÉRMINOS Y LAS CONDICIONES 
         CONTENIDOS EN ESTE CONVENIO Y DECLARA EXPRESAMENTE SU ACEPTACIÓN UTILIZANDO PARA TAL EFECTO MEDIOS ELECTRÓNICOS, EN TÉRMINOS 
         DE LO DISPUESTO POR EL ARTÍCULO 1803 DEL CÓDIGO CIVIL FEDERAL.
@@ -23,15 +23,15 @@ const TermsAndConditions = () => {
       <p>
         LA SOLA UTILIZACIÓN DE LA PÁGINA DE INTERNET LE OTORGA AL PÚBLICO LA CALIDAD DE USUARIO (EN ADELANTE REFERIDO COMO EL "USUARIO"
         O LOS "USUARIOS") E IMPLICA LA ACEPTACIÓN, PLENA E INCONDICIONAL, DE TODAS Y CADA UNA DE LAS CONDICIONES GENERALES Y 
-        PARTICULARES INCLUIDAS EN ESTOS TÉRMINOS Y CONDICIONES EN LA VERSIÓN PUBLICADA POR [RAZON SOCIAL], 
+        PARTICULARES INCLUIDAS EN ESTOS TÉRMINOS Y CONDICIONES EN LA VERSIÓN PUBLICADA POR Dora Elena Gómez Sánchez, 
         EN EL MOMENTO MISMO EN QUE EL USUARIO ACCEDA A LA PÁGINA. CUALQUIER MODIFICACIÓN A LOS PRESENTES TÉRMINOS Y CONDICIONES SERÁ 
-        REALIZADA CUANDO [RAZON SOCIAL], LO CONSIDERE APROPIADO, SIENDO EXCLUSIVA RESPONSABILIDAD DEL USUARIO 
+        REALIZADA CUANDO Dora Elena Gómez Sánchez, LO CONSIDERE APROPIADO, SIENDO EXCLUSIVA RESPONSABILIDAD DEL USUARIO 
         ASEGURARSE DE TOMAR CONOCIMIENTO DE TALES MODIFICACIONES.
       </p>
       <br/>
       <h3 className="font-bold">Convenio</h3>
       <p>
-        CONVENIO DE ADHESIÓN PARA USO DE LA PÁGINA DE INTERNET store.cinica.mx QUE CELEBRAN POR UNA PARTE [Razón social], 
+        CONVENIO DE ADHESIÓN PARA USO DE LA PÁGINA DE INTERNET store.cinica.mx QUE CELEBRAN POR UNA PARTE Dora Elena Gómez Sánchez, 
         EN ADELANTE REFERIDA COMO “LA EMPRESA” Y POR LA OTRA, EL USUARIO, SUJETÁNDOSE, AMBAS PARTES, A LO ESTABLECIDO EN EL TEXTO DEL 
         PRESENTE CONVENIO.
       </p>
@@ -75,7 +75,7 @@ const TermsAndConditions = () => {
       <p>
         2. La información, consejos, conceptos y opiniones publicadas en store.cinica.mx no necesariamente reflejan la posición 
         de ”LA EMPRESA” ni de sus empleados, oficiales, directores, accionistas, licenciatarios y concesionarios (en lo sucesivo 
-        “los Afiliados"). Por esta razón, [Razón social], no se hace responsable por ninguna información, consejos, opiniones y 
+        “los Afiliados"). Por esta razón, Dora Elena Gómez Sánchez, no se hace responsable por ninguna información, consejos, opiniones y 
         conceptos que se emitan en store.cinica.mx. Asimismo, “LA EMPRESA” no se hace responsable de la información de terceros 
         contenida en la página de Internet, incluidas las subpáginas, en el entendido de que es bajo el propio riesgo y 
         responsabilidad del usuario el uso y seguimiento de la misma.
@@ -229,7 +229,7 @@ const TermsAndConditions = () => {
       <p>
         EL USUARIO ESTÁ DE ACUERDO QUE EL USO DE store.cinica.mx, SE REALIZA BAJO SU PROPIO RIESGO, QUE 
         LOS SERVICIOS Y PRODUCTOS QUE SE PRESTAN Y OFRECEN EN store.cinica.mx, SE PREVÉN SOBRE UNA BASE 
-        "TAL CUAL" Y "SEGÚN SEAN DISPONIBLES". [Razón social], NO GARANTIZA QUE store.cinica.mx, SATISFAGA
+        "TAL CUAL" Y "SEGÚN SEAN DISPONIBLES". Dora Elena Gómez Sánchez, NO GARANTIZA QUE store.cinica.mx, SATISFAGA
         AL CIEN POR CIENTO LOS REQUERIMIENTOS DEL USUARIO, O QUE LOS SERVICIOS DE store.cinica.mx, SE 
         MANTENGAN SIEMPRE ININTERRUMPIDOS, EN TIEMPO, SEGUROS O LIBRES DE ERRORES.
       </p>
@@ -245,7 +245,7 @@ const TermsAndConditions = () => {
       <ul>
         <li>LA DISPONIBILIDAD DE USO DE store.cinica.mx, POR MOTIVO DE problemas técnicos imputables a los 
           sistemas de comunicación y transmisión de datos.</li>
-        <li>NO OBSTANTE LO ANTERIOR, [Razón social] O SUS PROVEEDORES PODRÁN ACTUALIZAR EL CONTENIDO DE 
+        <li>NO OBSTANTE LO ANTERIOR, Dora Elena Gómez Sánchez O SUS PROVEEDORES PODRÁN ACTUALIZAR EL CONTENIDO DE 
           store.cinica.mx, CONSTANTEMENTE, POR LO QUE SE PIDE AL USUARIO TOMAR EN CUENTA QUE, ALGUNA 
           INFORMACIÓN PUBLICITADA O CONTENIDA EN O A TRAVÉS DE store.cinica.mx. PUEDE HABER QUEDADO OBSOLETA 
           Y/O CONTENER IMPRECISIONES O ERRORES TIPOGRÁFICOS U ORTOGRÁFICOS</li>
@@ -255,7 +255,7 @@ const TermsAndConditions = () => {
       <br/>
       <h3 className="font-bold">Limitaciones a la Responsabilidad</h3>
       <p>
-        HASTA EL MÁXIMO PERMITIDO POR LAS LEYES APLICABLES, [Razón social] NO SERÁ RESPONSABLE, EN NINGÚN CASO, POR CUALESQUIERA
+        HASTA EL MÁXIMO PERMITIDO POR LAS LEYES APLICABLES, Dora Elena Gómez Sánchez NO SERÁ RESPONSABLE, EN NINGÚN CASO, POR CUALESQUIERA
         DAÑOS, DIRECTOS, ESPECIALES, INCIDENTALES, INDIRECTOS, O CONSECUENCIALES QUE EN CUALQUIER FORMA SE DERIVEN O SE RELACIONEN 
         CON:
       </p>
@@ -276,7 +276,7 @@ const TermsAndConditions = () => {
         </li>
         <li>
           LA PROVEEDURÍA O FALTA DE PROVEEDURÍA DE LOS SERVICIOS, AÚN EN LOS CASOS EN QUE SE LE HUBIERE NOTIFICADO O AVISADO A 
-          [Razón social], ACERCA DE LA POSIBILIDAD DE QUE SE OCASIONARAN DICHOS DAÑOS.
+          Dora Elena Gómez Sánchez, ACERCA DE LA POSIBILIDAD DE QUE SE OCASIONARAN DICHOS DAÑOS.
         </li>
       </ul>
       <br/>
