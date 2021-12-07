@@ -8,7 +8,7 @@ const TermsAndConditions = () => {
       <h1 className="text-center text-xl font-bold">TÉRMINOS Y CONDICIONES DE USO</h1>
       <h3 className="font-bold">Proemio</h3>
       <p>
-        AL INGRESAR Y UTILIZAR ESTE PORTAL DE INTERNET, CUYO NOMBRE DE DOMINIO ES: store.cinica.mx PROPIEDAD DE Dora Elena Gómez Sánchez, 
+        AL INGRESAR Y UTILIZAR ESTE PORTAL DE INTERNET, CUYO NOMBRE DE DOMINIO ES: store.cinica.mx PROPIEDAD DE Dora Elena Gómez Sánchez,
         EN LO SUCESIVO &quot;store.cinica.mx&quot; USTED (EL USUARIO) ESTÁ ACEPTANDO LOS TÉRMINOS Y LAS CONDICIONES
         CONTENIDOS EN ESTE CONVENIO Y DECLARA EXPRESAMENTE SU ACEPTACIÓN UTILIZANDO PARA TAL EFECTO MEDIOS ELECTRÓNICOS, EN TÉRMINOS
         DE LO DISPUESTO POR EL ARTÍCULO 1803 DEL CÓDIGO CIVIL FEDERAL.
@@ -74,8 +74,8 @@ const TermsAndConditions = () => {
       <br/>
       <p>
         2. La información, consejos, conceptos y opiniones publicadas en store.cinica.mx no necesariamente reflejan la posición
-        de ”LA EMPRESA” ni de sus empleados, oficiales, directores, accionistas, licenciatarios y concesionarios (en lo sucesivo
-        “los Afiliados"). Por esta razón, Dora Elena Gómez Sánchez, no se hace responsable por ninguna información, consejos, opiniones y
+        de &quot;LA EMPRESA&quot; ni de sus empleados, oficiales, directores, accionistas, licenciatarios y concesionarios (en lo sucesivo
+          &quot;los Afiliados&quot;). Por esta razón, Dora Elena Gómez Sánchez, no se hace responsable por ninguna información, consejos, opiniones y
         conceptos que se emitan en store.cinica.mx. Asimismo, “LA EMPRESA” no se hace responsable de la información de terceros
         contenida en la página de Internet, incluidas las subpáginas, en el entendido de que es bajo el propio riesgo y
         responsabilidad del usuario el uso y seguimiento de la misma.
@@ -214,7 +214,7 @@ const TermsAndConditions = () => {
       <p>
         El Usuario reconoce y acepta que “LA EMPRESA” es una organización independiente de terceros
         patrocinadores y anunciantes cuya información, imágenes, anuncios y demás material publicitario o
-        promocional (el "Material Publicitario") pudiera estar publicado en store.cinica.mx.
+        promocional (el &quot;Material Publicitario&quot;) pudiera estar publicado en store.cinica.mx.
       </p>
       <br/>
       <p>
@@ -229,7 +229,7 @@ const TermsAndConditions = () => {
       <p>
         EL USUARIO ESTÁ DE ACUERDO QUE EL USO DE store.cinica.mx, SE REALIZA BAJO SU PROPIO RIESGO, QUE
         LOS SERVICIOS Y PRODUCTOS QUE SE PRESTAN Y OFRECEN EN store.cinica.mx, SE PREVÉN SOBRE UNA BASE
-        "TAL CUAL" Y "SEGÚN SEAN DISPONIBLES". Dora Elena Gómez Sánchez, NO GARANTIZA QUE store.cinica.mx, SATISFAGA
+        &quot;TAL CUAL&quot; Y &quot;SEGÚN SEAN DISPONIBLES&quot;. Dora Elena Gómez Sánchez, NO GARANTIZA QUE store.cinica.mx, SATISFAGA
         AL CIEN POR CIENTO LOS REQUERIMIENTOS DEL USUARIO, O QUE LOS SERVICIOS DE store.cinica.mx, SE
         MANTENGAN SIEMPRE ININTERRUMPIDOS, EN TIEMPO, SEGUROS O LIBRES DE ERRORES.
       </p>
