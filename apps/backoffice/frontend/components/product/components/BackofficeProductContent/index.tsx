@@ -20,7 +20,7 @@ export const BackofficeProductContent = ({ className, minPrice, maxPrice, catego
   return (
     <div className={ clsx(className, styles.wrapper )}>
       <div className="flex justify-end pb-4 pr-6 sticky top-0">
-        <a title="Agregar producto" className="bg-green-600 hover:bg-green-500 text-white font-sans p-2 rounded-md" href={'/addProduct'}><PlusCircleIcon width={40}/></a>
+        <a title="Agregar producto" className="bg-yellow-600 hover:bg-yellow-500 text-white font-sans p-2 rounded-full" href={'/addProduct'}><PlusCircleIcon width={40}/></a>
       </div>
       <div className={ styles['wrapper--content'] }>
         <BackofficeProductList products={products}/>

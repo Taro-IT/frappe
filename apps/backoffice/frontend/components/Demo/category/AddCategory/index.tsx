@@ -19,6 +19,7 @@ const CreateCategory = () => {
           Authorization: "Bearer " + localStorage.getItem("authToken")
         }
       });
+      window.location.reload();
     } catch (error) {
       console.error('La categoría ya existe.');
     }

@@ -49,6 +49,7 @@ const CategoryList = () => {
       });
       setMessage('La categoría se editó con éxito.');
       setSuccess(true);
+      window.location.reload();
     } catch (error) {
       console.error('La categoría ya existe.', error);
       setMessage('La categoría no se pudo editar');
@@ -56,6 +57,7 @@ const CategoryList = () => {
     }
     setEditModal(false);
     setNameErrors(false);
+    setDisplayResultModal(true);
     return;
   };
   const handleNameChange = event => {
@@ -81,6 +83,7 @@ const CategoryList = () => {
         );
         setMessage('Categoría borrada con éxito.');
         setSuccess(true);
+        window.location.reload();
       } catch (error) {
         console.error('La categoría no se pudo borrar', error);
         setMessage('La categoría no se pudo borrar.');
@@ -112,7 +115,7 @@ const CategoryList = () => {
     () =>
       categories.map((category, index) => {
         const { id, name } = category;
-        if(category.isActive !== false){
+        if(category.isActive != false){
           return (
             <>
               <Card className={clsx(classes.categories, 'text-center', 'p-4')} key={index}>

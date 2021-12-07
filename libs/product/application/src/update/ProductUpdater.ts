@@ -6,25 +6,30 @@ import {
   ProductNotFound,
   ProductPrimitives,
   Product,
-  ProductAlreadyExists
+  ProductAlreadyExists,
+  ProductUpdated
 } from '@frappe/product/domain';
+import { EventDispatcher } from '@tshio/event-dispatcher';
 import { ProductIdFinder, ProductNameFinder } from '../find';
 
 interface Props {
   readonly productRepository: ProductRepository;
   readonly productIdFinder: ProductIdFinder;
   readonly productNameFinder: ProductNameFinder;
+  readonly eventBus: EventDispatcher;
 }
 
 export class ProductUpdater {
   private readonly productRepository: ProductRepository;
   private readonly productIdFinder: ProductIdFinder;
   private readonly productNameFinder: ProductNameFinder;
+  private readonly eventBus: EventDispatcher;
 
-  constructor({ productRepository, productIdFinder, productNameFinder }: Props) {
+  constructor({ productRepository, productIdFinder, productNameFinder, eventBus }: Props) {
     this.productRepository = productRepository;
     this.productIdFinder = productIdFinder;
     this.productNameFinder = productNameFinder;
+    this.eventBus = eventBus;
   }
 
   async execute(
@@ -67,7 +72,10 @@ export class ProductUpdater {
       amount: amount ?? product.amount
     };
 
-    return this.productRepository.save(Product.fromPrimitives(updatedProduct));
+    await this.productRepository.save(Product.fromPrimitives(updatedProduct));
+
+    const event = new ProductUpdated(updatedProduct)
+    this.eventBus.dispatch(event);
   }
 
   private async checkForErrors(product, id, name)
