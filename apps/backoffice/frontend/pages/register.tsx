@@ -6,8 +6,6 @@ import  { withProtectedRoute }  from '../HOC/withProtectedRoute';
 
 
 const RegisterPage = () => {
-
-  
   useEffect(() => {
     if(localStorage.getItem("accountRole") != "ADMIN")
       window.location.replace("/")
