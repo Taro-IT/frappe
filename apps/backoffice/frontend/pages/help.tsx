@@ -32,7 +32,8 @@ const helpItems = [
                 link: "https://ior.ad/7Ul6"
             }
         ]
-    },{
+    },
+    {
         name: "Ordenes",
         links: [
             {
@@ -46,6 +47,22 @@ const helpItems = [
             {
                 use_case: "Descargar una guía de envío",
                 link: "https://ior.ad/7UOt"
+            }
+        ]
+    },{
+        name: "Tienda",
+        links: [
+            {
+                use_case: "Realizar un pedido",
+                link: "https://ior.ad/7V1q?iframeHash=trysteps-1"
+            },
+            {
+                use_case: "Personalizar un producto",
+                link: "https://ior.ad/7UOh"
+            },
+            {
+                use_case: "Filtrar productos",
+                link: "https://www.iorad.com/player/1880218/C-nica-mx---C-mo-filtrar-productos-"
             }
         ]
     }
