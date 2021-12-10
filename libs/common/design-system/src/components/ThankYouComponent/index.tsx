@@ -8,9 +8,6 @@ export function ThankYouComponent() {
               <h1 className="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl">
                 ¡Gracias por comprar en Cínica!
               </h1>
-              <p className="mt-4 text-xl text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipiscing, elit congue porttitor aliquam magnis, pellentesque tellus conubia rhoncus quis.
-              </p>
             </div>
             <div>
               <div className="mt-10">

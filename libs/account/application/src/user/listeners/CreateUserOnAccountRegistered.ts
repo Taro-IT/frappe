@@ -18,8 +18,8 @@ export class CreateUserOnAccountRegistered implements EventSubscriberInterface {
   }
 
   execute(event: UserRegistered) {
-    const { id, name, email } = event.payload;
+    const { id, name, email, role } = event.payload;
 
-    return this.userCreator.execute(id, email, name);
+    return this.userCreator.execute(id, email, role, name);
   }
 }

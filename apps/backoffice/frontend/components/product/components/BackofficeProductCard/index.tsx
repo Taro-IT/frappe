@@ -1,13 +1,34 @@
-import { ProductPrimitives } from '@frappe/product/domain';
 import { Button, Card } from '@frappe/common/design-system';
+import { Dispatch, SetStateAction } from 'react';
 
-type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
 
-export const BackofficeProductCard = ({ id, name, price, images }: ProductCardProps) => {
+// type ProductCardProps = Pick<ProductPrimitives, 'id' | 'name' | 'price' | 'images'>
+
+
+export type ProductCardData = {
+  id: string,
+  name: string
+}
+
+type ProductCardProps = {
+  id: string,
+  name: string,
+  price: number,
+  images: string[],
+  setDeleteModal: Dispatch<SetStateAction<boolean>>,
+  setCurrentProd: Dispatch<SetStateAction<ProductCardData>>,
+}
+
+export const BackofficeProductCard = ({ id, name, price, images, setDeleteModal, setCurrentProd}: ProductCardProps) => {
+
   const handleClickDelete = () => {
-    // no sé qué poner acá ¿Cómo hago un popup?
+    setDeleteModal(true);
+    setCurrentProd({id: id, name: name})
   }
 
+  const handleEditProduct = () => {
+    window.location.replace(`/productEdit/${id}`)
+  }
 
   return (
     <Card className="h-auto ">
@@ -25,8 +46,8 @@ export const BackofficeProductCard = ({ id, name, price, images }: ProductCardPr
             </p>
             </div>
             <div className="flex flex-row justify-between ">
-            <a href={`/productEdit/${id}`}>
-            <Button type={'button'} title={'Editar'} variant={'cta'} />
+            <a href={`/editProduct/${id}`}>
+            <Button type={'button'} title={'Editar'} variant={'cta'} onClick={handleEditProduct}/>
             </a>
             <Button type={'button'} title={'Borrar'} variant={'red'} onClick={handleClickDelete}/>
             </div>

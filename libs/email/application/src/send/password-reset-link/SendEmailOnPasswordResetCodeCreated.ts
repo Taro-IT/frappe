@@ -25,16 +25,13 @@ export class SendEmailOnPasswordResetCodeCreated implements EventSubscriberInter
     const link = `${ process.env.DOMAIN_URL }/change-password/${ code }`;
 
     const confirmEmail = Email.fromPrimitives({
-      id: EmailTemplates.Generic,
+      id: EmailTemplates.ResetPassword,
       to: email,
       data: {
-        name: 'Estimado Usuario',
-        body: link,
-        subject: 'Bienvenido a Cínica'
+        codeUrl: link,
+        subject: 'Reestablece tu contraseña'
       }
     });
-
-    console.log(confirmEmail);
     return this.emailProvider.send(confirmEmail)
   }
 }

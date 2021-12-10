@@ -17,9 +17,9 @@ export class UpdateUserCommandHandler implements CommandHandler<UpdateUserComman
   }
 
   execute(command: UpdateUserCommand): Promise<void> {
-    const { id, changes } = command.payload;
+    const { id, name, role } = command.payload;
 
-    return this.userUpdater.execute(id, changes);
+    return this.userUpdater.execute(id, name, role);
   }
 
 }

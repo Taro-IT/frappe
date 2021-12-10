@@ -16,19 +16,24 @@ export class CreateProductOnStripe implements EventSubscriberInterface {
   }
 
   getSubscribedEvents(): EventSubscribersMeta[] {
-    return [{ name: ProductCreated.name, method: 'execute' }];
+    return [
+      { name: ProductCreated.name, method: 'execute' },
+    ];
   }
 
   async execute(event: ProductCreated) {
     const product = Product.fromPrimitives(event.payload)
+
     const [error] = await wrapError(this.paymentProvider.createProduct(product))
     
-    if(error !== null) {
+    if(error != null) {
       console.log(error);
       return;
     }
 
-    const [priceError] = await wrapError(this.paymentProvider.createPrice(product.id.value, product.price.value));
+    const finalProductPrice = product.priceInSale.value ?? product.price.value
+
+    const [priceError] = await wrapError(this.paymentProvider.createPrice(product.id.value, finalProductPrice));
 
     if (priceError !== null) {
       console.log(priceError.message);

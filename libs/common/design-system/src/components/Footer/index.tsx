@@ -1,7 +1,7 @@
 
 import styles from './Footer.module.scss';
 import { BsFacebook, BsInstagram, BsPinterest } from 'react-icons/bs';
-import {FaCcVisa, FaCcPaypal, FaCcMastercard} from 'react-icons/fa';
+import {FaCcVisa, FaCcMastercard} from 'react-icons/fa';
 import {SiAmericanexpress} from 'react-icons/si';
 
 export const Footer = ( ) => {
@@ -14,11 +14,9 @@ export const Footer = ( ) => {
       <div>
         <h2 className={styles['footer--title']}>NOSOTROS</h2>
         <ul>
-          <li><a>Atención al cliente</a></li>
-          <li><a>Login</a></li>
-          <li><a>Mi cuenta</a></li>
-          <li><a>Términos y condiciones</a></li>
-          <li><a>Políticas de Privacidad</a></li>
+          <li><a href="/contact">Atención al cliente</a></li>
+          <li><a href="/terms-and-conditions">Términos y condiciones</a></li>
+          <li><a href="/privacy-policy">Políticas de Privacidad</a></li>
         </ul>
       </div>
       <div className="flex flex-col justify-evenly">
@@ -28,15 +26,14 @@ export const Footer = ( ) => {
               <FaCcVisa size={25}/>
               <FaCcMastercard size={25}/>
               <SiAmericanexpress size={25}/>
-              <FaCcPaypal size={25}/>
             </div>
           </div>
         <div>
             <h3 className={styles['footer--title']}>SÍGUENOS EN:</h3>
             <div className="flex justify-evenly w-1/4 pt-2">
-              <a target="_blank" href="https://www.facebook.com/cinicamx/"><BsFacebook size={20}/></a>
-              <a target="_blank" href="https://www.instagram.com/cinicamx/"><BsInstagram size={20}/></a>
-              <a target="_blank" href="https://www.pinterest.com.mx/cinicamx/_saved/"><BsPinterest size={20}/></a>
+              <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/cinicamx/"><BsFacebook size={20}/></a>
+              <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/cinicamx/"><BsInstagram size={20}/></a>
+              <a target="_blank" rel="noopener noreferrer" href="https://www.pinterest.com.mx/cinicamx/_saved/"><BsPinterest size={20}/></a>
             </div>
         </div>
       </div>

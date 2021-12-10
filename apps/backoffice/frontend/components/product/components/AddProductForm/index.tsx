@@ -122,7 +122,15 @@ const AddProductForm = () => {
         const bodyFormData = new FormData();
         bodyFormData.append('file', file);
         console.log(bodyFormData.getAll('file'));
-        const { data: { name } } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-system/`, bodyFormData);
+        const { data: { name } } = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/file-system/`,
+          bodyFormData,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken")
+            }
+          }
+        );
         return name;
       })
       
@@ -143,6 +151,11 @@ const AddProductForm = () => {
         amount: isLimited ? amount : null,
         priceInSale: salePrice,
         canBeSold: canBeSold
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("authToken")
+        }
       })
       setShowRetroModal(true)
       setSuccess(true)
@@ -158,6 +171,10 @@ const AddProductForm = () => {
       return
     }
   };
+
+  const redirectToList = () => {
+    window.location.replace('/products');
+  }
 
   const changePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(parseInt(event.target.value, 10));
@@ -350,9 +367,9 @@ const AddProductForm = () => {
       {showRetroModal && (
         <Modal showModal={showRetroModal} toggleModal={setShowRetroModal} title="">
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
-            {success && <BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />}
-            {!success && <ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" />}
-            <p className="text-2xl text-center mb-4">{message}</p>
+            {success && <><BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" /> <p className="text-2xl text-center mb-4">{message}</p> <Button title="Aceptar" type="button" variant="cta" className={'mt-4'} onClick={redirectToList}/> </>}
+            {!success && <><ExclamationIcon className="items-center h-32 w-32 text-red-500 mb-6" /> <p className="text-2xl text-center mb-4">{message}</p> </>}
+            
           </div>
         </Modal>
       )}

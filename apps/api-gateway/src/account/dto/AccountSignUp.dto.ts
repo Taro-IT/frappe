@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, MinLength } from 'class-validator';
+import { Role } from '@frappe/account/domain';
 
 export class AccountSignUpDto {
   @IsEmail()
@@ -10,4 +11,8 @@ export class AccountSignUpDto {
 
   @IsNotEmpty()
   readonly name: string;
+
+  @IsNotEmpty()
+  @IsEnum(Role)
+  readonly role: Role;
 }

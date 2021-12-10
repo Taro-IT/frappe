@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { Link } from '..'
 
 const navItems = [
-  {href: "shop", text: "Tienda"},
-  {href: "about", text: "Nosotros"},
-  {href: "outlet", text: "Outlet"},
-  {href: "contact", text: "Contacto"}
+  {href: "/shop", text: "Tienda"},
+  {href: "/about", text: "Nosotros"},
+  {href: "/outlet", text: "Outlet"},
+  {href: "/contact", text: "Contacto"}
 ]
 
 export const NavbarMobile = () => {

@@ -1,4 +1,4 @@
-  // User Story: Frappe 62 / Frappe 80 / Frappe 71
+// User Story: Frappe 62 / Frappe 80 / Frappe 71
 import { ProductPrimitives } from '@frappe/product/domain';
 import { Disclosure, Tab } from '@headlessui/react'
 import { PlusSmIcon } from '@heroicons/react/outline'
@@ -83,6 +83,7 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
         productId: product.id,
         productName: product.name,
         productPrice: product.price,
+        productInSalePrice: product.priceInSale,
         quantity: productAmount,
         productImages: [
           product.images[0]
@@ -97,11 +98,20 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
         auxArray[auxArray.length] = newProduct;
         console.log(auxArray.length);
         localStorage.setItem('items',JSON.stringify(auxArray));
+        window.dispatchEvent(new CustomEvent("updateCart", {
+          detail: {
+            cartItemsCount: auxArray.length
+          }
+        }));
       }
   
       setCartSuccess(true)
   }
- 
+
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  })
 
   return (
     <>
@@ -157,8 +167,8 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
 
             <div className="mt-3">
               <h2 className="sr-only">Información del producto</h2>
-              {product.priceInSale != undefined ? <p className="text-2xl text-gray-600 line-through">${product.price}</p> : <p className="text-3xl text-gray-900">${product.price}</p>}
-              {product.priceInSale != undefined ? <p className="text-3xl text-gray-900">${product.priceInSale}</p> : <></>}
+              {product.priceInSale != undefined ? <p className="text-2xl text-gray-600 line-through">{formatter.format(product.price)}</p> : <p className="text-3xl text-gray-900">{formatter.format(product.price)}</p>}
+              {product.priceInSale != undefined ? <p className="text-3xl text-gray-900">{formatter.format(product.priceInSale)}</p> : <></>}
             </div>
 
             <div className="mt-6">
@@ -217,8 +227,9 @@ export const  ProductDetail = ({product}: PropsWithChildren<ProductDetailProps>)
               </div>
             </section>
 
-
+            <label>Cantidad</label>
             <div className="mt-10 flex sm:flex-col1">
+              
               <input
                 id="cantidad"
                 type="number"

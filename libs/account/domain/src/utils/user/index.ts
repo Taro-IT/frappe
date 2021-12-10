@@ -1,2 +1,3 @@
-export { UserPrimitives } from './UserPrimitives';
-export { UserRepository } from './UserRepository';
+export { Role } from './Role';
+export type { UserPrimitives } from './UserPrimitives';
+export type { UserRepository } from './UserRepository';

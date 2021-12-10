@@ -15,8 +15,8 @@ export class AccountSignUpCommandHandler implements CommandHandler<AccountSignUp
   }
 
   execute(command: AccountSignUpCommand): Promise<void> {
-    const { email, password, name } = command.payload;
+    const { email, password, role, name } = command.payload;
 
-    return this.accountSignUpper.execute(email, password, name);
+    return this.accountSignUpper.execute(email, password, role, name);
   }
 }

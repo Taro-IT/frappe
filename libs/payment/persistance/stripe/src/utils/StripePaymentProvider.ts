@@ -1,6 +1,7 @@
 import {PaymentProvider} from '@frappe/payment/domain'
 import { Product, ProductId } from '@frappe/product/domain'
 import Stripe from 'stripe'
+
 export class StripePaymentProvider implements PaymentProvider {
   private readonly stripeClient: Stripe
   private readonly apiVersion = "2020-08-27"
@@ -12,6 +13,21 @@ export class StripePaymentProvider implements PaymentProvider {
   async createProduct(product: Product) {
     await this.stripeClient.products.create({
       id: product.id.value,
+      name: product.name.value,
+      active: product.isActive.value,
+      description: product.description.value
+    })
+  }
+
+  async archivePrice(productId: ProductId): Promise<void>  {
+    const price = await this.getProductPrice(productId);
+    await this.stripeClient.prices.update(price, {
+      active: false
+    })
+  }
+
+  async updateProduct(product: Product) {
+    await this.stripeClient.products.update(product.id.value, {
       name: product.name.value,
       active: product.isActive.value,
       description: product.description.value

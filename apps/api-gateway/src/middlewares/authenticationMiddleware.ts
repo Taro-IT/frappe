@@ -4,13 +4,12 @@ import { wrapError } from '@frappe/common/utils';
 
 export const authenticationMiddleware = (tokenAuthentication: TokenAuthentication) => async (req: Request, res: Response, next: NextFunction) => {
   const authorization = req.headers['authorization'];
-
   if (!authorization) {
     res.status(401).json({});
     next()
   }
 
-  const token = authorization.split('bearer ')[0];
+  const token = authorization.split('Bearer ')[1];
   if (!token) {
     res.status(401).json({});
     next()

@@ -7,17 +7,62 @@ const helpItems = [
         name: "Productos",
         links: [
             {
-                use_case: "Agregar",
-                link: "https://www.facebook.com/TechnovationChallengeQro"
+                use_case: "Agregar un producto personalizable",
+                link: "https://ior.ad/7ULR"
+            },
+            {
+                use_case: "Eliminar un producto",
+                link: "https://www.iorad.com/player/1886409/Cinica-mx---C-mo-eliminar-un-producto-como-administrador-"
             }
         ]
     },
     {
-        name: "Categorías",
+        name: "Materiales",
         links: [
             {
                 use_case: "Agregar",
-                link: "https://www.facebook.com/TechnovationChallengeQro"
+                link: "https://ior.ad/7UkT"
+            },
+            {
+                use_case: "Modificar",
+                link: "https://www.iorad.com/player/1884858/Editar-material"
+            },
+            {
+                use_case: "Eliminar",
+                link: "https://ior.ad/7Ul6"
+            }
+        ]
+    },
+    {
+        name: "Ordenes",
+        links: [
+            {
+                use_case: "Ver PDF de orden",
+                link: "https://ior.ad/7UlE"
+            },
+            {
+                use_case: "Cambiar el estatus de una orden",
+                link: "https://ior.ad/7UMz"
+            },
+            {
+                use_case: "Descargar una guía de envío",
+                link: "https://ior.ad/7UOt"
+            }
+        ]
+    },{
+        name: "Tienda",
+        links: [
+            {
+                use_case: "Realizar un pedido",
+                link: "https://ior.ad/7V1q?iframeHash=trysteps-1"
+            },
+            {
+                use_case: "Personalizar un producto",
+                link: "https://ior.ad/7UOh"
+            },
+            {
+                use_case: "Filtrar productos",
+                link: "https://www.iorad.com/player/1880218/C-nica-mx---C-mo-filtrar-productos-"
             }
         ]
     }

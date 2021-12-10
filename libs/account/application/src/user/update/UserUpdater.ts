@@ -1,6 +1,6 @@
 //User Story: Frappe-510
 import admin from 'firebase-admin';
-import { User, UserPrimitives, UserRepository, UserUpdateError } from '@frappe/account/domain';
+import { Role, User, UserRepository, UserUpdateError } from '@frappe/account/domain';
 import { UserFinder } from '../find';
 import { wrapError } from '@frappe/common/utils';
 
@@ -21,13 +21,10 @@ export class UserUpdater {
     this.userFinder = userFinder;
   }
 
-  async execute(id: string, changes: Partial<Pick<UserPrimitives, 'name'>>): Promise<void> {
-    if (Object.keys(changes).length === 0) {
-      return;
-    }
+  async execute(id: string, name: string, role: Role): Promise<void> {
 
     const userPrimitives = await this.userFinder.execute(id);
-    const changed = User.fromPrimitives({ ...userPrimitives, ...changes });
+    const changed = User.fromPrimitives({ ...userPrimitives, name, role });
 
     const updateRequest: admin.auth.UpdateRequest = { displayName: changed.name.value };
     const [error] = await wrapError(this.firebaseAuth.updateUser(id, updateRequest));

@@ -1,26 +1,32 @@
 import { useEffect, useState } from 'react'
-import { CogIcon, LogoutIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/solid";
+import { CogIcon, LogoutIcon, ShoppingCartIcon } from "@heroicons/react/solid";
 import { Link } from '..';
 const navItems = [
-  {href: "store", text: "Tienda"},
-  {href: "about", text: "Nosotros"},
-  {href: "outlet", text: "Outlet"},
-  {href: "contact", text: "Contacto"}
+  {href: "/store", text: "Tienda"},
+  {href: "/about", text: "Nosotros"},
+  {href: "/outlet", text: "Outlet"},
+  {href: "/contact", text: "Contacto"}
 ]
 
 export const Navbar = () => {
-  const [open, setOpen] = useState(false)
+  const [open,] = useState(false)
   const [cartItems, setCartItems] = useState<number>(0)
-  const handleOpenUser = () => {
-    setOpen(previous => !previous)
-  }
 
   useEffect (()=> {
     const aux = localStorage.getItem('items');
-    if(aux === null || aux === undefined) return
-    const auxArray = JSON.parse(aux);
-    setCartItems(auxArray.length)
-  }, [setCartItems])
+    if(aux)
+    {
+      const auxArray = JSON.parse(aux);
+      setCartItems(auxArray.length)
+    }
+
+    function storageEventHandler(event : any) {
+        setCartItems(event.detail.cartItemsCount);
+    }
+    window.addEventListener("updateCart", storageEventHandler);
+
+    return () => {window.removeEventListener("updateCart", storageEventHandler)}
+  }, [])
   return (
     <div className="z-10 flex w-full p-4 bg-black h-20 fixed mb-auto ">
       <a href="/">
@@ -35,10 +41,6 @@ export const Navbar = () => {
           <ShoppingCartIcon className="text-yellow-400 h-9 pr-2" />
           <p className="text-white text-2xl">{cartItems}</p>
         </a>
-
-        <div className="flex items-center cursor-pointer" onClick={handleOpenUser}>
-          <UserIcon className="text-white h-9 pr-2 " />
-        </div>
 
         {open &&
           <div className="bg-primary ml-auto mt-auto absolute top-32 right-0">

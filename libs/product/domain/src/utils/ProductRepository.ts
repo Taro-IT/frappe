@@ -8,4 +8,5 @@ export interface ProductRepository {
   save(product: Product): Promise<void>;
   find(id: ProductId): Promise<Product>;
   findByName(name: ProductName): Promise<Nullable<Product>>;
+  delete(id: ProductId): Promise<Nullable<boolean>>;
 }
