@@ -134,9 +134,9 @@ const CartDetailPage = () => {
           <div className="flex flex-col w-full px-20 mb-4 -mt-10 justify-center items-center">
             {/*<BadgeCheckIcon className="items-center h-32 w-32 text-green-400 mb-6" />*/}
             <p className="text-2xl text-center mb-4">¿Quieres eliminar este artículo de tu carrito?</p>
-            <div className="justify-between">
-              <Button title="Si" className="mr-10 w-24 pl-32" variant="cta"  onClick={removeFromCart}/>
-              <Button title="No" className="ml-10 w-24 pl-32" variant="cta" onClick={closeModal}/>
+            <div className="justify-between flex flex-row space-x-8">
+              <Button title="Si" className=" w-24 p-32" variant="cta"  onClick={removeFromCart}/>
+              <Button title="No" className="w-24 p-32" variant="cta" onClick={closeModal}/>
             </div>
           </div>
         </Modal>

@@ -7,8 +7,7 @@ const PrivacyPolicy = () => {
     <div className="self-center w-2/3 pt-8 pb-8">
       <h1 className="text-center text-xl font-bold">POLÍTICAS DE PRIVACIDAD</h1>
       <p>
-      Dora Elena Gómez Sánchez,  con  domicilio  en
-      Segunda Cerrada de Romero de Terreros 52, casa 4, Del Valle, Benito Juárez, 03100, Ciudad de México,  es  responsable
+      Dora Elena Gómez Sánchez, con  domicilio  en la alcadlía Benito Juárez, Ciudad de México,  es  responsable
       de  recabar sus datos personales, del uso que se le dé a los mismos y de su protección.
         </p>
         <br/>
