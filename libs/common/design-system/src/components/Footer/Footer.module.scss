@@ -1,5 +1,5 @@
 .footer {
-    @apply grid grid-cols-3 w-full flex-initial h-44;
+    @apply grid grid-cols-3 w-full flex-initial h-48;
     font-family: Helvetica , Arial, sans-serif;
     background-color: black;
     color: white;
@@ -7,7 +7,6 @@
     bottom:0;
     &--title{
         color: goldenrod;
-        padding-top: 1rem;
     }
 }
 

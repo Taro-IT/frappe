@@ -52,9 +52,9 @@ export class ShippingAddress {
       address1: this.address1.value,
       phone: this.phone.value,
       email: this.email.value,
-      company: this.company.value,
-      address2: this.address2.value,
-      reference: this.reference.value
+      company: this.company?.value,
+      address2: this.address2?.value,
+      reference: this.reference?.value
     }
   }
 }

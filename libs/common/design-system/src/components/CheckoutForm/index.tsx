@@ -11,7 +11,6 @@ export function CheckoutForm() {
   const [phone, setPhone] = useState<string>();
   const [company, setCompany] = useState<string>();
   const [address1, setAddress1] = useState<string>();
-  const [address2, setAddress2] = useState<string>();
   const [reference, setReference] = useState<string>();
   const [city, setCity] = useState<string>();
   const [province, setProvince] = useState<string>();
@@ -197,7 +196,7 @@ export function CheckoutForm() {
       phone: phone,
       email: email,
       company: company ? company : null,
-      address2: address2 ? address2 : null,
+      address2: null,
       reference: reference ? reference : null
     };
 
@@ -227,10 +226,6 @@ export function CheckoutForm() {
 
   const handleAddress1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddress1(e.target.value);
-  };
-
-  const handleAddress2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAddress2(e.target.value);
   };
 
   const handleReferenceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -340,23 +335,6 @@ export function CheckoutForm() {
               className="mb-4 p-2 w-1/2  border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               value={address1}
               onChange={handleAddress1Change}
-            />
-          </div>
-        </div>
-        <div className="sm:col-span-2">
-          <label htmlFor="address2" className="block text-sm font-medium text-gray-700">
-            Dirección de envío secundaria
-          </label>
-          <div className="mt-4">
-            <input
-              type="text"
-              name="address2"
-              placeholder="Colonia, Calle, número exterior, número interior"
-              id="address2"
-              autoComplete="street-address"
-              className="mb-4 p-2 w-1/2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              value={address2}
-              onChange={handleAddress2Change}
             />
           </div>
         </div>

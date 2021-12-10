@@ -42,8 +42,8 @@ export class SkydropxShippingRepository implements ShippingRepository {
           zip: shipping.address_from.zip.value,
           country: shipping.address_from.country.value,
           address1: shipping.address_from.address1.value,
-          company: shipping.address_from.company.value,
-          address2: shipping.address_from.address2.value,
+          company: shipping.address_from.company?.value,
+          address2: shipping.address_from.address2?.value,
           phone: shipping.address_from.phone.value,
           email: shipping.address_from.email.value
         },
@@ -65,10 +65,10 @@ export class SkydropxShippingRepository implements ShippingRepository {
           country: shipping.address_to.country.value,
           address1: shipping.address_to.address1.value,
           company: shipping.address_to.company.value,
-          address2: shipping.address_to.address2.value,
+          address2: shipping.address_to.address2?.value,
           phone: shipping.address_to.phone.value,
           email: shipping.address_to.email.value,
-          reference: shipping.address_to.reference.value,
+          reference: shipping.address_to.reference?.value,
           contents: shipping.parcel.content.value
         }
       })
