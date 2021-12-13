@@ -1,5 +1,10 @@
 import { Button } from "../..";
 
+interface LandingProps {
+  readonly images: string;
+}
+
+
 const categories = [
   {
     name: 'HASTA 50% OFF',
@@ -19,20 +24,20 @@ const categories = [
 ];
 const collections = [
   {
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
-    imageAlt: 'Brown leather key ring with brass metal loops and rivets on wood table.',
+    imageSrc: 'https://cinicastaticfiles.blob.core.windows.net/uploads/80297d42-6ae7-4ab3-b57a-d3e98bdb8c05.jpg',
+    imageAlt: 'bannercillo1',
   },
   {
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg',
-    imageAlt: 'Natural leather mouse pad on white desk next to porcelain mug and keyboard.',
+    imageSrc: 'https://cinicastaticfiles.blob.core.windows.net/uploads/9aa94158-fe72-427e-bef5-2b17c12c302c.jpg',
+    imageAlt: 'bannercillo2',
   },
   {
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
-    imageAlt: 'Person placing task list card into walnut card holder next to felt carrying case on leather desk pad.',
+    imageSrc: 'https://cinicastaticfiles.blob.core.windows.net/uploads/8acf8572-430b-4978-9717-6890e03acad5.jpg',
+    imageAlt: 'bannercillo3',
   }
 ];
 
-export function EcommerceLanding() {
+export function EcommerceLanding({ images }: LandingProps) {
   return (
     <div className="bg-white">
       {/* Hero section */}
@@ -109,7 +114,7 @@ export function EcommerceLanding() {
           <div className="relative rounded-lg overflow-hidden">
             <div className="absolute inset-0">
               <img
-                src="https://tailwindui.com/img/ecommerce-images/home-page-01-feature-section-01.jpg"
+                src="https://cinicastaticfiles.blob.core.windows.net/uploads/17a37199-c111-4f25-bef5-d78aef2f1388.jpg"
                 alt=""
                 className="w-full h-full object-center object-cover"
               />
@@ -143,6 +148,7 @@ export function EcommerceLanding() {
             {collections.map(collection => (
               
                 <div
+                  key=""
                   aria-hidden="true"
                   className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden group-hover:opacity-75 lg:aspect-w-5 lg:aspect-h-6"
                 >

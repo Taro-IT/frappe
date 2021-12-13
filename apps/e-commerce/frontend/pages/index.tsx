@@ -6,9 +6,10 @@ import { FaCreativeCommonsNc } from 'react-icons/fa';
 import styles from '../styles/home.module.scss';
 import React from 'react';
 
+const img = "../public/img/banercillo1.jpg"
 const HomePage = () => (
   <div>
-    <EcommerceLanding />
+    <EcommerceLanding images={img}/>
     <hr className="mb-5 mt-10" />
     <div className="grid grid gap-4 grid-cols-4 mb-10 ml-10">
       <div>
