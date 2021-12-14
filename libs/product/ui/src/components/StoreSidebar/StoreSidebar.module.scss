@@ -1,5 +1,5 @@
 .sidebar {
-  @apply p-6 w-3/12 ;
+  @apply p-6 w-3/12;
 
 
   &--content {
@@ -7,6 +7,6 @@
   }
 
   &--section {
-    @apply pb-3 mb-3 border-b-2;
+    @apply pb-3 mb-3 border-b-2 overflow-y-scroll h-80;
   }
 }

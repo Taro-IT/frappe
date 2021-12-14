@@ -10,7 +10,7 @@ const StorePage = () => {
   const [categories, setCategories] = useState<string[]>();
 
   return (
-      <div className={ styles.wrapper }>
+      <div className="h-screen">
         <div className= {styles['wrapper--main']}>
           <StoreSidebar setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} className={ styles['wrapper--main--sidebar'] } setCategories={setCategories} />
           <StoreProductContent minPrice={minPrice} maxPrice={maxPrice} className={ styles['wrapper--main--content'] } categories={categories} />
